@@ -1,0 +1,15 @@
+{
+  "name": "golf-1",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "animate.css": "latest",
+    "bootstrap": "3.3.6",
+    "FileSaver": "latest",
+    "font-awesome": "4.5.0",
+    "jquery": "2.2.0",
+    "jquery-ui": "1.11.4",
+    "spinjs": "2.3.2",
+    "OpenLayers3": "https://github.com/openlayers/ol3/releases/download/v3.13.0/v3.13.0.zip"
+  }
+}
