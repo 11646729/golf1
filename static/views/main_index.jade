@@ -1,0 +1,68 @@
+//
+   Created by briansmith on 30/01/2016.
+doctype html
+html
+    head(lang='en')
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        meta(name='description', content='')
+        meta(name='author', content='')
+
+        link(rel='icon', href='../images/Golf_Pin.ico')
+
+        link(rel='stylesheet', type='text/css', href='../bower_components/bootstrap/dist/css/bootstrap.min.css')
+        link(rel='stylesheet', type='text/css', href='../stylesheets/style.css')
+        link(rel='stylesheet', type='text/css', href='../stylesheets/custom-bootstrap.css')
+
+        // These MUST be placed in the header
+        script(type='text/javascript', src='../bower_components/jquery/dist/jquery.min.js')
+
+        title Golf Test Routines
+
+    body(class='index_body')
+        header
+            //include partials/header.jade
+
+        main
+            .container
+                .row
+                    .col-md-3
+                        h2 Golf Course Map
+                        a(href='/golfCourseMap')
+                            img.img-rounded(src='../images/GolfBalls.jpg')
+                    .col-md-3
+                        h2 Progress Gis
+                        a(href='/gis')
+                            img.img-rounded(src='../images/GisChart.jpg')
+                    .col-md-3
+                        h2 Line Chart
+                        a(href='/lineChart')
+                            //img.img-rounded(src='../img/LineChart.png')
+                    .col-md-3
+                        h2 Zoom Chart
+                        a(href='/zoomChart')
+                            //img.img-rounded(src='../img/ZoomChart.png')
+                // row
+                .row
+                    .col-md-3
+                        h2 Gantt Chart
+                        a(href='/ganttChart')
+                            //img.img-rounded(src='../img/GanttChart.jpg')
+                    .col-md-3
+                        h2 Kanban Chart
+                        a(href='/kanbanChart')
+                            //img.img-rounded(src='../img/KanbanChart.png')
+                    .col-md-3
+                        h2 Whiteboard
+                        a(href='/whiteboard')
+                            //img.img-rounded(src='../img/Whiteboard.jpg')
+                    .col-md-3
+                        h2 Bullet Chart
+                        a(href='/bulletChart')
+                            //img.img-rounded(src='../img/TreeMap.jpeg')
+                // row
+            // container
+
+        footer
+            //include partials/footer.jade

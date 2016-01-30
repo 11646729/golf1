@@ -7,7 +7,15 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('golfCourseMap', {title: 'Golf Courses'});
+    res.render('main_index', {title: 'Golf Routines'});
 });
+
+router.get('/golfCourseMap', function(req, res) {
+    res.render('golfCourseMap');
+});
+
+//router.get('/gis', function(req, res){
+//    res.render('gis');
+//});
 
 module.exports = router;
