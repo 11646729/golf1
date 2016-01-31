@@ -85,7 +85,7 @@ var golfCoursesDataLayer = new ol.layer.Vector({
     source: golfCoursesSource,
     style: styleFunction
 });
-/*
+
 var mousePositionControl = new ol.control.MousePosition({
     coordinateFormat: ol.coordinate.createStringXY(6),
     projection: 'EPSG:4326',
@@ -94,7 +94,7 @@ var mousePositionControl = new ol.control.MousePosition({
     target: document.getElementById('mouse-position'),
     undefinedHTML: '&nbsp;'
 });
-*/
+
 // Create the View
 var view1 = new ol.View({
     center: new ol.proj.transform([-5.683818, 54.623937], 'EPSG:4326', 'EPSG:3857'),
@@ -104,7 +104,7 @@ var view1 = new ol.View({
 
 // Create the Map
 var map = new ol.Map({
-//    controls: ol.control.defaults().extend([mousePositionControl]),
+    controls: ol.control.defaults().extend([mousePositionControl]),
     renderer: 'canvas',
     target: 'map',
     interactions: ol.interaction.defaults().extend([select]),

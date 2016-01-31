@@ -64,34 +64,34 @@ html
                             #gMap.map
                             #olMap.map
 
-        #sidr-left
-            ul
-               li
-                  a(href='#')
-                     b Base Map Layer
-               li
-                  label(for='bingMapsBaseLayer')
-                  input(type='radio', name='baseMap', value='bingMapsBaseLayer', onclick='toggleControl(this);', checked='')
-                  | Bing Maps
-               li
-                  label(for='googleMapsBaseLayer')
-                  // The # in the value below disables this
-                  input(type='radio', name='baseMap', value='#googleMapsBaseLayer', onclick='toggleControl(this);')
-                  | Google Maps
+            #sidr-left
+                ul
+                   li
+                      a(href='#')
+                         b Base Map Layer
+                   li
+                      label(for='bingMapsBaseLayer')
+                      input(type='radio', name='baseMap', value='bingMapsBaseLayer', onclick='toggleControl(this);', checked='')
+                      | Bing Maps
+                   li
+                      label(for='googleMapsBaseLayer')
+                      // The # in the value below disables this
+                      input(type='radio', name='baseMap', value='#googleMapsBaseLayer', onclick='toggleControl(this);')
+                      | Google Maps
 
-         #sidr-right
-            ul
-               li
-                  a(href='#')
-                     b Golf
-               li
-                  a(href='#') Rounds Played
-               li
-                  label(for='roundsPlayed')
-                  input(type='checkbox', name='overlay', value='withRoundOfGolf', onclick='toggleControl(this);', autocomplete='off', checked='')
-                  | Round Of Golf
+            #sidr-right
+                ul
+                   li
+                      a(href='#')
+                         b Golf
+                   li
+                      a(href='#') Rounds Played
+                   li
+                      label(for='roundsPlayed')
+                      input(type='checkbox', name='overlay', value='withRoundOfGolf', onclick='toggleControl(this);', autocomplete='off', checked='')
+                      | Round Of Golf
 
-            footer
+        footer
             script(type='text/javascript', src='../bower_components/bootstrap/dist/js/bootstrap.min.js')
             script(type='text/javascript', src='../bower_components/OpenLayers3/build/ol.js')
             script(type='text/javascript', src='../javascripts/golfGis.js')
