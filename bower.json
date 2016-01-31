@@ -10,6 +10,7 @@
     "jquery": "2.2.0",
     "jquery-ui": "1.11.4",
     "spinjs": "2.3.2",
-    "OpenLayers3": "https://github.com/openlayers/ol3/releases/download/v3.13.0/v3.13.0.zip"
+    "OpenLayers3": "https://github.com/openlayers/ol3/releases/download/v3.13.0/v3.13.0.zip",
+    "sidr": "latest"
   }
 }

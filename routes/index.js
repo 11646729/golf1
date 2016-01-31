@@ -14,8 +14,8 @@ router.get('/golfCourseMap', function(req, res) {
     res.render('golfCourseMap.jade');
 });
 
-//router.get('/gis', function(req, res){
-//    res.render('gis');
-//});
+router.get('/golfGis', function(req, res){
+    res.render('golfGis.jade');
+});
 
 module.exports = router;

@@ -1,0 +1,66 @@
+{
+    "type": "FeatureCollection",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "urn:ogc:def:crs:OGC:1.3:CRS84" 
+        }
+    },
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [ -5.683992, 54.625605 ]
+            },
+            "properties": {
+                "id": 1,
+                "name": "Shot 1"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [ -5.683818, 54.623937 ]
+            },
+            "properties": {
+                "id": 2,
+                "name": "Shot 2"
+            }
+        },
+        {
+                "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [ -5.682997, 54.622981 ]
+            },
+            "properties": {
+                "id": 3,
+                "name": "Shot 3"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [[ -5.683992, 54.625605 ],[ -5.683818, 54.623937 ]]
+            },
+            "properties": {
+                "name": "Driver",
+                "distance": 207
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [[ -5.683818, 54.623937 ],[ -5.682997, 54.622981 ]]
+            },
+            "properties": {
+                "name": "8 Iron",
+                "distance": 135
+            }
+        }
+    ]
+}
