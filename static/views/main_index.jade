@@ -1,5 +1,4 @@
-//
-   Created by briansmith on 30/01/2016.
+// Created by briansmith on 30/01/16
 doctype html
 html
     head(lang='en')
@@ -15,14 +14,14 @@ html
         link(rel='stylesheet', type='text/css', href='../stylesheets/style.css')
         link(rel='stylesheet', type='text/css', href='../stylesheets/custom-bootstrap.css')
 
-        // These MUST be placed in the header
+        // This MUST be placed in the header
         script(type='text/javascript', src='../bower_components/jquery/dist/jquery.min.js')
 
         title Golf Test Routines
 
-    body(class='index_body')
+    body.index_body
         header
-            //include partials/header.jade
+            include partials/header.jade
 
         main
             .container

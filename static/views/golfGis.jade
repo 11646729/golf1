@@ -1,4 +1,4 @@
-// Created by briansmith on 17/01/15.
+// Created by briansmith on 31/01/16
 doctype html
 html
     head(lang='en')
@@ -11,12 +11,10 @@ html
         link(rel='icon', href='../images/Golf_Pin.ico')
 
         link(rel='stylesheet', type='text/css', href='../bower_components/bootstrap/dist/css/bootstrap.min.css')
-        link(rel='stylesheet', type='text/css', href='../bower_components/sidr/dist/stylesheets/jquery.sidr.light.css')
         link(rel='stylesheet', type='text/css', href='../stylesheets/style.css')
         link(rel='stylesheet', type='text/css', href='../stylesheets/custom-bootstrap.css')
-
-        // This line styles attributions
         link(rel='stylesheet', type='text/css', href='../bower_components/OpenLayers3/css/ol.css')
+        link(rel='stylesheet', type='text/css', href='../bower_components/sidr/dist/stylesheets/jquery.sidr.light.css')
 
         // These MUST be placed in the header
         script(type='text/javascript', src='../bower_components/jquery/dist/jquery.min.js')
@@ -42,31 +40,31 @@ html
 
         title eSeismic Test Harness
 
-        body.index_body
-            header
-                .navbar.navbar-inverse.navbar-fixed-top(role='navigation')
-                    .navbar-inner
-                        .container
-                            .header
-                                a.navbar-brand(href='/main_index') eSeismic
-                                ul.nav.navbar-nav.navbar-right
-                                    li
-                                        a#left-menu(href='#sidr-left') Background Maps
-                                    li
-                                        a#right-menu(href='#sidr-right') Progress Information
-            main
-                .container-fluid
-                    .row-fluid
-                    div
-                        a#temp(href='#') Long Lat:
-                        a#mouse-position  
-                        .span12
-                            #bingMap.map
-                            #googleMap
-                                #gMap.map
-                                #olMap.map
+    body.index_body
+        header
+            .navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+                .navbar-inner
+                    .container
+                        .header
+                            a.navbar-brand(href='/') eSeismic
+                            ul.nav.navbar-nav.navbar-right
+                                li
+                                    a#left-menu(href='#sidr-left') Background Maps
+                                li
+                                    a#right-menu(href='#sidr-right') Progress Information
+        main
+            .container-fluid
+                .row-fluid
+                div
+                    a#temp(href='#') Long Lat:
+                    a#mouse-position  
+                    .span12
+                        #bingMap.map
+                        #googleMap
+                            #gMap.map
+                            #olMap.map
 
-         #sidr-left
+        #sidr-left
             ul
                li
                   a(href='#')
@@ -93,9 +91,8 @@ html
                   input(type='checkbox', name='overlay', value='withRoundOfGolf', onclick='toggleControl(this);', autocomplete='off', checked='')
                   | Round Of Golf
 
-      footer
-
-      script(type='text/javascript', src='../bower_components/bootstrap/dist/js/bootstrap.min.js')
-      script(type='text/javascript', src='../bower_components/OpenLayers3/build/ol.js')
-      script(type='text/javascript', src='../javascripts/golfGis.js')
+            footer
+            script(type='text/javascript', src='../bower_components/bootstrap/dist/js/bootstrap.min.js')
+            script(type='text/javascript', src='../bower_components/OpenLayers3/build/ol.js')
+            script(type='text/javascript', src='../javascripts/golfGis.js')
 

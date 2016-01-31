@@ -1,5 +1,4 @@
-//
-   Created by briansmith on 30/01/2016.
+// Created by briansmith on 30/01/16
 doctype html
 html
     head(lang='en')
@@ -10,11 +9,27 @@ html
         meta(name='author', content='')
 
         link(rel='icon', href='../images/Golf_Pin.ico')
-        link(rel='stylesheet', href='../bower_components/OpenLayers3/css/ol.css', type='text/css')
+
+        link(rel='stylesheet', type='text/css', href='../bower_components/bootstrap/dist/css/bootstrap.min.css')
+        link(rel='stylesheet', type='text/css', href='../stylesheets/style.css')
+        link(rel='stylesheet', type='text/css', href='../stylesheets/custom-bootstrap.css')
+        link(rel='stylesheet', type='text/css', href='../bower_components/OpenLayers3/css/ol.css')
 
         // This MUST be placed in the header
         script(type='text/javascript', src='../bower_components/OpenLayers3/build/ol.js')
-        title
-    body
-        #map.map
-    script(type='text/javascript', src='../javascripts/golfCourseMap.js')
+
+        title Golf Test Routines
+
+    body.index_body
+        header
+            include partials/header.jade
+
+        main
+            .container-fluid
+                .row-fluid
+                div
+                    .span12
+                        #map.map
+
+        footer
+            script(type='text/javascript', src='../javascripts/golfCourseMap.js')
