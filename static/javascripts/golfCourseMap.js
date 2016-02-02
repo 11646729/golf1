@@ -87,9 +87,9 @@ var mousePositionControl = new ol.control.MousePosition({
 });
 
 // Create the Map
+//default renderer is canvas
 var map = new ol.Map({
     layers: [ baseMapLayer, golfCoursesDataLayer],
-    renderer: 'canvas',
     target: 'map',
     view: new ol.View({
         center: new ol.proj.transform([-5.683818, 54.623937], 'EPSG:4326', 'EPSG:3857'),
