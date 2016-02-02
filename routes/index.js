@@ -10,12 +10,12 @@ router.get('/', function(req, res) {
     res.render('main_index.jade');
 });
 
-router.get('/golfCourseMap', function(req, res) {
-    res.render('golfCourseMap.jade');
+router.get('/roundOfGolf', function(req, res) {
+    res.render('roundOfGolf.jade');
 });
 
-router.get('/golfGis', function(req, res){
-    res.render('golfGis.jade');
+router.get('/nearbyGolfCourses', function(req, res){
+    res.render('golfCourseMap.jade');
 });
 
 module.exports = router;

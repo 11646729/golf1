@@ -58,31 +58,37 @@ var select = new ol.interaction.Select({
 });
 
 // Bing Maps API access key
-var apiKey = "AuX4igoeqL4Kp6N9dZYTRK3CV9zEsT8bJIeZMw3TZgIzSED1Ja4VxEOh0XKvd-B_";
+//var apiKey = "AuX4igoeqL4Kp6N9dZYTRK3CV9zEsT8bJIeZMw3TZgIzSED1Ja4VxEOh0XKvd-B_";
 
 // Using Bing Maps data for the BaseMap Layer
-var baseMapLayerBing = new ol.source.BingMaps({
-    key: apiKey,
-    imagerySet: "aerial"
-});
+//var baseMapLayerBing = new ol.source.BingMaps({
+//    key: "AuX4igoeqL4Kp6N9dZYTRK3CV9zEsT8bJIeZMw3TZgIzSED1Ja4VxEOh0XKvd-B_", /* Bing Maps API key */
+//    imagerySet: "aerial"
+//});
 
-// Create the BaseMap Layer
+// Create a Bing Maps BaseMap Layer
 var baseMapLayer = new ol.layer.Tile({
     visible: true,
     preload: Infinity,
-    source: baseMapLayerBing
+    source: new ol.source.BingMaps({
+        key: "AuX4igoeqL4Kp6N9dZYTRK3CV9zEsT8bJIeZMw3TZgIzSED1Ja4VxEOh0XKvd-B_", /* Bing Maps API key */
+        imagerySet: "aerial"
+    })
 });
 
 // Using a GeoJSON file containing the data for the Golf Courses Layer
-var golfCoursesSource = new ol.source.Vector({
-    url: '/testData/GolfCourses.json',
-    format: new ol.format.GeoJSON()
-});
+//var golfCoursesSource = new ol.source.Vector({
+//    url: '/testData/GolfCourses.json',
+//    format: new ol.format.GeoJSON()
+//});
 
 // Create the Golf Courses Layer
 var golfCoursesDataLayer = new ol.layer.Vector({
     title: 'Golf Courses Layer',
-    source: golfCoursesSource,
+    source: new ol.source.Vector({
+        url: '/testData/GolfCourses.json',
+        format: new ol.format.GeoJSON()
+    }),
     style: styleFunction
 });
 
@@ -96,24 +102,29 @@ var mousePositionControl = new ol.control.MousePosition({
 });
 
 // Create the View
-var view1 = new ol.View({
-    center: new ol.proj.transform([-5.683818, 54.623937], 'EPSG:4326', 'EPSG:3857'),
-    maxZoom: 19,
-    zoom: 8
-});
+//var view1 = new ol.View({
+//    center: new ol.proj.transform([-5.683818, 54.623937], 'EPSG:4326', 'EPSG:3857'),
+//    maxZoom: 19,
+//    zoom: 8
+//});
 
 // Create the Map
 var map = new ol.Map({
+    layers: [ baseMapLayer, golfCoursesDataLayer],
     controls: ol.control.defaults().extend([mousePositionControl]),
     renderer: 'canvas',
     target: 'map',
     interactions: ol.interaction.defaults().extend([select]),
-    view: view1
+    view: new ol.View({
+        center: new ol.proj.transform([-5.683818, 54.623937], 'EPSG:4326', 'EPSG:3857'),
+        maxZoom: 19,
+        zoom: 8
+    })
 });
 
 // Add Layers
-map.addLayer(baseMapLayer);
-map.addLayer(golfCoursesDataLayer);
+//map.addLayer(baseMapLayer);
+//map.addLayer(golfCoursesDataLayer);
 
 
 // Experimental
