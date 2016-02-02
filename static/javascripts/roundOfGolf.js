@@ -64,6 +64,10 @@ var overlayStyle = (function () {
     };
 })();
 
+var select = new ol.interaction.Select({
+    style: overlayStyle
+});
+
 /*
 // These lines add Google Maps
 var mapOptions = {
@@ -138,52 +142,27 @@ var roundOfGolfDataLayer = new ol.layer.Vector({
 
 var apiKey = "AuX4igoeqL4Kp6N9dZYTRK3CV9zEsT8bJIeZMw3TZgIzSED1Ja4VxEOh0XKvd-B_";
 
-// Using Bing Maps
-var baseMapLayerBing = new ol.source.BingMaps({
-    key: apiKey,
-    imagerySet: "aerial"
-});
-
+// Using Bing Maps as a Base Layer
 var baseMapLayer = new ol.layer.Tile({
     visible: true,
     preload: Infinity,
-    source: baseMapLayerBing
-});
-
-//var mousePositionControl = new ol.control.MousePosition({
-//    coordinateFormat: ol.coordinate.createStringXY(6),
-//    projection: 'EPSG:4326',
-    // comment the following two lines to have the mouse position placed within the map.
-//    className: 'custom-mouse-position',
-//    target: document.getElementById('mouse-position'),
-//    undefinedHTML: '&nbsp;'
-//});
-
-var select = new ol.interaction.Select({
-    style: overlayStyle
-});
-
-// transform needs to be lower-case to work - even though WebStorm doesn't like it
-var view1 = new ol.View({
-    center: new ol.proj.transform([-5.683818, 54.623937], 'EPSG:4326', 'EPSG:3857'),
-    maxZoom: 19,
-    zoom: 17
+    source: new ol.source.BingMaps({
+        key: apiKey,
+        imagerySet: "aerial"
+    })
 });
 
 // Bing Maps
 var map = new ol.Map({
-    //controls: ol.control.defaults().extend([mousePositionControl]),
     layers: [baseMapLayer, roundOfGolfDataLayer],
-    renderer: 'canvas',
     target: 'bingMap',
     interactions: ol.interaction.defaults().extend([select]),
-    view: view1
+    view: new ol.View({
+        center: new ol.proj.transform([-5.683818, 54.623937], 'EPSG:4326', 'EPSG:3857'),
+        maxZoom: 19,
+        zoom: 17
+    })
 });
-
-// Test Routine
-//var point = ol.proj.transform([-5.683818, 54.623937], 'EPSG:4326', 'EPSG:3857');
-//var pixel = map.getPixelFromCoordinate(point);
-//console.log(point);
 
 // Initialize radio button map choices
 document.getElementById('bingMap').style.display = 'block';
@@ -191,6 +170,7 @@ document.getElementById('googleMap').style.display = 'none';
 document.getElementById('gMap').style.display = 'none';
 document.getElementById('olMap').style.display = 'none';
 
+// This routine traps coordinates of mouse then converts them
 map.on('pointermove', function(event) {
     var coord4326 = ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326');
     $('#mouse4326').text(ol.coordinate.toStringXY(coord4326, 4));
