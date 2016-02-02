@@ -15,7 +15,8 @@ html
         link(rel='stylesheet', type='text/css', href='../stylesheets/custom-bootstrap.css')
         link(rel='stylesheet', type='text/css', href='../bower_components/OpenLayers3/css/ol.css')
 
-        // This MUST be placed in the header
+        // These MUST be placed in the header
+        script(type='text/javascript', src='../bower_components/jquery/dist/jquery.min.js')
         script(type='text/javascript', src='../bower_components/OpenLayers3/build/ol.js')
 
         title Golf Test Routines
@@ -27,9 +28,9 @@ html
         main
             .container-fluid
                 .row-fluid
-                div
-                    a#temp(href='#') Long Lat:
-                    a#mouse-position
+                p
+                    span.label.label-default EPSG:4326 Long & Lat :
+                    span#mouse4326.label.label-info
                     .span12
                         #map.map
 

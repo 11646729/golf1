@@ -82,15 +82,6 @@ var projection = new ol.layer.Group({
     ]
 });
 
-var mousePositionControl = new ol.control.MousePosition({
-    coordinateFormat: ol.coordinate.createStringXY(6),
-    projection: 'EPSG:4326',
-    // comment the following two lines to have the mouse position placed within the map.
-    className: 'custom-mouse-position',
-    target: document.getElementById('mouse-position'),
-    undefinedHTML: '&nbsp;'
-});
-
 var attribution = new ol.control.Attribution({
     collapsible: false
 });
@@ -110,8 +101,14 @@ var map = new ol.Map({
         maxZoom: 19,
         zoom: 8
     }),
-    controls: ol.control.defaults({ attribution: false }).extend([mousePositionControl, attribution]),
+    //controls: ol.control.defaults({ attribution: false }).extend([attribution]),
     interactions: ol.interaction.defaults().extend([select])
+});
+
+// This routine traps coordinates of mouse then converts them
+map.on('pointermove', function(event) {
+    var coord4326 = ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326');
+    $('#mouse4326').text(ol.coordinate.toStringXY(coord4326, 4));
 });
 
 //var extent = ol.extent.createEmpty();
