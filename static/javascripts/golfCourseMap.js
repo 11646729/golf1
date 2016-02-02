@@ -1,8 +1,5 @@
 /**
- * Created by briansmith on 20/10/15.
- */
-/**
- * Created by briansmith on 15/06/2014.
+ * Created by briansmith on 30/01/16
  */
 
 var styleFunction = (function () {
@@ -58,31 +55,19 @@ var select = new ol.interaction.Select({
 });
 
 // Bing Maps API access key
-//var apiKey = "AuX4igoeqL4Kp6N9dZYTRK3CV9zEsT8bJIeZMw3TZgIzSED1Ja4VxEOh0XKvd-B_";
-
-// Using Bing Maps data for the BaseMap Layer
-//var baseMapLayerBing = new ol.source.BingMaps({
-//    key: "AuX4igoeqL4Kp6N9dZYTRK3CV9zEsT8bJIeZMw3TZgIzSED1Ja4VxEOh0XKvd-B_", /* Bing Maps API key */
-//    imagerySet: "aerial"
-//});
+var apiKey = "AuX4igoeqL4Kp6N9dZYTRK3CV9zEsT8bJIeZMw3TZgIzSED1Ja4VxEOh0XKvd-B_";
 
 // Create a Bing Maps BaseMap Layer
 var baseMapLayer = new ol.layer.Tile({
     visible: true,
     preload: Infinity,
     source: new ol.source.BingMaps({
-        key: "AuX4igoeqL4Kp6N9dZYTRK3CV9zEsT8bJIeZMw3TZgIzSED1Ja4VxEOh0XKvd-B_", /* Bing Maps API key */
+        key: apiKey,
         imagerySet: "aerial"
     })
 });
 
-// Using a GeoJSON file containing the data for the Golf Courses Layer
-//var golfCoursesSource = new ol.source.Vector({
-//    url: '/testData/GolfCourses.json',
-//    format: new ol.format.GeoJSON()
-//});
-
-// Create the Golf Courses Layer
+// Create the Golf Courses Layer from a GeoJSON file
 var golfCoursesDataLayer = new ol.layer.Vector({
     title: 'Golf Courses Layer',
     source: new ol.source.Vector({
@@ -101,41 +86,16 @@ var mousePositionControl = new ol.control.MousePosition({
     undefinedHTML: '&nbsp;'
 });
 
-// Create the View
-//var view1 = new ol.View({
-//    center: new ol.proj.transform([-5.683818, 54.623937], 'EPSG:4326', 'EPSG:3857'),
-//    maxZoom: 19,
-//    zoom: 8
-//});
-
 // Create the Map
 var map = new ol.Map({
     layers: [ baseMapLayer, golfCoursesDataLayer],
-    controls: ol.control.defaults().extend([mousePositionControl]),
     renderer: 'canvas',
     target: 'map',
-    interactions: ol.interaction.defaults().extend([select]),
     view: new ol.View({
         center: new ol.proj.transform([-5.683818, 54.623937], 'EPSG:4326', 'EPSG:3857'),
         maxZoom: 19,
         zoom: 8
-    })
+    }),
+    controls: ol.control.defaults().extend([mousePositionControl]),
+    interactions: ol.interaction.defaults().extend([select])
 });
-
-// Add Layers
-//map.addLayer(baseMapLayer);
-//map.addLayer(golfCoursesDataLayer);
-
-
-// Experimental
-//var extent = ol.extent.createEmpty();
-//map.getLayers().forEach(function(layer) {
-//    ol.extent.extend(extent, layer.getSource().getExtent());
-//});
-//map.getView().fitExtent(extent, map.getSize());
-
-
-// Test Routine
-//var point = ol.proj.transform([-5.683818, 54.623937], 'EPSG:4326', 'EPSG:3857');
-//var pixel = map.getPixelFromCoordinate(point);
-//console.log(point);
