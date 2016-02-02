@@ -67,6 +67,7 @@ var baseMapLayer = new ol.layer.Tile({
     })
 });
 
+/*
 var projection = new ol.layer.Group({
     title: 'Projection',
     layers: [
@@ -81,6 +82,17 @@ var projection = new ol.layer.Group({
         })
     ]
 });
+*/
+
+// Create the Golf Courses Layer from a GeoJSON file
+var vectorSource = new ol.layer.Vector({
+    title: 'Golf Courses Layer',
+    source: new ol.source.Vector({
+        url: '/testData/GolfCourses.json',
+        format: new ol.format.GeoJSON()
+    }),
+    style: styleFunction
+})
 
 var attribution = new ol.control.Attribution({
     collapsible: false
@@ -94,8 +106,9 @@ var attribution = new ol.control.Attribution({
 // of controls using an array (.extend([attribution]))
 
 var map = new ol.Map({
-    layers: [ baseMapLayer, projection],
+    layers: [ baseMapLayer, vectorSource], /* projection */
     target: 'map',
+    renderer: 'canvas',
     view: new ol.View({
         center: new ol.proj.transform([-5.683818, 54.623937], 'EPSG:4326', 'EPSG:3857'),
         maxZoom: 19,
@@ -111,8 +124,13 @@ map.on('pointermove', function(event) {
     $('#mouse4326').text(ol.coordinate.toStringXY(coord4326, 4));
 });
 
-//var extent = ol.extent.createEmpty();
-//projecten.getLayers().forEach(function(layer) {
-//    ol.extent.extend(extent, layer.getSource().getExtent());
-//});
-//map.getView().fitExtent(extent, map.getSize());
+// Fit to extent routine - doesn't work getState throws an error
+/*
+vectorSource.once('change',function(e){
+    if(vectorSource.getState() === 'ready') {
+        if(vectorSource.getSource().getFeatures().length>0) {
+            map.getView().fit(vectorSource.getExtent(), map.getSize());
+        }
+    }
+});
+*/
