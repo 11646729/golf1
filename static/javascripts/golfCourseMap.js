@@ -84,13 +84,18 @@ var projection = new ol.layer.Group({
 });
 */
 
+var readSource = new ol.source.Vector({
+    url: '/testData/GolfCourses.json',
+    format: new ol.format.GeoJSON()
+});
+
+// This shows 'ready'
+//console.log(readSource.getState());
+
 // Create the Golf Courses Layer from a GeoJSON file
 var vectorSource = new ol.layer.Vector({
     title: 'Golf Courses Layer',
-    source: new ol.source.Vector({
-        url: '/testData/GolfCourses.json',
-        format: new ol.format.GeoJSON()
-    }),
+    source: readSource,
     style: styleFunction
 })
 
@@ -127,10 +132,11 @@ map.on('pointermove', function(event) {
 // Fit to extent routine - doesn't work getState throws an error
 /*
 vectorSource.once('change',function(e){
-    if(vectorSource.getState() === 'ready') {
+    if(readSource.getState() === 'ready') {
         if(vectorSource.getSource().getFeatures().length>0) {
             map.getView().fit(vectorSource.getExtent(), map.getSize());
         }
     }
 });
 */
+
