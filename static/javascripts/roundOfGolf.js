@@ -150,14 +150,14 @@ var baseMapLayer = new ol.layer.Tile({
     source: baseMapLayerBing
 });
 
-var mousePositionControl = new ol.control.MousePosition({
-    coordinateFormat: ol.coordinate.createStringXY(6),
-    projection: 'EPSG:4326',
+//var mousePositionControl = new ol.control.MousePosition({
+//    coordinateFormat: ol.coordinate.createStringXY(6),
+//    projection: 'EPSG:4326',
     // comment the following two lines to have the mouse position placed within the map.
-    className: 'custom-mouse-position',
-    target: document.getElementById('mouse-position'),
-    undefinedHTML: '&nbsp;'
-});
+//    className: 'custom-mouse-position',
+//    target: document.getElementById('mouse-position'),
+//    undefinedHTML: '&nbsp;'
+//});
 
 var select = new ol.interaction.Select({
     style: overlayStyle
@@ -172,7 +172,7 @@ var view1 = new ol.View({
 
 // Bing Maps
 var map = new ol.Map({
-    controls: ol.control.defaults().extend([mousePositionControl]),
+    //controls: ol.control.defaults().extend([mousePositionControl]),
     layers: [baseMapLayer, roundOfGolfDataLayer],
     renderer: 'canvas',
     target: 'bingMap',
@@ -190,6 +190,11 @@ document.getElementById('bingMap').style.display = 'block';
 document.getElementById('googleMap').style.display = 'none';
 document.getElementById('gMap').style.display = 'none';
 document.getElementById('olMap').style.display = 'none';
+
+map.on('pointermove', function(event) {
+    var coord4326 = ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326');
+    $('#mouse4326').text(ol.coordinate.toStringXY(coord4326, 4));
+});
 
 function toggleControl(element){
     if(element.value == "bingMapsBaseLayer"){

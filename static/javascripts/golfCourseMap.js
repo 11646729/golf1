@@ -67,14 +67,19 @@ var baseMapLayer = new ol.layer.Tile({
     })
 });
 
-// Create the Golf Courses Layer from a GeoJSON file
-var golfCoursesDataLayer = new ol.layer.Vector({
-    title: 'Golf Courses Layer',
-    source: new ol.source.Vector({
-        url: '/testData/GolfCourses.json',
-        format: new ol.format.GeoJSON()
-    }),
-    style: styleFunction
+var projection = new ol.layer.Group({
+    title: 'Projection',
+    layers: [
+        // Create the Golf Courses Layer from a GeoJSON file
+        new ol.layer.Vector({
+            title: 'Golf Courses Layer',
+            source: new ol.source.Vector({
+                url: '/testData/GolfCourses.json',
+                format: new ol.format.GeoJSON()
+            }),
+            style: styleFunction
+        })
+    ]
 });
 
 var mousePositionControl = new ol.control.MousePosition({
@@ -86,16 +91,31 @@ var mousePositionControl = new ol.control.MousePosition({
     undefinedHTML: '&nbsp;'
 });
 
+var attribution = new ol.control.Attribution({
+    collapsible: false
+});
+
 // Create the Map
-//default renderer is canvas
+// default renderer is canvas
+
+// The ol.control.defaults({ attribution: false }).extend([attribution]) means use default controls
+// except the default attribution (attribution: false) and then add the new attribution object to list
+// of controls using an array (.extend([attribution]))
+
 var map = new ol.Map({
-    layers: [ baseMapLayer, golfCoursesDataLayer],
+    layers: [ baseMapLayer, projection],
     target: 'map',
     view: new ol.View({
         center: new ol.proj.transform([-5.683818, 54.623937], 'EPSG:4326', 'EPSG:3857'),
         maxZoom: 19,
         zoom: 8
     }),
-    controls: ol.control.defaults().extend([mousePositionControl]),
+    controls: ol.control.defaults({ attribution: false }).extend([mousePositionControl, attribution]),
     interactions: ol.interaction.defaults().extend([select])
 });
+
+//var extent = ol.extent.createEmpty();
+//projecten.getLayers().forEach(function(layer) {
+//    ol.extent.extend(extent, layer.getSource().getExtent());
+//});
+//map.getView().fitExtent(extent, map.getSize());
