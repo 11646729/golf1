@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f9fa8333-d4dd-4f0a-9316-851c46675c41" name="Default" comment="More unsuccessful edits to introduce zoom to fit">
+    <list default="true" id="f9fa8333-d4dd-4f0a-9316-851c46675c41" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/javascripts/golfCourseMap.js" afterPath="$PROJECT_DIR$/static/javascripts/golfCourseMap.js" />
     </list>
@@ -27,8 +27,18 @@
       <file leaf-file-name="golfCourseMap.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/javascripts/golfCourseMap.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.67120624">
-              <caret line="145" column="0" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+            <state vertical-scroll-proportion="-0.6342412">
+              <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="roundOfGolf.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/javascripts/roundOfGolf.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="162" column="16" selection-start-line="162" selection-start-column="16" selection-end-line="162" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -80,8 +90,8 @@
         <option value="$PROJECT_DIR$/static/javascripts/roundOfGolf.js" />
         <option value="$PROJECT_DIR$/static/views/roundOfGolf.jade" />
         <option value="$PROJECT_DIR$/static/views/golfCourseMap.jade" />
-        <option value="$PROJECT_DIR$/static/testData/golfCourses.json" />
         <option value="$PROJECT_DIR$/static/javascripts/golfCourseMap.js" />
+        <option value="$PROJECT_DIR$/static/testData/golfCourses.json" />
       </list>
     </option>
   </component>
@@ -152,6 +162,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="golf-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="golf-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="testData" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -428,7 +456,13 @@
       <option name="project" value="LOCAL" />
       <updated>1454448028205</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Moving forward on introducing zoom to fit">
+      <created>1454494653982</created>
+      <option name="number" value="00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1454494653982</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -473,7 +507,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Minor edits in config.sys &amp; added repository address to package.json" />
     <MESSAGE value="Added CORS module &amp; configured it in basic mode" />
     <MESSAGE value="Enabled Node Core source" />
     <MESSAGE value="Removed bodyParser warning by adding new to require statement in app.js" />
@@ -498,13 +531,22 @@
     <MESSAGE value="Completed mouse coordinates position displays in golfCourseMap &amp; golfCourses and removed unrequired point in golfCourse.json file" />
     <MESSAGE value="Unsuccessful edits to introduce zoom to fit" />
     <MESSAGE value="More unsuccessful edits to introduce zoom to fit" />
-    <option name="LAST_COMMIT_MESSAGE" value="More unsuccessful edits to introduce zoom to fit" />
+    <MESSAGE value="Moving forward on introducing zoom to fit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Moving forward on introducing zoom to fit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/static/javascripts/golfCourseMap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/static/javascripts/golfCourseMap.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -816,13 +858,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/testData/golfCourses.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27663934">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/views/golfCourseMap.jade">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.296875">
@@ -839,15 +874,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/javascripts/roundOfGolf.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.7276263">
+        <state vertical-scroll-proportion="0.0">
           <caret line="162" column="16" selection-start-line="162" selection-start-column="16" selection-end-line="162" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/testData/golfCourses.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2755102">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/javascripts/golfCourseMap.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.67120624">
-          <caret line="145" column="0" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+        <state vertical-scroll-proportion="-0.6342412">
+          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
           <folding />
         </state>
       </provider>

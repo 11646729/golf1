@@ -67,35 +67,13 @@ var baseMapLayer = new ol.layer.Tile({
     })
 });
 
-/*
-var projection = new ol.layer.Group({
-    title: 'Projection',
-    layers: [
-        // Create the Golf Courses Layer from a GeoJSON file
-        new ol.layer.Vector({
-            title: 'Golf Courses Layer',
-            source: new ol.source.Vector({
-                url: '/testData/GolfCourses.json',
-                format: new ol.format.GeoJSON()
-            }),
-            style: styleFunction
-        })
-    ]
-});
-*/
-
-var readSource = new ol.source.Vector({
-    url: '/testData/GolfCourses.json',
-    format: new ol.format.GeoJSON()
-});
-
-// This shows 'ready'
-//console.log(readSource.getState());
-
 // Create the Golf Courses Layer from a GeoJSON file
 var vectorSource = new ol.layer.Vector({
     title: 'Golf Courses Layer',
-    source: readSource,
+    source: new ol.source.Vector({
+        url: '/testData/GolfCourses.json',
+        format: new ol.format.GeoJSON()
+    }),
     style: styleFunction
 })
 
@@ -104,7 +82,6 @@ var attribution = new ol.control.Attribution({
 });
 
 // Create the Map
-// default renderer is canvas
 
 // The ol.control.defaults({ attribution: false }).extend([attribution]) means use default controls
 // except the default attribution (attribution: false) and then add the new attribution object to list
@@ -117,40 +94,26 @@ var map = new ol.Map({
     view: new ol.View({
         center: new ol.proj.transform([-5.683818, 54.623937], 'EPSG:4326', 'EPSG:3857'),
         maxZoom: 19,
-        zoom: 8
+        zoom: 2
     }),
     //controls: ol.control.defaults({ attribution: false }).extend([attribution]),
     interactions: ol.interaction.defaults().extend([select])
 });
 
-// This routine traps coordinates of mouse then converts them
+// This routine traps coordinates of mouse then converts them for display
 map.on('pointermove', function(event) {
     var coord4326 = ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326');
     $('#mouse4326').text(ol.coordinate.toStringXY(coord4326, 4));
 });
 
-// Fit to extent routine - doesn't work getState throws an error
-/*
-vectorSource.once('change',function(e){
-    if(readSource.getState() === 'ready') {
-        if(vectorSource.getSource().getFeatures().length>0) {
-            map.getView().fit(vectorSource.getExtent(), map.getSize());
-        }
-    }
-});
-*/
-
-// This may work ?? http://gis.stackexchange.com/questions/150997/openlayers-3-zoom-to-extent-only-working-in-debug
-// It seems to correctly find the extents - according to Chrome
-// But not to fit to these extents properly
-
-// EPSG:3857 -755249.2003572898,7211536.239261792,-608825.6647398112,7400726.720027477
-// EPSG:4326 -6.784519000000001,54.217919999999964,-5.469174,55.199730999999986
+// Fit to extent routine - http://gis.stackexchange.com/questions/150997/openlayers-3-zoom-to-extent-only-working-in-debug
 vectorSource.getSource().on("change", function(evt) {
-    extent = vectorSource.getSource().getExtent();
+    var extent = vectorSource.getSource().getExtent();
     map.getView().fit(extent, map.getSize());
 
-    console.log("EPSG:3857 " + extent);
-    extent = ol.extent.applyTransform(extent, ol.proj.getTransform("EPSG:3857", "EPSG:4326"));
-    console.log("EPSG:4326 " + extent);
+// Test routines
+//    console.log("EPSG:3857 " + extent);
+//    extent = ol.extent.applyTransform(extent, ol.proj.getTransform("EPSG:3857", "EPSG:4326"));
+//    console.log("EPSG:4326 " + extent);
 });
+
