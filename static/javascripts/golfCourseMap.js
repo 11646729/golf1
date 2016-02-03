@@ -140,3 +140,17 @@ vectorSource.once('change',function(e){
 });
 */
 
+// This may work ?? http://gis.stackexchange.com/questions/150997/openlayers-3-zoom-to-extent-only-working-in-debug
+// It seems to correctly find the extents - according to Chrome
+// But not to fit to these extents properly
+
+// EPSG:3857 -755249.2003572898,7211536.239261792,-608825.6647398112,7400726.720027477
+// EPSG:4326 -6.784519000000001,54.217919999999964,-5.469174,55.199730999999986
+vectorSource.getSource().on("change", function(evt) {
+    extent = vectorSource.getSource().getExtent();
+    map.getView().fit(extent, map.getSize());
+
+    console.log("EPSG:3857 " + extent);
+    extent = ol.extent.applyTransform(extent, ol.proj.getTransform("EPSG:3857", "EPSG:4326"));
+    console.log("EPSG:4326 " + extent);
+});
