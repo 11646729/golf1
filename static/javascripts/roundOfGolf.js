@@ -131,13 +131,13 @@ var map = new ol.Map({
 });
 */
 
-var roundOfGolfDataLayer = new ol.layer.Vector({
+var vectorSource = new ol.layer.Vector({
     source: new ol.source.Vector({
         url: '/testData/geoJsonFiles/roundOfGolfData.json',
         format: new ol.format.GeoJSON()
     }),
-    style: styleFunction,
-    opacity: 0.5
+    style: styleFunction
+    // opacity: 0.5
 });
 
 var apiKey = "AuX4igoeqL4Kp6N9dZYTRK3CV9zEsT8bJIeZMw3TZgIzSED1Ja4VxEOh0XKvd-B_";
@@ -154,14 +154,31 @@ var baseMapLayer = new ol.layer.Tile({
 
 // Bing Maps
 var map = new ol.Map({
-    layers: [baseMapLayer, roundOfGolfDataLayer],
+    layers: [baseMapLayer, vectorSource],
     target: 'bingMap',
     interactions: ol.interaction.defaults().extend([select]),
     view: new ol.View({
         center: new ol.proj.transform([-5.683818, 54.623937], 'EPSG:4326', 'EPSG:3857'),
         maxZoom: 19,
-        zoom: 17
+        zoom: 2 // 17
     })
+});
+
+// This routine traps coordinates of mouse then converts them
+map.on('pointermove', function(event) {
+    var coord4326 = ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326');
+    $('#mouse4326').text(ol.coordinate.toStringXY(coord4326, 4));
+});
+
+// Fit to extent routine - http://gis.stackexchange.com/questions/150997/openlayers-3-zoom-to-extent-only-working-in-debug
+vectorSource.getSource().on("change", function(evt) {
+    var extent = vectorSource.getSource().getExtent();
+    map.getView().fit(extent, map.getSize());
+
+// Test routines
+//    console.log("EPSG:3857 " + extent);
+//    extent = ol.extent.applyTransform(extent, ol.proj.getTransform("EPSG:3857", "EPSG:4326"));
+//    console.log("EPSG:4326 " + extent);
 });
 
 // Initialize radio button map choices
@@ -169,12 +186,6 @@ document.getElementById('bingMap').style.display = 'block';
 document.getElementById('googleMap').style.display = 'none';
 document.getElementById('gMap').style.display = 'none';
 document.getElementById('olMap').style.display = 'none';
-
-// This routine traps coordinates of mouse then converts them
-map.on('pointermove', function(event) {
-    var coord4326 = ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326');
-    $('#mouse4326').text(ol.coordinate.toStringXY(coord4326, 4));
-});
 
 function toggleControl(element){
     if(element.value == "bingMapsBaseLayer"){

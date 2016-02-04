@@ -8,7 +8,7 @@ var styleFunction = (function () {
     styles['Point'] = [
         new ol.style.Style({
             image: new ol.style.Circle({
-                radius: 5,
+                radius: 3,
                 fill: new ol.style.Fill({
                     color: "red"
                 }),
@@ -71,15 +71,15 @@ var baseMapLayer = new ol.layer.Tile({
 var vectorSource = new ol.layer.Vector({
     title: 'Golf Courses Layer',
     source: new ol.source.Vector({
-        url: '/testData/GolfCourses.json',
+        url: '/testData/geoJsonFiles/GolfCourses.json',
         format: new ol.format.GeoJSON()
     }),
     style: styleFunction
 })
 
-var attribution = new ol.control.Attribution({
-    collapsible: false
-});
+//var attribution = new ol.control.Attribution({
+//    collapsible: false
+//});
 
 // Create the Map
 
@@ -88,7 +88,7 @@ var attribution = new ol.control.Attribution({
 // of controls using an array (.extend([attribution]))
 
 var map = new ol.Map({
-    layers: [ baseMapLayer, vectorSource], /* projection */
+    layers: [ baseMapLayer, vectorSource],
     target: 'map',
     renderer: 'canvas',
     view: new ol.View({
