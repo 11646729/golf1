@@ -13,13 +13,14 @@ html
         link(rel='stylesheet', type='text/css', href='../bower_components/bootstrap/dist/css/bootstrap.min.css')
         link(rel='stylesheet', type='text/css', href='../stylesheets/style.css')
         link(rel='stylesheet', type='text/css', href='../stylesheets/custom-bootstrap.css')
+        link(rel='stylesheet', type='text/css', href='../stylesheets/popup.css')
         link(rel='stylesheet', type='text/css', href='../bower_components/OpenLayers3/css/ol.css')
 
         // These MUST be placed in the header
         script(type='text/javascript', src='../bower_components/jquery/dist/jquery.min.js')
         script(type='text/javascript', src='../bower_components/OpenLayers3/build/ol.js')
 
-        title Golf Test Routines
+    title Golf Test Routines
 
     body.index_body
         header
@@ -33,6 +34,9 @@ html
                     span#mouse4326.label.label-info
                     .span12
                         #map.map
+                        #popup.ol-popup
+                            a#popup-closer.ol-popup-closer(href='#')
+                            #popup-content
 
-        footer
+    footer
             script(type='text/javascript', src='../javascripts/golfCourseMap.js')

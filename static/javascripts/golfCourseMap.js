@@ -77,11 +77,38 @@ var vectorSource = new ol.layer.Vector({
     style: styleFunction
 })
 
+var popupElement = document.getElementById('popup');
+var content = document.getElementById('popup-content');
+var closer = document.getElementById('popup-closer');
+
+/**
+ * Create an overlay to anchor the popup to the map
+ */
+var overlay = new ol.Overlay(({
+    element: popupElement,
+    autoPan: true,
+    autoPanAnimation: {
+        duration: 250
+    }
+}));
+
+/**
+ * Add a click handler to hide the popup
+ * @return {boolean} Don't follow the href
+ */
+closer.onclick = function(){
+    overlay.setPosition(undefined);
+    closer.blur();
+    return false;
+};
+
 //var attribution = new ol.control.Attribution({
 //    collapsible: false
 //});
 
-// Create the Map
+/**
+ * Create the Map
+ */
 
 // The ol.control.defaults({ attribution: false }).extend([attribution]) means use default controls
 // except the default attribution (attribution: false) and then add the new attribution object to list
@@ -89,6 +116,7 @@ var vectorSource = new ol.layer.Vector({
 
 var map = new ol.Map({
     layers: [ baseMapLayer, vectorSource],
+    overlays: [overlay],
     target: 'map',
     renderer: 'canvas',
     view: new ol.View({
@@ -98,6 +126,19 @@ var map = new ol.Map({
     }),
     //controls: ol.control.defaults({ attribution: false }).extend([attribution]),
     interactions: ol.interaction.defaults().extend([select])
+});
+
+/**
+ * Add a click handler to the map to render the popup
+ * Use singleclick as click event fires on both click & doubleclick
+ */
+map.on('singleclick', function(evt) {
+    var coordinate = evt.coordinate;
+    var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(
+        coordinate, 'EPSG:3857', 'EPSG:4326'));
+
+    content.innerHTML = '<p>You clicked here:</p><code>' + hdms + '</code>';
+    overlay.setPosition(coordinate);
 });
 
 // This routine traps coordinates of mouse then converts them for display
