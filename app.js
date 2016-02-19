@@ -1,17 +1,18 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
-var RedisStore = require('connect-redis')(session);
-
-var bodyParser = new require('body-parser');
-var cors = require('cors');
-
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var config = require('./config');
+/**
+ * Created by briansmith on 23/04/2014.
+ */
+// modules ===================================================================
+var express = require('express'),
+    config = require('./config'),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser'),
+    csrf = require('csurf'),
+    cors = require('cors'),
+    session = require('express-session'),
+    path = require('path'),
+    favicon = require('serve-favicon'),
+    logger = require('morgan'),
+    RedisStore = require('connect-redis')(session);
 
 var app = express();
 
@@ -22,17 +23,15 @@ app.set('views', path.join(__dirname, 'static/views'));
 app.set('view engine', 'jade');
 //app.set('view engine', 'ejs');
 
+app.use(express.static(path.join(__dirname, 'static')));
 app.use(favicon(path.join(__dirname, 'static/images', config.favicon)));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use(logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
 app.use(cookieParser('secret'));
 
-app.use(session({
-    secret: 'secret',
-    resave: true,
-    saveUninitialized: true
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
 }));
 
 app.use(session({
@@ -43,24 +42,29 @@ app.use(session({
         {url: 'redis://localhost'})
     })
 );
-app.use(express.static(path.join(__dirname, 'static')));
 
-app.use(cors({
-    credentials: true,
-    origin: true
-}));
+//app.use(csrf());
+//app.use(util.csrf);
 
+//app.use(cors({
+//    credentials: true,
+//    origin: true
+//}));
+
+// routes ====================================================================
+var routes = require('./routes/index');
 app.use('/', routes);
+
+var users = require('./routes/users');
 app.use('/users', users);
 
+// error handlers ============================================================
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
-
-// error handlers
 
 // development error handler
 // will print stacktrace
