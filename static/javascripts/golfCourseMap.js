@@ -116,10 +116,10 @@ closer.onclick = function(){
 var map = new ol.Map({
     layers: [ baseMapLayer, vectorLayer ],
     overlays: [overlay],
-    target: 'map',
+    target: document.getElementById('map'),
     renderer: 'canvas',
     view: new ol.View({
-        center: new ol.proj.transform([-5.683818, 54.623937], 'EPSG:4326', 'EPSG:3857'),
+        center: [0, 0],
         maxZoom: 19,
         zoom: 2
     }),
@@ -132,44 +132,46 @@ var map = new ol.Map({
  * Use singleclick as click event fires on both click & doubleclick
  */
 map.on('singleclick', function(evt) {
-    var coordinate = evt.coordinate;
-    var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(
-        coordinate, 'EPSG:3857', 'EPSG:4326'));
+    var feature = map.forEachFeatureAtPixel(evt.pixel,
+        function(feature) {
+            return feature;
+        });
 
-    content.innerHTML = '<p>You clicked here:</p><code>' + hdms + '</code>';
-    overlay.setPosition(coordinate);
+    if (feature) {
+        overlay.setPosition(evt.coordinate);
+        var featureName = feature.get('name');
+        content.innerHTML = '<p>You clicked here :</p><code>' + featureName + '</code>';
+    }
 });
 
-// This routine traps coordinates of mouse then converts them for display
-//map.on('pointermove', function(event) {
-//    var coord4326 = ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326');
-//    $('#mouse4326').text(ol.coordinate.toStringXY(coord4326, 4));
-//});
+/**
+ * Trap coordinates of mouse then converts them for display
+ */
+map.on('pointermove', function(event) {
+    var coord4326 = ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326');
+    $('#mouse4326').text(ol.coordinate.toStringXY(coord4326, 4));
+});
 
 /**
- * Routine to change mouse cursor when over marker
+ * Change mouse cursor when over marker
  */
 map.on('pointermove', function(e) {
-    if (e.dragging) {
-        $(element).popover('destroy');
-        return;
-    }
+    //if (e.dragging) {
+    //    $(element).popover('destroy');
+    //    return;
+    //}
 
     var pixel = map.getEventPixel(e.originalEvent);
     var hit = map.hasFeatureAtPixel(pixel);
 
-//    map.getTarget().style.cursor = hit ? 'pointer' : '';
-
-    if (hit) {
-        this.getTarget().style.cursor = "pointer";
-    } else {
-        this.getTarget().style.cursor = "";
-    }
+    map.getTarget().style.cursor = hit ? 'pointer' : '';
 });
 
-// Fit to extent routine - http://gis.stackexchange.com/questions/150997/openlayers-3-zoom-to-extent-only-working-in-debug
+/**
+ * Fit to extent routine - http://gis.stackexchange.com/questions/150997/openlayers-3-zoom-to-extent-only-working-in-debug
+ */
 vectorLayer.getSource().on("change", function(evt) {
-    var extent = vectorSource.getSource().getExtent();
+    var extent = vectorLayer.getSource().getExtent();
     map.getView().fit(extent, map.getSize());
 
 // Test routines

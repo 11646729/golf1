@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9fa8333-d4dd-4f0a-9316-851c46675c41" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/javascripts/cursor.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/javascripts/cursor.js" afterPath="$PROJECT_DIR$/static/javascripts/cursor.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/javascripts/golfCourseMap.js" afterPath="$PROJECT_DIR$/static/javascripts/golfCourseMap.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/views/golfCourseMap.jade" afterPath="$PROJECT_DIR$/static/views/golfCourseMap.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/views/main_index.jade" afterPath="$PROJECT_DIR$/static/views/main_index.jade" />
     </list>
     <ignored path="golf-1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,30 +31,18 @@
         <entry file="file://$PROJECT_DIR$/static/javascripts/golfCourseMap.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="156" column="0" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+              <caret line="163" column="0" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="golfCourseMap.jade" pinned="false" current-in-tab="false">
+      <file leaf-file-name="golfCourseMap.jade" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/views/golfCourseMap.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+            <state vertical-scroll-proportion="1.080402">
+              <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cursor.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/static/javascripts/cursor.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.59799">
-              <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#47#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -102,7 +92,6 @@
         <option value="$PROJECT_DIR$/static/testData/golfCourses.json" />
         <option value="$PROJECT_DIR$/static/testData/geoJsonFiles/roundOfGolfData.json" />
         <option value="$PROJECT_DIR$/static/javascripts/roundOfGolf.js" />
-        <option value="$PROJECT_DIR$/static/views/main_index.jade" />
         <option value="$PROJECT_DIR$/static/stylesheets/popup.css" />
         <option value="$PROJECT_DIR$/temp.jade" />
         <option value="$PROJECT_DIR$/app.js" />
@@ -110,9 +99,10 @@
         <option value="$PROJECT_DIR$/static/views/cursor.jade" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/static/stylesheets/style.css" />
-        <option value="$PROJECT_DIR$/static/views/golfCourseMap.jade" />
-        <option value="$PROJECT_DIR$/static/javascripts/golfCourseMap.js" />
+        <option value="$PROJECT_DIR$/static/views/main_index.jade" />
         <option value="$PROJECT_DIR$/static/javascripts/cursor.js" />
+        <option value="$PROJECT_DIR$/static/javascripts/golfCourseMap.js" />
+        <option value="$PROJECT_DIR$/static/views/golfCourseMap.jade" />
       </list>
     </option>
   </component>
@@ -553,7 +543,13 @@
       <option name="project" value="LOCAL" />
       <updated>1455874844544</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Restored mouse position but still a problem with popup">
+      <created>1455874982679</created>
+      <option name="number" value="00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1455874982679</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -564,6 +560,7 @@
       <window_info id="TODO" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33084577" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329602" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32630274" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -577,7 +574,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287841" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -598,7 +594,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Continue installing jade and golfCourseMap.jade" />
     <MESSAGE value="Correct errors in installing jade view engine for golfCourseMap. This is now working with jade or ejs view engines" />
     <MESSAGE value="Fixed README.md file" />
     <MESSAGE value="Installing new home pagefrom RTUI project" />
@@ -623,7 +618,8 @@
     <MESSAGE value="Added popup layer showing position based on a click event" />
     <MESSAGE value="Modifying popup layer to change cursor shape &amp; read from GeoJson file into popup - NOT WORKING" />
     <MESSAGE value="More modifications to mouse cursor change - better but not yet complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="More modifications to mouse cursor change - better but not yet complete" />
+    <MESSAGE value="Restored mouse position but still a problem with popup" />
+    <option name="LAST_COMMIT_MESSAGE" value="Restored mouse position but still a problem with popup" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -904,13 +900,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/views/main_index.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1381323">
-          <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/views/index.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18367347">
@@ -969,10 +958,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/views/golfCourseMap.jade">
+    <entry file="file://$PROJECT_DIR$/static/views/main_index.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.79899496">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -980,18 +969,16 @@
     <entry file="file://$PROJECT_DIR$/static/javascripts/golfCourseMap.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="156" column="0" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+          <caret line="163" column="0" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/javascripts/cursor.js">
+    <entry file="file://$PROJECT_DIR$/static/views/golfCourseMap.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59799">
-          <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#47#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="1.080402">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
