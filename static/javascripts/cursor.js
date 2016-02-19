@@ -2,6 +2,31 @@
  * Created by briansmith on 18/02/2016.
  */
 
+var styleFunction = (function () {
+    var styles = {};
+
+    styles['Point'] = [
+        new ol.style.Style({
+            image: new ol.style.Circle({
+                radius: 3,
+                fill: new ol.style.Fill({
+                    color: "red"
+                }),
+                stroke: new ol.style.Stroke({
+                    color: "white",
+                    width: 2
+                })
+            }),
+            zIndex: 100000
+        })
+    ];
+
+    return function (feature) {
+        return styles[feature.getGeometry().getType()] || styles['default'];
+    };
+})();
+
+/*
 var iconFeature = new ol.Feature({
     geometry: new ol.geom.Point([0, 0]),
     name: 'Null Island',
@@ -10,12 +35,12 @@ var iconFeature = new ol.Feature({
 });
 
 var iconStyle = new ol.style.Style({
-    image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+    image: new ol.style.Icon({
         anchor: [0.5, 46],
         anchorXUnits: 'fraction',
         anchorYUnits: 'pixels',
         src: 'images/icon.png'
-    }))
+    })
 });
 
 iconFeature.setStyle(iconStyle);
@@ -27,16 +52,17 @@ var vectorSource = new ol.source.Vector({
 var vectorLayer = new ol.layer.Vector({
     source: vectorSource
 });
+*/
 
 // Create the Golf Courses Layer from a GeoJSON file
-/*var vectorLayer = new ol.layer.Vector({
+var vectorLayer = new ol.layer.Vector({
     title: 'Golf Courses Layer',
     source: new ol.source.Vector({
         url: '/testData/geoJsonFiles/GolfCourses.json',
         format: new ol.format.GeoJSON()
     }),
     style: styleFunction
-})*/
+})
 
 // Bing Maps API access key
 var apiKey = "AuX4igoeqL4Kp6N9dZYTRK3CV9zEsT8bJIeZMw3TZgIzSED1Ja4VxEOh0XKvd-B_";
@@ -106,7 +132,7 @@ map.on('pointermove', function(e) {
 
 // Fit to extent routine - http://gis.stackexchange.com/questions/150997/openlayers-3-zoom-to-extent-only-working-in-debug
 vectorLayer.getSource().on("change", function(evt) {
-    var extent = vectorSource.getSource().getExtent();
+    var extent = vectorLayer.getSource().getExtent();
     map.getView().fit(extent, map.getSize());
 });
 
