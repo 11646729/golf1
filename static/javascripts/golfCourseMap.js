@@ -140,7 +140,8 @@ map.on('singleclick', function(evt) {
     if (feature) {
         overlay.setPosition(evt.coordinate);
         var featureName = feature.get('name');
-        content.innerHTML = '<p>You clicked here :</p><code>' + featureName + '</code>';
+        var phoneNumber = feature.get('phoneNumber');
+        content.innerHTML = '<p>You clicked here :</p><code>' + featureName + '<br />' + phoneNumber + '</code>';
     }
 });
 
