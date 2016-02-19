@@ -6,9 +6,9 @@ var express = require('express'),
     config = require('./config'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
-    csrf = require('csurf'),
     cors = require('cors'),
     session = require('express-session'),
+    csrf = require('csurf'),
     path = require('path'),
     favicon = require('serve-favicon'),
     logger = require('morgan'),
@@ -19,7 +19,9 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'static/views'));
 
-// comment out one of these lines to change view engine
+/**
+ * Comment out one of these lines to change view engine
+ */
 app.set('view engine', 'jade');
 //app.set('view engine', 'ejs');
 
@@ -43,8 +45,9 @@ app.use(session({
     })
 );
 
-//app.use(csrf());
+//var util = require('./middleware/utilities');
 //app.use(util.csrf);
+//app.use(csrf());
 
 //app.use(cors({
 //    credentials: true,
