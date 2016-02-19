@@ -114,15 +114,18 @@ map.on('click', function(evt) {
     }
 });
 
+// This routine traps coordinates of mouse then converts them for display
+map.on('pointermove', function(event) {
+    var coord4326 = ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326');
+    $('#mouse4326').text(ol.coordinate.toStringXY(coord4326, 4));
+});
+
 // change mouse cursor when over marker
 map.on('pointermove', function(e) {
     if (e.dragging) {
         $(element).popover('destroy');
         return;
     }
-
-    //var coord4326 = ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326');
-    //$('#mouse4326').text(ol.coordinate.toStringXY(coord4326, 4));
 
     var pixel = map.getEventPixel(e.originalEvent);
     var hit = map.hasFeatureAtPixel(pixel);
