@@ -12,6 +12,7 @@ var express = require('express'),
     path = require('path'),
     favicon = require('serve-favicon'),
     logger = require('morgan'),
+    helmet = require('helmet'),
     RedisStore = require('connect-redis')(session);
 
 var app = express();
@@ -45,7 +46,8 @@ app.use(session({
     })
 );
 
-app.use(csrf({ cookie: true }))
+app.use(csrf({ cookie: true }));
+app.use(helmet());
 
 //app.use(cors({
 //    credentials: true,
