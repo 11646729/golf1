@@ -28,7 +28,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cookieParser('secret'));
-app.use(session({secret: 'secret'}));
+
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}));
+
 app.use(session({
     secret: 'secret',
     saveUninitialized: true,
@@ -38,7 +44,11 @@ app.use(session({
     })
 );
 app.use(express.static(path.join(__dirname, 'static')));
-app.use(cors({credentials: true, origin: true}));
+
+app.use(cors({
+    credentials: true,
+    origin: true
+}));
 
 app.use('/', routes);
 app.use('/users', users);

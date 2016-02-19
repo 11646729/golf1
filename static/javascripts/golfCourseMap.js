@@ -68,14 +68,14 @@ var baseMapLayer = new ol.layer.Tile({
 });
 
 // Create the Golf Courses Layer from a GeoJSON file
-var vectorSource = new ol.layer.Vector({
+var vectorLayer = new ol.layer.Vector({
     title: 'Golf Courses Layer',
     source: new ol.source.Vector({
         url: '/testData/geoJsonFiles/GolfCourses.json',
         format: new ol.format.GeoJSON()
     }),
     style: styleFunction
-})
+});
 
 var popupElement = document.getElementById('popup');
 var content = document.getElementById('popup-content');
@@ -106,16 +106,15 @@ closer.onclick = function(){
 //    collapsible: false
 //});
 
-/**
- * Create the Map
- */
-
 // The ol.control.defaults({ attribution: false }).extend([attribution]) means use default controls
 // except the default attribution (attribution: false) and then add the new attribution object to list
 // of controls using an array (.extend([attribution]))
 
+/**
+ * Create the Map
+ */
 var map = new ol.Map({
-    layers: [ baseMapLayer, vectorSource],
+    layers: [ baseMapLayer, vectorLayer ],
     overlays: [overlay],
     target: 'map',
     renderer: 'canvas',
@@ -142,13 +141,37 @@ map.on('singleclick', function(evt) {
 });
 
 // This routine traps coordinates of mouse then converts them for display
-map.on('pointermove', function(event) {
-    var coord4326 = ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326');
-    $('#mouse4326').text(ol.coordinate.toStringXY(coord4326, 4));
+//map.on('pointermove', function(event) {
+//    var coord4326 = ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326');
+//    $('#mouse4326').text(ol.coordinate.toStringXY(coord4326, 4));
+//});
+
+/**
+ * Routine to change mouse cursor when over marker
+ */
+map.on('pointermove', function(e) {
+    if (e.dragging) {
+        $(element).popover('destroy');
+        return;
+    }
+
+    //var coord4326 = ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326');
+    //$('#mouse4326').text(ol.coordinate.toStringXY(coord4326, 4));
+
+    var pixel = map.getEventPixel(e.originalEvent);
+    var hit = map.hasFeatureAtPixel(pixel);
+
+//    map.getTarget().style.cursor = hit ? 'pointer' : '';
+
+    if (hit) {
+        this.getTarget().style.cursor = "pointer";
+    } else {
+        this.getTarget().style.cursor = "";
+    }
 });
 
 // Fit to extent routine - http://gis.stackexchange.com/questions/150997/openlayers-3-zoom-to-extent-only-working-in-debug
-vectorSource.getSource().on("change", function(evt) {
+vectorLayer.getSource().on("change", function(evt) {
     var extent = vectorSource.getSource().getExtent();
     map.getView().fit(extent, map.getSize());
 
