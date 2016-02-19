@@ -45,9 +45,7 @@ app.use(session({
     })
 );
 
-//var util = require('./middleware/utilities');
-//app.use(util.csrf);
-//app.use(csrf());
+app.use(csrf({ cookie: true }))
 
 //app.use(cors({
 //    credentials: true,
