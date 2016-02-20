@@ -2,6 +2,9 @@
  * Created by briansmith on 15/06/2014.
  */
 
+/**
+ * Mapped Styles
+ */
 var styleFunction = (function () {
     var styles = {};
 
@@ -33,6 +36,9 @@ var styleFunction = (function () {
     };
 })();
 
+/**
+ * Overlay Styles
+ */
 var overlayStyle = (function () {
     var styles = {};
 
@@ -64,6 +70,9 @@ var overlayStyle = (function () {
     };
 })();
 
+/**
+ * Mouse selection interaction
+ */
 var select = new ol.interaction.Select({
     style: overlayStyle
 });
