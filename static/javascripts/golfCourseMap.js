@@ -54,29 +54,6 @@ var select = new ol.interaction.Select({
     style: overlayStyle
 });
 
-// Bing Maps API access key
-var apiKey = "AuX4igoeqL4Kp6N9dZYTRK3CV9zEsT8bJIeZMw3TZgIzSED1Ja4VxEOh0XKvd-B_";
-
-// Create a Bing Maps BaseMap Layer
-var baseMapLayer = new ol.layer.Tile({
-    visible: true,
-    preload: Infinity,
-    source: new ol.source.BingMaps({
-        key: apiKey,
-        imagerySet: "aerial"
-    })
-});
-
-// Create the Golf Courses Layer from a GeoJSON file
-var vectorLayer = new ol.layer.Vector({
-    title: 'Golf Courses Layer',
-    source: new ol.source.Vector({
-        url: '/testData/geoJsonFiles/GolfCourses.json',
-        format: new ol.format.GeoJSON()
-    }),
-    style: styleFunction
-});
-
 var popupElement = document.getElementById('popup');
 var content = document.getElementById('popup-content');
 var closer = document.getElementById('popup-closer');
@@ -101,6 +78,35 @@ closer.onclick = function(){
     closer.blur();
     return false;
 };
+
+/**
+ * The Bing Maps access key
+ */
+var apiKey = "AuX4igoeqL4Kp6N9dZYTRK3CV9zEsT8bJIeZMw3TZgIzSED1Ja4VxEOh0XKvd-B_";
+
+/**
+ * Create the Bing Maps Base Layer for the Map
+ */
+var baseMapLayer = new ol.layer.Tile({
+    visible: true,
+    preload: Infinity,
+    source: new ol.source.BingMaps({
+        key: apiKey,
+        imagerySet: "aerial"
+    })
+});
+
+/**
+ * Create the Golf Courses Layer from a GeoJSON file
+ */
+var vectorLayer = new ol.layer.Vector({
+    title: 'Golf Courses Layer',
+    source: new ol.source.Vector({
+        url: '/testData/geoJsonFiles/GolfCourses.json',
+        format: new ol.format.GeoJSON()
+    }),
+    style: styleFunction
+});
 
 //var attribution = new ol.control.Attribution({
 //    collapsible: false
@@ -180,4 +186,3 @@ vectorLayer.getSource().on("change", function(evt) {
 //    extent = ol.extent.applyTransform(extent, ol.proj.getTransform("EPSG:3857", "EPSG:4326"));
 //    console.log("EPSG:4326 " + extent);
 });
-

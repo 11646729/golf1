@@ -68,81 +68,14 @@ var select = new ol.interaction.Select({
     style: overlayStyle
 });
 
-/*
-// These lines add Google Maps
-var mapOptions = {
-    minZoom: 6,
-    zoomControl: false,
-    zoomControlOptions: {
-        style: google.maps.ZoomControlStyle.SMALL
-    },
-    panControl: false,
-    mapTypeControl: false,
-    scaleControl: false,
-    overviewMapControl: false,
-    rotateControl: false,
-    disableDefaultUI: true,
-    keyboardShortcuts: false,
-    draggable: false,
-    disableDoubleClickZoom: true,
-    scrollwheel: false,
-    streetViewControl: false,
-    mapTypeId: google.maps.MapTypeId.SATELLITE
-};
-
-var gMap = new google.maps.Map(document.getElementById('gMap'), mapOptions);
-
-var view = new ol.View({
-    // make sure the view doesn't go beyond the 22 zoom levels of Google Maps
-    maxZoom: 21
-});
-
-view.on('change:center', function() {
-    var center = new ol.proj.transform(view.getCenter(), 'EPSG:3857', 'EPSG:4326');
-    gMap.setCenter(new google.maps.LatLng(center[1], center[0]));
-});
-
-view.on('change:resolution', function() {
-    gMap.setZoom(view.getZoom());
-});
-
-//var myZoom = 17;
-view.setZoom(17); //myZoom
-
-// NOT SURE IF THIS IS NEEDED
-// transform needs to be lower-case to work - even though WebStorm doesn't like it
-view.setCenter(new ol.proj.transform([-5.683818, 54.623937], 'EPSG:4326', 'EPSG:3857'));
-
-var olMapDiv = document.getElementById('olMap');
-olMapDiv.parentNode.removeChild(olMapDiv);
-
-gMap.controls[google.maps.ControlPosition.TOP_LEFT].push(olMapDiv);
-
-// Google Maps
-var map = new ol.Map({
-    layers: [roundOfGolfDataLayer],
-    interactions: ol.interaction.defaults({
-        altShiftDragRotate: false,
-        dragPan: false,
-        rotate: false
-    }).extend([new ol.interaction.DragPan({kinetic: null})]),
-    target: olMapDiv,
-    view: view
-});
-*/
-
-var vectorSource = new ol.layer.Vector({
-    source: new ol.source.Vector({
-        url: '/testData/geoJsonFiles/roundOfGolfData.json',
-        format: new ol.format.GeoJSON()
-    }),
-    style: styleFunction
-    // opacity: 0.5
-});
-
+/**
+ * The Bing Maps access key
+ */
 var apiKey = "AuX4igoeqL4Kp6N9dZYTRK3CV9zEsT8bJIeZMw3TZgIzSED1Ja4VxEOh0XKvd-B_";
 
-// Using Bing Maps as a Base Layer
+/**
+ * Create the Bing Maps Base Layer for the Map
+ */
 var baseMapLayer = new ol.layer.Tile({
     visible: true,
     preload: Infinity,
@@ -152,33 +85,61 @@ var baseMapLayer = new ol.layer.Tile({
     })
 });
 
-// Bing Maps
+/**
+ * Create the Round of Golf Layer from a GeoJSON file
+ */
+var vectorLayer = new ol.layer.Vector({
+    source: new ol.source.Vector({
+        url: '/testData/geoJsonFiles/roundOfGolfData.json',
+        format: new ol.format.GeoJSON()
+    }),
+    style: styleFunction
+    // opacity: 0.5
+});
+
+/**
+ * Create the Map
+ */
 var map = new ol.Map({
-    layers: [baseMapLayer, vectorSource],
-    target: 'bingMap',
+    layers: [baseMapLayer, vectorLayer],
+    target: document.getElementById('bingMap'),
     interactions: ol.interaction.defaults().extend([select]),
     view: new ol.View({
-        center: new ol.proj.transform([-5.683818, 54.623937], 'EPSG:4326', 'EPSG:3857'),
+        center: [0, 0],
         maxZoom: 19,
         zoom: 2 // 17
     })
 });
 
-// This routine traps coordinates of mouse then converts them
+/**
+ * Trap coordinates of mouse then converts them for display
+ */
 map.on('pointermove', function(event) {
     var coord4326 = ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326');
     $('#mouse4326').text(ol.coordinate.toStringXY(coord4326, 4));
 });
 
-// Fit to extent routine - http://gis.stackexchange.com/questions/150997/openlayers-3-zoom-to-extent-only-working-in-debug
-vectorSource.getSource().on("change", function(evt) {
-    var extent = vectorSource.getSource().getExtent();
-    map.getView().fit(extent, map.getSize());
+/**
+ * Change mouse cursor when over marker
+ */
+map.on('pointermove', function(e) {
+    //if (e.dragging) {
+    //    $(element).popover('destroy');
+    //    return;
+    //}
 
-// Test routines
-//    console.log("EPSG:3857 " + extent);
-//    extent = ol.extent.applyTransform(extent, ol.proj.getTransform("EPSG:3857", "EPSG:4326"));
-//    console.log("EPSG:4326 " + extent);
+    var pixel = map.getEventPixel(e.originalEvent);
+    var hit = map.hasFeatureAtPixel(pixel);
+
+    map.getTarget().style.cursor = hit ? 'pointer' : '';
+});
+
+/**
+ * Fit to extent routine - http://gis.stackexchange.com/questions/150997/openlayers-3-zoom-to-extent-only-working-in-debug
+ */
+vectorLayer.getSource().on("change", function(evt) {
+    var extent = vectorLayer.getSource().getExtent();
+    map.getView().fit(extent, map.getSize());
 });
 
 // Initialize radio button map choices
