@@ -18,4 +18,8 @@ router.get('/roundOfGolf', function(req, res) {
     res.render('roundOfGolf.jade', {title: 'Round of Golf', csrfToken: req.csrfToken() });
 });
 
+//////////////////////////////////////
+// TODO Add login get & post routes here
+//////////////////////////////////////
+
 module.exports = router;
