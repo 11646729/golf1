@@ -6,7 +6,8 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    res.render('main_index.jade', {title: 'Index', csrfToken: req.csrfToken() });
+//    res.render('main_index.jade', {title: 'Index', csrfToken: req.csrfToken() });
+    res.render('login.jade', {title: 'Login', csrfToken: req.csrfToken() });
 });
 
 router.get('/nearbyGolfCourses', function(req, res){
