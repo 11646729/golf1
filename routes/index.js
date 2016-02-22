@@ -5,18 +5,17 @@ var express = require('express');
 var router = express.Router();
 
 /*
- * Home page
+ * Main page
  */
 router.get('/', function(req, res) {
-//    res.render('main_index.jade', {title: 'Index', csrfToken: req.csrfToken() });
-    res.render('main_index.jade', {title: 'Index'});});
+    res.render('main_index.jade', {title: 'Index', csrfToken: req.csrfToken() });
+});
 
 /*
  * Login page
  */
 router.get('/login', function(req, res){
     res.render('login.jade', {title: 'Login', csrfToken: req.csrfToken() });
-//    res.render('login.jade', {title: 'Login'});
 });
 
 /*
@@ -31,16 +30,14 @@ router.post('/loginProcess', function(req, res){
  * Nearby golf courses
  */
 router.get('/nearbyGolfCourses', function(req, res){
-//    res.render('golfCourseMap.jade', {title: 'Nearby Golf Courses', csrfToken: req.csrfToken() });
-    res.render('golfCourseMap.jade', {title: 'Nearby Golf Courses'});
+    res.render('golfCourseMap.jade', {title: 'Nearby Golf Courses', csrfToken: req.csrfToken() });
 });
 
 /*
  * Round of golf
  */
 router.get('/roundOfGolf', function(req, res) {
-//    res.render('roundOfGolf.jade', {title: 'Round of Golf', csrfToken: req.csrfToken() });
-    res.render('roundOfGolf.jade', {title: 'Round of Golf'});
+    res.render('roundOfGolf.jade', {title: 'Round of Golf', csrfToken: req.csrfToken() });
 });
 
 module.exports = router;
