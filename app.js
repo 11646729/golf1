@@ -49,6 +49,7 @@ app.use(session({
 
 app.use(csrf({ cookie: true }));
 app.use(util.csrf);
+app.use(util.authenticated);
 
 app.use(helmet());
 

@@ -22,8 +22,9 @@ router.get('/login', function(req, res){
  * Login results
  */
 router.post('/loginProcess', function(req, res){
-    console.log(req.body);
-    res.send(req.body.username + " " + req.body.password);
+//    console.log(req.body);
+//    res.send(req.body.username + " " + req.body.password);
+    res.render('main_index.jade', {title: 'Index', csrfToken: req.csrfToken() });
 });
 
 /*
