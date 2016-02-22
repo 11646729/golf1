@@ -31,17 +31,15 @@ html
                             form(method="post", action="/loginProcess")
                                 //if message !== ''
                                     //.alert.alert-danger= message
-                                //input(type="hidden", name="_csrf", value=csrfToken)
-                            form(method='post')
-                                input(type='hidden', name='_csrf', value='<%= csrfToken %>')
-                            .form-group
-                                label(for='username') Username
-                                input#username.form-control(type='text', placeholder='username', name='username')
-                            .form-group
-                                label(for='password') Password
-                                input#password.form-control(type='password', placeholder='password', name='password')
-                            button.btn.btn-primary.btn-block(type="submit") Login
-                            .row.top-margin
+                                //input(type='hidden', name='_csrf', value='<%= csrfToken %>') THROWS INVALID CSRF ERROR
+                                .form-group
+                                    label(for='username') Username
+                                    input#username.form-control(type='text', placeholder='username', name='username')
+                                .form-group
+                                    label(for='password') Password
+                                    input#password.form-control(type='password', placeholder='password', name='password')
+                                button.btn.btn-primary.btn-block(type="submit") Login
+                                .row.top-margin
                         .col-sm-6
                             button.btn.btn-block.facebook
                                 it.fa.fa-facebook Facebook

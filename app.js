@@ -8,7 +8,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     cors = require('cors'),
     session = require('express-session'),
-    csrf = require('csurf'),
+    //csrf = require('csurf'),
     path = require('path'),
     favicon = require('serve-favicon'),
     logger = require('morgan'),
@@ -46,7 +46,8 @@ app.use(session({
     })
 );
 
-app.use(csrf({ cookie: true }));
+
+//app.use(csrf({ cookie: true }));
 app.use(helmet());
 
 //app.use(cors({
