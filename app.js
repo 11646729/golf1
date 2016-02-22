@@ -13,7 +13,8 @@ var express = require('express'),
     favicon = require('serve-favicon'),
     logger = require('morgan'),
     helmet = require('helmet'),
-    RedisStore = require('connect-redis')(session);
+    RedisStore = require('connect-redis')(session),
+    util = require('./middleware/utilities');
 
 var app = express();
 
@@ -47,10 +48,7 @@ app.use(session({
 );
 
 app.use(csrf({ cookie: true }));
-app.use(function (req, res, next) {
-    res.locals.csrftoken = req.csrfToken();
-    next();
-});
+app.use(util.csrf);
 
 app.use(helmet());
 
