@@ -29,9 +29,9 @@ html
                     .row
                         .col-sm-12
                             form(method="post", action="/loginProcess")
-                                //if message !== ''
-                                    //.alert.alert-danger= message
-                                //input(type='hidden', name='_csrf', value='<%= csrfToken %>') THROWS INVALID CSRF ERROR
+                                if message !== ''
+                                    .alert.alert-danger= message
+                                input(type='hidden', name='_csrf', value='<%= csrfToken %>')
                                 .form-group
                                     label(for='username') Username
                                     input#username.form-control(type='text', placeholder='username', name='username')
