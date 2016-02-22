@@ -4,22 +4,40 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+/*
+ * Home page
+ */
 router.get('/', function(req, res) {
-//    res.render('main_index.jade', {title: 'Index', csrfToken: req.csrfToken() });
+    res.render('main_index.jade', {title: 'Index', csrfToken: req.csrfToken() });
+});
+
+/*
+ * Login page
+ */
+router.get('/login', function(req, res){
     res.render('login.jade', {title: 'Login', csrfToken: req.csrfToken() });
 });
 
+/*
+ * Login results
+ */
+router.post('/loginProcess', function(req, res){
+    console.log(req.body);
+    res.send(req.body.username + " " + req.body.password);
+});
+
+/*
+ * Nearby golf courses
+ */
 router.get('/nearbyGolfCourses', function(req, res){
     res.render('golfCourseMap.jade', {title: 'Nearby Golf Courses', csrfToken: req.csrfToken() });
 });
 
+/*
+ * Round of golf
+ */
 router.get('/roundOfGolf', function(req, res) {
     res.render('roundOfGolf.jade', {title: 'Round of Golf', csrfToken: req.csrfToken() });
 });
-
-//////////////////////////////////////
-// TODO Add login get & post routes here
-//////////////////////////////////////
 
 module.exports = router;
