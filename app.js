@@ -46,8 +46,12 @@ app.use(session({
     })
 );
 
+app.use(csrf({ cookie: true }));
+app.use(function (req, res, next) {
+    res.locals.csrftoken = req.csrfToken();
+    next();
+});
 
-//app.use(csrf({ cookie: true }));
 app.use(helmet());
 
 //app.use(cors({

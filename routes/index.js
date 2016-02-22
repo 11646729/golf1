@@ -15,8 +15,8 @@ router.get('/', function(req, res) {
  * Login page
  */
 router.get('/login', function(req, res){
-//    res.render('login.jade', {title: 'Login', csrfToken: req.csrfToken() });
-    res.render('login.jade', {title: 'Login'});
+    res.render('login.jade', {title: 'Login', csrfToken: req.csrfToken() });
+//    res.render('login.jade', {title: 'Login'});
 });
 
 /*
