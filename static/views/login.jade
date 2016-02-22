@@ -28,6 +28,7 @@ html
                 .col-sm-8.col-sm-offset-2
                     .row
                         .col-sm-12
+                            h3 Login
                             form(method="post", action="/loginProcess")
                                 //if message !== ''
                                     //.alert.alert-danger= message
@@ -41,11 +42,13 @@ html
                                 button.btn.btn-primary.btn-block(type="submit") Login
                                 .row.top-margin
                         .col-sm-6
-                            button.btn.btn-block.facebook
-                                it.fa.fa-facebook Facebook
+                            button.btn.btn-block.btn-social.facebook
+                                i.fa.fa-facebook
+                                |  Sign in with Facebook
                         .col-sm-6
-                            button.btn.btn-block.google
-                                it.fa.fa-google-plus Google
+                            button.btn.btn-block.btn-social.google
+                                i.fa.fa-google
+                                |  Sign in with Google
 
-        footer
+    footer
             include partials/footer.jade
