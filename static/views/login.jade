@@ -28,10 +28,10 @@ html
                 .col-sm-8.col-sm-offset-2
                     .row
                         .col-sm-12
-                            form(method="post", action="/login")
-                                if message !== ''
-                                    .alert.alert-danger= message
-                                input(type="hidden", name="_csrf", value=csrfToken)
+                            form(method="post", action="/loginProcess")
+                                //if message !== ''
+                                    //.alert.alert-danger= message
+                                //input(type="hidden", name="_csrf", value=csrfToken)
                             form(method='post')
                                 input(type='hidden', name='_csrf', value='<%= csrfToken %>')
                             .form-group
