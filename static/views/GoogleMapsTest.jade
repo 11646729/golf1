@@ -34,7 +34,7 @@ html
                         #map.map
                         script.
                             var map;
-                            function initMap() {
+                            function init() {
                                 var mapOptions = {
                                     mapTypeId: google.maps.MapTypeId.SATELLITE,
                                     center: {lat: 54.624251, lng: -5.682930},
@@ -64,12 +64,22 @@ html
 
                                 var markerP1 = new google.maps.Marker({
                                     position: p1,
-                                    map: map
+                                    map: map,
+                                icon: {
+                                    url:"https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
+                                    size: new google.maps.Size(7,7),
+                                    anchor: new google.maps.Point(4,4)
+                                }
                                 });
 
                                 var markerP2 = new google.maps.Marker({
                                     position: p2,
-                                    map: map
+                                    map: map,
+                                    icon: {
+                                        url:"https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
+                                        size: new google.maps.Size(7,7),
+                                        anchor: new google.maps.Point(4,4)
+                                    }
                                 });
                             }
 
@@ -112,4 +122,4 @@ html
                             //map.data.loadGeoJson('/testData/geoJsonFiles/roundOfGolfData.json');
 
         footer
-            script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBaIVeD83DDFyptO3K--V6YlhvfouDiqOI&callback=initMap', async='', defer='')
+            script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBaIVeD83DDFyptO3K--V6YlhvfouDiqOI&callback=init', async='', defer='')
