@@ -1,0 +1,43 @@
+doctype html
+html
+    head
+        title Simple Map
+        meta(name='viewport', content='initial-scale=1.0')
+        meta(charset='utf-8')
+        style.
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            #map {
+                height: 100%;
+            }
+    body
+        #map
+        script.
+            var map;
+            function initMap() {
+                map = new google.maps.Map(document.getElementById('map'), {
+                    mapTypeId: google.maps.MapTypeId.SATELLITE,
+                    center: {lat: 54.623937, lng: -5.683818},
+                    zoom: 18, // 21
+                    minZoom: 6,
+                    zoomControl: true, //false
+                    zoomControlOptions: {
+                        style: google.maps.ZoomControlStyle.SMALL
+                    },
+                    panControl: false,
+                    mapTypeControl: false,
+                    scaleControl: false,
+                    overviewMapControl: false,
+                    rotateControl: false,
+                    disableDefaultUI: true,
+                    keyboardShortcuts: false,
+                    draggable: true, // false
+                    disableDoubleClickZoom: true,
+                    scrollwheel: false,
+                    streetViewControl: false
+                });
+            }
+        script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBaIVeD83DDFyptO3K--V6YlhvfouDiqOI&callback=initMap', async='', defer='')
