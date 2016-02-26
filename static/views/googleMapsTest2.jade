@@ -46,7 +46,7 @@ html
                                 var p11 = new google.maps.LatLng(54.625605, -5.683992);
                                 var p12 = new google.maps.LatLng(54.623937, -5.683818);
 
-                                    var marker11 = new google.maps.Marker({
+                                var markerP1 = new google.maps.Marker({
                                     position: p11,
                                     map: map,
                                     icon: {
@@ -56,10 +56,9 @@ html
                                     }
                                 });
 
-                                var marker2 = new google.maps.Marker({
+                                var markerP2 = new google.maps.Marker({
                                     position: p12,
                                     map: map,
-                                    draggable: true,
                                     icon: {
                                         url:"https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
                                         size: new google.maps.Size(7,7),
