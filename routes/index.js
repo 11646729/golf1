@@ -45,7 +45,7 @@ router.get('/roundOfGolf', function(req, res) {
  * Round of golf with Google Maps
  */
 router.get('/roundOfGolf2', function(req, res) {
-    res.render('GoogleMapsTest', {title: 'Index', csrfToken: req.csrfToken() });
+    res.render('googleMapsTest.jade', {title: 'Index', csrfToken: req.csrfToken() });
 });
 
 module.exports = router;
