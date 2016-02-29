@@ -7,15 +7,15 @@ var map;
 
 var curvature = 0.3; // how curvy to make the arc
 
-var coords = [ ['54.625605', '-5.683992'], ['54.623937', '-5.683818'] ];
+//var coords = [['54.625605', '-5.683992'], ['54.623937', '-5.683818'], ['54.622981', '-5.682997']];
+var coords2 = [['54.623937', '-5.683818'], ['54.622981', '-5.682997']];
 
-//function call_me(params) {
-//    for (i=0; i<params.length; i++) {
-//        alert(params[i])
-//    }
-//}
+function init(){
+//    call_me(coords);
+    call_me(coords2);
+}
 
-function init(coords) {
+function call_me(coords) {
     var Map = google.maps.Map,
         LatLng = google.maps.LatLng,
         LatLngBounds = google.maps.LatLngBounds,
@@ -135,4 +135,4 @@ function init(coords) {
     google.maps.event.addListener(markerP2, 'position_changed', updateCurveMarker);
 }
 
-google.maps.event.addDomListener(window, 'load', init(coords));
+//google.maps.event.addDomListener(window, 'load', init); // throws an error
