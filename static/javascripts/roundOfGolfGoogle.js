@@ -1,6 +1,6 @@
 var map;
 
-var curvature = 0.2; // how curvy to make the arc
+var curvature = 0.3; // how curvy to make the arc
 
 function init() {
     var Map = google.maps.Map,
@@ -10,7 +10,6 @@ function init() {
         Point = google.maps.Point;
 
     // This is the initial location of the points
-    // (you can drag the markers around after the map loads)
     var pos1 = new LatLng(54.625605, -5.683992);
     var pos2 = new LatLng(54.623937, -5.683818);
 
@@ -18,24 +17,54 @@ function init() {
     bounds.extend(pos1);
     bounds.extend(pos2);
 
-    map = new Map(document.getElementById('map'), {
-        mapTypeId: google.maps.MapTypeId.SATELLITE,
+    var mapOptions = {
         center: bounds.getCenter(),
-        zoom: 12
-    });
+        zoom: 12,
+        minZoom: 6,
+        zoomControl: true,
+        zoomControlOptions: {
+            style: google.maps.ZoomControlStyle.SMALL
+        },
+        panControl: false,
+        mapTypeControl: false,
+        scaleControl: false,
+        overviewMapControl: false,
+        rotateControl: false,
+        disableDefaultUI: true,
+        keyboardShortcuts: false,
+        draggable: false,
+        disableDoubleClickZoom: true,
+        scrollwheel: false,
+        streetViewControl: false,
+        mapTypeId: google.maps.MapTypeId.SATELLITE
+    };
+
+    map = new Map(document.getElementById('map'), mapOptions);
+
     map.fitBounds(bounds);
 
     var markerP1 = new Marker({
         position: pos1,
-        label: "1",
-        draggable: true,
-        map: map
+        map: map,
+        icon: {
+            url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
+            size: new google.maps.Size(7, 7),
+            anchor: new google.maps.Point(4,4)
+        }
+        //label: "1",
+        //draggable: true,
     });
+
     var markerP2 = new Marker({
         position: pos2,
-        label: "2",
-        draggable: true,
-        map: map
+        map: map,
+        icon: {
+            url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
+            size: new google.maps.Size(7, 7),
+            anchor: new google.maps.Point(4,4)
+        }
+        //label: "2",
+        //draggable: true,
     });
 
     var curveMarker;
@@ -81,7 +110,7 @@ function init() {
         } else {
             curveMarker.setOptions({
                 position: pos1,
-                icon: symbol,
+                icon: symbol
             });
         }
     }
