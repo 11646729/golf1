@@ -1,3 +1,8 @@
+/**
+ * Created by briansmith on 29/02/2016
+ * Refer to code at http://jsfiddle.net/medmunds/sd10up9t/ for the basic algorithm
+ */
+
 var map;
 
 var curvature = 0.3; // how curvy to make the arc
