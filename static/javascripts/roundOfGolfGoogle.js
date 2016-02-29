@@ -77,7 +77,7 @@ function call_me(allCoords) {
     map.fitBounds(bounds);
 
     /**
-     * Draw markers
+     * Draw markers from the allCoords variable
      */
     for (var i = 0; i < allCoords.length; i++) {
         new google.maps.Marker({
