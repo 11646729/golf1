@@ -1,9 +1,6 @@
-/**
- * Created by briansmith on 19/02/2016.
- */
 var map;
 
-var curvature = 0.3; // how curvy to make the arc
+var curvature = 0.2; // how curvy to make the arc
 
 function init() {
     var Map = google.maps.Map,
@@ -21,7 +18,8 @@ function init() {
     bounds.extend(pos1);
     bounds.extend(pos2);
 
-    map = new Map(document.getElementById('map-canvas'), {
+    map = new Map(document.getElementById('map'), {
+        mapTypeId: google.maps.MapTypeId.SATELLITE,
         center: bounds.getCenter(),
         zoom: 12
     });
