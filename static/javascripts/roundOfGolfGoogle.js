@@ -7,9 +7,6 @@ var map;
 
 var curvature = 0.3; // how curvy to make the arc
 
-//var coords = [['54.625605', '-5.683992'], ['54.623937', '-5.683818'], ['54.622981', '-5.682997']];
-//var coords2 = [['54.623937', '-5.683818'], ['54.622981', '-5.682997']];
-
 function init(){
 
     var allCoords = [
@@ -31,12 +28,18 @@ function init(){
 }
 
 function call_me(allCoords) {
+    /**
+     * Setup variables
+     */
     var Map = google.maps.Map,
         LatLng = google.maps.LatLng,
         LatLngBounds = google.maps.LatLngBounds,
         Marker = google.maps.Marker,
         Point = google.maps.Point;
 
+    /**
+     * Calculate bounds of the map to display
+     */
     var bounds = new google.maps.LatLngBounds();
     for (var i = 0; i < allCoords.length; i++) {
         bounds.extend(allCoords[i].latlng);
@@ -44,7 +47,6 @@ function call_me(allCoords) {
 
     /**
      * MapOptions for map
-     * @type {{center: (ol.Coordinate|number|!goog.math.Coordinate|ol.Coordinate|undefined|*), zoom: number, minZoom: number, zoomControl: boolean, zoomControlOptions: {style: (goog.dom.TagName|string)}, panControl: boolean, mapTypeControl: boolean, scaleControl: boolean, overviewMapControl: boolean, rotateControl: boolean, disableDefaultUI: boolean, keyboardShortcuts: boolean, draggable: boolean, disableDoubleClickZoom: boolean, scrollwheel: boolean, streetViewControl: boolean, mapTypeId: *}}
      */
     var mapOptions = {
         center: bounds.getCenter(),
@@ -68,8 +70,10 @@ function call_me(allCoords) {
         mapTypeId: google.maps.MapTypeId.SATELLITE
     };
 
+    /**
+     * Draw Map then fit to the bounds of the points plotted
+     */
     map = new Map(document.getElementById('map'), mapOptions);
-
     map.fitBounds(bounds);
 
     /**
@@ -105,12 +109,13 @@ function call_me(allCoords) {
     //var lat = homeMarker.getPosition().lat();
     //var lng = homeMarker.getPosition().lng();
 
+
     var curveMarker;
 
     /**
      * TO BE UPDATED
      */
-    //function updateCurveMarker() {
+    function updateCurveMarker() {
     //    var pos1 = markerP1.getPosition(), // latlng
     //        pos2 = markerP2.getPosition(),
     //        projection = map.getProjection(),
@@ -118,8 +123,7 @@ function call_me(allCoords) {
     //        p2 = projection.fromLatLngToPoint(pos2);
     //
     //    // Calculate the arc.
-    //    // To simplify the math, these points
-    //    // are all relative to p1:
+    //    // To simplify the math, these points are all relative to p1:
     //    var e = new Point(p2.x - p1.x, p2.y - p1.y), // endpoint (p2 relative to p1)
     //        m = new Point(e.x / 2, e.y / 2), // midpoint
     //        o = new Point(e.y, -e.x), // orthogonal
@@ -127,8 +131,7 @@ function call_me(allCoords) {
     //            m.x + curvature * o.x,
     //            m.y + curvature * o.y);
     //
-    //    var pathDef = 'M 0,0 ' +
-    //        'q ' + c.x + ',' + c.y + ' ' + e.x + ',' + e.y;
+    //    var pathDef = 'M 0,0 ' + 'q ' + c.x + ',' + c.y + ' ' + e.x + ',' + e.y;
     //
     //    var zoom = map.getZoom(),
     //        scale = 1 / (Math.pow(2, -zoom));
@@ -155,12 +158,12 @@ function call_me(allCoords) {
     //            icon: symbol
     //        });
     //    }
-    //}
+    }
 
     google.maps.event.addListener(map, 'projection_changed', updateCurveMarker);
     google.maps.event.addListener(map, 'zoom_changed', updateCurveMarker);
 
-    //google.maps.event.addListener(markerP1, 'position_changed', updateCurveMarker);
+    google.maps.event.addListener(map, 'position_changed', updateCurveMarker);
     //google.maps.event.addListener(markerP2, 'position_changed', updateCurveMarker);
 }
 
