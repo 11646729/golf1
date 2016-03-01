@@ -3,13 +3,12 @@
  * Refer to code at http://jsfiddle.net/medmunds/sd10up9t/ for the basic algorithm
  */
 
-var map;
+var map, allCoords;
 
 var curvature = 0.3; // how curvy to make the arc
 
 function init(){
-
-    var allCoords = [
+    allCoords = [
         {
             shotNumber: 1,
             latlng: new google.maps.LatLng(54.625605, -5.683992)
@@ -49,6 +48,7 @@ function call_me(allCoords) {
      * MapOptions for map
      */
     var mapOptions = {
+        mapTypeId: google.maps.MapTypeId.SATELLITE,
         center: bounds.getCenter(),
         //zoom: 18,
         minZoom: 6,
@@ -66,34 +66,19 @@ function call_me(allCoords) {
         draggable: false,
         disableDoubleClickZoom: true,
         scrollwheel: false,
-        streetViewControl: false,
-        mapTypeId: google.maps.MapTypeId.SATELLITE
+        streetViewControl: false
     };
 
     /**
-     * Draw Map then fit to the bounds of the points plotted
+     * Draw Map to the bounds of the points plotted
      */
     map = new Map(document.getElementById('map'), mapOptions);
     map.fitBounds(bounds);
 
     /**
-     * Draw markers from the allCoords variable
+     * Draw markers on the map from the allCoords variable
      */
-    for (var i = 0; i < allCoords.length; i++) {
-        new google.maps.Marker({
-            position: allCoords[i].latlng,
-            map: map,
-            title: allCoords[i].name,
-            icon: {
-                url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
-                size: new google.maps.Size(7, 7),
-                anchor: new google.maps.Point(4,4)
-            }
-            //label: "1",
-            //draggable: true,
-        });
-    }
-
+    drawMarkers(allCoords, map);
 
 
 
@@ -111,6 +96,17 @@ function call_me(allCoords) {
 
 
     var curveMarker;
+
+    /**
+     * Imported conversion code
+     */
+    //function fromLatLngToPoint(latLng, map) {
+    //    var topRight = map.getProjection().fromLatLngToPoint(map.getBounds().getNorthEast());
+    //    var bottomLeft = map.getProjection().fromLatLngToPoint(map.getBounds().getSouthWest());
+    //    var scale = Math.pow(2, map.getZoom());
+    //    var worldPoint = map.getProjection().fromLatLngToPoint(latLng);
+    //    return new google.maps.Point((worldPoint.x - bottomLeft.x) * scale, (worldPoint.y - topRight.y) * scale);
+    //}
 
     /**
      * TO BE UPDATED
@@ -165,6 +161,26 @@ function call_me(allCoords) {
 
     google.maps.event.addListener(map, 'position_changed', updateCurveMarker);
     //google.maps.event.addListener(markerP2, 'position_changed', updateCurveMarker);
+}
+
+/**
+ * Function to draw markers on the map
+ */
+function drawMarkers(allCoords, map){
+    for (var i = 0; i < allCoords.length; i++) {
+        new google.maps.Marker({
+            position: allCoords[i].latlng,
+            map: map,
+            title: allCoords[i].name,
+            icon: {
+                url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
+                size: new google.maps.Size(7, 7),
+                anchor: new google.maps.Point(4,4)
+            }
+            //label: "1",
+            //draggable: true,
+        });
+    }
 }
 
 //google.maps.event.addDomListener(window, 'load', init); // throws an error
