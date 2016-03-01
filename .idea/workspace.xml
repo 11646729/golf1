@@ -27,8 +27,8 @@
       <file leaf-file-name="roundOfGolfGoogle.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/javascripts/roundOfGolfGoogle.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.5072933">
-              <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.5834684">
+              <caret line="28" column="10" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
               <folding>
                 <element signature="e#0#129#0" expanded="false" />
               </folding>
@@ -159,7 +159,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -194,6 +193,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -295,18 +295,6 @@
       <created>1453818139081</created>
       <option name="number" value="Default" />
       <updated>1453818139081</updated>
-    </task>
-    <task id="LOCAL-00029" summary="Completed zoom to fit &amp; changed path to roundOfGolf test file &amp; edits to point icon sizes">
-      <created>1454578999100</created>
-      <option name="number" value="00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1454578999100</updated>
-    </task>
-    <task id="LOCAL-00030" summary="Added sessions, redis &amp; cookie but not yet tested">
-      <created>1455748618525</created>
-      <option name="number" value="00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1455748618525</updated>
     </task>
     <task id="LOCAL-00031" summary="Added popup layer showing position based on a click event">
       <created>1455815948716</created>
@@ -590,7 +578,19 @@
       <option name="project" value="LOCAL" />
       <updated>1456828409877</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="Minor refactoring">
+      <created>1456829792617</created>
+      <option name="number" value="00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1456829792618</updated>
+    </task>
+    <task id="LOCAL-00079" summary="Minor refactoring">
+      <created>1456831415642</created>
+      <option name="number" value="00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1456831415643</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -602,20 +602,20 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329602" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32382134" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19975185" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33084577" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32382134" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32630274" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="UnknownFeatures">
@@ -649,7 +649,6 @@
     <MESSAGE value="Refactor &amp; simplify Google Maps round of golf" />
     <MESSAGE value="More work on google maps &amp; added code for arc - NOT YET WORKING" />
     <MESSAGE value="More work on google maps &amp; arc" />
-    <MESSAGE value="Minor refactoring" />
     <MESSAGE value="Still working on googleMapsTest to include arc - only working in terrain not satellite image nor with change zoom" />
     <MESSAGE value="Added file from stackOverflow" />
     <MESSAGE value="Added Google Maps &amp; arc plus refactor files - NOW WORKING" />
@@ -660,7 +659,8 @@
     <MESSAGE value="Refactored out function to draw Markers" />
     <MESSAGE value="Refactored out function to read coords, calculate bounds &amp; draw marker &amp; draw curves" />
     <MESSAGE value="Refactored out draw_markers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored out draw_markers" />
+    <MESSAGE value="Minor refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor refactoring" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -871,6 +871,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="MultiMarkdownFxPreviewEditor">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;MultiMarkdownPreviewEditor]">
         <state split_layout="FIRST">
           <first_editor vertical-scroll-proportion="0.032822758">
@@ -878,9 +881,6 @@
           </first_editor>
           <second_editor />
         </state>
-      </provider>
-      <provider editor-type-id="MultiMarkdownFxPreviewEditor">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/views/partials/footer.jade">
@@ -1032,8 +1032,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/javascripts/roundOfGolfGoogle.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.5072933">
-          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.5834684">
+          <caret line="28" column="10" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
           <folding>
             <element signature="e#0#129#0" expanded="false" />
           </folding>

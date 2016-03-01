@@ -3,7 +3,7 @@
  * Refer to code at http://jsfiddle.net/medmunds/sd10up9t/ for the basic algorithm
  */
 
-var map, allCoords, json_file;
+var map, myCoords, json_file;
 
 var curvature = 0.3; // how curvy to make the arc
 
@@ -11,10 +11,11 @@ var curvature = 0.3; // how curvy to make the arc
  * Initialization function
  */
 function init(){
-    var myCoords = convert_coords(json_file);
+    myCoords = convert_coords(json_file);
     var myBounds = calculate_bounds(myCoords);
     var myMap = draw_map(myCoords, myBounds);
-    drawMarkers(myCoords, map);
+    drawMarkers(myCoords);
+    //draw_curves(myCoords, map);
 }
 
 /**
@@ -92,7 +93,7 @@ function draw_map(myCoords, bounds) {
 /**
  * Function to draw markers on the map
  */
-function drawMarkers(myCoords, map){
+function drawMarkers(myCoords){
     for (var i = 0; i < myCoords.length; i++) {
         new google.maps.Marker({
             position: myCoords[i].latlng,
@@ -109,21 +110,15 @@ function drawMarkers(myCoords, map){
     }
 }
 
-function draw_curves(){
+function draw_curves(myCoords, map) {
     // This is the initial location of the points
-    var pos1 = allCoords[0].latlng;
-    var pos2 = allCoords[1].latlng;
-    var pos3 = allCoords[2].latlng;
+    var pos1 = myCoords[0].latlng;
+    var pos2 = myCoords[1].latlng;
+//    var pos3 = myCoords[2].latlng;
 
-    var lat = allCoords[0].latlng.lat();
-    var lng = allCoords[0].latlng.lng();
-    //console.log(lat);
+    updateCurveMarker(pos1, pos2, map);
 
-    //var lat = homeMarker.getPosition().lat();
-    //var lng = homeMarker.getPosition().lng();
-
-
-    var curveMarker;
+    //var curveMarker;
 
     /**
      * Imported conversion code
@@ -135,53 +130,52 @@ function draw_curves(){
     //    var worldPoint = map.getProjection().fromLatLngToPoint(latLng);
     //    return new google.maps.Point((worldPoint.x - bottomLeft.x) * scale, (worldPoint.y - topRight.y) * scale);
     //}
+}
 
-    /**
-     * TO BE UPDATED
-     */
-    function updateCurveMarker() {
-    //    var pos1 = markerP1.getPosition(), // latlng
-    //        pos2 = markerP2.getPosition(),
-    //        projection = map.getProjection(),
-    //        p1 = projection.fromLatLngToPoint(pos1), // xy
-    //        p2 = projection.fromLatLngToPoint(pos2);
-    //
-    //    // Calculate the arc.
-    //    // To simplify the math, these points are all relative to p1:
-    //    var e = new google.maps.Point(p2.x - p1.x, p2.y - p1.y), // endpoint (p2 relative to p1)
-    //        m = new google.maps.Point(e.x / 2, e.y / 2), // midpoint
-    //        o = new google.maps.Point(e.y, -e.x), // orthogonal
-    //        c = new google.maps.Point( // curve control point
-    //            m.x + curvature * o.x,
-    //            m.y + curvature * o.y);
-    //
-    //    var pathDef = 'M 0,0 ' + 'q ' + c.x + ',' + c.y + ' ' + e.x + ',' + e.y;
-    //
-    //    var zoom = map.getZoom(),
-    //        scale = 1 / (Math.pow(2, -zoom));
-    //
-    //    var symbol = {
-    //        path: pathDef,
-    //        scale: scale,
-    //        strokeWeight: 2,
-    //        strokeColor: 'green',
-    //        fillColor: 'none'
-    //    };
-    //
-    //    if (!curveMarker) {
-    //        curveMarker = new Marker({
-    //            position: pos1,
-    //            clickable: false,
-    //            icon: symbol,
-    //            zIndex: 0, // behind the other markers
-    //            map: map
-    //        });
-    //    } else {
-    //        curveMarker.setOptions({
-    //            position: pos1,
-    //            icon: symbol
-    //        });
-    //    }
+/**
+ * TO BE UPDATED
+ */
+function updateCurveMarker(pos1, pos2, map) {
+    //var pos1 = markerP1.getPosition(), // latlng
+    //    pos2 = markerP2.getPosition(),
+    var p1 = map.getProjection().fromLatLngToPoint(pos1), // xy
+        p2 = map.getProjection().fromLatLngToPoint(pos2);
+
+    // Calculate the arc.
+    // To simplify the math, these points are all relative to p1:
+    var e = new google.maps.Point(p2.x - p1.x, p2.y - p1.y), // endpoint (p2 relative to p1)
+        m = new google.maps.Point(e.x / 2, e.y / 2), // midpoint
+        o = new google.maps.Point(e.y, -e.x), // orthogonal
+        c = new google.maps.Point( // curve control point
+            m.x + curvature * o.x,
+            m.y + curvature * o.y);
+
+    var pathDef = 'M 0,0 ' + 'q ' + c.x + ',' + c.y + ' ' + e.x + ',' + e.y;
+
+    var zoom = map.getZoom(),
+        scale = 1 / (Math.pow(2, -zoom));
+
+    var symbol = {
+        path: pathDef,
+        scale: scale,
+        strokeWeight: 2,
+        strokeColor: 'green',
+        fillColor: 'none'
+    };
+
+    if (!curveMarker) {
+        curveMarker = new Marker({
+            position: pos1,
+            clickable: false,
+            icon: symbol,
+            zIndex: 0, // behind the other markers
+            map: map
+        });
+    } else {
+        curveMarker.setOptions({
+            position: pos1,
+            icon: symbol
+        });
     }
 
     google.maps.event.addListener(map, 'projection_changed', updateCurveMarker);
