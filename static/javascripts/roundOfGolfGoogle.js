@@ -13,7 +13,9 @@ var curvature = 0.3; // how curvy to make the arc
 function init(){
     var myCoords = convert_coords(json_file);
     var myBounds = calculate_bounds(myCoords);
-    draw_map(myCoords, myBounds);
+    var myMap = draw_map(myCoords, myBounds);
+    drawMarkers(myCoords, map);
+
 }
 
 /**
@@ -98,10 +100,27 @@ function draw_map(myCoords, bounds) {
     map = new Map(document.getElementById('map'), mapOptions);
     map.fitBounds(bounds);
 
-    /**
-     * Draw markers on the map from the allCoords variable
-     */
-    drawMarkers(myCoords, map);
+    return map;
+}
+
+/**
+ * Function to draw markers on the map
+ */
+function drawMarkers(myCoords, map){
+    for (var i = 0; i < myCoords.length; i++) {
+        new google.maps.Marker({
+            position: myCoords[i].latlng,
+            map: map,
+            title: myCoords[i].name,
+            icon: {
+                url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
+                size: new google.maps.Size(7, 7),
+                anchor: new google.maps.Point(4,4)
+            }
+            //label: "1",
+            //draggable: true,
+        });
+    }
 }
 
 function draw_curves(){
@@ -184,26 +203,6 @@ function draw_curves(){
 
     google.maps.event.addListener(map, 'position_changed', updateCurveMarker);
     //google.maps.event.addListener(markerP2, 'position_changed', updateCurveMarker);
-}
-
-/**
- * Function to draw markers on the map
- */
-function drawMarkers(myCoords, map){
-    for (var i = 0; i < myCoords.length; i++) {
-        new google.maps.Marker({
-            position: myCoords[i].latlng,
-            map: map,
-            title: myCoords[i].name,
-            icon: {
-                url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
-                size: new google.maps.Size(7, 7),
-                anchor: new google.maps.Point(4,4)
-            }
-            //label: "1",
-            //draggable: true,
-        });
-    }
 }
 
 //google.maps.event.addDomListener(window, 'load', init); // throws an error
