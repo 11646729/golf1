@@ -27,8 +27,8 @@
       <file leaf-file-name="roundOfGolfGoogle.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/javascripts/roundOfGolfGoogle.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3922204">
-              <caret line="190" column="3" selection-start-line="190" selection-start-column="3" selection-end-line="190" selection-end-column="3" />
+            <state vertical-scroll-proportion="1.5072933">
+              <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
               <folding>
                 <element signature="e#0#129#0" expanded="false" />
               </folding>
@@ -159,7 +159,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -195,6 +194,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -295,18 +295,6 @@
       <created>1453818139081</created>
       <option name="number" value="Default" />
       <updated>1453818139081</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Moving forward on introducing zoom to fit">
-      <created>1454494653982</created>
-      <option name="number" value="00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1454494653982</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Zoom to fit now working in golfCourseMap - still roundOfGolf to do">
-      <created>1454496969997</created>
-      <option name="number" value="00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1454496969997</updated>
     </task>
     <task id="LOCAL-00029" summary="Completed zoom to fit &amp; changed path to roundOfGolf test file &amp; edits to point icon sizes">
       <created>1454578999100</created>
@@ -590,7 +578,19 @@
       <option name="project" value="LOCAL" />
       <updated>1456824272509</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="Refactored out function to read coords, calculate bounds &amp; draw marker &amp; draw curves">
+      <created>1456828208883</created>
+      <option name="number" value="00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1456828208883</updated>
+    </task>
+    <task id="LOCAL-00077" summary="Refactored out draw_markers">
+      <created>1456828409877</created>
+      <option name="number" value="00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1456828409877</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -635,8 +635,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Editing login form &amp; routes - NOT YET WORKING" />
-    <MESSAGE value="Login form working but csrf commented out throughout" />
     <MESSAGE value="csrf partially uncommented in app.js - Working" />
     <MESSAGE value="crsf fixed in app.js &amp; login.jade" />
     <MESSAGE value="csrf &amp; login page working, comments in paths removed" />
@@ -660,7 +658,9 @@
     <MESSAGE value="Still working on the google maps arc" />
     <MESSAGE value="Lots of refactoring of google maps arc js file" />
     <MESSAGE value="Refactored out function to draw Markers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored out function to draw Markers" />
+    <MESSAGE value="Refactored out function to read coords, calculate bounds &amp; draw marker &amp; draw curves" />
+    <MESSAGE value="Refactored out draw_markers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored out draw_markers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -669,6 +669,14 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/static/views/roundOfGolfGoogle.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="76" selection-start-line="20" selection-start-column="76" selection-end-line="20" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/static/javascripts/roundOfGolfGoogle.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1024,8 +1032,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/javascripts/roundOfGolfGoogle.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3922204">
-          <caret line="190" column="3" selection-start-line="190" selection-start-column="3" selection-end-line="190" selection-end-column="3" />
+        <state vertical-scroll-proportion="1.5072933">
+          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
           <folding>
             <element signature="e#0#129#0" expanded="false" />
           </folding>

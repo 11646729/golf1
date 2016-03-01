@@ -63,11 +63,10 @@ function draw_map(myCoords, bounds) {
     /**
      * Setup variables
      */
-    var Map = google.maps.Map,
-        LatLng = google.maps.LatLng,
-        LatLngBounds = google.maps.LatLngBounds,
-        Marker = google.maps.Marker,
-        Point = google.maps.Point;
+        //LatLng = google.maps.LatLng,
+        //LatLngBounds = google.maps.LatLngBounds,
+        //Marker = google.maps.Marker,
+        //Point = google.maps.Point;
 
     /**
      * MapOptions for map
@@ -97,7 +96,7 @@ function draw_map(myCoords, bounds) {
     /**
      * Draw Map to the bounds of the points plotted
      */
-    map = new Map(document.getElementById('map'), mapOptions);
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
     map.fitBounds(bounds);
 
     return map;
