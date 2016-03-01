@@ -8,9 +8,9 @@
  */
 var google = google || {};
 
-var map, myCoords, myBounds, json_file;
+var map, myCoords, myBounds, json_file, curveMarker;
 
-var curvature = 0.3; // how curvy to make the arc
+var curvature = 0.2; // how curvy to make the arc
 
 /**
  * Initialization function
@@ -119,21 +119,12 @@ function draw_curves(myCoords, map) {
     var pos2 = myCoords[1].latlng;
 //    var pos3 = myCoords[2].latlng;
 
-    console.log(pos2.lat());
-    console.log(pos2.lng());
-
-    console.log(map.getProjection());
-
-//    updateCurveMarker(pos1, pos2);
-
     google.maps.event.addListener(map, 'projection_changed', updateCurveMarker);
     google.maps.event.addListener(map, 'zoom_changed', updateCurveMarker);
 
     google.maps.event.addListener(map, 'position_changed', updateCurveMarker);
     //google.maps.event.addListener(markerP2, 'position_changed', updateCurveMarker);
 }
-
-var curveMarker;
 
 /**
  * TO BE UPDATED
@@ -145,8 +136,6 @@ function updateCurveMarker() {
     var projection = map.getProjection(),
         p1 = projection.fromLatLngToPoint(pos1), // xy
         p2 = projection.fromLatLngToPoint(pos2);
-
-    console.log(map.getProjection());
 
     // Calculate the arc.
     // To simplify the math, these points are all relative to p1:
@@ -166,7 +155,7 @@ function updateCurveMarker() {
         path: pathDef,
         scale: scale,
         strokeWeight: 2,
-        strokeColor: 'green',
+        strokeColor: 'red',
         fillColor: 'none'
     };
 

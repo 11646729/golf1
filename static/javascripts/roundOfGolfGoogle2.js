@@ -47,8 +47,6 @@ function init() {
             p1 = projection.fromLatLngToPoint(pos1), // xy
             p2 = projection.fromLatLngToPoint(pos2);
 
-        console.log(map.getProjection());
-
         // Calculate the arc.
         // To simplify the math, these points
         // are all relative to p1:
@@ -59,8 +57,7 @@ function init() {
                 m.x + curvature * o.x,
                 m.y + curvature * o.y);
 
-        var pathDef = 'M 0,0 ' +
-            'q ' + c.x + ',' + c.y + ' ' + e.x + ',' + e.y;
+        var pathDef = 'M 0,0 ' + 'q ' + c.x + ',' + c.y + ' ' + e.x + ',' + e.y;
 
         var zoom = map.getZoom(),
             scale = 1 / (Math.pow(2, -zoom));
