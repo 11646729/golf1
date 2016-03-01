@@ -3,7 +3,12 @@
  * Refer to code at http://jsfiddle.net/medmunds/sd10up9t/ for the basic algorithm
  */
 
-var map, myCoords, json_file;
+/**
+ * This line prevents Webstorm warnings from google
+ */
+var google = google || {};
+
+var map, myCoords, myBounds, json_file;
 
 var curvature = 0.3; // how curvy to make the arc
 
@@ -12,17 +17,18 @@ var curvature = 0.3; // how curvy to make the arc
  */
 function init(){
     myCoords = convert_coords(json_file);
-    var myBounds = calculate_bounds(myCoords);
-    var myMap = draw_map(myCoords, myBounds);
+    myBounds = calculate_bounds(myCoords);
+    draw_map(myBounds);
     drawMarkers(myCoords);
-    //draw_curves(myCoords, map);
+    draw_curves(myCoords, map);
 }
 
 /**
  * Function to convert json file (stream?) to array of LatLng etc
  */
 function convert_coords(json_file){
-    var allCoords = [
+
+    return [
         {
             shotNumber: 1,
             latlng: new google.maps.LatLng(54.625605, -5.683992)
@@ -36,8 +42,6 @@ function convert_coords(json_file){
             latlng: new google.maps.LatLng(54.622981, -5.682997)
         }
     ];
-
-    return allCoords;
 }
 
 /**
@@ -48,14 +52,13 @@ function calculate_bounds(myCoords){
     for (var i = 0; i < myCoords.length; i++) {
         bounds.extend(myCoords[i].latlng);
     }
-
     return bounds;
 }
 
 /**
  * Function to draw the map to the correct bounds
  */
-function draw_map(myCoords, bounds) {
+function draw_map(bounds) {
     /**
      * Options for map
      */
@@ -116,30 +119,34 @@ function draw_curves(myCoords, map) {
     var pos2 = myCoords[1].latlng;
 //    var pos3 = myCoords[2].latlng;
 
-    updateCurveMarker(pos1, pos2, map);
+    console.log(pos2.lat());
+    console.log(pos2.lng());
 
-    //var curveMarker;
+    console.log(map.getProjection());
 
-    /**
-     * Imported conversion code
-     */
-    //function fromLatLngToPoint(latLng, map) {
-    //    var topRight = map.getProjection().fromLatLngToPoint(map.getBounds().getNorthEast());
-    //    var bottomLeft = map.getProjection().fromLatLngToPoint(map.getBounds().getSouthWest());
-    //    var scale = Math.pow(2, map.getZoom());
-    //    var worldPoint = map.getProjection().fromLatLngToPoint(latLng);
-    //    return new google.maps.Point((worldPoint.x - bottomLeft.x) * scale, (worldPoint.y - topRight.y) * scale);
-    //}
+//    updateCurveMarker(pos1, pos2);
+
+    google.maps.event.addListener(map, 'projection_changed', updateCurveMarker);
+    google.maps.event.addListener(map, 'zoom_changed', updateCurveMarker);
+
+    google.maps.event.addListener(map, 'position_changed', updateCurveMarker);
+    //google.maps.event.addListener(markerP2, 'position_changed', updateCurveMarker);
 }
+
+var curveMarker;
 
 /**
  * TO BE UPDATED
  */
-function updateCurveMarker(pos1, pos2, map) {
-    //var pos1 = markerP1.getPosition(), // latlng
-    //    pos2 = markerP2.getPosition(),
-    var p1 = map.getProjection().fromLatLngToPoint(pos1), // xy
-        p2 = map.getProjection().fromLatLngToPoint(pos2);
+function updateCurveMarker() {
+    var pos1 = myCoords[0].latlng;
+    var pos2 = myCoords[1].latlng;
+
+    var projection = map.getProjection(),
+        p1 = projection.fromLatLngToPoint(pos1), // xy
+        p2 = projection.fromLatLngToPoint(pos2);
+
+    console.log(map.getProjection());
 
     // Calculate the arc.
     // To simplify the math, these points are all relative to p1:
@@ -164,7 +171,7 @@ function updateCurveMarker(pos1, pos2, map) {
     };
 
     if (!curveMarker) {
-        curveMarker = new Marker({
+        curveMarker = new google.maps.Marker({
             position: pos1,
             clickable: false,
             icon: symbol,
@@ -177,12 +184,6 @@ function updateCurveMarker(pos1, pos2, map) {
             icon: symbol
         });
     }
-
-    google.maps.event.addListener(map, 'projection_changed', updateCurveMarker);
-    google.maps.event.addListener(map, 'zoom_changed', updateCurveMarker);
-
-    google.maps.event.addListener(map, 'position_changed', updateCurveMarker);
-    //google.maps.event.addListener(markerP2, 'position_changed', updateCurveMarker);
 }
 
 //google.maps.event.addDomListener(window, 'load', init); // throws an error
