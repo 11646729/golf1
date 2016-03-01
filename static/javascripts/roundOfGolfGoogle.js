@@ -3,12 +3,24 @@
  * Refer to code at http://jsfiddle.net/medmunds/sd10up9t/ for the basic algorithm
  */
 
-var map, allCoords;
+var map, allCoords, json_file;
 
 var curvature = 0.3; // how curvy to make the arc
 
+/**
+ * Initialization function
+ */
 function init(){
-    allCoords = [
+    var myCoords = convert_coords(json_file);
+    var myBounds = calculate_bounds(myCoords);
+    draw_map(myCoords, myBounds);
+}
+
+/**
+ * Function to convert json file (stream?) to array of LatLng etc
+ */
+function convert_coords(json_file){
+    var allCoords = [
         {
             shotNumber: 1,
             latlng: new google.maps.LatLng(54.625605, -5.683992)
@@ -23,10 +35,29 @@ function init(){
         }
     ];
 
-    call_me(allCoords);
+    return allCoords;
 }
 
-function call_me(allCoords) {
+/**
+ * Function to calculate the map bounds
+ */
+function calculate_bounds(myCoords){
+
+    /**
+     * Calculate bounds of the map to display
+     */
+    var bounds = new google.maps.LatLngBounds();
+    for (var i = 0; i < myCoords.length; i++) {
+        bounds.extend(myCoords[i].latlng);
+    }
+
+    return bounds;
+}
+
+/**
+ * Function to draw the map to the correct bounds
+ */
+function draw_map(myCoords, bounds) {
     /**
      * Setup variables
      */
@@ -35,14 +66,6 @@ function call_me(allCoords) {
         LatLngBounds = google.maps.LatLngBounds,
         Marker = google.maps.Marker,
         Point = google.maps.Point;
-
-    /**
-     * Calculate bounds of the map to display
-     */
-    var bounds = new google.maps.LatLngBounds();
-    for (var i = 0; i < allCoords.length; i++) {
-        bounds.extend(allCoords[i].latlng);
-    }
 
     /**
      * MapOptions for map
@@ -78,10 +101,10 @@ function call_me(allCoords) {
     /**
      * Draw markers on the map from the allCoords variable
      */
-    drawMarkers(allCoords, map);
+    drawMarkers(myCoords, map);
+}
 
-
-
+function draw_curves(){
     // This is the initial location of the points
     var pos1 = allCoords[0].latlng;
     var pos2 = allCoords[1].latlng;
@@ -166,12 +189,12 @@ function call_me(allCoords) {
 /**
  * Function to draw markers on the map
  */
-function drawMarkers(allCoords, map){
-    for (var i = 0; i < allCoords.length; i++) {
+function drawMarkers(myCoords, map){
+    for (var i = 0; i < myCoords.length; i++) {
         new google.maps.Marker({
-            position: allCoords[i].latlng,
+            position: myCoords[i].latlng,
             map: map,
-            title: allCoords[i].name,
+            title: myCoords[i].name,
             icon: {
                 url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
                 size: new google.maps.Size(7, 7),
