@@ -15,7 +15,6 @@ function init(){
     var myBounds = calculate_bounds(myCoords);
     var myMap = draw_map(myCoords, myBounds);
     drawMarkers(myCoords, map);
-
 }
 
 /**
@@ -44,10 +43,6 @@ function convert_coords(json_file){
  * Function to calculate the map bounds
  */
 function calculate_bounds(myCoords){
-
-    /**
-     * Calculate bounds of the map to display
-     */
     var bounds = new google.maps.LatLngBounds();
     for (var i = 0; i < myCoords.length; i++) {
         bounds.extend(myCoords[i].latlng);
@@ -61,15 +56,7 @@ function calculate_bounds(myCoords){
  */
 function draw_map(myCoords, bounds) {
     /**
-     * Setup variables
-     */
-        //LatLng = google.maps.LatLng,
-        //LatLngBounds = google.maps.LatLngBounds,
-        //Marker = google.maps.Marker,
-        //Point = google.maps.Point;
-
-    /**
-     * MapOptions for map
+     * Options for map
      */
     var mapOptions = {
         mapTypeId: google.maps.MapTypeId.SATELLITE,
@@ -161,10 +148,10 @@ function draw_curves(){
     //
     //    // Calculate the arc.
     //    // To simplify the math, these points are all relative to p1:
-    //    var e = new Point(p2.x - p1.x, p2.y - p1.y), // endpoint (p2 relative to p1)
-    //        m = new Point(e.x / 2, e.y / 2), // midpoint
-    //        o = new Point(e.y, -e.x), // orthogonal
-    //        c = new Point( // curve control point
+    //    var e = new google.maps.Point(p2.x - p1.x, p2.y - p1.y), // endpoint (p2 relative to p1)
+    //        m = new google.maps.Point(e.x / 2, e.y / 2), // midpoint
+    //        o = new google.maps.Point(e.y, -e.x), // orthogonal
+    //        c = new google.maps.Point( // curve control point
     //            m.x + curvature * o.x,
     //            m.y + curvature * o.y);
     //
