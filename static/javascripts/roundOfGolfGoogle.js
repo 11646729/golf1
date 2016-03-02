@@ -114,10 +114,9 @@ function drawMarkers(){
  * Adds event listeners
  */
 function add_listeners() {
-    google.maps.event.addListener(map, 'projection_changed', updateCurveMarker);
+    //google.maps.event.addListener(map, 'projection_changed', updateCurveMarker);
     google.maps.event.addListener(map, 'zoom_changed', updateCurveMarker);
-
-    google.maps.event.addListener(map, 'position_changed', updateCurveMarker);
+    //google.maps.event.addListener(map, 'position_changed', updateCurveMarker);
     //google.maps.event.addListener(markerP2, 'position_changed', updateCurveMarker);
 }
 
@@ -128,13 +127,21 @@ function updateCurveMarker() {
     /**
      * Needs a loop something like this to call coords - use -1 but do not delete first curve
      */
-    for (var i = 0; i < myCoords.length - 2; i++) {
-        var pos1 = myCoords[i].latlng;
-        var pos2 = myCoords[i+1].latlng;
+    for (var i = 0; i < myCoords.length - 1; i++) {
+
+        var pos1 = myCoords[i].latlng,
+            pos2 = myCoords[i+1].latlng;
 
         var projection = map.getProjection(),
             p1 = projection.fromLatLngToPoint(pos1), // xy
             p2 = projection.fromLatLngToPoint(pos2);
+
+        console.log(i);
+        //console.log(myCoords.length - 1);
+        console.log(p1.x);
+        console.log(p1.y);
+        console.log(p2.x);
+        console.log(p2.y);
 
         // Calculate the arc.
         // To simplify the math, these points are all relative to p1:
@@ -172,6 +179,21 @@ function updateCurveMarker() {
                 icon: symbol
             });
         }
+
+        //pos1 = null;
+        //pos2 = null;
+        //projection = null;
+        //p1 = null;
+        //p2 = null;
+        //e = null;
+        //m = null;
+        //o = null;
+        //c = null;
+        //pathDef = null;
+        //zoom = null;
+        //scale = null;
+        //symbol = null;
+        //curveMarker = null;
     }
 }
 
