@@ -136,12 +136,11 @@ function updateCurveMarker() {
             p1 = projection.fromLatLngToPoint(pos1), // xy
             p2 = projection.fromLatLngToPoint(pos2);
 
-        console.log(i);
-        //console.log(myCoords.length - 1);
-        console.log(p1.x);
-        console.log(p1.y);
-        console.log(p2.x);
-        console.log(p2.y);
+        //console.log(i);
+        //console.log(p1.x);
+        //console.log(p1.y);
+        //console.log(p2.x);
+        //console.log(p2.y);
 
         // Calculate the arc.
         // To simplify the math, these points are all relative to p1:
@@ -165,7 +164,7 @@ function updateCurveMarker() {
             fillColor: 'none'
         };
 
-        if (!curveMarker) {
+        //if (!curveMarker) {
             curveMarker = new google.maps.Marker({
                 position: pos1,
                 clickable: false,
@@ -173,27 +172,12 @@ function updateCurveMarker() {
                 zIndex: 0, // behind the other markers
                 map: map
             });
-        } else {
-            curveMarker.setOptions({
-                position: pos1,
-                icon: symbol
-            });
-        }
-
-        //pos1 = null;
-        //pos2 = null;
-        //projection = null;
-        //p1 = null;
-        //p2 = null;
-        //e = null;
-        //m = null;
-        //o = null;
-        //c = null;
-        //pathDef = null;
-        //zoom = null;
-        //scale = null;
-        //symbol = null;
-        //curveMarker = null;
+        //} else {
+        //    curveMarker.setOptions({
+        //        position: pos1,
+        //        icon: symbol
+        //    });
+        //}
     }
 }
 
