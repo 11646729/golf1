@@ -7,6 +7,7 @@
  * This line prevents Webstorm warnings from google
  */
 var google = google || {};
+var markers = [];
 
 var map, myCoords, myBounds, json_file, curveMarker;
 
@@ -16,17 +17,25 @@ var curvature = 0.2; // how curvy to make the arc
  * Initialization function
  */
 function init(){
-    convert_coords(json_file);
+    prepare_coords(json_file);
     calculate_bounds();
     draw_map();
+
     drawMarkers();
-    add_listeners()
+
+    /**
+     * Adds event listeners
+     */
+    //map.addListener('projection_changed', updateCurveMarker);
+    map.addListener('zoom_changed', updateCurveMarker);
+    //map.addListener('position_changed', updateCurveMarker);
+    //map.addListener('position_changed', updateCurveMarker);
 }
 
 /**
  * Function to convert json file (stream?) to array of LatLng etc
  */
-function convert_coords(json_file){
+function prepare_coords(json_file){
 
     myCoords = [
         {
@@ -111,16 +120,6 @@ function drawMarkers(){
 }
 
 /**
- * Adds event listeners
- */
-function add_listeners() {
-    //google.maps.event.addListener(map, 'projection_changed', updateCurveMarker);
-    google.maps.event.addListener(map, 'zoom_changed', updateCurveMarker);
-    //google.maps.event.addListener(map, 'position_changed', updateCurveMarker);
-    //google.maps.event.addListener(markerP2, 'position_changed', updateCurveMarker);
-}
-
-/**
  * Draws curves - triggered by events
  */
 function updateCurveMarker() {
@@ -136,11 +135,11 @@ function updateCurveMarker() {
             p1 = projection.fromLatLngToPoint(pos1), // xy
             p2 = projection.fromLatLngToPoint(pos2);
 
-        //console.log(i);
-        //console.log(p1.x);
-        //console.log(p1.y);
-        //console.log(p2.x);
-        //console.log(p2.y);
+        console.log(i);
+        console.log(p1.x);
+        console.log(p1.y);
+        console.log(p2.x);
+        console.log(p2.y);
 
         // Calculate the arc.
         // To simplify the math, these points are all relative to p1:
