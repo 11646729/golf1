@@ -22,6 +22,7 @@ function init(){
     draw_map();
 
     addMarkers();
+
     //hideMarkers();
     //setMapOnAll(map);
 
@@ -140,7 +141,7 @@ function hideMarkers(){
 }
 
 /**
- * Hide all the markers on the map
+ * Show all the markers on the map that are currently in the array
  */
 function showMarkers(){
     setMapOnAll(map);
@@ -158,9 +159,6 @@ function deleteMarkers(){
  * Draws curves - triggered by events
  */
 function updateCurveMarker() {
-
-    //hideMarkers();
-
     /**
      * Needs a loop something like this to call coords - use -1 but do not delete first curve
      */
@@ -172,12 +170,6 @@ function updateCurveMarker() {
         var projection = map.getProjection(),
             p1 = projection.fromLatLngToPoint(pos1), // xy
             p2 = projection.fromLatLngToPoint(pos2);
-
-        //console.log(i);
-        //console.log(p1.x);
-        //console.log(p1.y);
-        //console.log(p2.x);
-        //console.log(p2.y);
 
         // Calculate the arc.
         // To simplify the math, these points are all relative to p1:
