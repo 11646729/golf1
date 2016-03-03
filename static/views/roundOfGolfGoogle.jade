@@ -33,7 +33,11 @@ html
                     span.label.label-default EPSG:4326 Long & Lat :
                     span#mouse4326.label.label-info
                     .span12
+                        #floating-panel
+                            input(onclick='clearMarkers();', type='button', value='Hide Markers')
+                            input(onclick='showMarkers();', type='button', value='Show All Markers')
+                            input(onclick='deleteMarkers();', type='button', value='Delete Markers')
                         #map.map
 
-        footer
+    footer
             script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBaIVeD83DDFyptO3K--V6YlhvfouDiqOI&callback=init&libraries=geometry', async='', defer='')

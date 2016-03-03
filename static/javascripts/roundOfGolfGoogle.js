@@ -21,13 +21,15 @@ function init(){
     calculate_bounds();
     draw_map();
 
-    drawMarkers();
+    addMarkers();
+    //hideMarkers();
+    //setMapOnAll(map);
 
     /**
      * Adds event listeners
      */
     //map.addListener('projection_changed', updateCurveMarker);
-    map.addListener('zoom_changed', updateCurveMarker);
+    //map.addListener('zoom_changed', updateCurveMarker);
     //map.addListener('position_changed', updateCurveMarker);
     //map.addListener('position_changed', updateCurveMarker);
 }
@@ -102,12 +104,13 @@ function draw_map() {
 /**
  * Function to draw markers on the map
  */
-function drawMarkers(){
+function addMarkers(){
     for (var i = 0; i < myCoords.length; i++) {
-        new google.maps.Marker({
+        var pointMarker = new google.maps.Marker({
             position: myCoords[i].latlng,
             map: map,
             title: myCoords[i].name,
+            visible: true,
             icon: {
                 url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
                 size: new google.maps.Size(7, 7),
@@ -116,13 +119,48 @@ function drawMarkers(){
             //label: "1",
             //draggable: true,
         });
+        markers.push(pointMarker);
     }
+}
+
+/**
+ * Sets the map on all markers in the array
+ */
+function setMapOnAll(map){
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(map);
+    }
+}
+
+/**
+ * Hide all the markers on the map
+ */
+function hideMarkers(){
+    setMapOnAll(null);
+}
+
+/**
+ * Hide all the markers on the map
+ */
+function showMarkers(){
+    setMapOnAll(map);
+}
+
+/**
+ * Delete all the markers in the array by removing references to them
+ */
+function deleteMarkers(){
+    hideMarkers();
+    markers = [];
 }
 
 /**
  * Draws curves - triggered by events
  */
 function updateCurveMarker() {
+
+    //hideMarkers();
+
     /**
      * Needs a loop something like this to call coords - use -1 but do not delete first curve
      */
@@ -135,11 +173,11 @@ function updateCurveMarker() {
             p1 = projection.fromLatLngToPoint(pos1), // xy
             p2 = projection.fromLatLngToPoint(pos2);
 
-        console.log(i);
-        console.log(p1.x);
-        console.log(p1.y);
-        console.log(p2.x);
-        console.log(p2.y);
+        //console.log(i);
+        //console.log(p1.x);
+        //console.log(p1.y);
+        //console.log(p2.x);
+        //console.log(p2.y);
 
         // Calculate the arc.
         // To simplify the math, these points are all relative to p1:
@@ -179,5 +217,3 @@ function updateCurveMarker() {
         //}
     }
 }
-
-//google.maps.event.addDomListener(window, 'load', init); // throws an error
