@@ -22,18 +22,16 @@ function init(){
     calculate_bounds();
     draw_map();
 
-    addMarkers();
-
-    //hideMarkers();
-    //setMapOnAll(map);
+    addPointMarkers();
+    addCurveMarkers();
 
     /**
      * Adds event listeners
      */
-    //map.addListener('projection_changed', updateCurveMarker);
-    map.addListener('zoom_changed', updateCurveMarker);
-    //map.addListener('position_changed', updateCurveMarker);
-    //map.addListener('position_changed', updateCurveMarker);
+    //map.addListener('projection_changed', addCurveMarkers);
+    map.addListener('zoom_changed', addCurveMarkers);
+    //map.addListener('position_changed', addCurveMarkers);
+    //map.addListener('position_changed', addCurveMarkers);
 }
 
 /**
@@ -106,13 +104,13 @@ function draw_map() {
 /**
  * Function to draw markers on the map
  */
-function addMarkers(){
+function addPointMarkers(){
     for (var i = 0; i < myCoords.length; i++) {
         var pointMarker = new google.maps.Marker({
             position: myCoords[i].latlng,
             map: map,
             title: myCoords[i].name,
-            visible: true,
+            visible: false,
             icon: {
                 url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
                 size: new google.maps.Size(7, 7),
@@ -130,9 +128,11 @@ function addMarkers(){
  */
 function setMapOnAll(map){
     for (var i = 0; i < pointMarkers.length; i++) {
+        pointMarkers[i].visible = true;
         pointMarkers[i].setMap(map);
     }
-    for (var j = 0; j < pointMarkers.length; j++) {
+    for (var j = 0; j < curveMarkers.length; j++) {
+        curveMarkers[j].visible = true;
         curveMarkers[j].setMap(map);
     }
 }
@@ -140,22 +140,22 @@ function setMapOnAll(map){
 /**
  * Hide all the markers on the map
  */
-function hideMarkers(){
+function hideAllMarkers(){
     setMapOnAll(null);
 }
 
 /**
  * Show all the markers on the map that are currently in the array
  */
-function showMarkers(){
+function showAllMarkers(){
     setMapOnAll(map);
 }
 
 /**
  * Delete all the markers in the array by removing references to them
  */
-function deleteMarkers(){
-    hideMarkers();
+function deleteAllMarkers(){
+    hideAllMarkers();
     pointMarkers = [];
     curveMarkers = [];
 }
@@ -163,11 +163,7 @@ function deleteMarkers(){
 /**
  * Draws curves - triggered by events
  */
-function updateCurveMarker() {
-    curveMarkers = [];
-    /**
-     * Needs a loop something like this to call coords - use -1 but do not delete first curve
-     */
+function addCurveMarkers() {
     for (var i = 0; i < myCoords.length - 1; i++) {
 
         var pos1 = myCoords[i].latlng,
@@ -202,10 +198,11 @@ function updateCurveMarker() {
         //if (!curveMarker) {
             curveMarker = new google.maps.Marker({
                 position: pos1,
+                map: map,
+                visible: false,
                 clickable: false,
                 icon: symbol,
-                zIndex: 0, // behind the other markers
-                map: map
+                zIndex: 0 // behind the other markers
             });
         //} else {
         //    curveMarker.setOptions({
