@@ -28,7 +28,7 @@ function init(){
     /**
      * Adds event listeners
      */
-    //map.addListener('projection_changed', addCurveMarkers);
+    map.addListener('projection_changed', resetCurveMarkers);
     map.addListener('zoom_changed', resetCurveMarkers);
     //map.addListener('position_changed', addCurveMarkers);
     //map.addListener('position_changed', addCurveMarkers);
@@ -161,8 +161,10 @@ function deleteAllMarkers(){
 }
 
 function resetCurveMarkers(){
+    hideAllMarkers();
     curveMarkers = [];
     addCurveMarkers();
+    showAllMarkers();
 }
 
 /**
