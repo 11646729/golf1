@@ -7,7 +7,8 @@
  * This line prevents Webstorm warnings from google
  */
 var google = google || {};
-var markers = [];
+var pointMarkers = [];
+var curveMarkers = [];
 
 var map, myCoords, myBounds, json_file, curveMarker;
 
@@ -30,7 +31,7 @@ function init(){
      * Adds event listeners
      */
     //map.addListener('projection_changed', updateCurveMarker);
-    //map.addListener('zoom_changed', updateCurveMarker);
+    map.addListener('zoom_changed', updateCurveMarker);
     //map.addListener('position_changed', updateCurveMarker);
     //map.addListener('position_changed', updateCurveMarker);
 }
@@ -120,7 +121,7 @@ function addMarkers(){
             //label: "1",
             //draggable: true,
         });
-        markers.push(pointMarker);
+        pointMarkers.push(pointMarker);
     }
 }
 
@@ -128,8 +129,11 @@ function addMarkers(){
  * Sets the map on all markers in the array
  */
 function setMapOnAll(map){
-    for (var i = 0; i < markers.length; i++) {
-        markers[i].setMap(map);
+    for (var i = 0; i < pointMarkers.length; i++) {
+        pointMarkers[i].setMap(map);
+    }
+    for (var j = 0; j < pointMarkers.length; j++) {
+        curveMarkers[j].setMap(map);
     }
 }
 
@@ -152,13 +156,15 @@ function showMarkers(){
  */
 function deleteMarkers(){
     hideMarkers();
-    markers = [];
+    pointMarkers = [];
+    curveMarkers = [];
 }
 
 /**
  * Draws curves - triggered by events
  */
 function updateCurveMarker() {
+    curveMarkers = [];
     /**
      * Needs a loop something like this to call coords - use -1 but do not delete first curve
      */
@@ -207,5 +213,7 @@ function updateCurveMarker() {
         //        icon: symbol
         //    });
         //}
+
+        curveMarkers.push(curveMarker);
     }
 }
