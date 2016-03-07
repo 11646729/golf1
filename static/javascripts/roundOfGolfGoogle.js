@@ -23,13 +23,13 @@ function init(){
     draw_map();
 
     addPointMarkers();
-    addCurveMarkers();
+    //addCurveMarkers();
 
     /**
      * Adds event listeners
      */
     //map.addListener('projection_changed', addCurveMarkers);
-    map.addListener('zoom_changed', addCurveMarkers);
+    map.addListener('zoom_changed', resetCurveMarkers);
     //map.addListener('position_changed', addCurveMarkers);
     //map.addListener('position_changed', addCurveMarkers);
 }
@@ -160,6 +160,11 @@ function deleteAllMarkers(){
     curveMarkers = [];
 }
 
+function resetCurveMarkers(){
+    curveMarkers = [];
+    addCurveMarkers();
+}
+
 /**
  * Draws curves - triggered by events
  */
@@ -168,6 +173,11 @@ function addCurveMarkers() {
 
         var pos1 = myCoords[i].latlng,
             pos2 = myCoords[i+1].latlng;
+
+        console.log(myCoords.length); // 3
+        console.log(i);
+        console.log(pos1.lat());
+        console.log(pos1.lng());
 
         var projection = map.getProjection(),
             p1 = projection.fromLatLngToPoint(pos1), // xy
@@ -178,14 +188,15 @@ function addCurveMarkers() {
         var e = new google.maps.Point(p2.x - p1.x, p2.y - p1.y), // endpoint (p2 relative to p1)
             m = new google.maps.Point(e.x / 2, e.y / 2), // midpoint
             o = new google.maps.Point(e.y, -e.x), // orthogonal
-            c = new google.maps.Point( // curve control point
-                m.x + curvature * o.x,
-                m.y + curvature * o.y);
+            c = new google.maps.Point(m.x + curvature * o.x, m.y + curvature * o.y); // curve control point
 
         var pathDef = 'M 0,0 ' + 'q ' + c.x + ',' + c.y + ' ' + e.x + ',' + e.y;
 
         var zoom = map.getZoom(),
             scale = 1 / (Math.pow(2, -zoom));
+
+        console.log(zoom);
+        console.log(scale);
 
         var symbol = {
             path: pathDef,
