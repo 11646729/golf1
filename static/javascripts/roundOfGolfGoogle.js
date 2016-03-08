@@ -12,6 +12,7 @@ var curveMarkers = [];
 
 var map, myCoords, myBounds, json_file, curveMarker;
 
+var curveFlag = false;
 var curvature = 0.2; // how curvy to make the arc
 
 /**
@@ -23,12 +24,11 @@ function init(){
     draw_map();
 
     addPointMarkers();
-    //addCurveMarkers();
 
     /**
      * Adds event listeners
      */
-    map.addListener('projection_changed', resetCurveMarkers);
+    //map.addListener('projection_changed', resetCurveMarkers);
     map.addListener('zoom_changed', resetCurveMarkers);
     //map.addListener('position_changed', addCurveMarkers);
     //map.addListener('position_changed', addCurveMarkers);
@@ -141,6 +141,7 @@ function setMapOnAll(map){
  * Hide all the markers on the map
  */
 function hideAllMarkers(){
+    curveFlag = false;
     setMapOnAll(null);
 }
 
@@ -148,6 +149,7 @@ function hideAllMarkers(){
  * Show all the markers on the map that are currently in the array
  */
 function showAllMarkers(){
+    curveFlag = true;
     setMapOnAll(map);
 }
 
@@ -162,9 +164,19 @@ function deleteAllMarkers(){
 
 function resetCurveMarkers(){
     hideAllMarkers();
+
     curveMarkers = [];
+
     addCurveMarkers();
-    showAllMarkers();
+
+    console.log(curveMarkers.length);
+    console.log(curveMarkers[0].getVisible());
+
+    if (curveFlag == true){
+        showAllMarkers();
+    }
+
+    console.log(curveMarkers[0].getVisible());
 }
 
 /**
@@ -175,11 +187,6 @@ function addCurveMarkers() {
 
         var pos1 = myCoords[i].latlng,
             pos2 = myCoords[i+1].latlng;
-
-        console.log(myCoords.length); // 3
-        console.log(i);
-        console.log(pos1.lat());
-        console.log(pos1.lng());
 
         var projection = map.getProjection(),
             p1 = projection.fromLatLngToPoint(pos1), // xy
@@ -196,9 +203,6 @@ function addCurveMarkers() {
 
         var zoom = map.getZoom(),
             scale = 1 / (Math.pow(2, -zoom));
-
-        console.log(zoom);
-        console.log(scale);
 
         var symbol = {
             path: pathDef,
