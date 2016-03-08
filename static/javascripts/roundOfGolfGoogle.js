@@ -12,24 +12,23 @@ var curveMarkers = [];
 
 var map, myCoords, myBounds, json_file, curveMarker;
 
-var curveFlag = false;
+var curveDisplayedFlag = false;
+
 var curvature = 0.2; // how curvy to make the arc
 
 /**
  * Initialization function
  */
 function init(){
-    prepare_coords(json_file);
-    calculate_bounds();
-    draw_map();
-
-    addPointMarkers();
+    prepareCoords(json_file);
+    calculateBounds();
+    drawMap();
 
     /**
-     * Adds event listeners
+     * Add event listeners
      */
-    //map.addListener('projection_changed', resetCurveMarkers);
-    map.addListener('zoom_changed', resetCurveMarkers);
+    //map.addListener('projection_changed', resetMarkers);
+    //map.addListener('zoom_changed', resetMarkers);
     //map.addListener('position_changed', addCurveMarkers);
     //map.addListener('position_changed', addCurveMarkers);
 }
@@ -37,7 +36,7 @@ function init(){
 /**
  * Function to convert json file (stream?) to array of LatLng etc
  */
-function prepare_coords(json_file){
+function prepareCoords(json_file){
 
     myCoords = [
         {
@@ -58,7 +57,7 @@ function prepare_coords(json_file){
 /**
  * Function to calculate the map bounds
  */
-function calculate_bounds(){
+function calculateBounds(){
     myBounds = new google.maps.LatLngBounds();
     for (var i = 0; i < myCoords.length; i++) {
         myBounds.extend(myCoords[i].latlng);
@@ -68,7 +67,7 @@ function calculate_bounds(){
 /**
  * Function to draw the map to the correct bounds
  */
-function draw_map() {
+function drawMap() {
     /**
      * Options for map
      */
@@ -102,15 +101,20 @@ function draw_map() {
 }
 
 /**
- * Function to draw markers on the map
+ * Add the point markers to the pointMarkers array
  */
 function addPointMarkers(){
+    // Delete old point markers
+    pointMarkers = [];
+
+    // Add new point markers to array
     for (var i = 0; i < myCoords.length; i++) {
         var pointMarker = new google.maps.Marker({
             position: myCoords[i].latlng,
             map: map,
             title: myCoords[i].name,
             visible: false,
+            clickable: false,
             icon: {
                 url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
                 size: new google.maps.Size(7, 7),
@@ -124,65 +128,12 @@ function addPointMarkers(){
 }
 
 /**
- * Sets the map on all markers in the array
- */
-function setMapOnAll(map){
-    for (var i = 0; i < pointMarkers.length; i++) {
-        pointMarkers[i].visible = true;
-        pointMarkers[i].setMap(map);
-    }
-    for (var j = 0; j < curveMarkers.length; j++) {
-        curveMarkers[j].visible = true;
-        curveMarkers[j].setMap(map);
-    }
-}
-
-/**
- * Hide all the markers on the map
- */
-function hideAllMarkers(){
-    curveFlag = false;
-    setMapOnAll(null);
-}
-
-/**
- * Show all the markers on the map that are currently in the array
- */
-function showAllMarkers(){
-    curveFlag = true;
-    setMapOnAll(map);
-}
-
-/**
- * Delete all the markers in the array by removing references to them
- */
-function deleteAllMarkers(){
-    hideAllMarkers();
-    pointMarkers = [];
-    curveMarkers = [];
-}
-
-function resetCurveMarkers(){
-    hideAllMarkers();
-
-    curveMarkers = [];
-
-    addCurveMarkers();
-
-    console.log(curveMarkers.length);
-    console.log(curveMarkers[0].getVisible());
-
-    if (curveFlag == true){
-        showAllMarkers();
-    }
-
-    console.log(curveMarkers[0].getVisible());
-}
-
-/**
- * Draws curves - triggered by events
+ * Add the curve markers to the curveMarkers array
  */
 function addCurveMarkers() {
+    // Delete old curve markers
+    curveMarkers = [];
+
     for (var i = 0; i < myCoords.length - 1; i++) {
 
         var pos1 = myCoords[i].latlng,
@@ -212,22 +163,82 @@ function addCurveMarkers() {
             fillColor: 'none'
         };
 
-        //if (!curveMarker) {
-            curveMarker = new google.maps.Marker({
-                position: pos1,
-                map: map,
-                visible: false,
-                clickable: false,
-                icon: symbol,
-                zIndex: 0 // behind the other markers
-            });
-        //} else {
-        //    curveMarker.setOptions({
-        //        position: pos1,
-        //        icon: symbol
-        //    });
-        //}
-
+        curveMarker = new google.maps.Marker({
+            position: pos1,
+            map: map,
+            visible: false,
+            clickable: false,
+            icon: symbol
+        });
         curveMarkers.push(curveMarker);
+    }
+}
+
+/**
+ * Show all the markers on the map that are currently in the array
+ */
+function showAllMarkers(){
+
+    addPointMarkers();
+    for (var i = 0; i < pointMarkers.length; i++) {
+        pointMarkers[i].visible = true;
+        pointMarkers[i].setMap(map);
+    }
+
+    addCurveMarkers();
+    for (var j = 0; j < curveMarkers.length; j++) {
+        curveMarkers[j].visible = true;
+        curveMarkers[j].setMap(map);
+    }
+
+    //curveDisplayedFlag = true;
+    //setMapOnAll(map);
+
+    //console.log(curveDisplayedFlag); // Displays true as expected
+}
+
+/**
+ * Hide all the markers on the map
+ */
+function hideAllMarkers(){
+    // Display starts with point marker hidden
+    // Ignore user pressing hide points if nothing is displayed
+    if (pointMarkers.length > 0){
+        for (var i = 0; i < pointMarkers.length; i++) {
+            pointMarkers[i].visible = false;
+            pointMarkers[i].setMap(map);
+        }
+    }
+
+    if (curveMarkers.length > 0) {
+        for (var j = 0; j < curveMarkers.length; j++) {
+            curveMarkers[j].visible = false;
+            curveMarkers[j].setMap(map);
+        }
+    }
+
+    //curveDisplayedFlag = false;
+    //setMapOnAll(null);
+
+    //console.log(curveDisplayedFlag); // Displays false as expected
+}
+
+function resetMarkers(){
+
+    // If markers are displayed then recalculate points & curves
+    // Else repopulate arrays only - do not display (visible = false)
+
+
+    hideAllMarkers();
+    curveMarkers = [];
+    addCurveMarkers();
+
+    console.log(curveDisplayedFlag);
+
+    if (curveDisplayedFlag == true){
+        console.log(curveMarkers.length);
+        console.log(curveMarkers[0].getVisible());
+
+        //showAllMarkers();
     }
 }
