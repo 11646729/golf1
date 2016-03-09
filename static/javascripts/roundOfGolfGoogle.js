@@ -3,16 +3,15 @@
  * Refer to code at http://jsfiddle.net/medmunds/sd10up9t/ for the basic algorithm
  */
 
-/**
- * This line prevents Webstorm warnings from google
- */
+// This line prevents Webstorm warnings from google
 var google = google || {};
+
 var pointMarkers = [];
 var curveMarkers = [];
 
-var map, myCoords, myBounds, json_file, curveMarker;
+var map, myCoords, myBounds, json_file;
 
-var curveDisplayedFlag = false;
+var markersDisplayedFlag = false;
 
 var curvature = 0.2; // how curvy to make the arc
 
@@ -20,17 +19,17 @@ var curvature = 0.2; // how curvy to make the arc
  * Initialization function
  */
 function init(){
+    /**
+     * Display map of area containing coordinates
+     */
     prepareCoords(json_file);
     calculateBounds();
     drawMap();
 
     /**
-     * Add event listeners
+     * Add event listener
      */
-    //map.addListener('projection_changed', resetMarkers);
-    //map.addListener('zoom_changed', resetMarkers);
-    //map.addListener('position_changed', addCurveMarkers);
-    //map.addListener('position_changed', addCurveMarkers);
+    map.addListener('zoom_changed', resetMarkers);
 }
 
 /**
@@ -175,7 +174,7 @@ function addCurveMarkers() {
 }
 
 /**
- * Show all the markers on the map that are currently in the array
+ * Show all the markers on the map that are currently in the arrays
  */
 function showAllMarkers(){
 
@@ -191,14 +190,11 @@ function showAllMarkers(){
         curveMarkers[j].setMap(map);
     }
 
-    //curveDisplayedFlag = true;
-    //setMapOnAll(map);
-
-    //console.log(curveDisplayedFlag); // Displays true as expected
+    markersDisplayedFlag = true;
 }
 
 /**
- * Hide all the markers on the map
+ * Hide all the markers
  */
 function hideAllMarkers(){
     // Display starts with point marker hidden
@@ -217,28 +213,27 @@ function hideAllMarkers(){
         }
     }
 
-    //curveDisplayedFlag = false;
-    //setMapOnAll(null);
-
-    //console.log(curveDisplayedFlag); // Displays false as expected
+    markersDisplayedFlag = false;
 }
 
 function resetMarkers(){
 
-    // If markers are displayed then recalculate points & curves
-    // Else repopulate arrays only - do not display (visible = false)
+    // If markers are displayed then hide points & recalculate them
+    if (markersDisplayedFlag == true){
 
+        if (pointMarkers.length > 0){
+            for (var i = 0; i < pointMarkers.length; i++) {
+                pointMarkers[i].visible = false;
+                pointMarkers[i].setMap(map);
+            }
+        }
 
-    hideAllMarkers();
-    curveMarkers = [];
-    addCurveMarkers();
-
-    console.log(curveDisplayedFlag);
-
-    if (curveDisplayedFlag == true){
-        console.log(curveMarkers.length);
-        console.log(curveMarkers[0].getVisible());
-
-        //showAllMarkers();
+        if (curveMarkers.length > 0) {
+            for (var j = 0; j < curveMarkers.length; j++) {
+                curveMarkers[j].visible = false;
+                curveMarkers[j].setMap(map);
+            }
+        }
+        showAllMarkers();
     }
 }

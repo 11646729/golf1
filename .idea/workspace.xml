@@ -27,9 +27,11 @@
       <file leaf-file-name="roundOfGolfGoogle.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/javascripts/roundOfGolfGoogle.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.48946515">
-              <caret line="229" column="0" selection-start-line="229" selection-start-column="0" selection-end-line="229" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="0.46191248">
+              <caret line="22" column="49" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
+              <folding>
+                <element signature="e#0#129#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -349,12 +351,6 @@
       <option name="number" value="Default" />
       <updated>1453818139081</updated>
     </task>
-    <task id="LOCAL-00045" summary="More edits to login page - NOT YET COMPLETE">
-      <created>1456095289655</created>
-      <option name="number" value="00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1456095289655</updated>
-    </task>
     <task id="LOCAL-00046" summary="More edits to login page - NOT YET COMPLETE">
       <created>1456095465350</created>
       <option name="number" value="00046" />
@@ -643,12 +639,18 @@
       <option name="project" value="LOCAL" />
       <updated>1457466886985</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="Big changes to logic for arc - simplification">
+      <created>1457479661059</created>
+      <option name="number" value="00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1457479661059</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24892704" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -657,7 +659,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329602" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32382134" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19975185" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19975185" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -688,7 +690,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Still working on googleMapsTest to include arc - only working in terrain not satellite image nor with change zoom" />
     <MESSAGE value="Added file from stackOverflow" />
     <MESSAGE value="Added Google Maps &amp; arc plus refactor files - NOW WORKING" />
     <MESSAGE value="Refactoring Google maps arc code" />
@@ -713,7 +714,8 @@
     <MESSAGE value="Some progress on fixing arc - still broken if displaying arc then zoom" />
     <MESSAGE value="Almost there with arc" />
     <MESSAGE value="Even closer with arc - added a curveFlag flag" />
-    <option name="LAST_COMMIT_MESSAGE" value="Even closer with arc - added a curveFlag flag" />
+    <MESSAGE value="Big changes to logic for arc - simplification" />
+    <option name="LAST_COMMIT_MESSAGE" value="Big changes to logic for arc - simplification" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -726,7 +728,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#129#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -742,7 +746,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#129#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -758,7 +764,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#129#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1081,17 +1089,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.024311183">
           <caret line="129" column="48" selection-start-line="129" selection-start-column="18" selection-end-line="129" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#47#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/javascripts/roundOfGolfGoogle.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48946515">
-          <caret line="229" column="0" selection-start-line="229" selection-start-column="0" selection-end-line="229" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.46191248">
+          <caret line="22" column="49" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#129#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
