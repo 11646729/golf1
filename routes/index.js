@@ -2,14 +2,14 @@
  * Created by briansmith on 01/10/15.
  */
 var express = require('express');
-var router = express.Router();
 var util = require('../middleware/utilities');
+var router = express.Router();
 
 /*
  * Home page
  */
 router.get('/', function(req, res) {
-    res.render('home.jade', {title: 'Index', csrfToken: req.csrfToken() });
+    res.render('home.jade', {title: 'Home', csrfToken: req.csrfToken() });
 });
 
 /*
@@ -23,8 +23,6 @@ router.get('/login', function(req, res){
  * Login results
  */
 router.post('/loginProcess', function(req, res){
-//    console.log(req.body);
-//    res.send(req.body.username + " " + req.body.password);
     var isAuth = util.auth(req.body.username, req.body.password, req.secret);
     if (isAuth){
         res.redirect('/mainPage');
@@ -45,7 +43,7 @@ router.get('/logout', function(req, res){
  * Main page
  */
 router.get('/mainPage', function(req, res){
-    res.render('main_index.jade', {title: 'Index', csrfToken: req.csrfToken() });
+    res.render('mainPage.jade', {title: 'Index', csrfToken: req.csrfToken() });
 });
 
 /*
