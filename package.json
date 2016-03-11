@@ -27,7 +27,12 @@
     "debug": "2.2.0",
     "bower": "1.7.2",
     "cors": "2.7.1",
-    "helmet": "1.1.0"
+    "helmet": "1.1.0",
+    "passport": "0.2.0",
+    "passport-local": "1.0.0",
+    "passport-facebook": "1.0.3",
+    "passport-google-oauth": " 0.1.5",
+    "scmp": "0.0.3"
   },
   "repository": {
     "type": "git",

@@ -16,7 +16,8 @@ var express = require('express'),
     flash = require('connect-flash'),
     RedisStore = require('connect-redis')(session),
     util = require('./middleware/utilities'),
-    config = require('./config');
+    config = require('./config'),
+    passport = require('./passport');
 
 var app = express();
 
@@ -35,11 +36,6 @@ app.use(favicon(path.join(__dirname, 'static/images', config.favicon)));
 app.use(logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
 app.use(cookieParser(config.secret));
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
-
 app.use(session({
     secret: config.secret,
     saveUninitialized: true,
@@ -47,6 +43,14 @@ app.use(session({
     store: new RedisStore({
             url: config.redisUrl
     })
+}));
+
+app.use(passport.passport.initialize());
+app.use(passport.passport.session());
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
 }));
 
 app.use(csrf({ cookie: true }));
