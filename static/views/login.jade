@@ -30,8 +30,8 @@ html
                         .col-sm-12
                             h3 Login Page
                             form(method="post", action="/loginProcess")
-                                //if message !== ''
-                                    //.alert.alert-danger= message
+                                if message && message.length
+                                    .alert.alert-danger= message
                                 input(type="hidden", name="_csrf", value="#{token}")
                                 .form-group
                                     label(for='username') Username

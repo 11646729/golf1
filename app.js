@@ -13,11 +13,9 @@ var express = require('express'),
     logger = require('morgan'),
     helmet = require('helmet'),
     session = require('express-session'),
+    flash = require('connect-flash'),
     RedisStore = require('connect-redis')(session),
     util = require('./middleware/utilities');
-
-// This line helps check if redis is running
-//var client = redis.createClient(global.redis.port, global.redis.host);
 
 var app = express();
 
@@ -46,8 +44,6 @@ app.use(session({
     saveUninitialized: true,
     resave: true,
     store: new RedisStore({
-            //host: 'localhost',
-            //port: 6379
             url: 'redis://localhost'
     })
 }));
@@ -56,6 +52,8 @@ app.use(csrf({ cookie: true }));
 app.use(util.csrf);
 
 app.use(util.authenticated);
+
+app.use(flash());
 
 app.use(helmet());
 
@@ -68,8 +66,8 @@ app.use(helmet());
 var routes = require('./routes/index');
 app.use('/', routes);
 
-var users = require('./routes/users');
-app.use('/users', users);
+//var users = require('./routes/users');
+//app.use('/users', users);
 
 // error handlers ============================================================
 // catch 404 and forward to error handler

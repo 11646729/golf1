@@ -16,7 +16,7 @@ router.get('/', function(req, res) {
  * Login page
  */
 router.get('/login', function(req, res){
-    res.render('login.jade', {title: 'Login'});
+    res.render('login.jade', {title: 'Login', message: req.flash('error')});
 });
 
 /*
@@ -27,7 +27,7 @@ router.post('/loginProcess', function(req, res){
     if (isAuth){ // isAuth is true
         res.redirect('/mainPage');
     } else {
-//        res.flash('error', 'Wrong Username or Password');
+        req.flash('error', 'Wrong Username or Password');
         res.redirect('/login');
     }
 });
