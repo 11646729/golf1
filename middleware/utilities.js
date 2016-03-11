@@ -7,7 +7,7 @@ module.exports.csrf = function csrf(req, res, next) {
 };
 
 module.exports.authenticated = function authenticated(req, res, next){
-  res.locals.isAuthenticated = req.session.isAuthenticated;
+    res.locals.isAuthenticated = req.session.isAuthenticated;
     if (req.session.isAuthenticated){
         res.locals.user = req.session.user;
     }
