@@ -46,9 +46,9 @@ app.use(session({
     saveUninitialized: true,
     resave: true,
     store: new RedisStore({
-            host: 'localhost',
-            port: 6379
-//            url: 'redis://localhost'
+            //host: 'localhost',
+            //port: 6379
+            url: 'redis://localhost'
     })
 }));
 
