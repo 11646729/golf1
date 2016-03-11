@@ -7,14 +7,17 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     cors = require('cors'),
-    session = require('express-session'),
     csrf = require('csurf'),
     path = require('path'),
     favicon = require('serve-favicon'),
     logger = require('morgan'),
     helmet = require('helmet'),
+    session = require('express-session'),
     RedisStore = require('connect-redis')(session),
     util = require('./middleware/utilities');
+
+// This line helps check if redis is running
+//var client = redis.createClient(global.redis.port, global.redis.host);
 
 var app = express();
 
@@ -42,15 +45,17 @@ app.use(session({
     secret: 'secret',
     saveUninitialized: true,
     resave: true,
-    store: new RedisStore(
-        {url: 'redis://localhost'})
+    store: new RedisStore({
+            host: 'localhost',
+            port: 6379
+//            url: 'redis://localhost'
     })
-);
+}));
 
 app.use(csrf({ cookie: true }));
 app.use(util.csrf);
 
-//app.use(util.authenticated);
+app.use(util.authenticated);
 
 app.use(helmet());
 
