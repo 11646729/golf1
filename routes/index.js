@@ -23,7 +23,7 @@ router.get(config.routes.login, function(req, res){
  * Login results
  */
 router.post(config.routes.loginProcess, function(req, res){
-    var isAuth = util.auth(req.body.username, req.body.password, req.secret);
+    var isAuth = util.auth(req.body.username, req.body.password, req.session);
     if (isAuth){ // isAuth is true
         res.redirect(config.routes.mainPage);
     } else {
@@ -43,28 +43,28 @@ router.get(config.routes.logout, function(req, res){
 /**
  * Main page
  */
-router.get(config.routes.mainPage, function(req, res){
+router.get(config.routes.mainPage, [util.requireAuthentication], function(req, res){
     res.render('mainPage.jade', {title: 'Index'});
 });
 
 /*
  * Nearby golf courses
  */
-router.get(config.routes.nearbyGolfCourses, function(req, res){
+router.get(config.routes.nearbyGolfCourses, [util.requireAuthentication], function(req, res){
     res.render('nearbyGolfCourses.jade', {title: 'Nearby Golf Courses'});
 });
 
 /*
  * Round of golf
  */
-router.get(config.routes.roundOfGolf, function(req, res) {
+router.get(config.routes.roundOfGolf, [util.requireAuthentication], function(req, res) {
     res.render('roundOfGolf.jade', {title: 'Round of Golf'});
 });
 
 /*
  * Round of golf with Google Maps
  */
-router.get(config.routes.roundOfGolfGoogle, function(req, res) {
+router.get(config.routes.roundOfGolfGoogle, [util.requireAuthentication], function(req, res) {
     res.render('roundOfGolfGoogle.jade', {title: 'Index'});
 });
 
