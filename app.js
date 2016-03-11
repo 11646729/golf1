@@ -15,7 +15,8 @@ var express = require('express'),
     session = require('express-session'),
     flash = require('connect-flash'),
     RedisStore = require('connect-redis')(session),
-    util = require('./middleware/utilities');
+    util = require('./middleware/utilities'),
+    config = require('./config');
 
 var app = express();
 
@@ -32,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'static')));
 app.use(favicon(path.join(__dirname, 'static/images', config.favicon)));
 
 app.use(logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
-app.use(cookieParser('secret'));
+app.use(cookieParser(config.secret));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -40,11 +41,11 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(session({
-    secret: 'secret',
+    secret: config.secret,
     saveUninitialized: true,
     resave: true,
     store: new RedisStore({
-            url: 'redis://localhost'
+            url: config.redisUrl
     })
 }));
 
@@ -54,6 +55,7 @@ app.use(util.csrf);
 app.use(util.authenticated);
 
 app.use(flash());
+app.use(util.templateRoutes);
 
 app.use(helmet());
 

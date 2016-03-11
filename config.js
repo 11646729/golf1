@@ -3,7 +3,19 @@
  */
 var config = {
     port: 3000,
-    favicon: 'Golf_Pin.ico'
+    secret: 'secret',
+    redisUrl: 'redis://localhost',
+    favicon: 'Golf_Pin.ico',
+    routes: {
+        login: '/login',
+        logout: '/logout',
+        loginProcess: '/loginProcess',
+        home: '/',
+        mainPage: '/mainPage',
+        nearbyGolfCourses: '/nearbyGolfCourses',
+        roundOfGolf: '/roundOfGolf',
+        roundOfGolfGoogle: '/roundOfGolfGoogle'
+    }
     
     // STORMPATH variables
     //STORMPATH_API_KEY_ID: getEnv('STORMPATH_API_KEY_ID'),

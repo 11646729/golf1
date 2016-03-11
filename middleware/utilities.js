@@ -1,6 +1,8 @@
 /**
  * Created by briansmith on 22/02/2016.
  */
+var config = require('../config');
+
 module.exports.csrf = function csrf(req, res, next) {
     res.locals.token = req.csrfToken();
     next();
@@ -18,7 +20,7 @@ module.exports.requireAuthentication = function requireAuthentication(req, res, 
     if (req.session.isAuthenticated){
         next();
     } else {
-        res.redirect('/login');
+        res.redirect(config.routes.login);
     }
 };
 
@@ -35,3 +37,8 @@ module.exports.logOut = function logOut(session){
     session.isAuthenticated = false;
     delete session.user;
 };
+
+exports.templateRoutes = function templateRoutes(req, res, next){
+    res.locals.routes = config.routes;
+    next();
+}
