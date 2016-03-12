@@ -22,13 +22,6 @@ router.get(config.routes.login, function(req, res){
 });
 
 /*
- * Facebook Login page
- */
-router.get(config.routes.dummyFacebookLogin, function(req, res){
-    res.render('dummyFacebookLogin.jade', {title: 'Login', message: req.flash('error')});
-});
-
-/*
  * Google Login page
  */
 router.get(config.routes.dummyGoogleLogin, function(req, res){
@@ -52,15 +45,9 @@ router.post(config.routes.loginProcess, function(req, res){
  * Logout page
  */
 router.get(config.routes.logout, function(req, res){
-    util.logOut(req.session);
-//    res.redirect(config.routes.home);
-    res.redirect('/');
+    util.logOut(req);
+    res.redirect(config.routes.home);
 });
-
-//exports.logOut = function logOut(req, res){
-//    util.logOut(req);
-//    res.redirect('/');
-//};
 
 /**
  * About
