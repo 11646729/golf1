@@ -17,7 +17,6 @@ var express = require('express'),
     flash = require('connect-flash'),
     RedisStore = require('connect-redis')(session),
     util = require('./middleware/utilities'),
-    config = require('./config'),
     passport = require('./passport');
 
 var app = express();
