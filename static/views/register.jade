@@ -1,0 +1,47 @@
+// Created by briansmith on 12/03/2016.
+doctype html
+html
+    head(lang='en')
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        meta(name='description', content='')
+        meta(name='author', content='')
+
+        link(rel='icon', href='../images/Golf_Pin.ico')
+
+        link(rel='stylesheet', type='text/css', href='../bower_components/bootstrap/dist/css/bootstrap.min.css')
+        link(rel='stylesheet', type='text/css', href='../stylesheets/style.css')
+        link(rel='stylesheet', type='text/css', href='../stylesheets/custom-bootstrap.css')
+
+        // This MUST be placed in the header
+        script(type='text/javascript', src='../bower_components/jquery/dist/jquery.min.js')
+
+        title Golf Test Routines
+
+    body.index_body
+        header
+            include partials/header.jade
+        main
+            .container
+            .row
+                .col-sm-8.col-sm-offset-2
+                    .row
+                        .col-sm-12
+                            h3 Login Page
+                            form(method="post", action="/account/registerProcess")
+                                if message && message.length
+                                    .alert.alert-danger= message
+                                input(type="hidden", name="_csrf", value="#{token}")
+                                .form-group
+                                    label(for='username') Username
+                                    input#username.form-control(type='text', placeholder='username', name='username')
+                                .form-group
+                                    label(for='password') Password
+                                    input#password.form-control(type='password', placeholder='password', name='password')
+                                button.btn.btn-primary.btn-block(type="submit") Register
+                                .row.top-margin
+
+    footer
+        include partials/footer.jade
+

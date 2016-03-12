@@ -2,10 +2,11 @@
  * Created by briansmith on 01/10/15
  */
 
-var express = require('express');
-var util = require('../middleware/utilities');
-var router = express.Router();
-var config = require('../config');
+var express = require('express'),
+    util = require('../middleware/utilities'),
+    router = express.Router(),
+    config = require('../config'),
+    user = require('../passport/user');
 
 /*
  * Home page
@@ -14,17 +15,46 @@ router.get(config.routes.home, function(req, res) {
     res.render('home.jade', {title: 'Home'});
 });
 
+/**
+ * Register
+ */
+router.get(config.routes.register, function(req, res) {
+    res.render('register.jade', {title: 'Register', message: req.flash('error')});
+});
+
+/**
+ * Register posted values
+ */
+router.post(config.routes.registerProcess, function(req, res){
+    if (req.body.username && req.body.password)
+    {
+        user.addUser(req.body.username, req.body.password, config.crypto.workFactor, function(err, profile){
+            if (err) {
+                req.flash('error', err);
+                res.redirect(config.routes.register);
+            }else{
+                req.login(profile, function(err){
+                    res.redirect(config.routes.mainPage);
+                });
+            }
+        });
+    }else{
+        req.flash('error', 'Please fill out all the fields');
+        res.redirect(config.routes.register);
+    }
+});
+
 /*
  * Login page
  */
-router.get(config.routes.login, function(req, res){
+router.get(config.routes.login, function(req, res) {
     res.render('login.jade', {title: 'Login', message: req.flash('error')});
 });
 
 /**
  * Logout page
  */
-router.get(config.routes.logout, function(req, res){
+router.get(config.routes.logout, function(req, res) {
     util.logOut(req);
     res.redirect(config.routes.home);
 });
@@ -46,14 +76,14 @@ router.get(config.routes.contact, [util.requireAuthentication], function(req, re
 /**
  * Main page
  */
-router.get(config.routes.mainPage, [util.requireAuthentication], function(req, res){
+router.get(config.routes.mainPage, [util.requireAuthentication], function(req, res) {
     res.render('mainPage.jade', {title: 'Index'});
 });
 
 /*
  * Nearby golf courses
  */
-router.get(config.routes.nearbyGolfCourses, [util.requireAuthentication], function(req, res){
+router.get(config.routes.nearbyGolfCourses, [util.requireAuthentication], function(req, res) {
     res.render('nearbyGolfCourses.jade', {title: 'Nearby Golf Courses'});
 });
 
