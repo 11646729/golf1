@@ -42,13 +42,13 @@ html
                                 button.btn.btn-primary.btn-block(type="submit") Login
                                 .row.top-margin
                         .col-sm-6
-                            button.btn.btn-block.btn-social.facebook
+                            a.btn.btn-block.btn-social.facebook(href='/facebook', role='button')
                                 i.fa.fa-facebook
-                                |  Sign in with Facebook
+                                |   Sign in with Facebook
                         .col-sm-6
-                            button.btn.btn-block.btn-social.google
+                            a.btn.btn-block.btn-social.google(href='/google', role='button')
                                 i.fa.fa-google
-                                |  Sign in with Google
+                                |   Sign in with Google
 
     footer
             include partials/footer.jade
