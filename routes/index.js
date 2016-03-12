@@ -1,10 +1,12 @@
 /**
- * Created by briansmith on 01/10/15.
+ * Created by briansmith on 01/10/15
  */
+
 var express = require('express');
 var util = require('../middleware/utilities');
 var router = express.Router();
 var config = require('../config');
+
 /*
  * Home page
  */
@@ -79,7 +81,7 @@ router.get(config.routes.roundOfGolf, [util.requireAuthentication], function(req
  * Round of golf with Google Maps
  */
 router.get(config.routes.roundOfGolfGoogle, [util.requireAuthentication], function(req, res) {
-    res.render('roundOfGolfGoogle.jade', {title: 'Index'});
+    res.render('roundOfGolfGoogle.jade', {title: 'Round of Golf'});
 });
 
 module.exports = router;
