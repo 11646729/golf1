@@ -22,13 +22,6 @@ router.get(config.routes.login, function(req, res){
 });
 
 /*
- * Google Login page
- */
-router.get(config.routes.dummyGoogleLogin, function(req, res){
-    res.render('dummyGoogleLogin.jade', {title: 'Login', message: req.flash('error')});
-});
-
-/*
  * Login results
  */
 router.post(config.routes.loginProcess, function(req, res){

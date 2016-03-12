@@ -11,7 +11,8 @@ var config = {
         logout: '/logout',
         facebookAuth: '/auth/facebook',
         facebookAuthCallback: '/auth/facebook/callback',
-        dummyGoogleLogin: '/dummyGoogleLogin',
+        googleAuth: '/auth/google',
+        googleAuthCallback: '/auth/google/callback',
         loginProcess: '/loginProcess',
         home: '/',
         mainPage: '/mainPage',
@@ -25,6 +26,10 @@ var config = {
     facebook: {
         appID: '202694753422163',
         appSecret: 'a3ba090eedf476165bce3989cd4d47e8'
+    },
+    google: {
+        clientID: '824211476195-mast726v6dbnmtkjubfhgq8skefvf2pn.apps.googleusercontent.com',
+        clientSecret: 'gpmeaG99KGFN-YMuVcV8933E'
     }
     
     // STORMPATH variables
