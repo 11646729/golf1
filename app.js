@@ -23,12 +23,7 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'static/views'));
-
-/**
- * Comment out one of these lines to change view engine
- */
 app.set('view engine', 'jade');
-//app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, 'static')));
 app.use(favicon(path.join(__dirname, 'static/images', config.favicon)));
