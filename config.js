@@ -7,20 +7,19 @@ var config = {
     redisUrl: 'redis://localhost',
     favicon: 'Golf_Pin.ico',
     routes: {
-        login: '/login',
-        logout: '/logout',
         facebookAuth: '/auth/facebook',
         facebookAuthCallback: '/auth/facebook/callback',
         googleAuth: '/auth/google',
         googleAuthCallback: '/auth/google/callback',
-        loginProcess: '/loginProcess',
+        login: '/login',
+        about: '/about',
+        contact: '/contact',
+        logout: '/logout',
         home: '/',
         mainPage: '/mainPage',
         nearbyGolfCourses: '/nearbyGolfCourses',
         roundOfGolf: '/roundOfGolf',
-        roundOfGolfGoogle: '/roundOfGolfGoogle',
-        about: '/about',
-        contact: '/contact'
+        roundOfGolfGoogle: '/roundOfGolfGoogle'
     },
     host: 'http://localhost:3000',
     facebook: {
@@ -30,6 +29,11 @@ var config = {
     google: {
         clientID: '824211476195-mast726v6dbnmtkjubfhgq8skefvf2pn.apps.googleusercontent.com',
         clientSecret: 'gpmeaG99KGFN-YMuVcV8933E'
+    },
+    crypto: {
+        workFactor: 5000,
+        keylen: 32,
+        randomSize: 256
     }
     
     // STORMPATH variables

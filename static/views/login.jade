@@ -29,7 +29,7 @@ html
                     .row
                         .col-sm-12
                             h3 Login Page
-                            form(method="post", action="/loginProcess")
+                            form(method="post", action="/login")
                                 if message && message.length
                                     .alert.alert-danger= message
                                 input(type="hidden", name="_csrf", value="#{token}")

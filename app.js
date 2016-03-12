@@ -67,8 +67,8 @@ app.use(helmet());
 var routes = require('./routes/index');
 app.use('/', routes);
 
-var users = require('./routes/users');
-app.use('/users', users);
+//var users = require('./routes/users');
+//app.use('/users', users);
 
 passport.routes(app);
 

@@ -21,19 +21,6 @@ router.get(config.routes.login, function(req, res){
     res.render('login.jade', {title: 'Login', message: req.flash('error')});
 });
 
-/*
- * Login results
- */
-router.post(config.routes.loginProcess, function(req, res){
-    var isAuth = util.auth(req.body.username, req.body.password, req.session);
-    if (isAuth){ // isAuth is true
-        res.redirect(config.routes.mainPage);
-    } else {
-        req.flash('error', 'Wrong Username or Password');
-        res.redirect(config.routes.login);
-    }
-});
-
 /**
  * Logout page
  */
