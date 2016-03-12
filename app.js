@@ -70,6 +70,8 @@ app.use('/', routes);
 //var users = require('./routes/users');
 //app.use('/users', users);
 
+passport.routes(app);
+
 // error handlers ============================================================
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -9,7 +9,8 @@ var config = {
     routes: {
         login: '/login',
         logout: '/logout',
-        dummyFacebookLogin: '/dummyFacebookLogin',
+        facebookAuth: '/auth/facebook',
+        facebookAuthCallback: '/auth/facebook/callback',
         dummyGoogleLogin: '/dummyGoogleLogin',
         loginProcess: '/loginProcess',
         home: '/',
@@ -19,6 +20,11 @@ var config = {
         roundOfGolfGoogle: '/roundOfGolfGoogle',
         about: '/about',
         contact: '/contact'
+    },
+    host: 'http://localhost:3000',
+    facebook: {
+        appID: '202694753422163',
+        appSecret: 'a3ba090eedf476165bce3989cd4d47e8'
     }
     
     // STORMPATH variables

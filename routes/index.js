@@ -53,8 +53,14 @@ router.post(config.routes.loginProcess, function(req, res){
  */
 router.get(config.routes.logout, function(req, res){
     util.logOut(req.session);
-    res.redirect(config.routes.home);
+//    res.redirect(config.routes.home);
+    res.redirect('/');
 });
+
+//exports.logOut = function logOut(req, res){
+//    util.logOut(req);
+//    res.redirect('/');
+//};
 
 /**
  * About
