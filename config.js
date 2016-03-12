@@ -11,7 +11,7 @@ var config = {
         facebookAuthCallback: '/auth/facebook/callback',
         googleAuth: '/auth/google',
         googleAuthCallback: '/auth/google/callback',
-        login: '/login',
+        login: '/account/login',
         about: '/about',
         contact: '/contact',
         logout: '/account/logout',
