@@ -14,7 +14,9 @@ var config = {
         mainPage: '/mainPage',
         nearbyGolfCourses: '/nearbyGolfCourses',
         roundOfGolf: '/roundOfGolf',
-        roundOfGolfGoogle: '/roundOfGolfGoogle'
+        roundOfGolfGoogle: '/roundOfGolfGoogle',
+        about: '/about',
+        contact: '/contact'
     }
     
     // STORMPATH variables

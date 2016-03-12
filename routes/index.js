@@ -41,6 +41,20 @@ router.get(config.routes.logout, function(req, res){
 });
 
 /**
+ * About
+ */
+router.get(config.routes.about, [util.requireAuthentication], function(req, res) {
+    res.render('about.jade', {title: 'Index'});
+});
+
+/**
+ * Contact
+ */
+router.get(config.routes.contact, [util.requireAuthentication], function(req, res) {
+    res.render('contact.jade', {title: 'Index'});
+});
+
+/**
  * Main page
  */
 router.get(config.routes.mainPage, [util.requireAuthentication], function(req, res){
@@ -55,7 +69,7 @@ router.get(config.routes.nearbyGolfCourses, [util.requireAuthentication], functi
 });
 
 /*
- * Round of golf
+ * Round of golf with OpenLayers using Bing Maps
  */
 router.get(config.routes.roundOfGolf, [util.requireAuthentication], function(req, res) {
     res.render('roundOfGolf.jade', {title: 'Round of Golf'});
