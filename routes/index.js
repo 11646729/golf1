@@ -22,6 +22,20 @@ router.get(config.routes.login, function(req, res){
 });
 
 /*
+ * Facebook Login page
+ */
+router.get(config.routes.dummyFacebookLogin, function(req, res){
+    res.render('dummyFacebookLogin.jade', {title: 'Login', message: req.flash('error')});
+});
+
+/*
+ * Google Login page
+ */
+router.get(config.routes.dummyGoogleLogin, function(req, res){
+    res.render('dummyGoogleLogin.jade', {title: 'Login', message: req.flash('error')});
+});
+
+/*
  * Login results
  */
 router.post(config.routes.loginProcess, function(req, res){

@@ -9,6 +9,8 @@ var config = {
     routes: {
         login: '/login',
         logout: '/logout',
+        dummyFacebookLogin: '/dummyFacebookLogin',
+        dummyGoogleLogin: '/dummyGoogleLogin',
         loginProcess: '/loginProcess',
         home: '/',
         mainPage: '/mainPage',
