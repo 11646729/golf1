@@ -21,7 +21,8 @@ var config = {
         mainPage: '/mainPage',
         nearbyGolfCourses: '/nearbyGolfCourses',
         roundOfGolf: '/roundOfGolf',
-        roundOfGolfGoogle: '/roundOfGolfGoogle'
+        roundOfGolfGoogle: '/roundOfGolfGoogle',
+        testMongodb: '/allShots'
     },
     host: 'http://localhost:3000',
     facebook: {

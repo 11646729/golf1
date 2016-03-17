@@ -3,8 +3,8 @@
  */
 
 var express = require('express'),
-    util = require('../middleware/utilities'),
     router = express.Router(),
+    util = require('../middleware/utilities'),
     config = require('../config'),
     user = require('../passport/user');
 

@@ -70,6 +70,12 @@ app.use('/', routes);
 //var users = require('./routes/users');
 //app.use('/users', users);
 
+/**
+ * This api is for all golf shots
+ */
+var api = require('./routes/golfApi');
+app.use('/golf', api);
+
 passport.routes(app);
 
 // error handlers ============================================================
