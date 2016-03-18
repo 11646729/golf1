@@ -64,12 +64,15 @@ app.use(helmet());
 //}));
 
 // routes ====================================================================
+/**
+ * This is the api for general functions
+ */
 app.use('/', require('./routes/index'));
 
 //app.use('/users', require('./routes/users'));
 
 /**
- * This api is for all golf shots
+ * This is the api is for golf functions
  */
 app.use('/golf', require('./routes/golfApi'));
 

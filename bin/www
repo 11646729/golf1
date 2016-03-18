@@ -3,37 +3,42 @@
 /**
  * Module dependencies.
  */
-
 var app = require('../app');
 var debug = require('debug')('golf-1:server');
 var http = require('http');
 var config = require('../config');
+var db = require('../middleware/db');
 
 /**
  * Get port from environment and store in Express.
  */
-
 var port = normalizePort(process.env.PORT || config.port);
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
-
 var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
+db.connect(config.mongoUrl, function (err) {
+  if (err) {
+      console.log('Unable to connect to Mongo');
+  } else {
+    server.listen(port);
 
-server.listen(port);
+    console.log('Connected to Mongo');
+  }
+});
+
 server.on('error', onError);
 server.on('listening', onListening);
 
 /**
  * Normalize a port into a number, string, or false.
  */
-
 function normalizePort(val) {
   var port = parseInt(val, 10);
 
@@ -53,7 +58,6 @@ function normalizePort(val) {
 /**
  * Event listener for HTTP server "error" event.
  */
-
 function onError(error) {
   if (error.syscall !== 'listen') {
     throw error;
@@ -81,7 +85,6 @@ function onError(error) {
 /**
  * Event listener for HTTP server "listening" event.
  */
-
 function onListening() {
   var addr = server.address();
   var bind = typeof addr === 'string'

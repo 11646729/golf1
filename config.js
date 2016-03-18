@@ -4,6 +4,7 @@
 var config = {
     port: 3000,
     secret: 'secret',
+    mongoUrl: 'mongodb://mytest1:mytest2@ds063168.mlab.com:63168/winedb',
     redisUrl: 'redis://localhost',
     favicon: 'Golf_Pin.ico',
     routes: {

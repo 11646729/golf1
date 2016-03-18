@@ -6,10 +6,19 @@ var MongoClient = require('mongodb').MongoClient,
 //    ObjectId = require('mongodb').ObjectID,
     assert = require('assert'),
     express = require('express'),
-    router = express.Router();
+    router = express.Router(),
+    config = require('../config');
+
+/*
+ * Get basic shot start and end points
+ * http://localhost:3000/golf/allShots
+ */
+router.get('/allShots', function(req, res) {
+    res.send([{latitude:'54.625605'}, {longitude:'-5.683992'}]);
+});
 
 // Connection URL
-var url = 'mongodb://mytest1:mytest2@ds063168.mlab.com:63168/winedb';
+var url = config.mongoUrl;
 var coll = 'wines';
 var testDoc = {
     "address" : {
@@ -65,21 +74,21 @@ var findAllWines = function(db, callback) {
 /**
  * Insert a document
  */
-MongoClient.connect(url, function(err, db) {
-    assert.equal(null, err);
-    insertDocument(db, function() {
-        db.close();
-    });
-});
+//MongoClient.connect(url, function(err, db) {
+//    assert.equal(null, err);
+//    insertDocument(db, function() {
+//        db.close();
+//    });
+//});
 
 /**
  * Find all documents
  */
-MongoClient.connect(url, function(err, db) {
-    assert.equal(null, err);
-    findAllWines(db, function() {
-        db.close();
-    });
-});
+//MongoClient.connect(url, function(err, db) {
+//    assert.equal(null, err);
+//    findAllWines(db, function() {
+//        db.close();
+//    });
+//});
 
 module.exports = router;
