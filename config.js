@@ -23,7 +23,7 @@ var config = {
         nearbyGolfCourses: '/nearbyGolfCourses',
         roundOfGolf: '/roundOfGolf',
         roundOfGolfGoogle: '/roundOfGolfGoogle',
-        testMongodb: '/allShots'
+        allShots: '/allShots'
     },
     host: 'http://localhost:3000',
     facebook: {

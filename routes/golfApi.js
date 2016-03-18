@@ -7,15 +7,8 @@ var MongoClient = require('mongodb').MongoClient,
     assert = require('assert'),
     express = require('express'),
     router = express.Router(),
-    config = require('../config');
-
-/*
- * Get basic shot start and end points
- * http://localhost:3000/golf/allShots
- */
-router.get('/allShots', function(req, res) {
-    res.send([{latitude:'54.625605'}, {longitude:'-5.683992'}]);
-});
+    config = require('../config'),
+    db = require('../middleware/db');
 
 // Connection URL
 var url = config.mongoUrl;
@@ -45,16 +38,39 @@ var testDoc = {
     "restaurant_id" : "41704620"
 };
 
-/**
- * Function to add document to collection
+/*
+ * Get basic shot start and end points
+ * http://localhost:3000/golf/allShots
  */
-var insertDocument = function(db, callback) {
-    db.collection(coll).insertOne(testDoc, function(err, result) {
-        assert.equal(err, null);
-        console.log("Inserted a document into the " + coll + " collection.");
-        callback();
+router.get(config.routes.allShots, function(req, res) {
+//    res.render('about.jade', {title: 'Index'});
+
+// Move this to a javascript file then call it from the jade file
+    db.get().collection(coll).find(function (err, docs) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+
+        docs.forEach(function (doc) {
+            console.log(" key: " + doc._id);
+        });
     });
-};
+});
+
+router.get('/allWines', function(req, res) {
+    var myCursor = db.get().collection(coll).find();
+
+    myCursor.each(function(err, doc) {
+        assert.equal(err, null);
+        if (doc != null) {
+            console.dir(doc); // dir
+        } else {
+            console.log('Here doc is null');
+            //callback();
+        }
+    });
+});
 
 /**
  * Function to findAllWines
@@ -72,21 +88,32 @@ var findAllWines = function(db, callback) {
 };
 
 /**
- * Insert a document
- */
-//MongoClient.connect(url, function(err, db) {
-//    assert.equal(null, err);
-//    insertDocument(db, function() {
-//        db.close();
-//    });
-//});
-
-/**
  * Find all documents
  */
 //MongoClient.connect(url, function(err, db) {
 //    assert.equal(null, err);
 //    findAllWines(db, function() {
+//        db.close();
+//    });
+//});
+
+/**
+ * Function to add document to collection
+ */
+var insertDocument = function(db, callback) {
+    db.collection(coll).insertOne(testDoc, function(err, result) {
+        assert.equal(err, null);
+        console.log("Inserted a document into the " + coll + " collection.");
+        callback();
+    });
+};
+
+/**
+ * Insert a document
+ */
+//MongoClient.connect(url, function(err, db) {
+//    assert.equal(null, err);
+//    insertDocument(db, function() {
 //        db.close();
 //    });
 //});
