@@ -64,17 +64,14 @@ app.use(helmet());
 //}));
 
 // routes ====================================================================
-var routes = require('./routes/index');
-app.use('/', routes);
+app.use('/', require('./routes/index'));
 
-//var users = require('./routes/users');
-//app.use('/users', users);
+//app.use('/users', require('./routes/users'));
 
 /**
  * This api is for all golf shots
  */
-var api = require('./routes/golfApi');
-app.use('/golf', api);
+app.use('/golf', require('./routes/golfApi'));
 
 passport.routes(app);
 
