@@ -23,7 +23,8 @@ var config = {
         nearbyGolfCourses: '/nearbyGolfCourses',
         roundOfGolf: '/roundOfGolf',
         roundOfGolfGoogle: '/roundOfGolfGoogle',
-        allShots: '/allShots'
+        findMyRounds: '/findMyRounds',
+        addMyRound: '/addMyRound'
     },
     host: 'http://localhost:3000',
     facebook: {
