@@ -10,42 +10,6 @@ var assert = require('assert'),
 
 var coll = 'myRoundsOfGolf';
 
-var myRound = {
-    "type": "FeatureCollection",
-    "features": [
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [-5.683992, 54.625605]
-            },
-            "properties": {
-                "shotNumber": "1"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [-5.683818, 54.623937]
-            },
-            "properties": {
-                "shotNumber": "2"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [-5.682997, 54.622981]
-            },
-            "properties": {
-                "shotNumber": "3"
-            }
-        }
-    ]
-};
-
 /*
  * Get basic shot start and end points
  * http://localhost:3000/golf/allShots
@@ -75,7 +39,7 @@ router.get(config.routes.addMyRound, function(req, res) {
     console.log('In the ' + coll + ' function');
 
 // TODO: Move this to a javascript file then call it from the jade file
-//    db.get().collection(coll).insertOne(myRound, function(err, docs) {
+//    db.get().collection(coll).insertOne(config.myRound, function(err, docs) {
 //        assert.equal(err, null);
 //        console.log("Inserted a document into the " + coll + " collection.");
 //        callback();
