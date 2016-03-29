@@ -9,6 +9,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     cors = require('cors'),
     csrf = require('csurf'),
+    morgan = require('morgan'),
     path = require('path'),
     favicon = require('serve-favicon'),
     logger = require('morgan'),
@@ -57,6 +58,9 @@ app.use(flash());
 app.use(util.templateRoutes);
 
 app.use(helmet());
+
+// morgan log settings from https://blog.jscrambler.com/setting-up-5-useful-middlewares-for-an-express-api/
+app.use(morgan("common"));
 
 // CORS settings from https://blog.jscrambler.com/setting-up-5-useful-middlewares-for-an-express-api/
 app.use(cors({
