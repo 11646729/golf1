@@ -58,6 +58,7 @@ app.use(util.authenticated);
 app.use(flash());
 app.use(util.templateRoutes);
 
+// helmet settings from https://blog.jscrambler.com/setting-up-5-useful-middlewares-for-an-express-api/
 app.use(helmet());
 
 // morgan log settings from https://blog.jscrambler.com/setting-up-5-useful-middlewares-for-an-express-api/
