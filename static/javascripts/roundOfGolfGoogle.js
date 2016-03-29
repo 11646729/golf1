@@ -15,42 +15,6 @@ var markersDisplayedFlag = false;
 
 var curvature = 0.2; // how curvy to make the arc
 
-var json_file = {
-    "type": "FeatureCollection",
-        "features": [
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [-5.683992, 54.625605]
-            },
-            "properties": {
-                "shotNumber": "1"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [-5.683818, 54.623937]
-            },
-            "properties": {
-                "shotNumber": "2"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [-5.682997, 54.622981]
-            },
-            "properties": {
-                "shotNumber": "3"
-            }
-        }
-    ]
-};
-
 /**
  * Initialization function
  */
@@ -58,6 +22,7 @@ function init(){
     /**
      * Display map of area containing coordinates
      */
+    load();
     prepareCoords(json_file);
     calculateBounds();
     drawMap();
@@ -67,6 +32,12 @@ function init(){
      */
     map.addListener('zoom_changed', resetMarkers);
 }
+
+function load() {
+    //var mydata = JSON.parse('../testData/geoJsonFiles/roundOfGolfData.json');
+    //alert(mydata[0].name);
+    //alert(mydata[0].age);
+};
 
 /**
  * Function to convert json file (stream?) to array of LatLng etc
@@ -81,7 +52,7 @@ function prepareCoords(json_file){
 //    alert(mydata[1].name);
 //    alert(mydata[1].age);
 
-    //var loadGeoJson = JSON.parse(myRound.features);
+    //var loadGeoJson = JSON.parse('../testData/geoJsonFiles/roundOfGolfData.json');
     //console.log(loadGeoJson[0].properties.shotNumber);
 
     myCoords = [

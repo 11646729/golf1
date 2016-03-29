@@ -1,6 +1,7 @@
 /**
  * Created by briansmith on 22/02/2016.
  */
+
 var config = require('../config');
 
 module.exports.csrf = function csrf(req, res, next) {

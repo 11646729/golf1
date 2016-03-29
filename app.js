@@ -58,9 +58,11 @@ app.use(util.templateRoutes);
 
 app.use(helmet());
 
+// CORS settings from https://blog.jscrambler.com/setting-up-5-useful-middlewares-for-an-express-api/
 //app.use(cors({
-//    credentials: true,
-//    origin: true
+//    origin: ["http://localhost:3000"],
+//    methods: ["GET", "POST"],
+//    allowedHeaders: ["Content-Type", "Authorization"]
 //}));
 
 // routes ====================================================================
