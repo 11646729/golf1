@@ -29,7 +29,6 @@ app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, 'static')));
 app.use(favicon(path.join(__dirname, 'static/images', config.favicon)));
 
-app.use(logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
 app.use(cookieParser(config.secret));
 
 app.use(session({
@@ -61,7 +60,7 @@ app.use(util.templateRoutes);
 app.use(helmet());
 
 // morgan log settings from https://blog.jscrambler.com/setting-up-5-useful-middlewares-for-an-express-api/
-app.use(morgan("common"));
+app.use(logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
 
 // CORS settings from https://blog.jscrambler.com/setting-up-5-useful-middlewares-for-an-express-api/
 app.use(cors({

@@ -2,6 +2,7 @@
   <dictionary name="briansmith">
     <words>
       <w>cors</w>
+      <w>csrf</w>
       <w>stacktraces</w>
     </words>
   </dictionary>
