@@ -10,6 +10,7 @@ var express = require('express'),
     cors = require('cors'),
     csrf = require('csurf'),
     morgan = require('morgan'),
+    compression = require('compression'),
     path = require('path'),
     favicon = require('serve-favicon'),
     logger = require('morgan'),
@@ -68,6 +69,9 @@ app.use(cors({
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
+// GZIP compression settings from https://blog.jscrambler.com/setting-up-5-useful-middlewares-for-an-express-api/
+app.use(compression());
 
 // routes ====================================================================
 /**
