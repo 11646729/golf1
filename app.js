@@ -60,7 +60,7 @@ app.use(util.templateRoutes);
 app.use(helmet());
 
 // morgan log settings from https://blog.jscrambler.com/setting-up-5-useful-middlewares-for-an-express-api/
-app.use(logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
+app.use(logger('common'));  /* 'default', 'short', 'tiny', 'dev' */
 
 // CORS settings from https://blog.jscrambler.com/setting-up-5-useful-middlewares-for-an-express-api/
 app.use(cors({
