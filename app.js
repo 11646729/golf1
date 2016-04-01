@@ -18,7 +18,9 @@ var express = require('express'),
     flash = require('connect-flash'),
     RedisStore = require('connect-redis')(session),
     util = require('./middleware/utilities'),
-    passport = require('./passport');
+    passport = require('./passport'),
+    db = require('./middleware/db');
+//    config = require('config');
 
 var app = express();
 
@@ -86,6 +88,18 @@ app.use('/', require('./routes/index'));
 app.use('/golf', require('./routes/golfApi'));
 
 passport.routes(app);
+
+// connect to database =======================================================
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+db.connect(config.mongoUrl, function (err) {
+    if (err) {
+        console.log('Unable to connect to Mongo');
+    } else {
+        console.log('Connected to Mongo');
+    }
+});
 
 // error handlers ============================================================
 // catch 404 and forward to error handler
