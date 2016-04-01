@@ -1,61 +1,44 @@
 // Created by briansmith on 30/01/16
-doctype html
-html
-    head(lang='en')
-        meta(charset='utf-8')
-        meta(http-equiv='X-UA-Compatible', content='IE=edge')
-        meta(name='viewport', content='width=device-width, initial-scale=1')
-        meta(name='description', content='')
-        meta(name='author', content='')
+extends layout
 
-        link(rel='stylesheet', type='text/css', href='../bower_components/bootstrap/dist/css/bootstrap.min.css')
-        link(rel='stylesheet', type='text/css', href='../stylesheets/style.css')
-        link(rel='stylesheet', type='text/css', href='../stylesheets/custom-bootstrap.css')
+block content
+    header
+        include partials/header.jade
 
-        // This MUST be placed in the header
-        script(type='text/javascript', src='../bower_components/jquery/dist/jquery.min.js')
+    main
+        .container
+            .row
+                .col-md-3
+                    h4 Nearby Golf Courses
+                    a(href='/nearbyGolfCourses')
+                        img.img-rounded(src='../images/NearbyClubs.jpg')
+                .col-md-3
+                    h4 Round of Golf
+                    a(href='/roundOfGolf')
+                        img.img-rounded(src='../images/GolfBalls.jpg')
+                .col-md-3
+                    h4 Google Maps Round
+                    a(href='/roundOfGolfGoogle')
+                        img.img-rounded(src='../images/40_112.jpg')
+                .col-md-3
+                    h4 Add my Round to Mongodb
+                    a(href='/golf/addMyRound')
+                        img.img-rounded(src='../images/40_89.jpg')
+            // row
+            .row
+                .col-md-3
+                    h4 Get my Round from Mongodb
+                    a(href='/golf/findMyRounds')
+                        img.img-rounded(src='../images/GisChart.jpg')
+                .col-md-3
+                    h4 Members Relationship Manager
+                    a(href='/members')
+                        img.img-rounded(src='../images/GisChart.jpg')
+                .col-md-3
+                    h4 Live Score
+                    a(href='/liveScore')
+                        img.img-rounded(src='../images/40_89.jpg')
+            // row
+        // container
 
-        title Golf Test Routines
-
-    body.index_body
-        header
-            include partials/header.jade
-
-        main
-            .container
-                .row
-                    .col-md-3
-                        h4 Nearby Golf Courses
-                        a(href='/nearbyGolfCourses')
-                            img.img-rounded(src='../images/NearbyClubs.jpg')
-                    .col-md-3
-                        h4 Round of Golf
-                        a(href='/roundOfGolf')
-                            img.img-rounded(src='../images/GolfBalls.jpg')
-                    .col-md-3
-                        h4 Google Maps Round
-                        a(href='/roundOfGolfGoogle')
-                            img.img-rounded(src='../images/40_112.jpg')
-                    .col-md-3
-                        h4 Add my Round to Mongodb
-                        a(href='/golf/addMyRound')
-                            img.img-rounded(src='../images/40_89.jpg')
-                // row
-                .row
-                    .col-md-3
-                        h4 Get my Round from Mongodb
-                        a(href='/golf/findMyRounds')
-                            img.img-rounded(src='../images/GisChart.jpg')
-                    .col-md-3
-                        h4 Members Relationship Manager
-                        a(href='/members')
-                            img.img-rounded(src='../images/GisChart.jpg')
-                    .col-md-3
-                        h4 Live Score
-                        a(href='/liveScore')
-                            img.img-rounded(src='../images/40_89.jpg')
-                // row
-            // container
-
-        footer
-            include partials/footer.jade
+    footer

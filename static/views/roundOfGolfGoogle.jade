@@ -1,39 +1,21 @@
 // Created by briansmith on 27/02/2016.
-doctype html
-html
-    head(lang='en')
-        meta(charset='utf-8')
-        meta(http-equiv='X-UA-Compatible', content='IE=edge')
-        meta(name='viewport', content='width=device-width, initial-scale=1')
-        meta(name='description', content='')
-        meta(name='author', content='')
+extends layout
 
-        link(rel='stylesheet', type='text/css', href='../bower_components/bootstrap/dist/css/bootstrap.min.css')
-        link(rel='stylesheet', type='text/css', href='../stylesheets/style.css')
-        link(rel='stylesheet', type='text/css', href='../stylesheets/custom-bootstrap.css')
-        link(rel='stylesheet', type='text/css', href='../stylesheets/popup.css')
+block content
+    header
+        include partials/header.jade
 
-        // These MUST be placed in the header
-        script(type='text/javascript', src='../bower_components/jquery/dist/jquery.min.js')
-        script(type='text/javascript', src='../bower_components/bootstrap/dist/js/bootstrap.min.js')
+    main
+        .container-fluid
+            .row-fluid
+            p
+                span.label.label-default EPSG:4326 Long & Lat :
+                span#mouse4326.label.label-info
+                button(onclick='hideAllMarkers()') Hide Markers
+                button(onclick='showAllMarkers()') Show Markers
+                .span12
+                    #map.map
+
+    footer
+        script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBaIVeD83DDFyptO3K--V6YlhvfouDiqOI&callback=init&libraries=geometry', async='', defer='')
         script(type='text/javascript', src='../javascripts/roundOfGolfGoogle.js')
-
-    title Google Map
-
-    body.index_body
-        header
-            include partials/header.jade
-
-        main
-            .container-fluid
-                .row-fluid
-                p
-                    span.label.label-default EPSG:4326 Long & Lat :
-                    span#mouse4326.label.label-info
-                    button(onclick='hideAllMarkers()') Hide Markers
-                    button(onclick='showAllMarkers()') Show Markers
-                    .span12
-                        #map.map
-
-        footer
-            script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBaIVeD83DDFyptO3K--V6YlhvfouDiqOI&callback=init&libraries=geometry', async='', defer='')

@@ -1,45 +1,28 @@
 // Created by briansmith on 10/03/2016.
-doctype html
-html
-    head(lang='en')
-        meta(charset='utf-8')
-        meta(http-equiv='X-UA-Compatible', content='IE=edge')
-        meta(name='viewport', content='width=device-width, initial-scale=1')
-        meta(name='description', content='')
-        meta(name='author', content='')
+extends layout
 
-        link(rel='stylesheet', type='text/css', href='../bower_components/bootstrap/dist/css/bootstrap.min.css')
-        link(rel='stylesheet', type='text/css', href='../stylesheets/style.css')
-        link(rel='stylesheet', type='text/css', href='../stylesheets/custom-bootstrap.css')
+block content
+    header
+        include partials/header.jade
+    main
+        .container
+            .col-sm-8.col-sm-offset-2
+                if user
+                    h3 Welcome, #{user.fullName}
+                    p
+                        a.btn.btn-primary(href="/account/logout") Logout
+                        span &nbsp;
+                        a.btn.btn-primary(href="/mainPage") Main Index Page
+                    p
+                        //a.small(href="/profile") Edit my profile
+                else
+                    h3 Welcome to my app, ready to get started?
+                    p
+                        a.btn.btn-primary(href="/account/login") Login now
+                    p
+                        span.small Don't have an account?
+                        span &nbsp;
+                        a.small(href="/account/register") Register now
 
-        // These MUST be placed in the header
-        script(type='text/javascript', src='../bower_components/jquery/dist/jquery.min.js')
-
-    title Golf Test Routines
-
-    body.index_body
-        header
-            include partials/header.jade
-        main
-            .container
-                .col-sm-8.col-sm-offset-2
-                    if user
-                        h3 Welcome, #{user.fullName}
-                        p
-                            a.btn.btn-primary(href="/account/logout") Logout
-                            span &nbsp;
-                            a.btn.btn-primary(href="/mainPage") Main Index Page
-                        p
-                            //a.small(href="/profile") Edit my profile
-                    else
-                        h3 Welcome to my app, ready to get started?
-                        p
-                            a.btn.btn-primary(href="/account/login") Login now
-                        p
-                            span.small Don't have an account?
-                            span &nbsp;
-                            a.small(href="/account/register") Register now
-
-        footer
-            include partials/footer.jade
+    footer
 

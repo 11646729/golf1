@@ -9,11 +9,32 @@ var express = require('express'),
 //    util = require('../middleware/utilities'),
 //    user = require('../passport/user');
 
+var coll = 'myRoundsOfGolf';
+//var coll = 'wines';
+
 /**
  * Fetch all rounds of golf
  */
 router.get(config.routes.findMyRounds, function(req, res) {
-    res.render('databaseTest.jade', {title: 'Index'});
+    db.get().collection(coll).find({}, {}, function (err, docs) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+
+//        res.json(docs);
+
+        if(docs.count > 0){
+            // Test routine
+            docs.forEach(function (doc) {
+                console.log(" key: " + doc._id);
+            });
+        } else {
+            console.log(' Error - record count in database collection = 0');
+        }
+    });
+
+//    res.render('databaseTest.jade', {title: 'Index'});
 });
 
 /**
