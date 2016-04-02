@@ -12,13 +12,6 @@ var express = require('express'),
 //var coll = 'myRoundsOfGolf';
 var coll = 'wines';
 
-router.get(config.routes.findMyRounds, function (req, res) {
-    var countries = [1, 2, 3];
-    res.render("databaseTest", {
-        "countries": countries
-    });
-});
-
 /**
  * Fetch all rounds of golf
  */
@@ -30,14 +23,27 @@ router.get(config.routes.findMyRounds, function(req, res) {
         }
 
         // This works fine
-//        docs.forEach(function (doc) {
-//            console.log(" key: " + doc._id + " name " + doc.name);
-//        });
+        docs.forEach(function (doc) {
+            console.log(" key: " + doc._id + " name " + doc.name);
+        });
+
+        // But adding this causes a Converting to circular structure to JSON error
+        //res.send(docs);
 
         //TODO THIS THROWS AN ERROR
-        res.render("databaseTest.jade", {
-            "docs": docs
-        });
+        //res.render("databaseTest.jade", {
+        //    docs: docs
+        //});
+
+        // This works fine
+        //var letters = [
+        //    {letter: "a"},
+        //    {letter: "b"},
+        //    {letter: "c"}
+        //];
+        //
+        //res.send(letters);
+
     });
 });
 
