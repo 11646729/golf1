@@ -16,7 +16,16 @@ var coll = 'wines';
  * Fetch all rounds of golf
  */
 router.get(config.routes.findMyRounds, function(req, res) {
-    db.get().collection(coll).find(function (err, docs) {
+    //function(req, res, next) {
+    //    db.articles.find().toArray(function(err, articles) {
+    //        res.render('page', {
+    //            articles: articles
+    //        }
+    //    })
+    //}
+
+
+    db.get().collection(coll).find().toArray(function (err, docs) {
         if (err) {
             console.log(err);
             return;
@@ -27,23 +36,13 @@ router.get(config.routes.findMyRounds, function(req, res) {
             console.log(" key: " + doc._id + " name " + doc.name);
         });
 
-        // But adding this causes a Converting to circular structure to JSON error
-        //res.send(docs);
+        // This works fine now
+        res.send(docs);
 
         //TODO THIS THROWS AN ERROR
         //res.render("databaseTest.jade", {
         //    docs: docs
         //});
-
-        // This works fine
-        //var letters = [
-        //    {letter: "a"},
-        //    {letter: "b"},
-        //    {letter: "c"}
-        //];
-        //
-        //res.send(letters);
-
     });
 });
 

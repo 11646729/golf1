@@ -1,11 +1,5 @@
 // Created by briansmith on 31/03/2016.
-extends layout
+h1 User List
 
-block content
-
-    h1 User List
-
-    #{docs[0].name}
-
-//    each doc in docs
-//        a(href="myName:#{doc.letter}")
+for doc in docs
+    li= doc.name
