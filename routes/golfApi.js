@@ -31,18 +31,18 @@ router.get(config.routes.findMyRounds, function(req, res) {
             return;
         }
 
-        // This works fine
-        docs.forEach(function (doc) {
-            console.log(" key: " + doc._id + " name " + doc.name);
-        });
-
-        // This works fine now
-        res.send(docs);
-
-        //TODO THIS THROWS AN ERROR
-        //res.render("databaseTest.jade", {
-        //    docs: docs
+        //// This works fine
+        //docs.forEach(function (doc) {
+        //    console.log(" key: " + doc._id + " name " + doc.name);
         //});
+        //
+        //// This works fine now
+        //res.send(docs);
+
+        // TODO THIS THROWS AN ERROR
+        res.render("databaseTest.jade", {
+            docs: docs
+        });
     });
 });
 

@@ -1,5 +1,19 @@
 // Created by briansmith on 31/03/2016.
-h1 User List
+extends layout
 
-for doc in docs
-    li= doc.name
+block content
+    header
+        include partials/header.jade
+    main
+        .container
+        .row
+            .col-sm-8.col-sm-offset-2
+                .row
+                    .col-sm-12
+                        h3.
+                            Wines Test Page
+                        ul
+                            each doc in docs
+                                li= doc.name
+
+    footer
