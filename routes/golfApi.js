@@ -10,39 +10,47 @@ var express = require('express'),
 //    user = require('../passport/user');
 
 //var coll = 'myRoundsOfGolf';
-var coll = 'wines';
+//var coll = 'wines';
+var coll = "golfCourses";
 
 /**
  * Fetch all rounds of golf
  */
 router.get(config.routes.findMyRounds, function(req, res) {
-    //function(req, res, next) {
-    //    db.articles.find().toArray(function(err, articles) {
-    //        res.render('page', {
-    //            articles: articles
-    //        }
-    //    })
-    //}
-
-
     db.get().collection(coll).find().toArray(function (err, docs) {
         if (err) {
             console.log(err);
             return;
         }
 
-        //// This works fine
-        //docs.forEach(function (doc) {
-        //    console.log(" key: " + doc._id + " name " + doc.name);
-        //});
-        //
-        //// This works fine now
-        //res.send(docs);
+        // This works fine now
+        //intlen = docs[0].features.length;
+        //console.log(intlen); // Gives length of 30
 
-        // TODO THIS THROWS AN ERROR
-        res.render("databaseTest.jade", {
-            docs: docs
-        });
+        var strTeam = "", i = 0;
+
+        for (i = 0; i < docs[0].features.length;) {
+            strTeam = strTeam + "<li>" + docs[0].features[i].properties.name + "</li>";
+            i = i + 1;
+        }
+
+        strTeam = "<ul>" + strTeam + "</ul>";
+
+        console.log(strTeam);
+
+        res.send(strTeam);
+
+        //res.writeHead(200, {
+        //    'Content-Type': 'text/html'
+        //});
+        //res.write(template.build("Test web page on node.js", "Hello there", "<p>The teams in Group for Euro 2012 are:</p>" + strTeam));
+        //res.end();
+
+        //res.json(docs[0].features[0].properties.name); // This outputs "Ardglass Golf Club" - iterate on features to get all names
+
+//        res.render("databaseTest.jade", {
+//            docs: docs
+//        });
     });
 });
 
