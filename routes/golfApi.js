@@ -17,36 +17,30 @@ var coll = "golfCourses";
  * Fetch all rounds of golf
  */
 router.get(config.routes.findMyRounds, function(req, res) {
+
+    //db.get().createCollection("nearbyGolfCoursesTest");
+
     db.get().collection(coll).find().toArray(function (err, docs) {
         if (err) {
             console.log(err);
             return;
         }
 
-        // This works fine now
-        //intlen = docs[0].features.length;
-        //console.log(intlen); // Gives length of 30
+        // This sends the Json file to the client
+        res.json(docs);
 
-        var strTeam = "", i = 0;
-
-        for (i = 0; i < docs[0].features.length;) {
-            strTeam = strTeam + "<li>" + docs[0].features[i].properties.name + "</li>";
-            i = i + 1;
-        }
-
-        strTeam = "<ul>" + strTeam + "</ul>";
-
-        console.log(strTeam);
-
-        res.send(strTeam);
-
-        //res.writeHead(200, {
-        //    'Content-Type': 'text/html'
-        //});
-        //res.write(template.build("Test web page on node.js", "Hello there", "<p>The teams in Group for Euro 2012 are:</p>" + strTeam));
-        //res.end();
-
-        //res.json(docs[0].features[0].properties.name); // This outputs "Ardglass Golf Club" - iterate on features to get all names
+        //// This routine sends the data to the html page
+        //var strTeam = "", i = 0;
+        //
+        //// docs[0].features.length here is 30
+        //for (i = 0; i < docs[0].features.length;) {
+        //    strTeam = strTeam + "<li>" + docs[0].features[i].properties.name + "</li>";
+        //    i = i + 1;
+        //}
+        //
+        //strTeam = "<ul>" + strTeam + "</ul>";
+        //
+        //res.send(strTeam);
 
 //        res.render("databaseTest.jade", {
 //            docs: docs
