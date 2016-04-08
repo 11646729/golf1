@@ -9,9 +9,6 @@ var MongoClient = require('mongodb').MongoClient,
     router = express.Router(),
     config = require('../config');
 
-//NB Format for GeoJSON is Longitude then Latitude : "coordinates": [ -5.683992, 54.625605 ]
-//NB Format for Google maps: is Latitude then Longitude : new google.maps.LatLng(54.625605, -5.683992)
-
 // Connection URL
 var MONGODB_URI = 'mongodb://mytest1:mytest2@ds063168.mlab.com:63168/winedb';
 // Let’s break down the URI string we passed as the first argument to MongoClient.connect
