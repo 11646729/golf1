@@ -61,44 +61,47 @@ router.get(config.routes.findMyRoundById, function(req, res) {
             // This sends the Json file to the client
             res.json(docs);
 
-//            res.render("databaseTest.jade", {
-//                docs: docs
-//            });
+//          res.render("databaseTest.jade", {
+//              docs: docs
+//          });
         }
     });
 });
 
 
-var newRound = {
-    name: "TEST OF NEWROUND",
-    year: "2009",
-    grapes: "Grenache / Syrah",
-    country: "France",
-    region: "Southern Rhone",
-    description: "The aromas of fruit and spice give one a hint of the light drinkability of this lovely wine, which makes an excellent complement to fish dishes.",
-    picture: "saint_cosme.jpg"
-};
-
-
 /**
  * Insert a round of golf
  */
-router.post(config.routes.addMyRound, function(req, res) {
+// TODO Change this to router.post
+router.get(config.routes.addMyRound, function(req, res) {
+
+    // This is test data
+    var newRound = {
+        name: 'TEST OF NEWROUND',
+        year: '2009',
+        grapes: 'Grenache / Syrah',
+        country: 'France',
+        region: 'Southern Rhone',
+        description: 'The aromas of fruit and spice give one a hint of the light drinkability of this lovely wine, which makes an excellent complement to fish dishes.',
+        picture: 'saint_cosme.jpg'
+    };
     //var newRound = req.body;
-    console.log('Adding round: ' + JSON.stringify(newRound));
 
-    myColl = collection(coll);
-
-    db.get().myColl.insert(newRound, function(err, docs) {
+    db.get().collection(coll).insertOne(newRound, function(err, result){
         if (err) {
             res.send({'error':'An error has occurred'});
         } else {
-            console.log('Success: ' + JSON.stringify(result[0]));
-            res.send(result[0]);
+            console.log('Success: _id is ' + ObjectID(result[3]));
+
+            db.get().collection(coll).find().toArray(function(err, docs) {
+                // This sends the Json file to the client
+                res.json(docs);
+            });
+
+//          res.render("databaseTest.jade", {
+//              docs: docs
+//          });
         }
-
-//      res.render('databaseTest.jade', {title: 'Index'});
-
     });
 });
 
