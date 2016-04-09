@@ -68,12 +68,18 @@ MongoClient.connect(MONGODB_URI, { server: { auto_reconnect: true } }, function 
     }
 });
 
-router.get(config.routes.testMongodb, function(req, res) {
-    db.collection('wines', function(err, collection) {
-        collection.find().toArray(function(err, items) {
-            console.log(items);
-//            res.send(items);
-        });
+router.get(config.routes.findMyRounds, function(req, res) {
+    db.get().collection('wines').find().toArray(function(err, collection) {
+        if (err) {
+            console.log(err);
+//            return;
+        } else {
+            console.log(docs);
+//            res.send(docs);
+
+            // This sends the Json file to the client
+            res.json(docs);
+        }
     });
 });
 

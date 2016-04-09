@@ -5,82 +5,17 @@
 var express = require('express'),
     router = express.Router(),
     db = require('../middleware/db'),
-    config = require('../config');
+    config = require('../config'),
+    ObjectID = require('mongodb').ObjectID;
 //    util = require('../middleware/utilities'),
 //    user = require('../passport/user');
 
 //NB Format for GeoJSON is Longitude then Latitude : "coordinates": [ -5.683992, 54.625605 ]
 //NB Format for Google maps: is Latitude then Longitude : new google.maps.LatLng(54.625605, -5.683992)
 
-// Connection URL
-// config.mongoUrl
-var MONGODB_URI = 'mongodb://mytest1:mytest2@ds063168.mlab.com:63168/winedb';
-// Let’s break down the URI string we passed as the first argument to MongoClient.connect
-// mongodb:// is the protocol definition
-// <dbuser>: mytest1
-// <dbpassword>: mytest2
-// winedb is the database we wish to connect to
-// Make sure to replace that URI with the one provided by MongoLab
-
-var wineCollection, database;
-
 //var coll = 'myRoundsOfGolf';
-var collWines = 'wines';
-var coll = "golfCourses";
-
-MongoClient.connect(config.mongoUrl, { server: { auto_reconnect: true } }, function (err, db) {
-
-    // Use connect method to connect to the Server
-    //MongoClient.connect(url, function(err, db) {
-    //    assert.equal(null, err);
-    //    console.log("Connected correctly to server");
-
-    //    db.close();
-    //});
-
-    if(err) {
-        console.log('Failed to connect to the database provider');
-    } else {
-        assert.equal(null, err);
-
-        console.log('Connected to winedb database at Mongolab');
-
-        // TODO Check if collection exists - if not then create it
-        wineCollection = db.collection(collWines);
-
-        // If collection does not exist then create it and populate it with seed data
-        //if(err) {
-        //    db.wineCollection.insert(seedData);
-        //
-        //    wineCollection.count(function(err, count) {
-        //        console.log(format("*** Collection has been created and seed data has been added, record count = %s", count));
-        //    });
-        //// If collection exists
-        //} else {
-            wineCollection.count(function(err, count) {
-                console.log(format('Collection exists and contains %s records', count));
-
-                //// If collection exists but is empty then populate it with seed data
-                //if (count==0)
-                //{
-                //    wineCollection.insert(seedData, function(err) {
-                //        if (err) {
-                //            console.log('An error occurred when seed data was being added to the wines collection');
-                //            db.close();
-                //        } else {
-                //            wineCollection.count(function(err, count) {
-                //                console.log(format('Seed data has been added, record count = %s', count));
-                //            });
-                //        }
-                //    });
-                //}
-            });
-//        }
-    }
-});
-
-
-
+var coll = 'wines';
+//var coll = "golfCourses";
 
 
 /**
@@ -88,41 +23,104 @@ MongoClient.connect(config.mongoUrl, { server: { auto_reconnect: true } }, funct
  */
 router.get(config.routes.findMyRounds, function(req, res) {
 
-    //db.get().createCollection("nearbyGolfCoursesTest");
-
-    db.get().collection(coll).find().toArray(function (err, docs) {
+    db.get().collection(coll).find().toArray(function(err, docs) {
         if (err) {
             console.log(err);
-            return;
+//            return;
+        } else {
+            console.log('Retrieving all documents: ' + docs.length);
+
+            // This sends the Json file to the client
+            res.json(docs);
+
+//            res.render("databaseTest.jade", {
+//                docs: docs
+//            });
         }
-
-        // This sends the Json file to the client
-        res.json(docs);
-
-        //// This routine sends the data to the html page
-        //var strTeam = "", i = 0;
-        //
-        //// docs[0].features.length here is 30
-        //for (i = 0; i < docs[0].features.length;) {
-        //    strTeam = strTeam + "<li>" + docs[0].features[i].properties.name + "</li>";
-        //    i = i + 1;
-        //}
-        //
-        //strTeam = "<ul>" + strTeam + "</ul>";
-        //
-        //res.send(strTeam);
-
-//        res.render("databaseTest.jade", {
-//            docs: docs
-//        });
     });
 });
 
 /**
+ * Fetch a round of golf by id
+ */
+router.get(config.routes.findMyRoundById, function(req, res) {
+
+    // This is test data
+    var id = "52e6b265f831a1a3d8814470";
+    //var id = req.params.id;
+
+    var obj_id = new ObjectID(id);
+
+    db.get().collection(coll).find({ _id: obj_id }).toArray(function(err, docs) {
+        if (err) {
+            console.log(err);
+//            return;
+        } else {
+            console.log('Retrieving wine: ' + id);
+
+            // This sends the Json file to the client
+            res.json(docs);
+
+//            res.render("databaseTest.jade", {
+//                docs: docs
+//            });
+        }
+    });
+});
+
+
+var newRound = {
+    name: "TEST OF NEWROUND",
+    year: "2009",
+    grapes: "Grenache / Syrah",
+    country: "France",
+    region: "Southern Rhone",
+    description: "The aromas of fruit and spice give one a hint of the light drinkability of this lovely wine, which makes an excellent complement to fish dishes.",
+    picture: "saint_cosme.jpg"
+};
+
+
+/**
  * Insert a round of golf
  */
-router.get(config.routes.addMyRound, function(req, res) {
-    res.render('databaseTest.jade', {title: 'Index'});
+router.post(config.routes.addMyRound, function(req, res) {
+    //var newRound = req.body;
+    console.log('Adding round: ' + JSON.stringify(newRound));
+
+    myColl = collection(coll);
+
+    db.get().myColl.insert(newRound, function(err, docs) {
+        if (err) {
+            res.send({'error':'An error has occurred'});
+        } else {
+            console.log('Success: ' + JSON.stringify(result[0]));
+            res.send(result[0]);
+        }
+
+//      res.render('databaseTest.jade', {title: 'Index'});
+
+    });
 });
+
+
+/**
+ * Delete a round of golf
+ */
+router.delete(config.routes.deleteMyRound, function(req, res) {
+    var id = req.params.id;
+    console.log('Deleting round: ' + id);
+
+    db.get().collection(coll, function(err, docs) {
+        docs.remove({'_id':new BSON.ObjectID(id)}, {safe:true}, function(err, result) {
+            if (err) {
+                res.send({'error':'An error has occurred - ' + err});
+            } else {
+                console.log('' + result + ' document(s) deleted');
+                res.send(req.body);
+            }
+        });
+    });
+});
+
 
 module.exports = router;

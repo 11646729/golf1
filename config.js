@@ -24,7 +24,9 @@ var config = {
         roundOfGolf: '/roundOfGolf',
         roundOfGolfGoogle: '/roundOfGolfGoogle',
         findMyRounds: '/findMyRounds',
-        addMyRound: '/addMyRound'
+        findMyRoundById: '/findMyRoundById',
+        addMyRound: '/addMyRound',
+        deleteMyRound: '/deleteMyRound'
     },
     host: 'http://localhost:3000',
     facebook: {
