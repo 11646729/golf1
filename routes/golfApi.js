@@ -109,21 +109,21 @@ router.get(config.routes.addMyRound, function(req, res) {
 /**
  * Delete a round of golf
  */
-router.delete(config.routes.deleteMyRound, function(req, res) {
-    var id = req.params.id;
-    console.log('Deleting round: ' + id);
-
-    db.get().collection(coll, function(err, docs) {
-        docs.remove({'_id':new BSON.ObjectID(id)}, {safe:true}, function(err, result) {
-            if (err) {
-                res.send({'error':'An error has occurred - ' + err});
-            } else {
-                console.log('' + result + ' document(s) deleted');
-                res.send(req.body);
-            }
-        });
-    });
-});
+//router.delete(config.routes.deleteMyRound, function(req, res) {
+//    var id = req.params.id;
+//    console.log('Deleting round: ' + id);
+//
+//    db.get().collection(coll, function(err, docs) {
+//        docs.remove({'_id':new BSON.ObjectID(id)}, {safe:true}, function(err, result) {
+//            if (err) {
+//                res.send({'error':'An error has occurred - ' + err});
+//            } else {
+//                console.log('' + result + ' document(s) deleted');
+//                res.send(req.body);
+//            }
+//        });
+//    });
+//});
 
 
 module.exports = router;
