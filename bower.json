@@ -7,6 +7,7 @@
     "bootstrap": "3.3.6",
     "FileSaver": "latest",
     "font-awesome": "4.5.0",
+    "holder": "2.9.3",
     "jquery": "2.2.0",
     "jquery-ui": "1.11.4",
     "spinjs": "2.3.2",

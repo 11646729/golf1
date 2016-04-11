@@ -31,11 +31,12 @@ router.get(config.routes.findMyRounds, function(req, res) {
             console.log('Retrieving all documents: ' + docs.length);
 
             // This sends the Json file to the client
-            res.json(docs);
+            //res.json(docs);
 
-//            res.render("databaseTest.jade", {
-//                docs: docs
-//            });
+            // This is a test
+            res.render("addMyRound.jade", {
+                docs: docs
+            });
         }
     });
 });
@@ -109,19 +110,30 @@ router.get(config.routes.addMyRound, function(req, res) {
 /**
  * Delete a round of golf
  */
-//router.delete(config.routes.deleteMyRound, function(req, res) {
-//    var id = req.params.id;
-//    console.log('Deleting round: ' + id);
+// TODO Replace get with delete
+//router.get(config.routes.deleteMyRound, function(req, res) {
 //
-//    db.get().collection(coll, function(err, docs) {
-//        docs.remove({'_id':new BSON.ObjectID(id)}, {safe:true}, function(err, result) {
-//            if (err) {
-//                res.send({'error':'An error has occurred - ' + err});
-//            } else {
-//                console.log('' + result + ' document(s) deleted');
-//                res.send(req.body);
-//            }
-//        });
+//    // This is test data
+//    var id = "57097679e14a86ea0317a7e9";
+//    // var id = req.params.id;
+//
+//    var obj_id = new ObjectID(id);
+//
+//    db.get().collection(coll).removeOne(obj_id, function(err, result) {
+//        if (err) {
+//            res.send({'error':'An error has occurred'});
+//        } else {
+//            console.log('' + result + ' document(s) deleted');
+//
+//            db.get().collection(coll).find().toArray(function(err, docs) {
+//                // This sends the Json file to the client
+//                res.json(docs);
+//            });
+//
+////          res.render("databaseTest.jade", {
+////              docs: docs
+////          });
+//        }
 //    });
 //});
 

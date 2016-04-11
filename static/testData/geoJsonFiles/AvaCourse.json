@@ -8,7 +8,7 @@
     "rules": "winter",
     "qualifying": "Y",
     "units": "yards",
-    "pars": [
+    "courseDetails": [
         {
             "tees": "white",
             "type": "medal",
@@ -43,7 +43,7 @@
             "totalDistance": 5029
         }
     ],
-    "holes": [
+    "holeDetails": [
         {
             "number": 1,
             "name": "Furrest",
