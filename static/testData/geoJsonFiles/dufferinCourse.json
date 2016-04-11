@@ -62,22 +62,22 @@
       "image": "",
       "distance": [
         {
-        "blueTees": 388,
+        "blueTee": 388,
         "par": 4,
         "strokeIndex": 9
         },
         {
-          "whiteTees": 378,
+          "whiteTee": 378,
           "par": 4,
           "strokeIndex": 9
         },
         {
-          "greenTees": 369,
+          "greenTee": 369,
           "par": 4,
           "strokeIndex": 9
         },
         {
-          "redTees": 352,
+          "redTee": 352,
           "par": 4,
           "strokeIndex": 9
         }
@@ -90,22 +90,22 @@
       "image": "",
       "distance": [
         {
-        "blueTees": 179,
+        "blueTee": 179,
         "par": 3,
         "strokeIndex": 5
         },
         {
-          "whiteTees": 172,
+          "whiteTee": 172,
           "par": 3,
           "strokeIndex": 5
         },
         {
-          "greenTees": 162,
+          "greenTee": 162,
           "par": 3,
           "strokeIndex": 5
         },
         {
-          "redTees": 147,
+          "redTee": 147,
           "par": 3,
           "strokeIndex": 13
         }
@@ -118,24 +118,24 @@
       "image": "",
       "distance": [
         {
-        "blueTees": 420,
+        "blueTee": 420,
         "par": 4,
         "strokeIndex": 13
         },
         {
-          "whiteTees": 414,
+          "whiteTee": 414,
           "par": 4,
           "strokeIndex": 13
         },
         {
-          "greenTees": 403,
+          "greenTee": 403,
           "par": 4,
           "strokeIndex": 13
         },
         {
-          "redTees": 382,
+          "redTee": 382,
           "par": 4,
-          "strokeindex": 1
+          "strokeIndex": 1
         }
       ]
     },
@@ -146,22 +146,22 @@
       "image": "",
       "distance": [
         {
-        "blueTees": 403,
+        "blueTee": 403,
         "par": 4,
         "strokeIndex": 1
         },
         {
-          "whiteTees": 392,
+          "whiteTee": 392,
           "par": 4,
           "strokeIndex": 1
         },
         {
-          "greenTees": 378,
+          "greenTee": 378,
           "par": 4,
           "strokeIndex": 1
         },
         {
-          "redTees": 297,
+          "redTee": 297,
           "par": 4,
           "strokeIndex": 5
         }
@@ -174,22 +174,22 @@
       "image": "",
       "distance": [
         {
-        "blueTees": 190,
+        "blueTee": 190,
         "par": 3,
         "strokeIndex": 15
         },
         {
-          "whiteTees": 183,
+          "whiteTee": 183,
           "par": 3,
           "strokeIndex": 15
         },
         {
-          "greenTees": 169,
+          "greenTee": 169,
           "par": 3,
           "strokeIndex": 15
         },
         {
-          "redTees": 149,
+          "redTee": 149,
           "par": 3,
           "strokeIndex": 17
         }
@@ -202,22 +202,22 @@
       "image": "",
       "distance": [
         {
-         "blueTees": 520,
+         "blueTee": 520,
         "par": 5,
         "strokeIndex": 17
         },
         {
-          "whiteTees": 516,
+          "whiteTee": 516,
           "par": 5,
           "strokeIndex": 17
         },
         {
-          "greenTees": 494,
+          "greenTee": 494,
           "par": 5,
           "strokeIndex": 17
         },
         {
-          "redTees": 480,
+          "redTee": 480,
           "par": 5,
           "strokeIndex": 7
         }
@@ -230,22 +230,22 @@
       "image": "",
       "distance": [
         {
-        "blueTees": 370,
+        "blueTee": 370,
         "par": 4,
         "strokeIndex": 7
         },
         {
-          "whiteTees": 364,
+          "whiteTee": 364,
           "par": 4,
           "strokeIndex": 7
         },
         {
-          "greenTees": 354,
+          "greenTee": 354,
           "par": 4,
           "strokeIndex": 7
         },
         {
-          "redTees": 327,
+          "redTee": 327,
           "par": 4,
           "strokeIndex": 11
         }
@@ -258,22 +258,22 @@
       "image": "",
       "distance": [
         {
-        "blueTees": 455,
+        "blueTee": 455,
         "par": 4,
         "strokeIndex": 3
         },
         {
-          "whiteTees": 447,
+          "whiteTee": 447,
           "par": 4,
           "strokeIndex": 3
         },
         {
-          "greenTees": 437,
+          "greenTee": 437,
           "par": 4,
           "strokeIndex": 3
         },
         {
-          "redTees": 422,
+          "redTee": 422,
           "par": 5,
           "strokeIndex": 15
         }
@@ -286,22 +286,22 @@
       "image": "",
       "distance": [
         {
-        "blueTees": 409,
+        "blueTee": 409,
         "par": 4,
         "strokeIndex": 11
         },
         {
-          "whiteTees": 397,
+          "whiteTee": 397,
           "par": 4,
           "strokeIndex": 11
         },
         {
-          "greenTees": 385,
+          "greenTee": 385,
           "par": 4,
           "strokeIndex": 11
         },
         {
-          "redTees": 364,
+          "redTee": 364,
           "par": 4,
           "strokeIndex": 3
         }
@@ -314,22 +314,22 @@
       "image": "",
       "distance": [
         {
-         "blueTees": 443,
+         "blueTee": 443,
         "par": 4,
         "strokeIndex": 4
         },
         {
-          "whiteTees": 415,
+          "whiteTee": 415,
           "par": 4,
           "strokeIndex": 4
         },
         {
-          "greenTees": 402,
+          "greenTee": 402,
           "par": 4,
           "strokeIndex": 4
         },
         {
-          "redTees": 379,
+          "redTee": 379,
           "par": 4,
           "strokeIndex": 2
         }
@@ -342,22 +342,22 @@
       "image": "",
       "distance": [
         {
-         "blueTees": 153,
+         "blueTee": 153,
         "par": 3,
         "strokeIndex": 14
         },
         {
-          "whiteTees": 148,
+          "whiteTee": 148,
           "par": 3,
           "strokeIndex": 14
         },
         {
-          "greenTees": 141,
+          "greenTee": 141,
           "par": 3,
           "strokeIndex": 14
         },
         {
-          "redTees": 131,
+          "redTee": 131,
           "par": 3,
           "strokeIndex": 12
         }
@@ -370,22 +370,22 @@
       "image": "",
       "distance": [
         {
-        "blueTees": 517,
+        "blueTee": 517,
         "par": 5,
         "strokeIndex": 6
         },
         {
-          "whiteTees": 513,
+          "whiteTee": 513,
           "par": 5,
           "strokeIndex": 6
         },
         {
-          "greenTees": 487,
+          "greenTee": 487,
           "par": 5,
           "strokeIndex": 6
         },
         {
-          "redTees": 468,
+          "redTee": 468,
           "par": 5,
           "strokeIndex": 4
         }
@@ -398,22 +398,22 @@
       "image": "",
       "distance": [
         {
-        "blueTees": 384,
+        "blueTee": 384,
         "par": 4,
         "strokeIndex": 12
         },
         {
-          "whiteTees": 360,
+          "whiteTee": 360,
           "par": 4,
           "strokeIndex": 12
         },
         {
-          "greenTees": 350,
+          "greenTee": 350,
           "par": 4,
           "strokeIndex": 12
         },
         {
-          "redTees": 315,
+          "redTee": 315,
           "par": 4,
           "strokeIndex": 6
         }
@@ -426,22 +426,22 @@
       "image": "",
       "distance": [
         {
-        "blueTees": 176,
+        "blueTee": 176,
         "par": 3,
         "strokeIndex": 8
         },
         {
-          "whiteTees": 166,
+          "whiteTee": 166,
           "par": 3,
           "strokeIndex": 8
         },
         {
-          "greenTees": 148,
+          "greenTee": 148,
           "par": 3,
           "strokeIndex": 8
         },
         {
-          "redTees": 138,
+          "redTee": 138,
           "par": 3,
           "strokeIndex": 14
         }
@@ -454,22 +454,22 @@
       "image": "",
       "distance": [
         {
-        "blueTees": 503,
+        "blueTee": 503,
         "par": 5,
         "strokeIndex": 16
         },
         {
-          "whiteTees": 495,
+          "whiteTee": 495,
           "par": 5,
           "strokeIndex": 16
         },
         {
-          "greenTees": 483,
+          "greenTee": 483,
           "par": 5,
           "strokeIndex": 16
         },
         {
-          "redTees": 439,
+          "redTee": 439,
           "par": 5,
           "strokeIndex": 8
         }
@@ -482,22 +482,22 @@
       "image": "",
       "distance": [
         {
-        "blueTees": 424,
+        "blueTee": 424,
         "par": 4,
         "strokeIndex": 2
         },
         {
-          "whiteTees": 392,
+          "whiteTee": 392,
           "par": 4,
           "strokeIndex": 2
         },
         {
-          "greenTees": 381,
+          "greenTee": 381,
           "par": 4,
           "strokeIndex": 2
         },
         {
-          "redTees": 291,
+          "redTee": 291,
           "par": 4,
           "strokeIndex": 10
         }
@@ -510,22 +510,22 @@
       "image": "",
       "distance": [
         {
-        "blueTees": 375,
+        "blueTee": 375,
         "par": 4,
         "strokeIndex": 18
         },
         {
-          "whiteTees": 370,
+          "whiteTee": 370,
           "par": 4,
           "strokeIndex": 18
         },
         {
-          "greenTees": 351,
+          "greenTee": 351,
           "par": 4,
           "strokeIndex": 18
         },
         {
-          "redTees": 308,
+          "redTee": 308,
           "par": 4,
           "strokeIndex": 16
         }
@@ -538,22 +538,22 @@
       "image": "",
       "distance": [
         {
-        "blueTees": 433,
+        "blueTee": 433,
         "par": 4,
         "strokeIndex": 10
         },
         {
-          "whiteTees": 428,
+          "whiteTee": 428,
           "par": 4,
           "strokeIndex": 10
         },
         {
-          "greenTees": 418,
+          "greenTee": 418,
           "par": 4,
           "strokeIndex": 10
         },
         {
-          "redTees": 381,
+          "redTee": 381,
           "par": 5,
           "strokeIndex": 18
         }
