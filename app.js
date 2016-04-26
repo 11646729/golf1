@@ -19,8 +19,11 @@ var express = require('express'),
     RedisStore = require('connect-redis')(session),
     util = require('./middleware/utilities'),
     passport = require('./passport'),
+    rdb = require('rethinkdb'),
     db = require('./middleware/db');
 //    config = require('config');
+
+require('dotenv').config();
 
 var app = express();
 
@@ -89,15 +92,49 @@ app.use('/golf', require('./routes/golfApi'));
 
 passport.routes(app);
 
-// connect to database =======================================================
+// connect to Mongo database =================================================
 /**
  * Listen on provided port, on all network interfaces.
  */
-db.connect(config.mongoUrl, function (err) {
-    if (err) {
-        console.log('Unable to connect to Mongo');
-    } else {
-        console.log('Connected to Mongo');
+//db.connect(config.mongoUrl, function (err) {
+//    if (err) {
+//        console.log('Unable to connect to Mongo');
+//    } else {
+//        console.log('Connected to Mongo');
+//    }
+//});
+
+// connect to local Rethinkdb database =======================================
+
+var dbConfig = {
+    //host : process.env.RDB_HOST || 'localhost',
+    //port : parseInt(process.env.RDB_PORT) || 28015,
+    //db   : process.env.RDB_DB || 'winecellar'
+    host : process.env.RDB_HOST,
+    port : parseInt(process.env.RDB_PORT),
+    db   : process.env.RDB_DB
+};
+
+// Using a single db connection for the app
+rdb.connect({host: dbConfig.host, port: dbConfig.port}, function(err, connection) {
+    if(err) {
+        console.log("ERROR: %s:%s", err.name, err.msg);
+        process.exit(1);
+    }
+    else {
+        console.log('Connected to Rethinkdb');
+
+//        // set up the database
+//        wine.setupDB(dbConfig, connection);
+//        // set up the default database for the connection
+//        connection.use(dbConfig['db']);
+//        // set up the module global connection
+//        wine.connection = connection;
+//
+//        // start serving requests
+////        http.createServer(app).listen(app.get('port'), function () {
+////            console.log("Express server listening on port " + app.get('port'));
+////        });
     }
 });
 

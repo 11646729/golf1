@@ -51,17 +51,17 @@
             "image": "",
             "distance": [
                 {
-                    "whiteTees": 346,
+                    "whiteTee": 346,
                     "par": 4,
                     "strokeIndex": 9
                 },
                 {
-                    "greenTees": 335,
+                    "greenTee": 335,
                     "par": 4,
                     "strokeIndex": 9
                 },
                 {
-                    "redTees": 328,
+                    "redTee": 328,
                     "par": 4,
                     "strokeIndex": 11
                 }
@@ -74,17 +74,17 @@
             "image": "",
             "distance": [
                 {
-                    "whiteTees": 524,
+                    "whiteTee": 524,
                     "par": 5,
                     "strokeIndex": 1
                 },
                 {
-                    "greenTees": 506,
+                    "greenTee": 506,
                     "par": 5,
                     "strokeIndex": 1
                 },
                 {
-                    "redTees": 417,
+                    "redTee": 417,
                     "par": 5,
                     "strokeIndex": 5
                 }
@@ -97,19 +97,19 @@
             "image": "",
             "distance": [
                 {
-                    "whitetees": 524,
+                    "whiteTee": 524,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "greentees": 506,
+                    "greenTee": 506,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "redtees": 417,
+                    "redTee": 417,
                     "par": 5,
-                    "strokeindex": 5
+                    "strokeIndex": 5
                 }
             ]
         },
@@ -120,19 +120,19 @@
             "image": "",
             "distance": [
                 {
-                    "whitetees": 524,
+                    "whiteTee": 524,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "greentees": 506,
+                    "greenTee": 506,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "redtees": 417,
+                    "redTee": 417,
                     "par": 5,
-                    "strokeindex": 5
+                    "strokeIndex": 5
                 }
             ]
         },
@@ -143,19 +143,19 @@
             "image": "",
             "distance": [
                 {
-                    "whitetees": 524,
+                    "whiteTee": 524,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "greentees": 506,
+                    "greenTee": 506,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "redtees": 417,
+                    "redTee": 417,
                     "par": 5,
-                    "strokeindex": 5
+                    "strokeIndex": 5
                 }
             ]
         },
@@ -166,19 +166,19 @@
             "image": "",
             "distance": [
                 {
-                    "whitetees": 524,
+                    "whiteTee": 524,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "greentees": 506,
+                    "greenTee": 506,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "redtees": 417,
+                    "redTee": 417,
                     "par": 5,
-                    "strokeindex": 5
+                    "strokeIndex": 5
                 }
             ]
         },
@@ -189,19 +189,19 @@
             "image": "",
             "distance": [
                 {
-                    "whitetees": 524,
+                    "whiteTee": 524,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "greentees": 506,
+                    "greenTee": 506,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "redtees": 417,
+                    "redTee": 417,
                     "par": 5,
-                    "strokeindex": 5
+                    "strokeIndex": 5
                 }
             ]
         },
@@ -212,19 +212,19 @@
             "image": "",
             "distance": [
                 {
-                    "whitetees": 524,
+                    "whiteTee": 524,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "greentees": 506,
+                    "greenTee": 506,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "redtees": 417,
+                    "redTee": 417,
                     "par": 5,
-                    "strokeindex": 5
+                    "strokeIndex": 5
                 }
             ]
         },
@@ -235,19 +235,19 @@
             "image": "",
             "distance": [
                 {
-                    "whitetees": 524,
+                    "whiteTee": 524,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "greentees": 506,
+                    "greenTee": 506,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "redtees": 417,
+                    "redTee": 417,
                     "par": 5,
-                    "strokeindex": 5
+                    "strokeIndex": 5
                 }
             ]
         },
@@ -258,19 +258,19 @@
             "image": "",
             "distance": [
                 {
-                    "whitetees": 524,
+                    "whiteTee": 524,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "greentees": 506,
+                    "greenTee": 506,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "redtees": 417,
+                    "redTee": 417,
                     "par": 5,
-                    "strokeindex": 5
+                    "strokeIndex": 5
                 }
             ]
         },
@@ -281,19 +281,19 @@
             "image": "",
             "distance": [
                 {
-                    "whitetees": 524,
+                    "whiteTee": 524,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "greentees": 506,
+                    "greenTee": 506,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "redtees": 417,
+                    "redTee": 417,
                     "par": 5,
-                    "strokeindex": 5
+                    "strokeIndex": 5
                 }
             ]
         },
@@ -304,19 +304,19 @@
             "image": "",
             "distance": [
                 {
-                    "whitetees": 524,
+                    "whiteTee": 524,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "greentees": 506,
+                    "greenTee": 506,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "redtees": 417,
+                    "redTee": 417,
                     "par": 5,
-                    "strokeindex": 5
+                    "strokeIndex": 5
                 }
             ]
           },
@@ -327,19 +327,19 @@
             "image": "",
             "distance": [
                 {
-                    "whitetees": 524,
+                    "whiteTee": 524,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "greentees": 506,
+                    "greenTee": 506,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "redtees": 417,
+                    "redTee": 417,
                     "par": 5,
-                    "strokeindex": 5
+                    "strokeIndex": 5
                 }
             ]
         },
@@ -350,19 +350,19 @@
             "image": "",
             "distance": [
                 {
-                    "whitetees": 524,
+                    "whiteTee": 524,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "greentees": 506,
+                    "greenTee": 506,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "redtees": 417,
+                    "redTee": 417,
                     "par": 5,
-                    "strokeindex": 5
+                    "strokeIndex": 5
                 }
             ]
         },
@@ -373,19 +373,19 @@
             "image": "",
             "distance": [
                 {
-                    "whitetees": 524,
+                    "whiteTee": 524,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "greentees": 506,
+                    "greenTee": 506,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "redtees": 417,
+                    "redTee": 417,
                     "par": 5,
-                    "strokeindex": 5
+                    "strokeIndex": 5
                 }
             ]
         },
@@ -396,19 +396,19 @@
             "image": "",
             "distance": [
                 {
-                    "whitetees": 524,
+                    "whiteTee": 524,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "greentees": 506,
+                    "greenTee": 506,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "redtees": 417,
+                    "redTee": 417,
                     "par": 5,
-                    "strokeindex": 5
+                    "strokeIndex": 5
                 }
             ]
         },
@@ -419,19 +419,19 @@
             "image": "",
             "distance": [
                 {
-                    "whitetees": 524,
+                    "whiteTee": 524,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "greentees": 506,
+                    "greenTee": 506,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "redtees": 417,
+                    "redTee": 417,
                     "par": 5,
-                    "strokeindex": 5
+                    "strokeIndex": 5
                 }
             ]
         },
@@ -442,19 +442,19 @@
             "image": "",
             "distance": [
                 {
-                    "whitetees": 524,
+                    "whiteTee": 524,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "greentees": 506,
+                    "greenTee": 506,
                     "par": 5,
-                    "strokeindex": 1
+                    "strokeIndex": 1
                 },
                 {
-                    "redtees": 417,
+                    "redTee": 417,
                     "par": 5,
-                    "strokeindex": 5
+                    "strokeIndex": 5
                 }
             ]
         }
