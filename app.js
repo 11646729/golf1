@@ -22,6 +22,8 @@ var express = require('express'),
     rdb = require('rethinkdb'),
     db = require('./middleware/db');
 //    config = require('config');
+    wine = require('./routes/wineRethinkdbApi');
+
 
 require('dotenv').config();
 
@@ -107,9 +109,6 @@ passport.routes(app);
 // connect to local Rethinkdb database =======================================
 
 var dbConfig = {
-    //host : process.env.RDB_HOST || 'localhost',
-    //port : parseInt(process.env.RDB_PORT) || 28015,
-    //db   : process.env.RDB_DB || 'winecellar'
     host : process.env.RDB_HOST,
     port : parseInt(process.env.RDB_PORT),
     db   : process.env.RDB_DB
@@ -124,13 +123,15 @@ rdb.connect({host: dbConfig.host, port: dbConfig.port}, function(err, connection
     else {
         console.log('Connected to Rethinkdb');
 
-//        // set up the database
-//        wine.setupDB(dbConfig, connection);
-//        // set up the default database for the connection
-//        connection.use(dbConfig['db']);
-//        // set up the module global connection
-//        wine.connection = connection;
-//
+        // set up the database
+        wine.setupDB(dbConfig, connection);
+
+        // set up the default database for the connection
+        connection.use(dbConfig['db']);
+
+        // set up the module global connection
+        wine.connection = connection;
+
 //        // start serving requests
 ////        http.createServer(app).listen(app.get('port'), function () {
 ////            console.log("Express server listening on port " + app.get('port'));
