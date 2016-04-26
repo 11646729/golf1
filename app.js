@@ -111,7 +111,8 @@ passport.routes(app);
 var dbConfig = {
     host : process.env.RDB_HOST,
     port : parseInt(process.env.RDB_PORT),
-    db   : process.env.RDB_DB
+    db   : process.env.RDB_DB,
+    table : process.env.RDB_TABLE
 };
 
 // Using a single db connection for the app
@@ -131,11 +132,6 @@ rdb.connect({host: dbConfig.host, port: dbConfig.port}, function(err, connection
 
         // set up the module global connection
         wine.connection = connection;
-
-//        // start serving requests
-////        http.createServer(app).listen(app.get('port'), function () {
-////            console.log("Express server listening on port " + app.get('port'));
-////        });
     }
 });
 

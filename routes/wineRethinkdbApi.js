@@ -34,7 +34,7 @@ var r = require('rethinkdb'),
  * You'd typically not find this code in a real-life app, since the database would already exist.
  */
 exports.setupDB = function(dbConfig, connection) {
-    var wines = [
+    var sampleWines = [
         {
             name: "CHATEAU DE SAINT COSME",
             year: "2009",
@@ -273,20 +273,22 @@ exports.setupDB = function(dbConfig, connection) {
     // Create the DB using [`dbCreate`](http://www.rethinkdb.com/api/#js:manipulating_databases-db_create):
     r.dbCreate(dbConfig.db).run(connection, function(err, result) {
 
-        console.log('Database created');
+//        debug("'%s' database created", dbConfig['db']);
+        console.log("'%s' database created", dbConfig['db']);
 
-        // Create the `wines` table using [`tableCreate`](http://www.rethinkdb.com/api/#js:manipulating_tables-table_create):
-        r.db(dbConfig.db).tableCreate('wines').run(connection, function(err, result) {
+        // Create the Table using [`tableCreate`](http://www.rethinkdb.com/api/#js:manipulating_tables-table_create):
+        r.db(dbConfig.db).tableCreate(dbConfig.table).run(connection, function(err, result) {
 
-            console.log('Table created');
+//            debug("'%s' table created", dbConfig['table']);
+            console.log("'%s' table created", dbConfig['table']);
 
             // We insert the sample data iif the table didn't exist:
 //            if(result && result.created === 1) {
-                r.db(dbConfig.db).table('wines').insert(wines).run(connection, function(err, result) {
+                r.db(dbConfig.db).table(dbConfig.table).insert(sampleWines).run(connection, function(err, result) {
                     if(result) {
 
-//                        debug("Inserted %s sample wines into table 'wines' in db '%s'", result.inserted, dbConfig['db']);
-                        console.log("Inserted %s sample wines into table 'wines' in db '%s'", result.inserted, dbConfig['db']);
+//                        debug("Inserted %s sample wines into table '%s' in db '%s'", result.inserted, dbConfig['table'], dbConfig['db']);
+                        console.log("Inserted %s sample wines into table '%s' in db '%s'", result.inserted, dbConfig['table'], dbConfig['db']);
 
                     }
                 });
