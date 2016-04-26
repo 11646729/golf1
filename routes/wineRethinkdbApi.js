@@ -19,6 +19,156 @@ var r = require('rethinkdb'),
     self = this;
 
 
+// #### Retrieving a single document
+
+/**
+ * Every "wine" document is assigned a unique id when created.
+ * Retrieving a document by its id can be done using the
+ * [`get`](http://www.rethinkdb.com/api/#js:selecting_data-get) function.
+ *
+ * RethinkDB will use the primary key index to fetch the result.
+ */
+exports.findById = function (req, res) {
+    var id = req.params.id;
+    debug('findById: %s', id);
+
+    r.table(dbConfig.table).get(id).run(self.connection, function(err, result) {
+        if(err) {
+            debug("[ERROR] findById: %s:%s\n%s", err.name, err.msg, err.message);
+        }
+        else {
+            res.send(result);
+        }
+    })
+};
+
+// #### Retrieving all documents
+
+/**
+ * To retrieve all documents in a table, we can use
+ * the [`table`](http://www.rethinkdb.com/api/#js:selecting_data-table) function.
+ *
+ * Results are [`collect`](http://www.rethinkdb.com/api/#js:accessing_rql-collect)ed
+ * and passed as an array to the callback function.
+ *
+ * _Todo_: The current implementation of the Backbone models requires
+ * returning all results for pagination. Ideally, this
+ * should return only the current page results and the
+ * total number of wines for paginating through.
+ * _Pull requests are welcome!_
+ */
+exports.findAll = function (req, res) {
+    r.table(dbConfig.table).run(self.connection, function(err, cursor) {
+        cursor.toArray(function(err, results) {
+            if(err) {
+                debug("[ERROR] %s:%s\n%s", err.name, err.msg, err.message);
+                res.send([]);
+            }
+            else{
+                res.send(results);
+            }
+        });
+    });
+};
+
+// #### Creating a new document
+
+/**
+ * To save a new wine document we are using
+ * [`insert`](http://www.rethinkdb.com/api/#js:writing_data-insert).
+ *
+ * If the new document doesn't provide an `id` attribute, then the
+ * database will automatically assign a new id.
+ *
+ * The `insert` op returns an object specifying the number
+ * of successfully created objects and their corresponding IDs:
+ * `{ "inserted": 1, "errors": 0, "generated_keys": ["b3426201-5767-6036-4a21-99921974ab84"] }`
+ */
+exports.addWine = function (req, res) {
+    var wine = req.body;
+    // workaround for https://github.com/rethinkdb/rethinkdb/issues/498
+    delete wine.id;
+    debug('Adding wine: %j', wine);
+
+    r.table(dbConfig.table).insert(wine).run(self.connection, function(err, result) {
+        if(err) {
+            debug("[ERROR] addWine %s:%s\n%s", err.name, err.msg, err.message);
+            res.send({error: 'An error occurred when adding the new wine (' + err.msg + ')'})
+        }
+        else {
+            if(result && result.inserted === 1) {
+                wine.id = result.generated_keys[0];
+                res.send(wine);
+            }
+            else {
+                debug("[ERROR] Failed to create new wine record: %j (%j)", wine, result);
+                res.send({error: 'An error occurred when adding the new wine document'});
+            }
+        }
+    });
+};
+
+// #### Updating a document
+
+/**
+ * To update a document when knowing its `id` is done by
+ * chaining together two functions:
+ * [`get`](http://www.rethinkdb.com/api/#js:selecting_data-get) and
+ * [`update`](http://www.rethinkdb.com/api/#js:writing_data-update).
+ *
+ * Chained operations are always executed in the database and
+ * _not on the client side_.
+ */
+exports.updateWine = function (req, res) {
+    var id = req.params.id, wine = req.body;
+    wine.id = id;
+    debug('Updating wine: %j', wine);
+
+    r.table(dbConfig.table).get(id).update(wine).run(self.connection, function(err, result) {
+        if(result && result.replaced === 1) {
+            res.send(wine);
+        }
+        else if(err) {
+            debug("[ERROR] updateWine %s:%s\n%s", err.name, err.msg, err.message);
+            res.send({error: 'An error occurred when updating the wine with id: ' + id});
+        }
+        else {
+            debug("[ERROR] updateWine (%s): %j", id, result);
+            res.send({error: 'An error occurred when updating the wine with id: ' + id});
+        }
+    });
+};
+
+// #### Deleting a document
+
+/**
+ * To delete a single document when having its `id` can be done
+ * by firstly [`get`](http://www.rethinkdb.com/api/#js:selecting_data-get)-ing
+ * the document by `id` and then using the
+ * [`del`](http://www.rethinkdb.com/api/#js:writing_data-delete) function.
+ *
+ * ReQL chained operations are executed together in the database and
+ * they return the final result. There is a single database roundtrip.
+ */
+exports.deleteWine = function (req, res) {
+    var id = req.params.id;
+    debug('Deleting wine: %s', id);
+
+    r.table(dbConfig.table).get(id).delete().run(self.connection, function(err, result) {
+        debug("[ERROR] deleteWine %j, %j", err, result);
+        if(err) {
+            debug("[ERROR] deleteWine %s:%s\n%s", err.name, err.msg, err.message);
+            res.send({error: 'An error occurred when deleting the wine with id:' + id});
+        }
+        else if (result.deleted === 1) {
+            res.send(req.body);
+        }
+        else {
+            debug("[ERROR] deleteWine (%s) :%j", id, result);
+            res.send({error: 'An error occurred when deleting the wine with id:' + id});
+        }
+    });
+};
 
 // #### Database setup
 
@@ -284,14 +434,14 @@ exports.setupDB = function(dbConfig, connection) {
 
             // We insert the sample data iif the table didn't exist:
 //            if(result && result.created === 1) {
-                r.db(dbConfig.db).table(dbConfig.table).insert(sampleWines).run(connection, function(err, result) {
-                    if(result) {
+            r.db(dbConfig.db).table(dbConfig.table).insert(sampleWines).run(connection, function (err, result) {
+                if (result) {
 
-//                        debug("Inserted %s sample wines into table '%s' in db '%s'", result.inserted, dbConfig['table'], dbConfig['db']);
-                        console.log("Inserted %s sample wines into table '%s' in db '%s'", result.inserted, dbConfig['table'], dbConfig['db']);
+//                    debug("Inserted %s sample wines into table '%s' in db '%s'", result.inserted, dbConfig['table'], dbConfig['db']);
+                    console.log("Inserted %s sample wines into table '%s' in db '%s'", result.inserted, dbConfig['table'], dbConfig['db']);
 
-                    }
-                });
+                }
+            });
         });
     });
 };

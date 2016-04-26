@@ -122,8 +122,6 @@ rdb.connect({host: dbConfig.host, port: dbConfig.port}, function(err, connection
         process.exit(1);
     }
     else {
-        console.log('Connected to Rethinkdb');
-
         // set up the database
         wine.setupDB(dbConfig, connection);
 
@@ -132,6 +130,8 @@ rdb.connect({host: dbConfig.host, port: dbConfig.port}, function(err, connection
 
         // set up the module global connection
         wine.connection = connection;
+
+        console.log('Connected to Rethinkdb');
     }
 });
 
