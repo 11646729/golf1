@@ -272,16 +272,24 @@ exports.setupDB = function(dbConfig, connection) {
 
     // Create the DB using [`dbCreate`](http://www.rethinkdb.com/api/#js:manipulating_databases-db_create):
     r.dbCreate(dbConfig.db).run(connection, function(err, result) {
+
+        console.log('Database created');
+
         // Create the `wines` table using [`tableCreate`](http://www.rethinkdb.com/api/#js:manipulating_tables-table_create):
         r.db(dbConfig.db).tableCreate('wines').run(connection, function(err, result) {
+
+            console.log('Table created');
+
             // We insert the sample data iif the table didn't exist:
-            if(result && result.created === 1) {
+//            if(result && result.created === 1) {
                 r.db(dbConfig.db).table('wines').insert(wines).run(connection, function(err, result) {
                     if(result) {
-                        debug("Inserted %s sample wines into table 'wines' in db '%s'", result.inserted, dbConfig['db']);
+
+//                        debug("Inserted %s sample wines into table 'wines' in db '%s'", result.inserted, dbConfig['db']);
+                        console.log("Inserted %s sample wines into table 'wines' in db '%s'", result.inserted, dbConfig['db']);
+
                     }
                 });
-            }
         });
     });
 };
