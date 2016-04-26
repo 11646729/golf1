@@ -20,11 +20,10 @@ var express = require('express'),
     util = require('./middleware/utilities'),
     passport = require('./passport'),
     rdb = require('rethinkdb'),
-    db = require('./middleware/db');
-//    config = require('config');
     wine = require('./routes/wineRethinkdbApi');
+//    config = require('config');
 
-
+// store static values in environment variables
 require('dotenv').config();
 
 var app = express();
@@ -43,7 +42,7 @@ app.use(session({
     saveUninitialized: true,
     resave: true,
     store: new RedisStore({
-            url: config.redisUrl
+        url: config.redisUrl
     })
 }));
 
@@ -94,20 +93,7 @@ app.use('/golf', require('./routes/golfApi'));
 
 passport.routes(app);
 
-// connect to Mongo database =================================================
-/**
- * Listen on provided port, on all network interfaces.
- */
-//db.connect(config.mongoUrl, function (err) {
-//    if (err) {
-//        console.log('Unable to connect to Mongo');
-//    } else {
-//        console.log('Connected to Mongo');
-//    }
-//});
-
 // connect to local Rethinkdb database =======================================
-
 var dbConfig = {
     host : process.env.RDB_HOST,
     port : parseInt(process.env.RDB_PORT),

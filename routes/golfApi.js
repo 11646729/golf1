@@ -4,9 +4,7 @@
 
 var express = require('express'),
     router = express.Router(),
-    db = require('../middleware/db'),
-    config = require('../config'),
-    ObjectID = require('mongodb').ObjectID;
+    config = require('../config');
 //    util = require('../middleware/utilities'),
 //    user = require('../passport/user');
 
@@ -50,7 +48,7 @@ router.get(config.routes.findMyRoundById, function(req, res) {
     var id = "52e6b265f831a1a3d8814470";
     //var id = req.params.id;
 
-    var obj_id = new ObjectID(id);
+    //var obj_id = new ObjectID(id);
 
     db.get().collection(coll).find({ _id: obj_id }).toArray(function(err, docs) {
         if (err) {
@@ -92,7 +90,7 @@ router.get(config.routes.addMyRound, function(req, res) {
         if (err) {
             res.send({'error':'An error has occurred'});
         } else {
-            console.log('Success: _id is ' + ObjectID(result[3]));
+            //console.log('Success: _id is ' + ObjectID(result[3]));
 
             db.get().collection(coll).find().toArray(function(err, docs) {
                 // This sends the Json file to the client
