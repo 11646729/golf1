@@ -20,7 +20,8 @@ var express = require('express'),
     util = require('./middleware/utilities'),
     passport = require('./passport'),
     rdb = require('rethinkdb'),
-    wine = require('./routes/wineRethinkdbApi');
+//    wine = require('./routes/wineRethinkdbApi'),
+    golf = require('./routes/golfRethinkdbApi');
 //    config = require('config');
 
 // store static values in environment variables
@@ -109,13 +110,15 @@ rdb.connect({host: dbConfig.host, port: dbConfig.port}, function(err, connection
     }
     else {
         // set up the database
-        wine.setupDB(dbConfig, connection);
+//        wine.setupDB(dbConfig, connection);
+        golf.setupDB(dbConfig, connection);
 
         // set up the default database for the connection
         connection.use(dbConfig['db']);
 
         // set up the module global connection
-        wine.connection = connection;
+//        wine.connection = connection;
+        golf.connection = connection;
 
         console.log('Connected to Rethinkdb');
     }
