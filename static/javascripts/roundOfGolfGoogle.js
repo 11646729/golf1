@@ -69,6 +69,48 @@ function prepareCoords(json_file){
             latlng: new google.maps.LatLng(54.622981, -5.682997)
         }
     ];
+
+   var myNewCoords = [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.683992,
+                    54.625605
+                ]
+            },
+            "properties": {
+                "shotNumber": 1
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.683818,
+                    54.623937
+                ]
+            },
+            "properties": {
+                "shotNumber": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.682997,
+                    54.622981
+                ]
+            },
+            "properties": {
+                "shotNumber": 3
+            }
+        }
+    ]
 }
 
 /**

@@ -1,11 +1,5 @@
 {
     "type": "FeatureCollection",
-    "crs": {
-        "type": "name",
-        "properties": {
-            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
-        }
-    },
     "features": [
         {
             "type": "Feature",
@@ -39,7 +33,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -5.968653, 54.565785 ]
+                "coordinates": [
+                    -5.968653,
+                    54.565785
+                ]
             },
             "properties": {
                 "name": "Balmoral Golf Club",
@@ -50,7 +47,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -5.654729, 54.659859 ]
+                "coordinates": [
+                    -5.654729,
+                    54.659859
+                ]
             },
             "properties": {
                 "name": "Bangor Golf Club",
@@ -61,7 +61,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -5.914224, 54.561471 ]
+                "coordinates": [
+                    -5.914224,
+                    54.561471
+                ]
             },
             "properties": {
                 "name": "Belvoir Park Golf Club",
@@ -72,7 +75,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -5.726133, 54.630849 ]
+                "coordinates": [
+                    -5.726133,
+                    54.630849
+                ]
             },
             "properties": {
                 "name": "Blackwood Golf Centre",
@@ -83,7 +89,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -5.703048, 54.666202 ]
+                "coordinates": [
+                    -5.703048,
+                    54.666202
+                ]
             },
             "properties": {
                 "name": "Carnlea Golf Club",
@@ -94,7 +103,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -5.831853, 54.571461 ]
+                "coordinates": [
+                    -5.831853,
+                    54.571461
+                ]
             },
             "properties": {
                 "name": "Castlereagh Hills Golf Club",
@@ -105,7 +117,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -6.784519, 55.165779 ]
+                "coordinates": [
+                    -6.784519,
+                    55.165779
+                ]
             },
             "properties": {
                 "name": "Castlerock Golf Club",
@@ -116,7 +131,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -5.684562, 54.626163 ]
+                "coordinates": [
+                    -5.684562,
+                    54.626163
+                ]
             },
             "properties": {
                 "name": "Clandeboye Golf Club",
@@ -127,7 +145,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -5.953633, 54.625353 ]
+                "coordinates": [
+                    -5.953633,
+                    54.625353
+                ]
             },
             "properties": {
                 "name": "Cliftonville Golf Club",
@@ -138,7 +159,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -5.549328,	54.653172 ]
+                "coordinates": [
+                    -5.549328,
+                    54.653172
+                ]
             },
             "properties": {
                 "name": "Donaghadee Golf Club",
@@ -149,7 +173,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -5.983643,	54.545321 ]
+                "coordinates": [
+                    -5.983643,
+                    54.545321
+                ]
             },
             "properties": {
                 "name": "Dunmurry Golf Club",
@@ -160,7 +187,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -6.233941,	54.451971 ]
+                "coordinates": [
+                    -6.233941,
+                    54.451971
+                ]
             },
             "properties": {
                 "name": "Edenmore Country Club",
@@ -171,7 +201,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -6.312051,	54.855284 ]
+                "coordinates": [
+                    -6.312051,
+                    54.855284
+                ]
             },
             "properties": {
                 "name": "Galgorm Castle Golf Club",
@@ -182,7 +215,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -5.738059,	54.668818 ]
+                "coordinates": [
+                    -5.738059,
+                    54.668818
+                ]
             },
             "properties": {
                 "name": "Helen's Bay Golf Course",
@@ -193,7 +229,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -5.830112,	54.631174 ]
+                "coordinates": [
+                    -5.830112,
+                    54.631174
+                ]
             },
             "properties": {
                 "name": "Holywood Golf Club",
@@ -204,7 +243,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -5.472254, 54.440484 ]
+                "coordinates": [
+                    -5.472254,
+                    54.440484
+                ]
             },
             "properties": {
                 "name": "Kirkistown Castle Golf Club",
@@ -215,7 +257,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -5.819143,	54.595872 ]
+                "coordinates": [
+                    -5.819143,
+                    54.595872
+                ]
             },
             "properties": {
                 "name": "Knock Golf Club",
@@ -226,7 +271,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -5.643564,	54.498789 ]
+                "coordinates": [
+                    -5.643564,
+                    54.498789
+                ]
             },
             "properties": {
                 "name": "Mahee Island Golf Club",
@@ -237,7 +285,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -5.97205, 54.538048 ]
+                "coordinates": [
+                    -5.97205,
+                    54.538048
+                ]
             },
             "properties": {
                 "name": "Malone Golf Club",
@@ -248,7 +299,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -5.913676, 54.579967 ]
+                "coordinates": [
+                    -5.913676,
+                    54.579967
+                ]
             },
             "properties": {
                 "name": "Ormeau Golf Club",
@@ -259,7 +313,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -6.724955, 55.171454 ]
+                "coordinates": [
+                    -6.724955,
+                    55.171454
+                ]
             },
             "properties": {
                 "name": "Portstewart Golf Club",
@@ -270,7 +327,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -5.882425, 54.488131 ]
+                "coordinates": [
+                    -5.882425,
+                    54.488131
+                ]
             },
             "properties": {
                 "name": "Rockmount Golf Club",
@@ -281,7 +341,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -6.635313, 55.199731 ]
+                "coordinates": [
+                    -6.635313,
+                    55.199731
+                ]
             },
             "properties": {
                 "name": "Royal Portrush Golf Club",
@@ -292,7 +355,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -5.719557, 54.577895 ]
+                "coordinates": [
+                    -5.719557,
+                    54.577895
+                ]
             },
             "properties": {
                 "name": "Scrabo Golf Club",
@@ -303,7 +369,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -5.855763, 54.583079 ]
+                "coordinates": [
+                    -5.855763,
+                    54.583079
+                ]
             },
             "properties": {
                 "name": "Shandon Park Golf Club",
@@ -314,7 +383,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -5.906807, 54.465682 ]
+                "coordinates": [
+                    -5.906807,
+                    54.465682
+                ]
             },
             "properties": {
                 "name": "Temple Golf & Country Club",
@@ -325,7 +397,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -5.783817, 54.661631 ]
+                "coordinates": [
+                    -5.783817,
+                    54.661631
+                ]
             },
             "properties": {
                 "name": "The Royal Belfast Golf Club",
@@ -336,7 +411,10 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [ -5.883267, 54.21792 ]
+                "coordinates": [
+                    -5.883267,
+                    54.21792
+                ]
             },
             "properties": {
                 "name": "The Royal County Down Golf Club",
