@@ -23,7 +23,8 @@ var r = require('rethinkdb'),
 /**
  * We initialize the database by performing the following operations:
  *
- * -   create the database `RDB_DB` (defaults to `nodecellar`) using [`dbCreate`](http://www.rethinkdb.com/api/#js:manipulating_databases-db_create)
+ * -   create the database `RDB_DB` (defaults to `nodecellar`)
+ * using [`dbCreate`](http://www.rethinkdb.com/api/#js:manipulating_databases-db_create)
  * -   create the `wines` table using [`tableCreate`](http://www.rethinkdb.com/api/#js:manipulating_tables-table_create)
  *
  * If the table didn't exist than we populate the table with some sample data using a
@@ -34,38 +35,27 @@ var r = require('rethinkdb'),
 exports.setupDB = function(dbConfig, connection) {
     // Create the DB using [`dbCreate`](http://www.rethinkdb.com/api/#js:manipulating_databases-db_create):
     r.dbCreate(dbConfig.db).run(connection, function(err, result) {
-
 //        debug("'%s' database created", dbConfig['db']);
         console.log("'%s' database created", dbConfig['db']);
 
         // Create the Table using [`tableCreate`](http://www.rethinkdb.com/api/#js:manipulating_tables-table_create):
         r.db(dbConfig.db).tableCreate(dbConfig.table).run(connection, function(err, result) {
-
 //            debug("'%s' table created", dbConfig['table']);
             console.log("'%s' table created", dbConfig['table']);
-
-            // We insert the sample data iif the table didn't exist:
-//            if(result && result.created === 1) {
-//            r.db(dbConfig.db).table(dbConfig.table).insert('').run(connection, function (err, result) {
-//                if (result) {
-
-//                    debug("Inserted %s golf courses into table '%s' in db '%s'", result.inserted, dbConfig['table'], dbConfig['db']);
-//                    console.log("Inserted %s golf courses into table '%s' in db '%s'", result.inserted, dbConfig['table'], dbConfig['db']);
-
-//                }
-//            });
         });
     });
 };
 
 /**
+ * Retrieve all the documents in the golfCourses table
  * UNTESTED YET
  */
 exports.findAll = function(req, res){
-    r.table('golf_test').run(self.connection, function(err, cursor){
+    r.table(dbConfig.table).run(self.connection, function(err, cursor){
         cursor.toArray(function(err, results){
             if(err) {
-                debug("[ERROR] %s:%s \n%s", err.name, err.msg, err.message);
+//                debug("[ERROR] %s:%s \n%s", err.name, err.msg, err.message);
+                console.log("[ERROR] %s:%s \n%s", err.name, err.msg, err.message);
                 res.send([]);
             }
             else {

@@ -110,14 +110,12 @@ rdb.connect({host: dbConfig.host, port: dbConfig.port}, function(err, connection
     }
     else {
         // set up the database
-//        wine.setupDB(dbConfig, connection);
-        golf.setupDB(dbConfig, connection);
+//        golf.setupDB(dbConfig, connection);
 
         // set up the default database for the connection
         connection.use(dbConfig['db']);
 
         // set up the module global connection
-//        wine.connection = connection;
         golf.connection = connection;
 
         console.log('Connected to Rethinkdb');
