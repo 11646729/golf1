@@ -18,8 +18,6 @@ var r = require('rethinkdb'),
     assert = require('assert'),
     self = this;
 
-
-
 // #### Database setup
 
 /**
@@ -59,3 +57,22 @@ exports.setupDB = function(dbConfig, connection) {
         });
     });
 };
+
+/**
+ * UNTESTED YET
+ */
+exports.findAll = function(req, res){
+    r.table('golf_test').run(self.connection, function(err, cursor){
+        cursor.toArray(function(err, results){
+            if(err) {
+                debug("[ERROR] %s:%s \n%s", err.name, err.msg, err.message);
+                res.send([]);
+            }
+            else {
+                res.send(results);
+            }
+        });
+    });
+};
+
+

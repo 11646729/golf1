@@ -2,6 +2,8 @@
  * Created by briansmith on 30/01/16
  */
 
+var golf = require('../../routes/golfRethinkdbApi');
+
 /**
  * Mapped Styles
  */
