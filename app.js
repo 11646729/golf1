@@ -95,32 +95,32 @@ app.use('/golf', require('./routes/golfApi'));
 passport.routes(app);
 
 // connect to local Rethinkdb database =======================================
-var dbConfig = {
-    host : process.env.RDB_HOST,
-    port : parseInt(process.env.RDB_PORT),
-    db   : process.env.RDB_DB,
-    table : process.env.RDB_TABLE
-};
-
-// Using a single db connection for the app
-rdb.connect({host: dbConfig.host, port: dbConfig.port}, function(err, connection) {
-    if(err) {
-        console.log("ERROR: %s:%s", err.name, err.msg);
-        process.exit(1);
-    }
-    else {
-        // set up the database
+//var dbConfig = {
+//    host : process.env.RDB_HOST,
+//    port : parseInt(process.env.RDB_PORT),
+//    db   : process.env.RDB_DB,
+//    table : process.env.RDB_TABLE
+//};
+//
+//// Using a single db connection for the app
+//rdb.connect({host: dbConfig.host, port: dbConfig.port}, function(err, connection) {
+//    if(err) {
+//        console.log("ERROR: %s:%s", err.name, err.msg);
+//        process.exit(1);
+//    }
+//    else {
+//        // set up the database
 //        golf.setupDB(dbConfig, connection);
-
-        // set up the default database for the connection
-        connection.use(dbConfig['db']);
-
-        // set up the module global connection
-        golf.connection = connection;
-
-        console.log('Connected to Rethinkdb');
-    }
-});
+//
+//        // set up the default database for the connection
+//        connection.use(dbConfig['db']);
+//
+//        // set up the module global connection
+//        golf.connection = connection;
+//
+//        console.log('Connected to Rethinkdb');
+//    }
+//});
 
 // error handlers ============================================================
 // catch 404 and forward to error handler

@@ -2,7 +2,12 @@
  * Created by briansmith on 17/03/2016.
  */
 
-var express = require('express'),
+var r = require('rethinkdb'),
+    debug = require('debug')('rdb'),
+    assert = require('assert'),
+    self = this,
+
+    express = require('express'),
     router = express.Router(),
     config = require('../config');
 //    util = require('../middleware/utilities'),
@@ -14,30 +19,59 @@ var express = require('express'),
 //var coll = 'myRoundsOfGolf';
 var coll = 'wines';
 //var coll = "golfCourses";
+var connection;
 
 
 /**
  * Fetch all rounds of golf
  */
+//router.get(config.routes.findMyRounds, function(req, res) {
+//
+//    db.get().collection(coll).find().toArray(function(err, docs) {
+//        if (err) {
+//            console.log(err);
+////            return;
+//        } else {
+//            console.log('Retrieving all documents: ' + docs.length);
+//
+//            // This sends the Json file to the client
+//            //res.json(docs);
+//
+//            // This is a test
+//            res.render("addMyRound.jade", {
+//                docs: docs
+//            });
+//        }
+//    });
+//});
+
 router.get(config.routes.findMyRounds, function(req, res) {
+    r.connect({host: 'localhost', port: 28015}, function(err, conn){
+        if (err) throw err;
 
-    db.get().collection(coll).find().toArray(function(err, docs) {
-        if (err) {
-            console.log(err);
-//            return;
-        } else {
-            console.log('Retrieving all documents: ' + docs.length);
+        connection = conn;
 
-            // This sends the Json file to the client
-            //res.json(docs);
+        console.log('Connected to database.');
 
-            // This is a test
-            res.render("addMyRound.jade", {
-                docs: docs
+        r.db('golf').table('golfCourses').run(connection, function (err, cursor) {
+
+            cursor.toArray(function (err, results) {
+                if (err) {
+//                debug("[ERROR] %s:%s \n%s", err.name, err.msg, err.message);
+                    console.log("[ERROR] %s:%s \n%s", err.name, err.msg, err.message);
+                    res.send([]);
+                }
+                else {
+//              // This sends the Json file to the client
+                    res.json(results);
+//
+//                res.send(results);
+                }
             });
-        }
-    });
+        });
+    })
 });
+
 
 /**
  * Fetch a round of golf by id

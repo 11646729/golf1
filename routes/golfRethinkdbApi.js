@@ -34,35 +34,14 @@ var r = require('rethinkdb'),
  */
 exports.setupDB = function(dbConfig, connection) {
     // Create the DB using [`dbCreate`](http://www.rethinkdb.com/api/#js:manipulating_databases-db_create):
-    r.dbCreate(dbConfig.db).run(connection, function(err, result) {
+//    r.dbCreate(dbConfig.db).run(connection, function(err, result) {
 //        debug("'%s' database created", dbConfig['db']);
-        console.log("'%s' database created", dbConfig['db']);
+//        console.log("'%s' database created", dbConfig['db']);
 
         // Create the Table using [`tableCreate`](http://www.rethinkdb.com/api/#js:manipulating_tables-table_create):
-        r.db(dbConfig.db).tableCreate(dbConfig.table).run(connection, function(err, result) {
+//        r.db(dbConfig.db).tableCreate(dbConfig.table).run(connection, function(err, result) {
 //            debug("'%s' table created", dbConfig['table']);
-            console.log("'%s' table created", dbConfig['table']);
-        });
-    });
+//            console.log("'%s' table created", dbConfig['table']);
+//        });
+//    });
 };
-
-/**
- * Retrieve all the documents in the golfCourses table
- * UNTESTED YET
- */
-exports.findAll = function(req, res){
-    r.table(dbConfig.table).run(self.connection, function(err, cursor){
-        cursor.toArray(function(err, results){
-            if(err) {
-//                debug("[ERROR] %s:%s \n%s", err.name, err.msg, err.message);
-                console.log("[ERROR] %s:%s \n%s", err.name, err.msg, err.message);
-                res.send([]);
-            }
-            else {
-                res.send(results);
-            }
-        });
-    });
-};
-
-
