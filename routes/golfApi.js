@@ -16,35 +16,11 @@ var r = require('rethinkdb'),
 //NB Format for GeoJSON is Longitude then Latitude : "coordinates": [ -5.683992, 54.625605 ]
 //NB Format for Google maps: is Latitude then Longitude : new google.maps.LatLng(54.625605, -5.683992)
 
-//var coll = 'myRoundsOfGolf';
-var coll = 'wines';
-//var coll = "golfCourses";
 var connection;
 
-
 /**
- * Fetch all rounds of golf
+ * Fetch all nearby golf courses
  */
-//router.get(config.routes.findMyRounds, function(req, res) {
-//
-//    db.get().collection(coll).find().toArray(function(err, docs) {
-//        if (err) {
-//            console.log(err);
-////            return;
-//        } else {
-//            console.log('Retrieving all documents: ' + docs.length);
-//
-//            // This sends the Json file to the client
-//            //res.json(docs);
-//
-//            // This is a test
-//            res.render("addMyRound.jade", {
-//                docs: docs
-//            });
-//        }
-//    });
-//});
-
 router.get(config.routes.findMyRounds, function(req, res) {
     r.connect({host: 'localhost', port: 28015}, function(err, conn){
         if (err) throw err;
@@ -62,10 +38,13 @@ router.get(config.routes.findMyRounds, function(req, res) {
                     res.send([]);
                 }
                 else {
-//              // This sends the Json file to the client
-                    res.json(results);
-//
-//                res.send(results);
+                  res.render("databaseTest.jade", {
+                      docs: results
+                  });
+
+                    // This sends the Json file to the client
+//                    res.json(results);
+//                    res.send(results);
                 }
             });
         });
@@ -76,67 +55,66 @@ router.get(config.routes.findMyRounds, function(req, res) {
 /**
  * Fetch a round of golf by id
  */
-router.get(config.routes.findMyRoundById, function(req, res) {
-
-    // This is test data
-    var id = "52e6b265f831a1a3d8814470";
-    //var id = req.params.id;
-
-    //var obj_id = new ObjectID(id);
-
-    db.get().collection(coll).find({ _id: obj_id }).toArray(function(err, docs) {
-        if (err) {
-            console.log(err);
-//            return;
-        } else {
-            console.log('Retrieving wine: ' + id);
-
-            // This sends the Json file to the client
-            res.json(docs);
-
-//          res.render("databaseTest.jade", {
-//              docs: docs
-//          });
-        }
-    });
-});
-
+//router.get(config.routes.findMyRoundById, function(req, res) {
+//
+//    // This is test data
+//    var id = "52e6b265f831a1a3d8814470";
+//    //var id = req.params.id;
+//
+//    //var obj_id = new ObjectID(id);
+//
+//    db.get().collection(coll).find({ _id: obj_id }).toArray(function(err, docs) {
+//        if (err) {
+//            console.log(err);
+////            return;
+//        } else {
+//            console.log('Retrieving wine: ' + id);
+//
+//            // This sends the Json file to the client
+//            res.json(docs);
+//
+////          res.render("databaseTest.jade", {
+////              docs: docs
+////          });
+//        }
+//    });
+//});
 
 /**
  * Insert a round of golf
  */
 // TODO Change this to router.post
-router.get(config.routes.addMyRound, function(req, res) {
-
-    // This is test data
-    var newRound = {
-        name: 'TEST OF NEWROUND',
-        year: '2009',
-        grapes: 'Grenache / Syrah',
-        country: 'France',
-        region: 'Southern Rhone',
-        description: 'The aromas of fruit and spice give one a hint of the light drinkability of this lovely wine, which makes an excellent complement to fish dishes.',
-        picture: 'saint_cosme.jpg'
-    };
-    //var newRound = req.body;
-
-    db.get().collection(coll).insertOne(newRound, function(err, result){
-        if (err) {
-            res.send({'error':'An error has occurred'});
-        } else {
-            //console.log('Success: _id is ' + ObjectID(result[3]));
-
-            db.get().collection(coll).find().toArray(function(err, docs) {
-                // This sends the Json file to the client
-                res.json(docs);
-            });
-
-//          res.render("databaseTest.jade", {
-//              docs: docs
-//          });
-        }
-    });
-});
+//router.get(config.routes.addMyRound, function(req, res) {
+//
+//    // This is test data
+//    var newRound = {
+//        name: 'TEST OF NEWROUND',
+//        year: '2009',
+//        grapes: 'Grenache / Syrah',
+//        country: 'France',
+//        region: 'Southern Rhone',
+//        description: 'The aromas of fruit and spice give one a hint of the light drinkability of this lovely wine, which makes an excellent complement to fish dishes.',
+//        picture: 'saint_cosme.jpg'
+//    };
+//    //var newRound = req.body;
+//
+//    db.get().collection(coll).insertOne(newRound, function(err, result){
+//        if (err) {
+//            res.send({'error':'An error has occurred'});
+//        } else {
+//            //console.log('Success: _id is ' + ObjectID(result[3]));
+//
+//            db.get().collection(coll).find().toArray(function(err, docs) {
+//                // This sends the Json file to the client
+//                res.json(docs);
+//            });
+//
+////          res.render("databaseTest.jade", {
+////              docs: docs
+////          });
+//        }
+//    });
+//});
 
 
 /**
