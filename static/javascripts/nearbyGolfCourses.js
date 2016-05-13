@@ -2,7 +2,8 @@
  * Created by briansmith on 30/01/16
  */
 
-var golf = require('../../routes/golfRethinkdbApi');
+//var r = require('rethinkdb'),
+//    debug = require('debug')('rdb');
 
 /**
  * Mapped Styles
@@ -82,7 +83,6 @@ var overlay = new ol.Overlay(({
 
 /**
  * Add a click handler to hide the popup
- * @return {boolean} Don't follow the href
  */
 closer.onclick = function(){
     overlay.setPosition(undefined);
@@ -107,6 +107,43 @@ var baseMapLayer = new ol.layer.Tile({
     })
 });
 
+var connection;
+var geoJsonData;
+
+/**
+ * Fetch all nearby golf courses
+ */
+//r.connect({host: 'localhost', port: 28015}, function(err, conn){
+//    if (err) throw err;
+//
+//    connection = conn;
+//
+//    console.log('Connected to database.');
+//
+//    r.db('golf').table('golfCourses').run(connection, function (err, cursor) {
+//
+//        cursor.toArray(function (err, results) {
+//            if (err) {
+////                debug("[ERROR] %s:%s \n%s", err.name, err.msg, err.message);
+//                console.log("[ERROR] %s:%s \n%s", err.name, err.msg, err.message);
+////                res.send([]);
+//            }
+//            else {
+//
+//                geoJsonData = results;
+//
+////                res.render("databaseTest.jade", {
+////                    docs: results
+////                });
+//
+//                // This sends the Json file to the client
+////                    res.json(results);
+////                    res.send(results);
+//            }
+//        });
+//    });
+//});
+
 /**
  * Create the Golf Courses Layer from a GeoJSON file
  */
@@ -122,7 +159,7 @@ var baseMapLayer = new ol.layer.Tile({
 /**
  * Nearby Golf Courses contained in a GeoJSON variable
  */
-var geoJsonData =
+geoJsonData =
 {
     "type": "FeatureCollection",
     "crs": {
@@ -472,14 +509,24 @@ var geoJsonData =
 };
 
 /**
- * Create the Golf Courses Layer from a GeoJSON variable
+ * Create the featureCollection from the geoJsonData
+ */
+var featureCollection = new ol.format.GeoJSON().readFeatures(geoJsonData, {featureProjection:"EPSG:3857"});
+
+/**
+ * Create the vectorSource from the featureCollection
+ */
+var vectorSource = new ol.source.Vector({
+    features: featureCollection
+});
+
+/**
+ * Create the Golf Courses Layer from the vectorSource
  */
 var vectorLayer = new ol.layer.Vector({
     title: 'Golf Courses Layer',
-    source: vectorSource = new ol.source.Vector({
-        features: (new ol.format.GeoJSON()).readFeatures(geoJsonData, {featureProjection:"EPSG:3857"})
-    }),
-    style: styleFunction
+    style: styleFunction,
+    source: vectorSource
 });
 
 //var attribution = new ol.control.Attribution({
