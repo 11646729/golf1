@@ -145,18 +145,6 @@ var geoJsonData;
 //});
 
 /**
- * Create the Golf Courses Layer from a GeoJSON file
- */
-//var vectorLayer = new ol.layer.Vector({
-//    title: 'Golf Courses Layer',
-//    source: new ol.source.Vector({
-//        url: '/testData/geoJsonFiles/GolfCourses.json',
-//        format: new ol.format.GeoJSON()
-//    }),
-//    style: styleFunction
-//});
-
-/**
  * Nearby Golf Courses contained in a GeoJSON variable
  */
 geoJsonData =
@@ -527,6 +515,19 @@ var vectorLayer = new ol.layer.Vector({
     title: 'Golf Courses Layer',
     style: styleFunction,
     source: vectorSource
+});
+
+/**
+ * Create the Golf Courses Layer from a GeoJSON file
+ * THIS WORKS BUT USES vectorLayer2 INSTEAD OF vectorLayer FOR MAP VARIABLE BELOW
+ */
+var vectorLayer2 = new ol.layer.Vector({
+    title: 'Golf Courses Layer',
+    style: styleFunction,
+    source: new ol.source.Vector({
+        url: '/testData/geoJsonFiles/nearbyGolfCourses.json',
+        format: new ol.format.GeoJSON()
+    })
 });
 
 //var attribution = new ol.control.Attribution({

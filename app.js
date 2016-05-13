@@ -18,10 +18,9 @@ var express = require('express'),
     flash = require('connect-flash'),
     RedisStore = require('connect-redis')(session),
     util = require('./middleware/utilities'),
-    passport = require('./passport'),
-    rdb = require('rethinkdb'),
-//    wine = require('./routes/wineRethinkdbApi'),
-    golf = require('./routes/golfRethinkdbApi');
+    passport = require('./passport');
+//    rdb = require('rethinkdb'),
+//    golf = require('./routes/golfRethinkdbApi');
 //    config = require('config');
 
 // store static values in environment variables
