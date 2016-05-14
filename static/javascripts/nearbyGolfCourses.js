@@ -2,9 +2,6 @@
  * Created by briansmith on 30/01/16
  */
 
-//var r = require('rethinkdb'),
-//    debug = require('debug')('rdb');
-
 /**
  * Mapped Styles
  */
@@ -107,16 +104,13 @@ var baseMapLayer = new ol.layer.Tile({
     })
 });
 
-var connection;
-var geoJsonData;
-
 /**
  * Fetch all nearby golf courses
  */
 //r.connect({host: 'localhost', port: 28015}, function(err, conn){
 //    if (err) throw err;
 //
-//    connection = conn;
+//    var connection = conn;
 //
 //    console.log('Connected to database.');
 //
@@ -147,7 +141,7 @@ var geoJsonData;
 /**
  * Nearby Golf Courses contained in a GeoJSON variable
  */
-geoJsonData =
+var geoJsonData =
 {
     "type": "FeatureCollection",
     "crs": {
