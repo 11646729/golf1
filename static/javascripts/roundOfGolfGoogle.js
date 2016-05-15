@@ -22,8 +22,7 @@ function init(){
     /**
      * Display map of area containing coordinates
      */
-    load();
-    prepareCoords(json_file);
+    loadCoords(json_file);
     calculateBounds();
     drawMap();
 
@@ -33,27 +32,10 @@ function init(){
     map.addListener('zoom_changed', resetMarkers);
 }
 
-function load() {
-    //var mydata = JSON.parse('../testData/geoJsonFiles/roundOfGolfData.json');
-    //alert(mydata[0].name);
-    //alert(mydata[0].age);
-};
-
 /**
  * Function to convert json file (stream?) to array of LatLng etc
  */
-function prepareCoords(json_file){
-
-//    data = '[{"name" : "Ashwin", "age" : "20"},{"name" : "Abhinandan", "age" : "20"}]';
-
-//    var mydata = JSON.parse(data);
-//    alert(mydata[0].name);
-//    alert(mydata[0].age);
-//    alert(mydata[1].name);
-//    alert(mydata[1].age);
-
-    //var loadGeoJson = JSON.parse('../testData/geoJsonFiles/roundOfGolfData.json');
-    //console.log(loadGeoJson[0].properties.shotNumber);
+function loadCoords(json_file){
 
     myCoords = [
         {
