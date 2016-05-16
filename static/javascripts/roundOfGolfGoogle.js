@@ -31,23 +31,24 @@ function init(){
     /**
      * Calculate map bounds
      */
+    //var Item_1 = new google.maps.LatLng(54.625605, -5.683992);
+    //var Item_2 = new google.maps.LatLng(54.623937, -5.683818);
+    //var Item_3 = new google.maps.LatLng(54.622981, -5.682997);
+
+    //myBounds.extend(Item_1);
+    //myBounds.extend(Item_2);
+    //myBounds.extend(Item_3);
+
     myBounds = new google.maps.LatLngBounds();
 
-    var Item_1 = new google.maps.LatLng(54.625605, -5.683992);
-    var Item_2 = new google.maps.LatLng(54.623937, -5.683818);
-    var Item_3 = new google.maps.LatLng(54.622981, -5.682997);
-
-    myBounds.extend(Item_1);
-    myBounds.extend(Item_2);
-    myBounds.extend(Item_3);
-
-    //for (var i = 0; i < myNewCoords.features.length; i++) {
-    //
-    //    var coords = myNewCoords.features[i].geometry.coordinates;
-    //    var latLng = new google.maps.LatLng(coords[1], coords[0]);
-    //
-    //    myBounds.extend(latLng);
-    //}
+    for (var i = 0; i < myNewCoords.features.length; i++) {
+        // Only compute bounds using Points
+        if (myNewCoords.features[i].geometry.type == 'Point'){
+            var coords = myNewCoords.features[i].geometry.coordinates;
+            var latLng = new google.maps.LatLng(coords[1], coords[0]);
+            myBounds.extend(latLng);
+        }
+    }
 
     /**
      * Draw the map
@@ -169,8 +170,6 @@ function drawMap() {
      */
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
     map.fitBounds(myBounds);
-
-//    showAllMarkers();
 }
 
 /**
