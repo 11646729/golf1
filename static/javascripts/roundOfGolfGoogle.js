@@ -9,9 +9,7 @@ var google = google || {};
 var pointMarkers = [];
 var curveMarkers = [];
 
-var map, myCoords, myBounds, json_file;
-
-var markersDisplayedFlag = false;
+var map, myBounds, markersDisplayedFlag, myNewCoords;
 
 var curvature = 0.2; // how curvy to make the arc
 
@@ -19,90 +17,123 @@ var curvature = 0.2; // how curvy to make the arc
  * Initialization function
  */
 function init(){
+
     /**
-     * Display map of area containing coordinates
+     * Initialise flag
      */
-    loadCoords(json_file);
-    calculateBounds();
+    markersDisplayedFlag = false;
+
+    /**
+     * Get the data
+     */
+    fetchData();
+
+    /**
+     * Calculate map bounds
+     */
+    myBounds = new google.maps.LatLngBounds();
+
+    var Item_1 = new google.maps.LatLng(54.625605, -5.683992);
+    var Item_2 = new google.maps.LatLng(54.623937, -5.683818);
+    var Item_3 = new google.maps.LatLng(54.622981, -5.682997);
+
+    myBounds.extend(Item_1);
+    myBounds.extend(Item_2);
+    myBounds.extend(Item_3);
+
+    //for (var i = 0; i < myNewCoords.features.length; i++) {
+    //
+    //    var coords = myNewCoords.features[i].geometry.coordinates;
+    //    var latLng = new google.maps.LatLng(coords[1], coords[0]);
+    //
+    //    myBounds.extend(latLng);
+    //}
+
+    /**
+     * Draw the map
+     */
     drawMap();
 
     /**
-     * Add event listener
+     * Add an event listener
      */
     map.addListener('zoom_changed', resetMarkers);
 }
 
 /**
- * Function to convert json file (stream?) to array of LatLng etc
+ * Obtain the data - either pull it or receive a pushed data set
  */
-function loadCoords(json_file){
+function fetchData(){
 
-    myCoords = [
-        {
-            shotNumber: 1,
-            latlng: new google.maps.LatLng(54.625605, -5.683992)
-        },
-        {
-            shotNumber: 2,
-            latlng: new google.maps.LatLng(54.623937, -5.683818)
-        },
-        {
-            shotNumber: 3,
-            latlng: new google.maps.LatLng(54.622981, -5.682997)
-        }
-    ];
-
-   var myNewCoords = [
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -5.683992,
-                    54.625605
-                ]
-            },
+    /**
+     * Variable myNewCoords contains data
+     */
+    myNewCoords = {
+        "type": "FeatureCollection",
+        "crs": {
+            "type": "name",
             "properties": {
-                "shotNumber": 1
+                "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
             }
         },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -5.683818,
-                    54.623937
-                ]
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [ -5.683992, 54.625605 ]
+                },
+                "properties": {
+                    "id": 1,
+                    "name": "Shot 1"
+                }
             },
-            "properties": {
-                "shotNumber": 2
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -5.682997,
-                    54.622981
-                ]
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [ -5.683818, 54.623937 ]
+                },
+                "properties": {
+                    "id": 2,
+                    "name": "Shot 2"
+                }
             },
-            "properties": {
-                "shotNumber": 3
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [ -5.682997, 54.622981 ]
+                },
+                "properties": {
+                    "id": 3,
+                    "name": "Shot 3"
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "LineString",
+                    "coordinates": [[ -5.683992, 54.625605 ],[ -5.683818, 54.623937 ]]
+                },
+                "properties": {
+                    "name": "Driver",
+                    "distance": 207
+                }
+            },
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "LineString",
+                    "coordinates": [[ -5.683818, 54.623937 ],[ -5.682997, 54.622981 ]]
+                },
+                "properties": {
+                    "name": "8 Iron",
+                    "distance": 135
+                }
             }
-        }
-    ]
-}
-
-/**
- * Function to calculate the map bounds
- */
-function calculateBounds(){
-    myBounds = new google.maps.LatLngBounds();
-    for (var i = 0; i < myCoords.length; i++) {
-        myBounds.extend(myCoords[i].latlng);
-    }
+        ]
+    };
 }
 
 /**
@@ -115,7 +146,6 @@ function drawMap() {
     var mapOptions = {
         mapTypeId: google.maps.MapTypeId.SATELLITE,
         center: myBounds.getCenter(),
-        //zoom: 18,
         minZoom: 6,
         zoomControl: true,
         zoomControlOptions: {
@@ -139,6 +169,8 @@ function drawMap() {
      */
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
     map.fitBounds(myBounds);
+
+//    showAllMarkers();
 }
 
 /**
@@ -149,21 +181,27 @@ function addPointMarkers(){
     pointMarkers = [];
 
     // Add new point markers to array
-    for (var i = 0; i < myCoords.length; i++) {
+    for (var i = 0; i < myNewCoords.features.length; i++) {
+
+        var coords = myNewCoords.features[i].geometry.coordinates;
+        var latLng = new google.maps.LatLng(coords[1],coords[0]);
+
         var pointMarker = new google.maps.Marker({
-            position: myCoords[i].latlng,
+            position: latLng,
             map: map,
-            title: myCoords[i].name,
+            title: 'Test',
             visible: false,
             clickable: false,
             icon: {
                 url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
                 size: new google.maps.Size(7, 7),
-                anchor: new google.maps.Point(4,4)
+                anchor: new google.maps.Point(4, 4)
             }
             //label: "1",
             //draggable: true,
         });
+
+        // Add new point markers to array
         pointMarkers.push(pointMarker);
     }
 }
@@ -175,10 +213,16 @@ function addCurveMarkers() {
     // Delete old curve markers
     curveMarkers = [];
 
-    for (var i = 0; i < myCoords.length - 1; i++) {
+    for (var i = 0; i < myNewCoords.features.length - 1; i++) {
 
-        var pos1 = myCoords[i].latlng,
-            pos2 = myCoords[i+1].latlng;
+        var coords = myNewCoords.features[i].geometry.coordinates;
+        var latLng = new google.maps.LatLng(coords[1],coords[0]);
+
+        var coords1 = myNewCoords.features[i+1].geometry.coordinates;
+        var latLng1 = new google.maps.LatLng(coords[1],coords[0]);
+
+        var pos1 = latLng,
+            pos2 = latLng1;
 
         var projection = map.getProjection(),
             p1 = projection.fromLatLngToPoint(pos1), // xy
@@ -220,42 +264,58 @@ function addCurveMarkers() {
  */
 function showAllMarkers(){
 
-    addPointMarkers();
-    for (var i = 0; i < pointMarkers.length; i++) {
-        pointMarkers[i].visible = true;
-        pointMarkers[i].setMap(map);
-    }
+    console.log(markersDisplayedFlag);
 
-    addCurveMarkers();
-    for (var j = 0; j < curveMarkers.length; j++) {
-        curveMarkers[j].visible = true;
-        curveMarkers[j].setMap(map);
-    }
+    /**
+     * Ignore if markers are already displayed
+     */
+    if (markersDisplayedFlag == false){
 
-    markersDisplayedFlag = true;
+        addPointMarkers();
+        if (pointMarkers.length > 0) {
+            for (var i = 0; i < pointMarkers.length; i++) {
+                pointMarkers[i].visible = true;
+                pointMarkers[i].setMap(map);
+            }
+        }
+
+        //addCurveMarkers();
+//        if (curveMarkers.length > 0) {
+            //for (var j = 0; j < curveMarkers.length; j++) {
+            //    curveMarkers[j].visible = true;
+            //    curveMarkers[j].setMap(map);
+            //}
+//        }
+
+        markersDisplayedFlag = true;
+    }
 }
 
 /**
  * Hide all the markers
+ * Display starts with point marker hidden
  */
 function hideAllMarkers(){
-    // Display starts with point marker hidden
-    // Ignore user pressing hide points if nothing is displayed
-    if (pointMarkers.length > 0){
-        for (var i = 0; i < pointMarkers.length; i++) {
-            pointMarkers[i].visible = false;
-            pointMarkers[i].setMap(map);
+    /**
+     * Ignore user pressing hide points if nothing is displayed
+     */
+    if (markersDisplayedFlag == true) {
+        if (pointMarkers.length > 0) {
+            for (var i = 0; i < pointMarkers.length; i++) {
+                pointMarkers[i].visible = false;
+                pointMarkers[i].setMap(map);
+            }
         }
-    }
 
-    if (curveMarkers.length > 0) {
-        for (var j = 0; j < curveMarkers.length; j++) {
-            curveMarkers[j].visible = false;
-            curveMarkers[j].setMap(map);
+        if (curveMarkers.length > 0) {
+            for (var j = 0; j < curveMarkers.length; j++) {
+                curveMarkers[j].visible = false;
+                curveMarkers[j].setMap(map);
+            }
         }
-    }
 
-    markersDisplayedFlag = false;
+        markersDisplayedFlag = false;
+    }
 }
 
 function resetMarkers(){
