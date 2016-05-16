@@ -10,8 +10,7 @@ var pointMarkers = [];
 var curveMarkers = [];
 
 var map, myBounds, markersDisplayedFlag, myNewCoords;
-
-var curvature = 0.2; // how curvy to make the arc
+var curvature; // how curvy to make the arc
 
 /**
  * Initialization function
@@ -22,6 +21,7 @@ function init(){
      * Initialise flag
      */
     markersDisplayedFlag = false;
+    curvature = 0.2;
 
     /**
      * Get the data
@@ -31,14 +31,6 @@ function init(){
     /**
      * Calculate map bounds
      */
-    //var Item_1 = new google.maps.LatLng(54.625605, -5.683992);
-    //var Item_2 = new google.maps.LatLng(54.623937, -5.683818);
-    //var Item_3 = new google.maps.LatLng(54.622981, -5.682997);
-
-    //myBounds.extend(Item_1);
-    //myBounds.extend(Item_2);
-    //myBounds.extend(Item_3);
-
     myBounds = new google.maps.LatLngBounds();
 
     for (var i = 0; i < myNewCoords.features.length; i++) {
@@ -65,7 +57,6 @@ function init(){
  * Obtain the data - either pull it or receive a pushed data set
  */
 function fetchData(){
-
     /**
      * Variable myNewCoords contains data
      */
