@@ -139,10 +139,10 @@ function addCurveMarkers() {
         var latLng = new google.maps.LatLng(coords[1],coords[0]);
 
         var coords1 = myNewCoords.features[i+1].geometry.coordinates;
-        var latLng1 = new google.maps.LatLng(coords[1],coords[0]);
+        var latLng1 = new google.maps.LatLng(coords1[1],coords1[0]);
 
-        var pos1 = latLng,
-            pos2 = latLng1;
+        var pos1 = latLng;
+        var pos2 = latLng1;
 
         var projection = map.getProjection(),
             p1 = projection.fromLatLngToPoint(pos1), // xy
@@ -195,7 +195,7 @@ function showAllMarkers(){
             }
         }
 
-        //addCurveMarkers();
+        addCurveMarkers();
         if (curveMarkers.length > 0) {
             for (var j = 0; j < curveMarkers.length; j++) {
                 curveMarkers[j].visible = true;
