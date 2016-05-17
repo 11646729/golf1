@@ -42,17 +42,50 @@ function init(){
 
         myNewCoords = data;
 
+        // Delete old point markers
+        pointMarkers = [];
+
         /**
          * Calculate map bounds & fit map to bounds
          */
         myBounds = new google.maps.LatLngBounds();
 
         for (var i = 0; i < myNewCoords.features.length; i++) {
-            // Only compute bounds using Points
+            /**
+             * Only compute bounds using Points
+             */
             if (myNewCoords.features[i].geometry.type == 'Point'){
                 var coords = myNewCoords.features[i].geometry.coordinates;
                 var latLng = new google.maps.LatLng(coords[1], coords[0]);
+
                 myBounds.extend(latLng);
+
+                /**
+                 * Save in an array of pointMarkers
+                 */
+                var pointMarker = new google.maps.Marker({
+                    position: latLng,
+                    map: map,
+                    title: 'Test',
+                    visible: false,
+                    clickable: false,
+                    icon: {
+                        url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
+                        size: new google.maps.Size(7, 7),
+                        anchor: new google.maps.Point(4, 4)
+                    }
+                    //label: "1",
+                    //draggable: true,
+                });
+
+                // Add new point markers to array
+                pointMarkers.push(pointMarker);
+
+            } else {
+                if (myNewCoords.features[i].geometry.type == 'LineString') {
+                    // Store in a linestring array
+                    console.log(i);
+                }
             }
         }
 
@@ -91,39 +124,6 @@ function drawMap() {
      * Draw Map to the bounds of the points plotted
      */
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
-}
-
-/**
- * Add the point markers to the pointMarkers array
- */
-function addPointMarkers(){
-    // Delete old point markers
-    pointMarkers = [];
-
-    // Add new point markers to array
-    for (var i = 0; i < myNewCoords.features.length; i++) {
-
-        var coords = myNewCoords.features[i].geometry.coordinates;
-        var latLng = new google.maps.LatLng(coords[1],coords[0]);
-
-        var pointMarker = new google.maps.Marker({
-            position: latLng,
-            map: map,
-            title: 'Test',
-            visible: false,
-            clickable: false,
-            icon: {
-                url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
-                size: new google.maps.Size(7, 7),
-                anchor: new google.maps.Point(4, 4)
-            }
-            //label: "1",
-            //draggable: true,
-        });
-
-        // Add new point markers to array
-        pointMarkers.push(pointMarker);
-    }
 }
 
 /**
@@ -188,7 +188,6 @@ function showAllMarkers(){
      */
     if (markersDisplayedFlag == false){
 
-        addPointMarkers();
         if (pointMarkers.length > 0) {
             for (var i = 0; i < pointMarkers.length; i++) {
                 pointMarkers[i].visible = true;
@@ -197,12 +196,12 @@ function showAllMarkers(){
         }
 
         //addCurveMarkers();
-//        if (curveMarkers.length > 0) {
-            //for (var j = 0; j < curveMarkers.length; j++) {
-            //    curveMarkers[j].visible = true;
-            //    curveMarkers[j].setMap(map);
-            //}
-//        }
+        if (curveMarkers.length > 0) {
+            for (var j = 0; j < curveMarkers.length; j++) {
+                curveMarkers[j].visible = true;
+                curveMarkers[j].setMap(map);
+            }
+        }
 
         markersDisplayedFlag = true;
     }
