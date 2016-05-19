@@ -84,9 +84,9 @@ app.io = require('socket.io')();
 //start listen with socket.io
 app.io.on('connection', function(socket) {
     /**
-     * Nearby Golf Courses contained in a GeoJSON variable
+     * Round Of Golf contained in a GeoJSON variable
      */
-    var geoJsonData = {
+    var roundOfGolfGeoJsonData = {
         "type": "FeatureCollection",
         "crs": {
             "type": "name",
@@ -153,7 +153,7 @@ app.io.on('connection', function(socket) {
         ]
     };
 
-    app.io.emit('roundOfGolfCoordinates', geoJsonData);
+    app.io.emit('roundOfGolfCoordinates', roundOfGolfGeoJsonData);
 });
 
 // routes ====================================================================

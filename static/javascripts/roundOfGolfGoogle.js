@@ -30,33 +30,27 @@ function init(){
     drawMap();
 
     /**
-     * Add an event listener
+     * Add zoom_changed event
      */
     map.addListener('zoom_changed', function(event) {
         resetMarkers();
     });
 
+    /**
+     * Add mousemove event
+     */
     map.addListener('mousemove', function (event) {
         displayCoordinates(event.latLng);
     });
-
-    function displayCoordinates(pnt) {
-        var coordsLabel = document.getElementById("mouse4326");
-        var lat = pnt.lat();
-        lat = lat.toFixed(4);
-        var lng = pnt.lng();
-        lng = lng.toFixed(4);
-        coordsLabel.innerHTML = "EPSG:4326: Latitude: " + lat + "  Longitude: " + lng;
-    }
 
     /**
      * Receive the data pushed from the server
      */
     var socket = io();
 
-    socket.on('roundOfGolfCoordinates', function(data){
+    socket.on('roundOfGolfCoordinates', function(roundOfGolfGeoJsonData){
 
-        myNewCoords = data;
+        myNewCoords = roundOfGolfGeoJsonData;
 
         // Delete old point markers
         pointMarkers = [];
@@ -211,6 +205,18 @@ function addCurveMarkers() {
         });
         curveMarkers.push(curveMarker);
     }
+}
+
+/**
+ * Mouse move coordinates routine
+ */
+function displayCoordinates(pnt) {
+    var coordsLabel = document.getElementById("mouse4326");
+    var lat = pnt.lat();
+    lat = lat.toFixed(4);
+    var lng = pnt.lng();
+    lng = lng.toFixed(4);
+    coordsLabel.innerHTML = "EPSG:4326: Latitude: " + lat + "  Longitude: " + lng;
 }
 
 /**
