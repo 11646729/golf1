@@ -114,6 +114,19 @@ function init() {
     google.maps.event.addListener(markerP1, 'position_changed', updateCurveMarker);
     google.maps.event.addListener(markerP2, 'position_changed', updateCurveMarker);
 
+    map.addListener('mousemove', function (event) {
+        displayCoordinates(event.latLng);
+    });
+
+    function displayCoordinates(pnt) {
+        var coordsLabel = document.getElementById("mouse4326");
+        var lat = pnt.lat();
+        lat = lat.toFixed(4);
+        var lng = pnt.lng();
+        lng = lng.toFixed(4);
+        coordsLabel.innerHTML = "EPSG:4326: Latitude: " + lat + "  Longitude: " + lng;
+    }
+
     var lineLength = google.maps.geometry.spherical.computeDistanceBetween(markerP1.getPosition(), markerP2.getPosition());
     var lineHeading = google.maps.geometry.spherical.computeHeading(markerP1.getPosition(), markerP2.getPosition());
 

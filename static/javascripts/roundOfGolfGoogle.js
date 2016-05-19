@@ -7,6 +7,7 @@
 var google = google || {};
 
 var pointMarkers = [];
+var straightLinePath = [];
 var curveMarkers = [];
 
 var map, myBounds, markersDisplayedFlag, myNewCoords;
@@ -31,7 +32,22 @@ function init(){
     /**
      * Add an event listener
      */
-    map.addListener('zoom_changed', resetMarkers);
+    map.addListener('zoom_changed', function(event) {
+        resetMarkers();
+    });
+
+    map.addListener('mousemove', function (event) {
+        displayCoordinates(event.latLng);
+    });
+
+    function displayCoordinates(pnt) {
+        var coordsLabel = document.getElementById("mouse4326");
+        var lat = pnt.lat();
+        lat = lat.toFixed(4);
+        var lng = pnt.lng();
+        lng = lng.toFixed(4);
+        coordsLabel.innerHTML = "EPSG:4326: Latitude: " + lat + "  Longitude: " + lng;
+    }
 
     /**
      * Receive the data pushed from the server
@@ -44,6 +60,7 @@ function init(){
 
         // Delete old point markers
         pointMarkers = [];
+        straightLinePath = [];
 
         /**
          * Calculate map bounds & fit map to bounds
@@ -61,7 +78,7 @@ function init(){
                 myBounds.extend(latLng);
 
                 /**
-                 * Save in an array of pointMarkers
+                 * Save points in an array of pointMarkers
                  */
                 var pointMarker = new google.maps.Marker({
                     position: latLng,
@@ -83,8 +100,25 @@ function init(){
 
             } else {
                 if (myNewCoords.features[i].geometry.type == 'LineString') {
+                    var coords10 = myNewCoords.features[i].geometry.coordinates;
+console.log(coords10);
+
+// straightLinePath
                     // Store in a linestring array
-                    console.log(i);
+
+                    //Here's an API v3 way of drawing a line.
+                    //This simply draws a straight line between two points.
+
+                    //var line = new google.maps.Polyline({
+                    //    path: [
+                    //        new google.maps.LatLng(54.625605, -5.683992),
+                    //        new google.maps.LatLng(54.623937, -5.683818)
+                    //    ],
+                    //    strokeColor: "#FF0000",
+                    //    strokeOpacity: 1.0,
+                    //    strokeWeight: 2,
+                    //    map: map
+                    //});
                 }
             }
         }
