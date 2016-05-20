@@ -12,3 +12,7 @@ In Terminal window within WebStorm type npm start
 
 Start Web Browser
 Open Chrome and browse to localhost:3000
+
+
+Format for GeoJSON is Longitude then Latitude : "coordinates": [ -5.683992, 54.625605 ]
+Format for Google maps: is Latitude then Longitude : new google.maps.LatLng(54.625605, -5.683992)

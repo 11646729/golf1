@@ -21,6 +21,9 @@ var app = require('express')(),
     util = require('./middleware/utilities'),
     passport = require('./passport');
 
+    // call socket.io to the app
+    app.io = require('socket.io')();
+
 //    rdb = require('rethinkdb'),
 //    golf = require('./routes/golfRethinkdbApi');
 //    config = require('config');
@@ -78,89 +81,11 @@ app.use(cors({
 // GZIP compression settings from https://blog.jscrambler.com/setting-up-5-useful-middlewares-for-an-express-api/
 app.use(compression());
 
-// call socket.io to the app
-app.io = require('socket.io')();
-
-//start listen with socket.io
-app.io.on('connection', function(socket) {
-    /**
-     * Round Of Golf contained in a GeoJSON variable
-     */
-    var roundOfGolfGeoJsonData = {
-        "type": "FeatureCollection",
-        "crs": {
-            "type": "name",
-            "properties": {
-                "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
-            }
-        },
-        "features": [
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [ -5.683992, 54.625605 ]
-                },
-                "properties": {
-                    "id": 1,
-                    "name": "Shot 1"
-                }
-            },
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [ -5.683818, 54.623937 ]
-                },
-                "properties": {
-                    "id": 2,
-                    "name": "Shot 2"
-                }
-            },
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [ -5.682997, 54.622981 ]
-                },
-                "properties": {
-                    "id": 3,
-                    "name": "Shot 3"
-                }
-            },
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "LineString",
-                    "coordinates": [[ -5.683992, 54.625605 ],[ -5.683818, 54.623937 ]]
-                },
-                "properties": {
-                    "name": "Driver",
-                    "distance": 207
-                }
-            },
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "LineString",
-                    "coordinates": [[ -5.683818, 54.623937 ],[ -5.682997, 54.622981 ]]
-                },
-                "properties": {
-                    "name": "8 Iron",
-                    "distance": 135
-                }
-            }
-        ]
-    };
-
-    app.io.emit('roundOfGolfCoordinates', roundOfGolfGeoJsonData);
-});
-
 // routes ====================================================================
 /**
  * This is the api for general functions
  */
-app.use('/', require('./routes/index'));
+app.use('/', require('./routes/index')(app.io));
 
 //app.use('/users', require('./routes/users'));
 

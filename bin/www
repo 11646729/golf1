@@ -26,8 +26,7 @@ server.on('listening', onListening);
 /**
  * Socket.io
  */
-var io = app.io;
-io.listen(server);
+app.io.listen(server);
 
 /**
  * Normalize a port into a number, string, or false.

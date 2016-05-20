@@ -13,9 +13,6 @@ var r = require('rethinkdb'),
 //    util = require('../middleware/utilities'),
 //    user = require('../passport/user');
 
-//NB Format for GeoJSON is Longitude then Latitude : "coordinates": [ -5.683992, 54.625605 ]
-//NB Format for Google maps: is Latitude then Longitude : new google.maps.LatLng(54.625605, -5.683992)
-
 var connection;
 
 /**
