@@ -21,8 +21,8 @@ var app = require('express')(),
     util = require('./middleware/utilities'),
     passport = require('./passport');
 
-    // call socket.io to the app
-    app.io = require('socket.io')();
+// call socket.io to the app
+app.io = require('socket.io')();
 
 //    rdb = require('rethinkdb'),
 //    golf = require('./routes/golfRethinkdbApi');
