@@ -30,7 +30,7 @@ var config = {
     },
     host: 'http://localhost:3000',
     rethinkdb: {
-        db: "golf",
+        db: 'golf_test',
         host: 'localhost',
         port: 28015
     },

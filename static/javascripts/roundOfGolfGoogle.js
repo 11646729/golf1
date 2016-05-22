@@ -61,12 +61,12 @@ function init(){
          */
         myBounds = new google.maps.LatLngBounds();
 
-        for (var i = 0; i < myNewCoords.features.length; i++) {
+        for (var i = 0; i < myNewCoords.length; i++) {
             /**
              * Only compute bounds using Points
              */
-            if (myNewCoords.features[i].geometry.type == 'Point'){
-                var coords = myNewCoords.features[i].geometry.coordinates;
+            if (myNewCoords[i].geometry.type == 'Point'){
+                var coords = myNewCoords[i].geometry.coordinates;
                 var latLng = new google.maps.LatLng(coords[1], coords[0]);
 
                 myBounds.extend(latLng);
@@ -78,7 +78,7 @@ function init(){
                     position: latLng,
                     map: map,
                     title: 'Test',
-                    visible: false,
+                    visible: true,
                     clickable: false,
                     icon: {
                         url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
@@ -93,8 +93,8 @@ function init(){
                 pointMarkers.push(pointMarker);
 
             } else {
-                if (myNewCoords.features[i].geometry.type == 'LineString') {
-                    var coords10 = myNewCoords.features[i].geometry.coordinates;
+                if (myNewCoords[i].geometry.type == 'LineString') {
+                    var coords10 = myNewCoords[i].geometry.coordinates;
 console.log(coords10);
 
 // straightLinePath
@@ -161,12 +161,12 @@ function addCurveMarkers() {
     // Delete old curve markers
     curveMarkers = [];
 
-    for (var i = 0; i < myNewCoords.features.length - 1; i++) {
+    for (var i = 0; i < myNewCoords.length - 1; i++) {
 
-        var coords = myNewCoords.features[i].geometry.coordinates;
+        var coords = myNewCoords[i].geometry.coordinates;
         var latLng = new google.maps.LatLng(coords[1],coords[0]);
 
-        var coords1 = myNewCoords.features[i+1].geometry.coordinates;
+        var coords1 = myNewCoords[i+1].geometry.coordinates;
         var latLng1 = new google.maps.LatLng(coords1[1],coords1[0]);
 
         var pos1 = latLng;

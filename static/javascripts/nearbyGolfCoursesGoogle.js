@@ -15,7 +15,11 @@ function init(){
     /**
      * Initialise flag
      */
-    markersDisplayedFlag = true;
+    markersDisplayedFlag = false;
+
+    /**
+     * Fetch data
+     */
 
     /**
      * Draw the map
@@ -72,7 +76,7 @@ function init(){
                 var pointMarker = new google.maps.Marker({
                     position: latLng,
                     map: map,
-                    visible: markersDisplayedFlag,
+                    visible: true,
                     clickable: false,
                     icon: {
                         url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
@@ -85,11 +89,20 @@ function init(){
 
                 // Add new point markers to array
                 pointMarkers.push(pointMarker);
-            }
-        }
 
+                console.log('1st');
+                console.log(pointMarkers.length);
+            }
+            console.log('2nd');
+            console.log(pointMarkers.length);
+        }
         map.fitBounds(myBounds);
+
+        showAllMarkers();
     });
+
+    console.log('3rd');
+    console.log(pointMarkers.length);
 }
 
 /**
@@ -101,7 +114,8 @@ function drawMap() {
      */
     var mapOptions = {
         mapTypeId: google.maps.MapTypeId.SATELLITE,
-        //zoom: 12,
+        center: {lat: 44.540, lng: -78.546},
+        zoom: 12,
         //minZoom: 6,
         zoomControl: true,
         zoomControlOptions: {
@@ -124,8 +138,6 @@ function drawMap() {
      * Draw Map to the bounds of the points plotted
      */
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
-    showAllMarkers();
 }
 
 /**
@@ -148,7 +160,6 @@ function showAllMarkers(){
      * Ignore if markers are already displayed
      */
     if (markersDisplayedFlag == false){
-
         if (pointMarkers.length > 0) {
             for (var i = 0; i < pointMarkers.length; i++) {
                 pointMarkers[i].visible = true;

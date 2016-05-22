@@ -103,7 +103,7 @@ module.exports = function(io) {
 
                 connection = conn;
 
-                r.db('golf').table('golfCourses').run(connection, function (err, cursor) {
+                r.db(config.rethinkdb.db).table('golfCourses').run(connection, function (err, cursor) {
                     cursor.toArray(function (err, nearbyGolfCoursesGeoJsonData) {
                         io.emit('nearbyGolfCoursesCoordinates', nearbyGolfCoursesGeoJsonData);
                     });
@@ -129,81 +129,107 @@ module.exports = function(io) {
      * Round of golf with Google Maps
      */
     router.get(config.routes.roundOfGolfGoogle, [util.requireAuthentication], function(req, res) {
+
         res.render('roundOfGolfGoogle.jade', {title: 'Round of Golf'});
 
-        io.on('connection', function() {
-            /**
-             * Round Of Golf contained in a GeoJSON variable
-             */
-            var roundOfGolfGeoJsonData = {
-                "type": "FeatureCollection",
-                "crs": {
-                    "type": "name",
-                    "properties": {
-                        "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
-                    }
-                },
-                "features": [
-                    {
-                        "type": "Feature",
-                        "geometry": {
-                            "type": "Point",
-                            "coordinates": [ -5.683992, 54.625605 ]
-                        },
-                        "properties": {
-                            "id": 1,
-                            "name": "Shot 1"
-                        }
-                    },
-                    {
-                        "type": "Feature",
-                        "geometry": {
-                            "type": "Point",
-                            "coordinates": [ -5.683818, 54.623937 ]
-                        },
-                        "properties": {
-                            "id": 2,
-                            "name": "Shot 2"
-                        }
-                    },
-                    {
-                        "type": "Feature",
-                        "geometry": {
-                            "type": "Point",
-                            "coordinates": [ -5.682997, 54.622981 ]
-                        },
-                        "properties": {
-                            "id": 3,
-                            "name": "Shot 3"
-                        }
-                    },
-                    {
-                        "type": "Feature",
-                        "geometry": {
-                            "type": "LineString",
-                            "coordinates": [[ -5.683992, 54.625605 ],[ -5.683818, 54.623937 ]]
-                        },
-                        "properties": {
-                            "name": "Driver",
-                            "distance": 207
-                        }
-                    },
-                    {
-                        "type": "Feature",
-                        "geometry": {
-                            "type": "LineString",
-                            "coordinates": [[ -5.683818, 54.623937 ],[ -5.682997, 54.622981 ]]
-                        },
-                        "properties": {
-                            "name": "8 Iron",
-                            "distance": 135
-                        }
-                    }
-                ]
-            };
+        io.on('connection', function () {
 
-            io.emit('roundOfGolfCoordinates', roundOfGolfGeoJsonData);
+            r.connect({host: config.rethinkdb.host, port: config.rethinkdb.port}, function (err, conn) {
+
+                if (err) {
+                    console.log("[ERROR] %s:%s \n%s", err.name, err.msg, err.message);
+                    res.send([]);
+                }
+
+                connection = conn;
+
+                r.db(config.rethinkdb.db).table('golfRound').run(connection, function (err, cursor) {
+                    cursor.toArray(function (err, roundOfGolfGeoJsonData) {
+                        io.emit('roundOfGolfCoordinates', roundOfGolfGeoJsonData);
+                    });
+                });
+
+                if(this.conn)
+                {
+                    this.conn.close();
+                    console.log('Database connection closed');
+                }
+            });
         });
+
+    //    io.on('connection', function() {
+    //        /**
+    //         * Round Of Golf contained in a GeoJSON variable
+    //         */
+    //        var roundOfGolfGeoJsonData = {
+    //            "type": "FeatureCollection",
+    //            "crs": {
+    //                "type": "name",
+    //                "properties": {
+    //                    "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    //                }
+    //            },
+    //            "features": [
+    //                {
+    //                    "type": "Feature",
+    //                    "geometry": {
+    //                        "type": "Point",
+    //                        "coordinates": [ -5.683992, 54.625605 ]
+    //                    },
+    //                    "properties": {
+    //                        "id": 1,
+    //                        "name": "Shot 1"
+    //                    }
+    //                },
+    //                {
+    //                    "type": "Feature",
+    //                    "geometry": {
+    //                        "type": "Point",
+    //                        "coordinates": [ -5.683818, 54.623937 ]
+    //                    },
+    //                    "properties": {
+    //                        "id": 2,
+    //                        "name": "Shot 2"
+    //                    }
+    //                },
+    //                {
+    //                    "type": "Feature",
+    //                    "geometry": {
+    //                        "type": "Point",
+    //                        "coordinates": [ -5.682997, 54.622981 ]
+    //                    },
+    //                    "properties": {
+    //                        "id": 3,
+    //                        "name": "Shot 3"
+    //                    }
+    //                },
+    //                {
+    //                    "type": "Feature",
+    //                    "geometry": {
+    //                        "type": "LineString",
+    //                        "coordinates": [[ -5.683992, 54.625605 ],[ -5.683818, 54.623937 ]]
+    //                    },
+    //                    "properties": {
+    //                        "name": "Driver",
+    //                        "distance": 207
+    //                    }
+    //                },
+    //                {
+    //                    "type": "Feature",
+    //                    "geometry": {
+    //                        "type": "LineString",
+    //                        "coordinates": [[ -5.683818, 54.623937 ],[ -5.682997, 54.622981 ]]
+    //                    },
+    //                    "properties": {
+    //                        "name": "8 Iron",
+    //                        "distance": 135
+    //                    }
+    //                }
+    //            ]
+    //        };
+    //
+    //        io.emit('roundOfGolfCoordinates', roundOfGolfGeoJsonData);
+    //    });
     });
 
     return router;
