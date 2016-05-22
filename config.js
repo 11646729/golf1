@@ -29,6 +29,11 @@ var config = {
         deleteMyRound: '/deleteMyRound'
     },
     host: 'http://localhost:3000',
+    rethinkdb: {
+        db: "golf",
+        host: 'localhost',
+        port: 28015
+    },
     facebook: {
         appID: '202694753422163',
         appSecret: 'a3ba090eedf476165bce3989cd4d47e8'

@@ -47,6 +47,8 @@ function init(){
 
         myNewCoords = nearbyGolfCoursesGeoJsonData;
 
+        console.log(myNewCoords);
+
         // Delete old point markers
         pointMarkers = [];
 
@@ -55,12 +57,17 @@ function init(){
          */
         myBounds = new google.maps.LatLngBounds();
 
-        for (var i = 0; i < myNewCoords.features.length; i++) {
+        for (var i = 0; i < myNewCoords.length; i++) {
             /**
              * Only compute bounds using Points
              */
-            if (myNewCoords.features[i].geometry.type == 'Point') {
-                var coords = myNewCoords.features[i].geometry.coordinates;
+            if (myNewCoords[i].geometry.type == 'Point') {
+
+//                    for (var i = 0; i < results.length; i++) {
+//                        console.log(results[i].geometry.coordinates);
+
+
+                var coords = myNewCoords[i].geometry.coordinates;
                 var latLng = new google.maps.LatLng(coords[1], coords[0]);
 
                 myBounds.extend(latLng);
