@@ -4,9 +4,7 @@
 
 // This line prevents Webstorm warnings from google
 var google = google || {};
-
 var pointMarkers = [];
-
 var map, myBounds, markersDisplayedFlag, myNewCoords;
 
 /**
@@ -17,7 +15,7 @@ function init(){
     /**
      * Initialise flag
      */
-    markersDisplayedFlag = false;
+    markersDisplayedFlag = true;
 
     /**
      * Draw the map
@@ -47,10 +45,10 @@ function init(){
 
         myNewCoords = nearbyGolfCoursesGeoJsonData;
 
-        console.log(myNewCoords);
+//        console.log(myNewCoords);
 
         // Delete old point markers
-        pointMarkers = [];
+//        pointMarkers = [];
 
         /**
          * Calculate map bounds & fit map to bounds
@@ -63,10 +61,6 @@ function init(){
              */
             if (myNewCoords[i].geometry.type == 'Point') {
 
-//                    for (var i = 0; i < results.length; i++) {
-//                        console.log(results[i].geometry.coordinates);
-
-
                 var coords = myNewCoords[i].geometry.coordinates;
                 var latLng = new google.maps.LatLng(coords[1], coords[0]);
 
@@ -78,8 +72,7 @@ function init(){
                 var pointMarker = new google.maps.Marker({
                     position: latLng,
                     map: map,
-                    title: 'Test',
-                    visible: false,
+                    visible: markersDisplayedFlag,
                     clickable: false,
                     icon: {
                         url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
@@ -108,8 +101,7 @@ function drawMap() {
      */
     var mapOptions = {
         mapTypeId: google.maps.MapTypeId.SATELLITE,
-        //center: {lat: 44.540, lng: -78.546},
-        zoom: 12,
+        //zoom: 12,
         //minZoom: 6,
         zoomControl: true,
         zoomControlOptions: {
@@ -132,6 +124,8 @@ function drawMap() {
      * Draw Map to the bounds of the points plotted
      */
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+    showAllMarkers();
 }
 
 /**
