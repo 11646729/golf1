@@ -13,6 +13,49 @@ var curveMarkers = [];
 var map, myBounds, markersDisplayedFlag, myNewCoords;
 var curvature; // how curvy to make the arc
 
+//var testRound = {
+//    "type": "FeatureCollection",
+//    "format": 2,
+//    "features": [
+//        {
+//            "type": "Feature",
+//            "geometry": {
+//                "type": "LineString",
+//                "coordinates": [[ -5.683992, 54.625605 ],[ -5.683818, 54.623937 ]]
+//            },
+//            "properties": {
+//                "id": 1,
+//                "player":{
+//                    "name": "Brian"
+//                },
+//                "shotNumber": 1,
+//                "date": "2012-04-23T18:25:43.511Z",
+//                "name": "Shot 1",
+//                "club": "Driver",
+//                "distance": 207
+//            }
+//        },
+//        {
+//            "type": "Feature",
+//            "geometry": {
+//                "type": "LineString",
+//                "coordinates": [[ -5.683818, 54.623937 ],[ -5.682997, 54.622981 ]]
+//            },
+//            "properties": {
+//                "id": 2,
+//                "player":{
+//                    "name": "Brian"
+//                },
+//                "shotNumber": 2,
+//                "date": "2012-04-23T18:25:43.511Z",
+//                "name": "Shot 2",
+//                "club": "8 Iron",
+//                "distance": 135
+//            }
+//        }
+//    ]
+//};
+
 /**
  * Initialization function
  */
@@ -52,29 +95,38 @@ function init(){
 
         myNewCoords = roundOfGolfGeoJsonData;
 
+//        myNewCoords = testRound;
+
         // Delete old point markers
         pointMarkers = [];
-        straightLinePath = [];
 
         /**
          * Calculate map bounds & fit map to bounds
          */
         myBounds = new google.maps.LatLngBounds();
 
-        for (var i = 0; i < myNewCoords.length; i++) {
+        var coords, coords1;
+        var latLng, latLng1;
+        var pointMarker, pointMarker1;
+
+        for (var i = 0; i < myNewCoords[0].features.length; i++) {
             /**
              * Only compute bounds using Points
              */
-            if (myNewCoords[i].geometry.type == 'Point'){
-                var coords = myNewCoords[i].geometry.coordinates;
-                var latLng = new google.maps.LatLng(coords[1], coords[0]);
+            if (myNewCoords[0].features[i].geometry.type == 'LineString'){
+                coords = myNewCoords[0].features[i].geometry.coordinates[0];
+                latLng = new google.maps.LatLng(coords[1], coords[0]);
+
+                coords1 = myNewCoords[0].features[i].geometry.coordinates[1];
+                latLng1 = new google.maps.LatLng(coords1[1], coords1[0]);
 
                 myBounds.extend(latLng);
+                myBounds.extend(latLng1);
 
                 /**
                  * Save points in an array of pointMarkers
                  */
-                var pointMarker = new google.maps.Marker({
+                pointMarker = new google.maps.Marker({
                     position: latLng,
                     map: map,
                     title: 'Test',
@@ -92,33 +144,50 @@ function init(){
                 // Add new point markers to array
                 pointMarkers.push(pointMarker);
 
-            } else {
-                if (myNewCoords[i].geometry.type == 'LineString') {
-                    var coords10 = myNewCoords[i].geometry.coordinates;
-console.log(coords10);
+                /**
+                 * Save points in an array of pointMarkers
+                 */
+                pointMarker1 = new google.maps.Marker({
+                    position: latLng1,
+                    map: map,
+                    title: 'Test',
+                    visible: true,
+                    clickable: false,
+                    icon: {
+                        url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
+                        size: new google.maps.Size(7, 7),
+                        anchor: new google.maps.Point(4, 4)
+                    }
+                    //label: "1",
+                    //draggable: true,
+                });
 
-// straightLinePath
-                    // Store in a linestring array
+                // Add new point markers to array
+                pointMarkers.push(pointMarker1);
 
-                    //Here's an API v3 way of drawing a line.
-                    //This simply draws a straight line between two points.
-
-                    //var line = new google.maps.Polyline({
-                    //    path: [
-                    //        new google.maps.LatLng(54.625605, -5.683992),
-                    //        new google.maps.LatLng(54.623937, -5.683818)
-                    //    ],
-                    //    strokeColor: "#FF0000",
-                    //    strokeOpacity: 1.0,
-                    //    strokeWeight: 2,
-                    //    map: map
-                    //});
-                }
+//                addCurveMarkers(latLng, latLng1);
             }
+
+            // straightLinePath
+            // Store in a linestring array
+
+            //Here's an API v3 way of drawing a line.
+            //This simply draws a straight line between two points.
+
+            //var line = new google.maps.Polyline({
+            //    path: [
+            //        new google.maps.LatLng(54.625605, -5.683992),
+            //        new google.maps.LatLng(54.623937, -5.683818)
+            //    ],
+            //    strokeColor: "#FF0000",
+            //    strokeOpacity: 1.0,
+            //    strokeWeight: 2,
+            //    map: map
+            //});
         }
 
         map.fitBounds(myBounds);
-    });
+    })
 }
 
 /**
@@ -157,24 +226,29 @@ function drawMap() {
 /**
  * Add the curve markers to the curveMarkers array
  */
-function addCurveMarkers() {
+function addCurveMarkers(latLng, latLng1) {
     // Delete old curve markers
     curveMarkers = [];
 
-    for (var i = 0; i < myNewCoords.length - 1; i++) {
+    for (var i = 0; i < myNewCoords.features.length; i++) {
 
-        var coords = myNewCoords[i].geometry.coordinates;
-        var latLng = new google.maps.LatLng(coords[1],coords[0]);
+        // BROKEN HERE
 
-        var coords1 = myNewCoords[i+1].geometry.coordinates;
-        var latLng1 = new google.maps.LatLng(coords1[1],coords1[0]);
+//        var coords = myNewCoords[i].geometry.coordinates;
+//        var latLng = new google.maps.LatLng(coords[1],coords[0]);
 
-        var pos1 = latLng;
-        var pos2 = latLng1;
+//        var coords1 = myNewCoords[i+1].geometry.coordinates;
+//        var latLng1 = new google.maps.LatLng(coords1[1],coords1[0]);
 
-        var projection = map.getProjection(),
-            p1 = projection.fromLatLngToPoint(pos1), // xy
-            p2 = projection.fromLatLngToPoint(pos2);
+//        var pos1 = latLng;
+//        var pos2 = latLng1;
+
+//        var projection = map.getProjection();
+//        var p1 = map.getProjection().fromLatLngToPoint(pos1); // xy
+//        var p2 = map.getProjection().fromLatLngToPoint(pos2);
+
+        var p1 = fromLatLngToPoint(latLng, map);
+        var p2 = fromLatLngToPoint(latLng1, map);
 
         // Calculate the arc.
         // To simplify the math, these points are all relative to p1:
@@ -205,6 +279,14 @@ function addCurveMarkers() {
         });
         curveMarkers.push(curveMarker);
     }
+}
+
+function fromLatLngToPoint(latLng, map) {
+    var topRight = map.getProjection().fromLatLngToPoint(map.getBounds().getNorthEast());
+    var bottomLeft = map.getProjection().fromLatLngToPoint(map.getBounds().getSouthWest());
+    var scale = Math.pow(2, map.getZoom());
+    var worldPoint = map.getProjection().fromLatLngToPoint(latLng);
+    return new google.maps.Point((worldPoint.x - bottomLeft.x) * scale, (worldPoint.y - topRight.y) * scale);
 }
 
 /**

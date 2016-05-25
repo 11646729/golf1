@@ -16,40 +16,6 @@ var r = require('rethinkdb'),
 var connection;
 
 /**
- * Fetch all nearby golf courses
- */
-router.get(config.routes.findMyRounds, function(req, res) {
-    r.connect({host: 'localhost', port: 28015}, function(err, conn){
-        if (err) throw err;
-
-        connection = conn;
-
-        console.log('Connected to database.');
-
-        r.db('golf').table('golfCourses').run(connection, function (err, cursor) {
-
-            cursor.toArray(function (err, results) {
-                if (err) {
-//                debug("[ERROR] %s:%s \n%s", err.name, err.msg, err.message);
-                    console.log("[ERROR] %s:%s \n%s", err.name, err.msg, err.message);
-                    res.send([]);
-                }
-                else {
-                  res.render("databaseTest.jade", {
-                      docs: results
-                  });
-
-                    // This sends the Json file to the client
-//                    res.json(results);
-//                    res.send(results);
-                }
-            });
-        });
-    })
-});
-
-
-/**
  * Fetch a round of golf by id
  */
 //router.get(config.routes.findMyRoundById, function(req, res) {

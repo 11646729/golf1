@@ -136,7 +136,7 @@ module.exports = function(io) {
 
                 connection = conn;
 
-                r.db(config.rethinkdb.db).table('golfRound').run(connection, function (err, cursor) {
+                r.db(config.rethinkdb.db).table('golfRound2').run(connection, function (err, cursor) {
                     cursor.toArray(function (err, roundOfGolfGeoJsonData) {
                         io.emit('roundOfGolfCoordinates', roundOfGolfGeoJsonData);
                     });
