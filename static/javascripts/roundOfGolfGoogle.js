@@ -13,49 +13,6 @@ var curveMarkers = [];
 var map, myBounds, markersDisplayedFlag, myNewCoords;
 var curvature; // how curvy to make the arc
 
-//var testRound = {
-//    "type": "FeatureCollection",
-//    "format": 2,
-//    "features": [
-//        {
-//            "type": "Feature",
-//            "geometry": {
-//                "type": "LineString",
-//                "coordinates": [[ -5.683992, 54.625605 ],[ -5.683818, 54.623937 ]]
-//            },
-//            "properties": {
-//                "id": 1,
-//                "player":{
-//                    "name": "Brian"
-//                },
-//                "shotNumber": 1,
-//                "date": "2012-04-23T18:25:43.511Z",
-//                "name": "Shot 1",
-//                "club": "Driver",
-//                "distance": 207
-//            }
-//        },
-//        {
-//            "type": "Feature",
-//            "geometry": {
-//                "type": "LineString",
-//                "coordinates": [[ -5.683818, 54.623937 ],[ -5.682997, 54.622981 ]]
-//            },
-//            "properties": {
-//                "id": 2,
-//                "player":{
-//                    "name": "Brian"
-//                },
-//                "shotNumber": 2,
-//                "date": "2012-04-23T18:25:43.511Z",
-//                "name": "Shot 2",
-//                "club": "8 Iron",
-//                "distance": 135
-//            }
-//        }
-//    ]
-//};
-
 /**
  * Initialization function
  */
@@ -91,11 +48,9 @@ function init(){
      */
     var socket = io();
 
-    socket.on('roundOfGolfCoordinates', function(roundOfGolfGeoJsonData){
+    socket.on('roundOfGolfCoordinates', function(roundOfGolfData){
 
-        myNewCoords = roundOfGolfGeoJsonData;
-
-//        myNewCoords = testRound;
+        myNewCoords = roundOfGolfData;
 
         // Delete old point markers
         pointMarkers = [];
