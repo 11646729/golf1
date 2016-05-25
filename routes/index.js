@@ -104,8 +104,8 @@ module.exports = function(io) {
                 connection = conn;
 
                 r.db(config.rethinkdb.db).table('golfCourses').run(connection, function (err, cursor) {
-                    cursor.toArray(function (err, nearbyGolfCoursesGeoJsonData) {
-                        io.emit('nearbyGolfCoursesCoordinates', nearbyGolfCoursesGeoJsonData);
+                    cursor.toArray(function (err, nearbyGolfCoursesData) {
+                        io.emit('nearbyGolfCoursesCoordinates', nearbyGolfCoursesData);
                     });
                 });
 

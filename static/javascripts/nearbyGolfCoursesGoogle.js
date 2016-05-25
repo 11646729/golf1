@@ -45,9 +45,9 @@ function init(){
      */
     var socket = io();
 
-    socket.on('nearbyGolfCoursesCoordinates', function(nearbyGolfCoursesGeoJsonData){
+    socket.on('nearbyGolfCoursesCoordinates', function(nearbyGolfCoursesData){
 
-        myNewCoords = nearbyGolfCoursesGeoJsonData;
+        myNewCoords = nearbyGolfCoursesData;
 
 //        console.log(myNewCoords);
 
