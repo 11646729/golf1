@@ -49,7 +49,7 @@ function init(){
 
         myNewCoords = nearbyGolfCoursesData;
 
-//        console.log(myNewCoords);
+        console.log(myNewCoords);
 
         // Delete old point markers
 //        pointMarkers = [];
@@ -59,13 +59,13 @@ function init(){
          */
         myBounds = new google.maps.LatLngBounds();
 
-        for (var i = 0; i < myNewCoords.length; i++) {
+        for (var i = 0; i < myNewCoords[0].features.length; i++) {
             /**
              * Only compute bounds using Points
              */
-            if (myNewCoords[i].geometry.type == 'Point') {
+            if (myNewCoords[0].features[i].geometry.type == 'Point') {
 
-                var coords = myNewCoords[i].geometry.coordinates;
+                var coords = myNewCoords[0].features[i].geometry.coordinates;
                 var latLng = new google.maps.LatLng(coords[1], coords[0]);
 
                 myBounds.extend(latLng);
@@ -89,20 +89,12 @@ function init(){
 
                 // Add new point markers to array
                 pointMarkers.push(pointMarker);
-
-                console.log('1st');
-                console.log(pointMarkers.length);
             }
-            console.log('2nd');
-            console.log(pointMarkers.length);
         }
         map.fitBounds(myBounds);
 
         showAllMarkers();
     });
-
-    console.log('3rd');
-    console.log(pointMarkers.length);
 }
 
 /**
