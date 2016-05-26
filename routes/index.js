@@ -86,7 +86,7 @@ module.exports = function(io) {
     });
 
     /*
-     * Nearby golf courses - data from the database
+     * Nearby golf courses with Google Maps
      */
     router.get(config.routes.nearbyGolfCourses, [util.requireAuthentication], function(req, res) {
 
