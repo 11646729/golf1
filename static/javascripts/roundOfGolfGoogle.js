@@ -7,11 +7,13 @@
 var google = google || {};
 
 var pointMarkers = [];
-var straightLinePath = [];
 var curveMarkers = [];
+//var straightLinePath = [];
 
 var map, myBounds, markersDisplayedFlag, myNewCoords;
 var curvature; // how curvy to make the arc
+
+var coords, coords1, latLng, latLng1, pointMarker, pointMarker1;
 
 /**
  * Initialization function
@@ -60,10 +62,6 @@ function init(){
          */
         myBounds = new google.maps.LatLngBounds();
 
-        var coords, coords1;
-        var latLng, latLng1;
-        var pointMarker, pointMarker1;
-
         for (var i = 0; i < myNewCoords[0].features.length; i++) {
             /**
              * Only compute bounds using Points
@@ -84,8 +82,7 @@ function init(){
                 pointMarker = new google.maps.Marker({
                     position: latLng,
                     map: map,
-                    title: 'Test',
-                    visible: true,
+                    visible: false,
                     clickable: false,
                     icon: {
                         url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
@@ -105,8 +102,7 @@ function init(){
                 pointMarker1 = new google.maps.Marker({
                     position: latLng1,
                     map: map,
-                    title: 'Test',
-                    visible: true,
+                    visible: false,
                     clickable: false,
                     icon: {
                         url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
@@ -142,7 +138,9 @@ function init(){
         }
 
         map.fitBounds(myBounds);
-    })
+
+        showAllMarkers();
+    });
 }
 
 /**
@@ -272,7 +270,7 @@ function showAllMarkers(){
             }
         }
 
-        addCurveMarkers();
+//        addCurveMarkers();
         if (curveMarkers.length > 0) {
             for (var j = 0; j < curveMarkers.length; j++) {
                 curveMarkers[j].visible = true;

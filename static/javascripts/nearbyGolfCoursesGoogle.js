@@ -49,10 +49,8 @@ function init(){
 
         myNewCoords = nearbyGolfCoursesData;
 
-        console.log(myNewCoords);
-
-        // Delete old point markers
-//        pointMarkers = [];
+        // Delete old point markers - just in case !!
+        pointMarkers = [];
 
         /**
          * Calculate map bounds & fit map to bounds
@@ -76,7 +74,7 @@ function init(){
                 var pointMarker = new google.maps.Marker({
                     position: latLng,
                     map: map,
-                    visible: true,
+                    visible: false,
                     clickable: false,
                     icon: {
                         url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
@@ -93,6 +91,7 @@ function init(){
         }
         map.fitBounds(myBounds);
 
+        // Now show all markers
         showAllMarkers();
     });
 }
