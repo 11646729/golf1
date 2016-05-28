@@ -5,17 +5,12 @@
 // This line prevents Webstorm warnings from google
 var google = google || {};
 var markers = [];
-var map, myBounds, markersDisplayedFlag;
+var map, myBounds;
 
 /**
  * Initialization function
  */
 function init(){
-    /**
-     * Initialise flag
-     */
-    markersDisplayedFlag = false;
-
     /**
      * Options for map
      */
@@ -91,8 +86,9 @@ $(document).ready(function(){
                 var marker = new google.maps.Marker({
                     position: latLng,
                     map: map,
-                    visible: false,
+                    visible: true,
                     clickable: false,
+                    //animation: google.maps.Animation.DROP,
                     icon: {
                         url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
                         size: new google.maps.Size(7, 7),
@@ -109,7 +105,7 @@ $(document).ready(function(){
         map.fitBounds(myBounds);
 
         // Now show all markers
-        showAllMarkers();
+        showMarkers();
     });
 });
 
@@ -125,56 +121,42 @@ function displayCoordinates(pnt) {
     coordsLabel.innerHTML = "EPSG:4326: Latitude: " + lat + "  Longitude: " + lng;
 }
 
+// Sets the map on all markers in the array.
+function setMapOnAll(map) {
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(map);
+    }
+
+    console.log('Here I am in setMapOnAll(map)');
+}
+
 /**
  * Show all the markers on the map
  */
-function showAllMarkers(){
-    /**
-     * Ignore if markers are already displayed
-     */
-    if (markersDisplayedFlag == false){
-        if (markers.length > 0) {
-            for (var i = 0; i < markers.length; i++) {
-                markers[i].visible = true;
-                markers[i].setMap(map);
-            }
-        }
-        markersDisplayedFlag = true;
-    }
+function showMarkers(){
+    setMapOnAll(map);
 }
 
 /**
  * Hide all the markers
  */
-function hideAllMarkers(){
-    /**
-     * Ignore user pressing hide points if nothing is displayed
-     */
-    if (markersDisplayedFlag == true) {
-        if (markers.length > 0) {
-            for (var i = 0; i < markers.length; i++) {
-                markers[i].visible = false;
-                markers[i].setMap(map);
-            }
-        }
-        markersDisplayedFlag = false;
-    }
+function hideMarkers(){
+    setMapOnAll(null);
 }
 
 function resetMarkers(){
     /**
      * If markers are displayed then hide points & recalculate them
      */
-    if (markersDisplayedFlag == true){
-
-        if (markers.length > 0){
-            for (var i = 0; i < markers.length; i++) {
-                markers[i].visible = false;
-                markers[i].setMap(map);
-            }
-        }
-        showAllMarkers();
-    }
+//    if (markersDisplayedFlag == true){
+//        if (markers.length > 0){
+//            for (var i = 0; i < markers.length; i++) {
+//                markers[i].visible = false;
+//                markers[i].setMap(map);
+//            }
+//        }
+//        showMarkers();
+//    }
 }
 
 //// In the following example, markers appear when the user clicks on the map.
