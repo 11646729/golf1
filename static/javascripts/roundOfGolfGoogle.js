@@ -50,9 +50,7 @@ function init(){
      */
     var socket = io();
 
-    socket.on('roundOfGolfCoordinates', function(roundOfGolfData){
-
-        myNewCoords = roundOfGolfData;
+    socket.on('roundOfGolfCoordinates', function(myNewCoords){
 
         // Delete old point markers
         pointMarkers = [];
