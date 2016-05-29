@@ -1,7 +1,6 @@
 /**
  * Created by briansmith on 20/05/2016.
  */
-
 // This line prevents Webstorm warnings from google
 var google = google || {};
 var markers = [];
@@ -63,13 +62,22 @@ $(document).ready(function(){
 
         console.log('Here I am in $(document).ready');
 
-        // Delete old point markers - just in case !!
-        markers = [];
+//        markers = fillMarkersArray(myNewCoords);
 
         /**
          * Calculate map bounds & fit map to bounds
          */
         myBounds = new google.maps.LatLngBounds();
+
+        //function myFunction(value1,value2,value3)
+        //{
+        //    var returnedArray = [];
+        //    returnedArray.push(value1);
+        //    returnedArray.push(value2);
+        //    return returnedArray;
+        //}
+        //
+        //var returnValue = myFunction("1",value2,value3);
 
         for (var i = 0; i < myNewCoords[0].features.length; i++) {
             /**
@@ -88,14 +96,12 @@ $(document).ready(function(){
                 var marker = new google.maps.Marker({
                     position: latLng,
                     map: map,
-                    visible: true,
-                    clickable: false,
-                    animation: google.maps.Animation.DROP,
-                    icon: {
-                        url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
-                        size: new google.maps.Size(7, 7),
-                        anchor: new google.maps.Point(4, 4)
-                    }
+                    visible: true
+//                    icon: {
+//                        url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
+//                        size: new google.maps.Size(7, 7),
+//                        anchor: new google.maps.Point(4, 4)
+//                    }
                     //label: "1",
                     //draggable: true,
                 });
@@ -104,12 +110,19 @@ $(document).ready(function(){
                 markers.push(marker);
             }
         }
+
         map.fitBounds(myBounds);
 
         // Now show all markers
         showMarkers();
     });
 });
+
+function fillMarkersArray(myNewCoords){
+    var tempMarkers = [];
+
+    return tempMarkers
+}
 
 /**
  * Display coordinates when mouse is moved
