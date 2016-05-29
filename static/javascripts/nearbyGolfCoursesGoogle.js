@@ -45,7 +45,7 @@ function init(){
      * Add Events
      */
     map.addListener('zoom_changed', function(event) {
-        resetMarkers();
+        showMarkers();
     });
     map.addListener('mousemove', function (event) {
         displayCoordinates(event.latLng);
@@ -60,6 +60,8 @@ var socket = io();
 $(document).ready(function(){
 
     socket.on('nearbyGolfCoursesCoordinates', function(myNewCoords){
+
+        console.log('Here I am in $(document).ready');
 
         // Delete old point markers - just in case !!
         markers = [];
@@ -88,7 +90,7 @@ $(document).ready(function(){
                     map: map,
                     visible: true,
                     clickable: false,
-                    //animation: google.maps.Animation.DROP,
+                    animation: google.maps.Animation.DROP,
                     icon: {
                         url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
                         size: new google.maps.Size(7, 7),
@@ -110,7 +112,7 @@ $(document).ready(function(){
 });
 
 /**
- * Mouse move coordinates routine
+ * Display coordinates when mouse is moved
  */
 function displayCoordinates(pnt) {
     var coordsLabel = document.getElementById("mouse4326");
@@ -121,17 +123,17 @@ function displayCoordinates(pnt) {
     coordsLabel.innerHTML = "EPSG:4326: Latitude: " + lat + "  Longitude: " + lng;
 }
 
-// Sets the map on all markers in the array.
+/**
+ * Sets all markers on the the map
+ */
 function setMapOnAll(map) {
     for (var i = 0; i < markers.length; i++) {
         markers[i].setMap(map);
     }
-
-    console.log('Here I am in setMapOnAll(map)');
 }
 
 /**
- * Show all the markers on the map
+ * Show all the markers
  */
 function showMarkers(){
     setMapOnAll(map);
@@ -143,74 +145,3 @@ function showMarkers(){
 function hideMarkers(){
     setMapOnAll(null);
 }
-
-function resetMarkers(){
-    /**
-     * If markers are displayed then hide points & recalculate them
-     */
-//    if (markersDisplayedFlag == true){
-//        if (markers.length > 0){
-//            for (var i = 0; i < markers.length; i++) {
-//                markers[i].visible = false;
-//                markers[i].setMap(map);
-//            }
-//        }
-//        showMarkers();
-//    }
-}
-
-//// In the following example, markers appear when the user clicks on the map.
-//// The markers are stored in an array.
-//// The user can then click an option to hide, show or delete the markers.
-//var map;
-//var markers = [];
-//
-//function initMap() {
-//    var haightAshbury = {lat: 37.769, lng: -122.446};
-//
-//    map = new google.maps.Map(document.getElementById('map'), {
-//        zoom: 12,
-//        center: haightAshbury,
-//        mapTypeId: google.maps.MapTypeId.TERRAIN
-//    });
-//
-//    // This event listener will call addMarker() when the map is clicked.
-//    map.addListener('click', function(event) {
-//        addMarker(event.latLng);
-//    });
-//
-//    // Adds a marker at the center of the map.
-//    addMarker(haightAshbury);
-//}
-//
-//// Adds a marker to the map and push to the array.
-//function addMarker(location) {
-//    var marker = new google.maps.Marker({
-//        position: location,
-//        map: map
-//    });
-//    markers.push(marker);
-//}
-//
-//// Sets the map on all markers in the array.
-//function setMapOnAll(map) {
-//    for (var i = 0; i < markers.length; i++) {
-//        markers[i].setMap(map);
-//    }
-//}
-//
-//// Removes the markers from the map, but keeps them in the array.
-//function clearMarkers() {
-//    setMapOnAll(null);
-//}
-//
-//// Shows any markers currently in the array.
-//function showMarkers() {
-//    setMapOnAll(map);
-//}
-//
-//// Deletes all markers in the array by removing references to them.
-//function deleteMarkers() {
-//    clearMarkers();
-//    markers = [];
-//}
