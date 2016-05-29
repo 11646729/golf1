@@ -72,39 +72,37 @@ $(document).ready(function(){
 
         //myBounds = fillMarkersArray(myNewCoords);
 
+        //function fillMarkersArray(myNewCoords){
+        //    var tempMarkers = [];
 
+        //    return tempMarkers
+        //}
 
         /**
-         * Calculate map bounds & fit map to bounds
+         * Calculate map bounds & fit map to bounds using Points
          */
         myBounds = new google.maps.LatLngBounds();
 
         for (var j = 0; j < myNewCoords[0].features.length; j++) {
-            var coordsj = myNewCoords[0].features[j].geometry.coordinates;
-            var latLngj = new google.maps.LatLng(coordsj[1], coordsj[0]);
-
-            myBounds.extend(latLngj);
+            if (myNewCoords[0].features[j].geometry.type == 'Point') {
+                var coordsj = myNewCoords[0].features[j].geometry.coordinates;
+                myBounds.extend(new google.maps.LatLng(coordsj[1], coordsj[0]));
+            }
         }
 
         map.fitBounds(myBounds);
 
 
-
-
+        /**
+         * Create markers using Points & store in markers array
+         */
         for (var i = 0; i < myNewCoords[0].features.length; i++) {
-            /**
-             * Only compute bounds using Points
-             */
             if (myNewCoords[0].features[i].geometry.type == 'Point') {
 
                 var coords = myNewCoords[0].features[i].geometry.coordinates;
-                var latLng = new google.maps.LatLng(coords[1], coords[0]);
 
-                /**
-                 * Save points in an array of pointMarkers
-                 */
                 var marker = new google.maps.Marker({
-                    position: latLng,
+                    position: new google.maps.LatLng(coords[1], coords[0]),
                     map: map,
                     visible: true,
                     icon: {
@@ -116,7 +114,6 @@ $(document).ready(function(){
                     //draggable: true,
                 });
 
-                // Add new point markers to array
                 markers.push(marker);
             }
         }
@@ -125,12 +122,6 @@ $(document).ready(function(){
         showMarkers();
     });
 });
-
-//function fillMarkersArray(myNewCoords){
-//    var tempMarkers = [];
-
-//    return tempMarkers
-//}
 
 /**
  * Display coordinates when mouse is moved
