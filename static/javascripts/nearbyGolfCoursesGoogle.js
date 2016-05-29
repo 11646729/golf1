@@ -60,15 +60,6 @@ $(document).ready(function(){
 
     socket.on('nearbyGolfCoursesCoordinates', function(myNewCoords){
 
-        console.log('Here I am in $(document).ready');
-
-//        markers = fillMarkersArray(myNewCoords);
-
-        /**
-         * Calculate map bounds & fit map to bounds
-         */
-        myBounds = new google.maps.LatLngBounds();
-
         //function myFunction(value1,value2,value3)
         //{
         //    var returnedArray = [];
@@ -79,6 +70,27 @@ $(document).ready(function(){
         //
         //var returnValue = myFunction("1",value2,value3);
 
+        //myBounds = fillMarkersArray(myNewCoords);
+
+
+
+        /**
+         * Calculate map bounds & fit map to bounds
+         */
+        myBounds = new google.maps.LatLngBounds();
+
+        for (var j = 0; j < myNewCoords[0].features.length; j++) {
+            var coordsj = myNewCoords[0].features[j].geometry.coordinates;
+            var latLngj = new google.maps.LatLng(coordsj[1], coordsj[0]);
+
+            myBounds.extend(latLngj);
+        }
+
+        map.fitBounds(myBounds);
+
+
+
+
         for (var i = 0; i < myNewCoords[0].features.length; i++) {
             /**
              * Only compute bounds using Points
@@ -88,20 +100,18 @@ $(document).ready(function(){
                 var coords = myNewCoords[0].features[i].geometry.coordinates;
                 var latLng = new google.maps.LatLng(coords[1], coords[0]);
 
-                myBounds.extend(latLng);
-
                 /**
                  * Save points in an array of pointMarkers
                  */
                 var marker = new google.maps.Marker({
                     position: latLng,
                     map: map,
-                    visible: true
-//                    icon: {
-//                        url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
-//                        size: new google.maps.Size(7, 7),
-//                        anchor: new google.maps.Point(4, 4)
-//                    }
+                    visible: true,
+                    icon: {
+                        url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
+                        size: new google.maps.Size(7, 7),
+                        anchor: new google.maps.Point(4, 4)
+                    }
                     //label: "1",
                     //draggable: true,
                 });
@@ -111,18 +121,16 @@ $(document).ready(function(){
             }
         }
 
-        map.fitBounds(myBounds);
-
         // Now show all markers
         showMarkers();
     });
 });
 
-function fillMarkersArray(myNewCoords){
-    var tempMarkers = [];
+//function fillMarkersArray(myNewCoords){
+//    var tempMarkers = [];
 
-    return tempMarkers
-}
+//    return tempMarkers
+//}
 
 /**
  * Display coordinates when mouse is moved
