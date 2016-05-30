@@ -83,9 +83,12 @@ function init(){
                     visible: false,
                     clickable: false,
                     icon: {
-                        url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
-                        size: new google.maps.Size(7, 7),
-                        anchor: new google.maps.Point(4, 4)
+                        path: google.maps.SymbolPath.CIRCLE,
+                        scale: 4,
+                        fillColor: 'red',
+                        fillOpacity: 0.6,
+                        strokeColor: 'white',
+                        strokeWeight: 2
                     }
                     //label: "1",
                     //draggable: true,
@@ -103,9 +106,12 @@ function init(){
                     visible: false,
                     clickable: false,
                     icon: {
-                        url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
-                        size: new google.maps.Size(7, 7),
-                        anchor: new google.maps.Point(4, 4)
+                        path: google.maps.SymbolPath.CIRCLE,
+                        scale: 4,
+                        fillColor: 'red',
+                        fillOpacity: 0.8,
+                        strokeColor: 'white',
+                        strokeWeight: 2
                     }
                     //label: "1",
                     //draggable: true,

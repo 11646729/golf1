@@ -4,7 +4,7 @@
 // This line prevents Webstorm warnings from google
 var google = google || {};
 var markers = [];
-var map, myBounds;
+var map, myBounds, model;
 
 /**
  * Initialization function
@@ -44,6 +44,7 @@ function init(){
      * Add Events
      */
     map.addListener('zoom_changed', function(event) {
+//        updateMarkersArray(model);
         showMarkers();
     });
     map.addListener('mousemove', function (event) {
@@ -60,11 +61,14 @@ $(document).ready(function(){
 
     socket.on('loadNearbyGolfCoursesData', function(myNewCoords){
 
+        // Model for MVC
+        model = myNewCoords;
+
         // Calculate the map bounds to fit the data
-        map.fitBounds(calculateBounds(myNewCoords));
+        map.fitBounds(calculateBounds(model));
 
         // Update the markers array from myNewCoords
-        updateMarkersArray(myNewCoords);
+        updateMarkersArray(model);
 
         // Now show the markers on the map
         showMarkers();
@@ -81,12 +85,12 @@ $(document).ready(function(){
 /**
  * Calculate map bounds & fit map to bounds using Points
  */
-function calculateBounds(myNewCoords){
+function calculateBounds(model){
     myBounds = new google.maps.LatLngBounds();
 
-    for (var j = 0; j < myNewCoords[0].features.length; j++) {
-        if (myNewCoords[0].features[j].geometry.type == 'Point') {
-            var coordsj = myNewCoords[0].features[j].geometry.coordinates;
+    for (var j = 0; j < model[0].features.length; j++) {
+        if (model[0].features[j].geometry.type == 'Point') {
+            var coordsj = model[0].features[j].geometry.coordinates;
             myBounds.extend(new google.maps.LatLng(coordsj[1], coordsj[0]));
         }
     }
@@ -104,11 +108,11 @@ function calculateBounds(myNewCoords){
 /**
  * Create markers using Points & store in markers array
  */
-function updateMarkersArray(myNewCoords){
-    for (var i = 0; i < myNewCoords[0].features.length; i++) {
-        if (myNewCoords[0].features[i].geometry.type == 'Point') {
+function updateMarkersArray(model){
+    for (var i = 0; i < model[0].features.length; i++) {
+        if (model[0].features[i].geometry.type == 'Point') {
 
-            var coords = myNewCoords[0].features[i].geometry.coordinates;
+            var coords = model[0].features[i].geometry.coordinates;
 
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(coords[1], coords[0]),
@@ -116,9 +120,9 @@ function updateMarkersArray(myNewCoords){
                 visible: true,
                 icon: {
                     path: google.maps.SymbolPath.CIRCLE,
-                    scale: 5,
+                    scale: 4,
                     fillColor: 'red',
-                    fillOpacity: 0.8,
+                    fillOpacity: 0.6,
                     strokeColor: 'white',
                     strokeWeight: 2
                 }
