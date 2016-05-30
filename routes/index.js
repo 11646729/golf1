@@ -86,7 +86,7 @@ module.exports = function(io) {
     });
 
     /*
-     * Nearby golf courses with Google Maps
+     * Get initial values of Nearby Golf Courses data
      */
     router.get(config.routes.nearbyGolfCourses, [util.requireAuthentication], function(req, res) {
 
@@ -103,9 +103,9 @@ module.exports = function(io) {
 
                 connection = conn;
 
-                r.db(config.rethinkdb.db).table('nearbyGolfCourses').run(connection, function (err, cursor) {
+                r.db(config.rethinkdb.db).table(config.rethinkdb.tables.nearbyGolfCourses).run(connection, function (err, cursor) {
                     cursor.toArray(function (err, nearbyGolfCoursesData) {
-                        io.emit('nearbyGolfCoursesCoordinates', nearbyGolfCoursesData);
+                        io.emit('loadNearbyGolfCoursesData', nearbyGolfCoursesData);
                     });
                 });
 
@@ -118,8 +118,14 @@ module.exports = function(io) {
         });
     });
 
+    /**
+     * TODO
+     * Get update values of Nearby Golf Courses
+     */
+
+
     /*
-     * Round of golf with Google Maps
+     * Get initial values of Round Of Golf with Google Maps
      */
     router.get(config.routes.roundOfGolfGoogle, [util.requireAuthentication], function(req, res) {
 
@@ -136,7 +142,7 @@ module.exports = function(io) {
 
                 connection = conn;
 
-                r.db(config.rethinkdb.db).table('roundOfGolfData2').run(connection, function (err, cursor) {
+                r.db(config.rethinkdb.db).table(config.rethinkdb.tables.roundOfGolf).run(connection, function (err, cursor) {
                     cursor.toArray(function (err, roundOfGolfData) {
                         io.emit('roundOfGolfCoordinates', roundOfGolfData);
                     });
@@ -149,6 +155,11 @@ module.exports = function(io) {
             });
         });
     });
+
+    /**
+     * TODO
+     * Get update values of Round Of Golf with Google Maps
+     */
 
     /*
      * Round of golf with OpenLayers using Bing Maps

@@ -52,76 +52,73 @@ function init(){
 }
 
 /**
- * Receive the data pushed from the server
+ * Receive the initial data pushed from the server
  */
 var socket = io();
 
 $(document).ready(function(){
 
-    socket.on('nearbyGolfCoursesCoordinates', function(myNewCoords){
+    socket.on('loadNearbyGolfCoursesData', function(myNewCoords){
 
-        //function myFunction(value1,value2,value3)
-        //{
-        //    var returnedArray = [];
-        //    returnedArray.push(value1);
-        //    returnedArray.push(value2);
-        //    return returnedArray;
-        //}
-        //
-        //var returnValue = myFunction("1",value2,value3);
+        // Calculate the map bounds to fit the data
+        map.fitBounds(calculateBounds(myNewCoords));
 
-        //myBounds = fillMarkersArray(myNewCoords);
+        // Update the markers array from myNewCoords
+        updateMarkersArray(myNewCoords);
 
-        //function fillMarkersArray(myNewCoords){
-        //    var tempMarkers = [];
-
-        //    return tempMarkers
-        //}
-
-        /**
-         * Calculate map bounds & fit map to bounds using Points
-         */
-        myBounds = new google.maps.LatLngBounds();
-
-        for (var j = 0; j < myNewCoords[0].features.length; j++) {
-            if (myNewCoords[0].features[j].geometry.type == 'Point') {
-                var coordsj = myNewCoords[0].features[j].geometry.coordinates;
-                myBounds.extend(new google.maps.LatLng(coordsj[1], coordsj[0]));
-            }
-        }
-
-        map.fitBounds(myBounds);
-
-
-        /**
-         * Create markers using Points & store in markers array
-         */
-        for (var i = 0; i < myNewCoords[0].features.length; i++) {
-            if (myNewCoords[0].features[i].geometry.type == 'Point') {
-
-                var coords = myNewCoords[0].features[i].geometry.coordinates;
-
-                var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(coords[1], coords[0]),
-                    map: map,
-                    visible: true,
-                    icon: {
-                        url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
-                        size: new google.maps.Size(7, 7),
-                        anchor: new google.maps.Point(4, 4)
-                    }
-                    //label: "1",
-                    //draggable: true,
-                });
-
-                markers.push(marker);
-            }
-        }
-
-        // Now show all markers
+        // Now show the markers on the map
         showMarkers();
     });
+
+    /**
+     * TODO
+     */
+    socket.on('updateNearbyGolfCoursesData', function(updateCoords){
+
+    })
 });
+
+/**
+ * Calculate map bounds & fit map to bounds using Points
+ */
+function calculateBounds(myNewCoords){
+    myBounds = new google.maps.LatLngBounds();
+
+    for (var j = 0; j < myNewCoords[0].features.length; j++) {
+        if (myNewCoords[0].features[j].geometry.type == 'Point') {
+            var coordsj = myNewCoords[0].features[j].geometry.coordinates;
+            myBounds.extend(new google.maps.LatLng(coordsj[1], coordsj[0]));
+        }
+    }
+    return myBounds
+}
+
+/**
+ * Create markers using Points & store in markers array
+ */
+function updateMarkersArray(myNewCoords){
+    for (var i = 0; i < myNewCoords[0].features.length; i++) {
+        if (myNewCoords[0].features[i].geometry.type == 'Point') {
+
+            var coords = myNewCoords[0].features[i].geometry.coordinates;
+
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(coords[1], coords[0]),
+                map: map,
+                visible: true,
+                icon: {
+                    url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
+                    size: new google.maps.Size(7, 7),
+                    anchor: new google.maps.Point(4, 4)
+                }
+                //label: "1",
+                //draggable: true,
+            });
+
+            markers.push(marker);
+        }
+    }
+}
 
 /**
  * Display coordinates when mouse is moved

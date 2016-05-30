@@ -30,9 +30,13 @@ var config = {
     },
     host: 'http://localhost:3000',
     rethinkdb: {
-        db: 'golf_test',
         host: 'localhost',
-        port: 28015
+        port: 28015,
+        db: 'golf_test',
+        tables: {
+            nearbyGolfCourses: 'nearbyGolfCourses',
+            roundOfGolf: 'roundOfGolfData2'
+        }
     },
     facebook: {
         appID: '202694753422163',
