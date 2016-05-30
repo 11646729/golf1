@@ -93,6 +93,14 @@ function calculateBounds(myNewCoords){
     return myBounds
 }
 
+//var featureName = 'name';
+//var phoneNumber = 'phoneNumber';
+//var contentString = '<p>You clicked here :</p><code>' + featureName + '<br />' + phoneNumber + '</code>';
+//
+//var infowindow = new google.maps.InfoWindow({
+//    content: contentString
+//});
+
 /**
  * Create markers using Points & store in markers array
  */
@@ -107,13 +115,20 @@ function updateMarkersArray(myNewCoords){
                 map: map,
                 visible: true,
                 icon: {
-                    url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
-                    size: new google.maps.Size(7, 7),
-                    anchor: new google.maps.Point(4, 4)
+                    path: google.maps.SymbolPath.CIRCLE,
+                    scale: 5,
+                    fillColor: 'red',
+                    fillOpacity: 0.8,
+                    strokeColor: 'white',
+                    strokeWeight: 2
                 }
                 //label: "1",
                 //draggable: true,
             });
+
+            //marker.addListener('click', function() {
+            //    infowindow.open(map, marker);
+            //});
 
             markers.push(marker);
         }
