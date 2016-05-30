@@ -8,9 +8,7 @@ var google = google || {};
 
 var pointMarkers = [];
 var curveMarkers = [];
-//var straightLinePath = [];
-
-var map, myBounds, markersDisplayedFlag, myNewCoords;
+var map, myBounds, model;
 var curvature; // how curvy to make the arc
 
 var coords, coords1, latLng, latLng1, pointMarker, pointMarker1;
@@ -18,139 +16,13 @@ var coords, coords1, latLng, latLng1, pointMarker, pointMarker1;
 /**
  * Initialization function
  */
-function init(){
-
+function init() {
     /**
      * Initialise flag
      */
-    markersDisplayedFlag = false;
+//    markersDisplayedFlag = false;
     curvature = 0.2;
 
-    /**
-     * Draw the map
-     */
-    drawMap();
-
-    /**
-     * Add zoom_changed event
-     */
-    map.addListener('zoom_changed', function(event) {
-        resetMarkers();
-    });
-
-    /**
-     * Add mousemove event
-     */
-    map.addListener('mousemove', function (event) {
-        displayCoordinates(event.latLng);
-    });
-
-    /**
-     * Receive the data pushed from the server
-     */
-    var socket = io();
-
-    socket.on('roundOfGolfCoordinates', function(myNewCoords){
-
-        // Delete old point markers
-        pointMarkers = [];
-
-        /**
-         * Calculate map bounds & fit map to bounds
-         */
-        myBounds = new google.maps.LatLngBounds();
-
-        for (var i = 0; i < myNewCoords[0].features.length; i++) {
-            /**
-             * Only compute bounds using Points
-             */
-            if (myNewCoords[0].features[i].geometry.type == 'LineString'){
-                coords = myNewCoords[0].features[i].geometry.coordinates[0];
-                latLng = new google.maps.LatLng(coords[1], coords[0]);
-
-                coords1 = myNewCoords[0].features[i].geometry.coordinates[1];
-                latLng1 = new google.maps.LatLng(coords1[1], coords1[0]);
-
-                myBounds.extend(latLng);
-                myBounds.extend(latLng1);
-
-                /**
-                 * Save points in an array of pointMarkers
-                 */
-                pointMarker = new google.maps.Marker({
-                    position: latLng,
-                    map: map,
-                    visible: false,
-                    clickable: false,
-                    icon: {
-                        path: google.maps.SymbolPath.CIRCLE,
-                        scale: 4,
-                        fillColor: 'red',
-                        fillOpacity: 0.6,
-                        strokeColor: 'white',
-                        strokeWeight: 2
-                    }
-                    //label: "1",
-                    //draggable: true,
-                });
-
-                // Add new point markers to array
-                pointMarkers.push(pointMarker);
-
-                /**
-                 * Save points in an array of pointMarkers
-                 */
-                pointMarker1 = new google.maps.Marker({
-                    position: latLng1,
-                    map: map,
-                    visible: false,
-                    clickable: false,
-                    icon: {
-                        path: google.maps.SymbolPath.CIRCLE,
-                        scale: 4,
-                        fillColor: 'red',
-                        fillOpacity: 0.8,
-                        strokeColor: 'white',
-                        strokeWeight: 2
-                    }
-                    //label: "1",
-                    //draggable: true,
-                });
-
-                // Add new point markers to array
-                pointMarkers.push(pointMarker1);
-
-//                addCurveMarkers(latLng, latLng1);
-            }
-
-            // straightLinePath
-            // Store in a linestring array
-
-            //Here's an API v3 way of drawing a line.
-            //This simply draws a straight line between two points.
-
-            //var line = new google.maps.Polyline({
-            //    path: [
-            //        new google.maps.LatLng(54.625605, -5.683992),
-            //        new google.maps.LatLng(54.623937, -5.683818)
-            //    ],
-            //    strokeColor: "#FF0000",
-            //    strokeOpacity: 1.0,
-            //    strokeWeight: 2,
-            //    map: map
-            //});
-        }
-
-        map.fitBounds(myBounds);
-
-        showAllMarkers();
-    });
-}
-
-/**
- * Function to draw the map to the correct bounds
- */
-function drawMap() {
     /**
      * Options for map
      */
@@ -178,6 +50,155 @@ function drawMap() {
      * Draw Map to the bounds of the points plotted
      */
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+    /**
+     * Add zoom_changed event
+     */
+    map.addListener('zoom_changed', function (event) {
+        showMarkers();
+    });
+    /**
+     * Add mousemove event
+     */
+    map.addListener('mousemove', function (event) {
+        displayCoordinates(event.latLng);
+    });
+}
+
+/**
+ * Receive the data pushed from the server
+ */
+var socket = io();
+
+$(document).ready(function(){
+
+        socket.on('loadRoundOfGolfData', function(myNewCoords){
+
+        // Model for MVC
+        model = myNewCoords;
+
+        // Calculate the map bounds to fit the data
+        map.fitBounds(calculateBounds(model));
+
+        // Update the markers array from myNewCoords
+        updateMarkersArray(model);
+
+        // Now show the markers on the map
+        showMarkers();
+    });
+
+    /**
+     * TODO
+     */
+    socket.on('updateRoundOfGolfData', function(updateCoords) {
+    })
+});
+
+/**
+ * Calculate map bounds & fit map to bounds using Points
+ */
+function calculateBounds(model){
+    myBounds = new google.maps.LatLngBounds();
+
+    for (var j = 0; j < model[0].features.length; j++) {
+        //if (model[0].features[j].geometry.type == 'Point') {
+        //    var coordsj = model[0].features[j].geometry.coordinates;
+        //    myBounds.extend(new google.maps.LatLng(coordsj[1], coordsj[0]));
+
+            if (model[0].features[j].geometry.type == 'LineString'){
+                coords = model[0].features[j].geometry.coordinates[0];
+                myBounds.extend(new google.maps.LatLng(coords[1], coords[0]));
+
+                coords1 = model[0].features[j].geometry.coordinates[1];
+                myBounds.extend(new google.maps.LatLng(coords1[1], coords1[0]));
+        }
+    }
+    return myBounds
+}
+
+/**
+ * Create markers using Points & store in markers array
+ */
+function updateMarkersArray(model){
+    for (var i = 0; i < model[0].features.length; i++) {
+        /**
+         * Only compute bounds using Points
+         */
+        if (model[0].features[i].geometry.type == 'LineString'){
+            coords = model[0].features[i].geometry.coordinates[0];
+            coords1 = model[0].features[i].geometry.coordinates[1];
+
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(coords[1], coords[0]),
+                map: map,
+                visible: true,
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    scale: 4,
+                    fillColor: 'red',
+                    fillOpacity: 0.6,
+                    strokeColor: 'white',
+                    strokeWeight: 2
+                }
+                //label: "1",
+                //draggable: true,
+            });
+
+            pointMarkers.push(marker);
+
+            var marker1 = new google.maps.Marker({
+                position: new google.maps.LatLng(coords1[1], coords1[0]),
+                map: map,
+                visible: true,
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    scale: 4,
+                    fillColor: 'red',
+                    fillOpacity: 0.6,
+                    strokeColor: 'white',
+                    strokeWeight: 2
+                }
+                //label: "1",
+                //draggable: true,
+            });
+
+            pointMarkers.push(marker1);
+
+            //marker.addListener('click', function() {
+            //    infowindow.open(map, marker);
+            //});
+            // straightLinePath
+            // Store in a linestring array
+
+            //Here's an API v3 way of drawing a line.
+            //This simply draws a straight line between two points.
+
+            //var line = new google.maps.Polyline({
+            //    path: [
+            //        new google.maps.LatLng(54.625605, -5.683992),
+            //        new google.maps.LatLng(54.623937, -5.683818)
+            //    ],
+            //    strokeColor: "#FF0000",
+            //    strokeOpacity: 1.0,
+            //    strokeWeight: 2,
+            //    map: map
+            //});
+
+//                addCurveMarkers(latLng, latLng1);
+        }
+    }
+}
+
+/**
+ * Mouse move coordinates routine
+ */
+function displayCoordinates(pnt) {
+    var coordsLabel = document.getElementById("mouse4326");
+    var lat = pnt.lat();
+    lat = lat.toFixed(4);
+    var lng = pnt.lng();
+    lng = lng.toFixed(4);
+    coordsLabel.innerHTML = "EPSG:4326: Latitude: " + lat + "  Longitude: " + lng;
 }
 
 /**
@@ -234,103 +255,33 @@ function addCurveMarkers(latLng, latLng1) {
             clickable: false,
             icon: symbol
         });
+
         curveMarkers.push(curveMarker);
     }
 }
 
-function fromLatLngToPoint(latLng, map) {
-    var topRight = map.getProjection().fromLatLngToPoint(map.getBounds().getNorthEast());
-    var bottomLeft = map.getProjection().fromLatLngToPoint(map.getBounds().getSouthWest());
-    var scale = Math.pow(2, map.getZoom());
-    var worldPoint = map.getProjection().fromLatLngToPoint(latLng);
-    return new google.maps.Point((worldPoint.x - bottomLeft.x) * scale, (worldPoint.y - topRight.y) * scale);
-}
-
 /**
- * Mouse move coordinates routine
+ * Sets all markers on the the map
  */
-function displayCoordinates(pnt) {
-    var coordsLabel = document.getElementById("mouse4326");
-    var lat = pnt.lat();
-    lat = lat.toFixed(4);
-    var lng = pnt.lng();
-    lng = lng.toFixed(4);
-    coordsLabel.innerHTML = "EPSG:4326: Latitude: " + lat + "  Longitude: " + lng;
-}
-
-/**
- * Show all the markers on the map that are currently in the arrays
- */
-function showAllMarkers(){
-    /**
-     * Ignore if markers are already displayed
-     */
-    if (markersDisplayedFlag == false){
-
-        if (pointMarkers.length > 0) {
-            for (var i = 0; i < pointMarkers.length; i++) {
-                pointMarkers[i].visible = true;
-                pointMarkers[i].setMap(map);
-            }
-        }
-
-//        addCurveMarkers();
-        if (curveMarkers.length > 0) {
-            for (var j = 0; j < curveMarkers.length; j++) {
-                curveMarkers[j].visible = true;
-                curveMarkers[j].setMap(map);
-            }
-        }
-
-        markersDisplayedFlag = true;
+function setMapOnAll(map) {
+    for (var i = 0; i < pointMarkers.length; i++) {
+        pointMarkers[i].setMap(map);
     }
+    for (var j = 0; j < curveMarkers.length; j++) {
+        curveMarkers[j].setMap(map);
+    }
+}
+
+/**
+ * Show all the markers
+ */
+function showMarkers(){
+    setMapOnAll(map);
 }
 
 /**
  * Hide all the markers
- * Display starts with point marker hidden
  */
-function hideAllMarkers(){
-    /**
-     * Ignore user pressing hide points if nothing is displayed
-     */
-    if (markersDisplayedFlag == true) {
-        if (pointMarkers.length > 0) {
-            for (var i = 0; i < pointMarkers.length; i++) {
-                pointMarkers[i].visible = false;
-                pointMarkers[i].setMap(map);
-            }
-        }
-
-        if (curveMarkers.length > 0) {
-            for (var j = 0; j < curveMarkers.length; j++) {
-                curveMarkers[j].visible = false;
-                curveMarkers[j].setMap(map);
-            }
-        }
-
-        markersDisplayedFlag = false;
-    }
-}
-
-function resetMarkers(){
-
-    // If markers are displayed then hide points & recalculate them
-    if (markersDisplayedFlag == true){
-
-        if (pointMarkers.length > 0){
-            for (var i = 0; i < pointMarkers.length; i++) {
-                pointMarkers[i].visible = false;
-                pointMarkers[i].setMap(map);
-            }
-        }
-
-        if (curveMarkers.length > 0) {
-            for (var j = 0; j < curveMarkers.length; j++) {
-                curveMarkers[j].visible = false;
-                curveMarkers[j].setMap(map);
-            }
-        }
-        showAllMarkers();
-    }
+function hideMarkers(){
+    setMapOnAll(null);
 }

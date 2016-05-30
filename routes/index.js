@@ -144,7 +144,7 @@ module.exports = function(io) {
 
                 r.db(config.rethinkdb.db).table(config.rethinkdb.tables.roundOfGolf).run(connection, function (err, cursor) {
                     cursor.toArray(function (err, roundOfGolfData) {
-                        io.emit('roundOfGolfCoordinates', roundOfGolfData);
+                        io.emit('loadRoundOfGolfData', roundOfGolfData);
                     });
                 });
 
