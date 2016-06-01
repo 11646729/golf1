@@ -11,7 +11,7 @@ var curveMarkers = [];
 var map, myBounds, model;
 var curvature; // how curvy to make the arc
 
-var coords, coords1, latLng, latLng1, pointMarker, pointMarker1;
+var coords, coords1, pos1, pos2, p1, p2;
 
 /**
  * Initialization function
@@ -55,6 +55,7 @@ function init() {
      * Add zoom_changed event
      */
     map.addListener('zoom_changed', function (event) {
+        updateCurveMarkers(model);
         showMarkers();
     });
     /**
@@ -72,7 +73,7 @@ var socket = io();
 
 $(document).ready(function(){
 
-        socket.on('loadRoundOfGolfData', function(myNewCoords){
+    socket.on('loadRoundOfGolfData', function(myNewCoords){
 
         // Model for MVC
         model = myNewCoords;
@@ -80,8 +81,11 @@ $(document).ready(function(){
         // Calculate the map bounds to fit the data
         map.fitBounds(calculateBounds(model));
 
-        // Update the markers array from myNewCoords
-        updateMarkersArray(model);
+        // Update the Point Markers array from the model
+        updatePointMarkers(model);
+
+        // Update the Curve Markers array from the model
+        updateCurveMarkers(model);
 
         // Now show the markers on the map
         showMarkers();
@@ -101,16 +105,12 @@ function calculateBounds(model){
     myBounds = new google.maps.LatLngBounds();
 
     for (var j = 0; j < model[0].features.length; j++) {
-        //if (model[0].features[j].geometry.type == 'Point') {
-        //    var coordsj = model[0].features[j].geometry.coordinates;
-        //    myBounds.extend(new google.maps.LatLng(coordsj[1], coordsj[0]));
+        if (model[0].features[j].geometry.type == 'LineString'){
+            coords = model[0].features[j].geometry.coordinates[0];
+            myBounds.extend(new google.maps.LatLng(coords[1], coords[0]));
 
-            if (model[0].features[j].geometry.type == 'LineString'){
-                coords = model[0].features[j].geometry.coordinates[0];
-                myBounds.extend(new google.maps.LatLng(coords[1], coords[0]));
-
-                coords1 = model[0].features[j].geometry.coordinates[1];
-                myBounds.extend(new google.maps.LatLng(coords1[1], coords1[0]));
+            coords1 = model[0].features[j].geometry.coordinates[1];
+            myBounds.extend(new google.maps.LatLng(coords1[1], coords1[0]));
         }
     }
     return myBounds
@@ -119,11 +119,8 @@ function calculateBounds(model){
 /**
  * Create markers using Points & store in markers array
  */
-function updateMarkersArray(model){
+function updatePointMarkers(model){
     for (var i = 0; i < model[0].features.length; i++) {
-        /**
-         * Only compute bounds using Points
-         */
         if (model[0].features[i].geometry.type == 'LineString'){
             coords = model[0].features[i].geometry.coordinates[0];
             coords1 = model[0].features[i].geometry.coordinates[1];
@@ -167,24 +164,6 @@ function updateMarkersArray(model){
             //marker.addListener('click', function() {
             //    infowindow.open(map, marker);
             //});
-            // straightLinePath
-            // Store in a linestring array
-
-            //Here's an API v3 way of drawing a line.
-            //This simply draws a straight line between two points.
-
-            //var line = new google.maps.Polyline({
-            //    path: [
-            //        new google.maps.LatLng(54.625605, -5.683992),
-            //        new google.maps.LatLng(54.623937, -5.683818)
-            //    ],
-            //    strokeColor: "#FF0000",
-            //    strokeOpacity: 1.0,
-            //    strokeWeight: 2,
-            //    map: map
-            //});
-
-//                addCurveMarkers(latLng, latLng1);
         }
     }
 }
@@ -204,13 +183,33 @@ function displayCoordinates(pnt) {
 /**
  * Add the curve markers to the curveMarkers array
  */
-function addCurveMarkers(latLng, latLng1) {
-    // Delete old curve markers
-    curveMarkers = [];
+function updateCurveMarkers(model) {
+    // straightLinePath
+    // Store in a linestring array
 
-    for (var i = 0; i < myNewCoords.features.length; i++) {
+    //Here's an API v3 way of drawing a line.
+    //This simply draws a straight line between two points.
 
-        // BROKEN HERE
+    //var line = new google.maps.Polyline({
+    //    path: [
+    //        new google.maps.LatLng(54.625605, -5.683992),
+    //        new google.maps.LatLng(54.623937, -5.683818)
+    //    ],
+    //    strokeColor: "#FF0000",
+    //    strokeOpacity: 1.0,
+    //    strokeWeight: 2,
+    //    map: map
+    //});
+
+    var projection = map.getProjection();
+
+    for (var i = 0; i < model[0].features.length; i++) {
+
+        coords = model[0].features[i].geometry.coordinates[0];
+        coords1 = model[0].features[i].geometry.coordinates[1];
+
+        pos1 = new google.maps.LatLng(coords[1], coords[0]);
+        pos2 = new google.maps.LatLng(coords1[1], coords1[0]);
 
 //        var coords = myNewCoords[i].geometry.coordinates;
 //        var latLng = new google.maps.LatLng(coords[1],coords[0]);
@@ -221,12 +220,15 @@ function addCurveMarkers(latLng, latLng1) {
 //        var pos1 = latLng;
 //        var pos2 = latLng1;
 
-//        var projection = map.getProjection();
-//        var p1 = map.getProjection().fromLatLngToPoint(pos1); // xy
-//        var p2 = map.getProjection().fromLatLngToPoint(pos2);
+        console.log(projection);
+//        console.log(pos1);
+//        console.log(pos2);
 
-        var p1 = fromLatLngToPoint(latLng, map);
-        var p2 = fromLatLngToPoint(latLng1, map);
+        p1 = projection.fromLatLngToPoint(pos1); // xy
+        p2 = projection.fromLatLngToPoint(pos2);
+
+//        console.log(p1);
+//        console.log(p2);
 
         // Calculate the arc.
         // To simplify the math, these points are all relative to p1:
@@ -248,10 +250,10 @@ function addCurveMarkers(latLng, latLng1) {
             fillColor: 'none'
         };
 
-        curveMarker = new google.maps.Marker({
+        var curveMarker = new google.maps.Marker({
             position: pos1,
             map: map,
-            visible: false,
+            visible: true,
             clickable: false,
             icon: symbol
         });
@@ -269,6 +271,8 @@ function setMapOnAll(map) {
     }
     for (var j = 0; j < curveMarkers.length; j++) {
         curveMarkers[j].setMap(map);
+
+        console.log('Here I am in setMapOnAll');
     }
 }
 
