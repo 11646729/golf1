@@ -18,12 +18,6 @@ var coords, coords1, pos1, pos2, p1, p2;
  */
 function init() {
     /**
-     * Initialise flag
-     */
-//    markersDisplayedFlag = false;
-    curvature = 0.2;
-
-    /**
      * Options for map
      */
     var mapOptions = {
@@ -55,8 +49,9 @@ function init() {
      * Add zoom_changed event
      */
     map.addListener('zoom_changed', function (event) {
-        updateCurveMarkers(model);
-        showMarkers();
+//        curveMarkers = [];
+//        updateCurveMarkers(model);
+//        showMarkers();
     });
     /**
      * Add mousemove event
@@ -201,6 +196,13 @@ function updateCurveMarkers(model) {
     //    map: map
     //});
 
+    curveMarkers = [];
+
+    /**
+     * Initialise curvature factor
+     */
+    curvature = 0.2;
+
     var projection = map.getProjection();
 
     for (var i = 0; i < model[0].features.length; i++) {
@@ -211,24 +213,8 @@ function updateCurveMarkers(model) {
         pos1 = new google.maps.LatLng(coords[1], coords[0]);
         pos2 = new google.maps.LatLng(coords1[1], coords1[0]);
 
-//        var coords = myNewCoords[i].geometry.coordinates;
-//        var latLng = new google.maps.LatLng(coords[1],coords[0]);
-
-//        var coords1 = myNewCoords[i+1].geometry.coordinates;
-//        var latLng1 = new google.maps.LatLng(coords1[1],coords1[0]);
-
-//        var pos1 = latLng;
-//        var pos2 = latLng1;
-
-        console.log(projection);
-//        console.log(pos1);
-//        console.log(pos2);
-
         p1 = projection.fromLatLngToPoint(pos1); // xy
         p2 = projection.fromLatLngToPoint(pos2);
-
-//        console.log(p1);
-//        console.log(p2);
 
         // Calculate the arc.
         // To simplify the math, these points are all relative to p1:
@@ -260,6 +246,8 @@ function updateCurveMarkers(model) {
 
         curveMarkers.push(curveMarker);
     }
+
+    console.log(curveMarkers.length);
 }
 
 /**
@@ -271,8 +259,6 @@ function setMapOnAll(map) {
     }
     for (var j = 0; j < curveMarkers.length; j++) {
         curveMarkers[j].setMap(map);
-
-        console.log('Here I am in setMapOnAll');
     }
 }
 
