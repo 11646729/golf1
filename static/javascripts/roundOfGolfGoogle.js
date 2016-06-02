@@ -49,9 +49,17 @@ function init() {
      * Add zoom_changed event
      */
     map.addListener('zoom_changed', function (event) {
-//        curveMarkers = [];
-//        updateCurveMarkers(model);
-//        showMarkers();
+
+        hideMarkers();
+
+        // Update the Point Markers array from the model
+//        updatePointMarkers(model);
+
+        // Update the Curve Markers array from the model
+        updateCurveMarkers(model);
+
+        // Now show the markers on the map
+        showMarkers();
     });
     /**
      * Add mousemove event
@@ -115,6 +123,8 @@ function calculateBounds(model){
  * Create markers using Points & store in markers array
  */
 function updatePointMarkers(model){
+    pointMarkers = [];
+
     for (var i = 0; i < model[0].features.length; i++) {
         if (model[0].features[i].geometry.type == 'LineString'){
             coords = model[0].features[i].geometry.coordinates[0];
@@ -196,57 +206,53 @@ function updateCurveMarkers(model) {
     //    map: map
     //});
 
-    curveMarkers = [];
-
     /**
      * Initialise curvature factor
      */
     curvature = 0.2;
-
-    var projection = map.getProjection();
+    curveMarkers = [];
 
     for (var i = 0; i < model[0].features.length; i++) {
+        if (model[0].features[i].geometry.type == 'LineString') {
 
-        coords = model[0].features[i].geometry.coordinates[0];
-        coords1 = model[0].features[i].geometry.coordinates[1];
+            coords = model[0].features[i].geometry.coordinates[0];
+            coords1 = model[0].features[i].geometry.coordinates[1];
 
-        pos1 = new google.maps.LatLng(coords[1], coords[0]);
-        pos2 = new google.maps.LatLng(coords1[1], coords1[0]);
+            pos1 = new google.maps.LatLng(coords[1], coords[0]);
+            pos2 = new google.maps.LatLng(coords1[1], coords1[0]);
 
-        p1 = projection.fromLatLngToPoint(pos1); // xy
-        p2 = projection.fromLatLngToPoint(pos2);
+            var projection = map.getProjection();
+            p1 = projection.fromLatLngToPoint(pos1); // xy
+            p2 = projection.fromLatLngToPoint(pos2);
 
-        // Calculate the arc.
-        // To simplify the math, these points are all relative to p1:
-        var e = new google.maps.Point(p2.x - p1.x, p2.y - p1.y), // endpoint (p2 relative to p1)
-            m = new google.maps.Point(e.x / 2, e.y / 2), // midpoint
-            o = new google.maps.Point(e.y, -e.x), // orthogonal
-            c = new google.maps.Point(m.x + curvature * o.x, m.y + curvature * o.y); // curve control point
+            // Calculate the arc.
+            // To simplify the math, these points are all relative to p1:
+            var e = new google.maps.Point(p2.x - p1.x, p2.y - p1.y), // endpoint (p2 relative to p1)
+                m = new google.maps.Point(e.x / 2, e.y / 2), // midpoint
+                o = new google.maps.Point(e.y, -e.x), // orthogonal
+                c = new google.maps.Point(m.x + curvature * o.x, m.y + curvature * o.y); // curve control point
 
-        var pathDef = 'M 0,0 ' + 'q ' + c.x + ',' + c.y + ' ' + e.x + ',' + e.y;
+            var pathDef = 'M 0,0 ' + 'q ' + c.x + ',' + c.y + ' ' + e.x + ',' + e.y;
+            var zoom = map.getZoom();
+            var scale = 1 / (Math.pow(2, -zoom));
 
-        var zoom = map.getZoom(),
-            scale = 1 / (Math.pow(2, -zoom));
+            var curveMarker = new google.maps.Marker({
+                position: pos1,
+                map: map,
+                visible: true,
+                clickable: false,
+                icon: {
+                    path: pathDef,
+                    scale: scale,
+                    strokeWeight: 2,
+                    strokeColor: 'red',
+                    fillColor: 'none'
+                }
+            });
 
-        var symbol = {
-            path: pathDef,
-            scale: scale,
-            strokeWeight: 2,
-            strokeColor: 'red',
-            fillColor: 'none'
-        };
-
-        var curveMarker = new google.maps.Marker({
-            position: pos1,
-            map: map,
-            visible: true,
-            clickable: false,
-            icon: symbol
-        });
-
-        curveMarkers.push(curveMarker);
+            curveMarkers.push(curveMarker);
+        }
     }
-
     console.log(curveMarkers.length);
 }
 
@@ -257,6 +263,9 @@ function setMapOnAll(map) {
     for (var i = 0; i < pointMarkers.length; i++) {
         pointMarkers[i].setMap(map);
     }
+
+    console.log(curveMarkers.length);
+
     for (var j = 0; j < curveMarkers.length; j++) {
         curveMarkers[j].setMap(map);
     }
