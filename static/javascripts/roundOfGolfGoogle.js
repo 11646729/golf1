@@ -52,8 +52,7 @@ function init() {
 
         hideMarkers();
 
-        // Update the Point Markers array from the model
-//        updatePointMarkers(model);
+        // Update the Point Markers array from the model is not required here
 
         // Update the Curve Markers array from the model
         updateCurveMarkers(model);
@@ -87,8 +86,7 @@ $(document).ready(function(){
         // Update the Point Markers array from the model
         updatePointMarkers(model);
 
-        // Update the Curve Markers array from the model
-        updateCurveMarkers(model);
+        // Update the Curve Markers array from the model is not required here
 
         // Now show the markers on the map
         showMarkers();
@@ -130,47 +128,32 @@ function updatePointMarkers(model){
             coords = model[0].features[i].geometry.coordinates[0];
             coords1 = model[0].features[i].geometry.coordinates[1];
 
-            var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(coords[1], coords[0]),
-                map: map,
-                visible: true,
-                icon: {
-                    path: google.maps.SymbolPath.CIRCLE,
-                    scale: 4,
-                    fillColor: 'red',
-                    fillOpacity: 0.6,
-                    strokeColor: 'white',
-                    strokeWeight: 2
-                }
-                //label: "1",
-                //draggable: true,
-            });
-
-            pointMarkers.push(marker);
-
-            var marker1 = new google.maps.Marker({
-                position: new google.maps.LatLng(coords1[1], coords1[0]),
-                map: map,
-                visible: true,
-                icon: {
-                    path: google.maps.SymbolPath.CIRCLE,
-                    scale: 4,
-                    fillColor: 'red',
-                    fillOpacity: 0.6,
-                    strokeColor: 'white',
-                    strokeWeight: 2
-                }
-                //label: "1",
-                //draggable: true,
-            });
-
-            pointMarkers.push(marker1);
-
-            //marker.addListener('click', function() {
-            //    infowindow.open(map, marker);
-            //});
+            pointMarkers.push(produceMarkers(coords));
+            pointMarkers.push(produceMarkers(coords1));
         }
     }
+}
+
+/**
+ * Function to produce markers from coordinates
+ */
+function produceMarkers(coords){
+
+    return new google.maps.Marker({
+        position: new google.maps.LatLng(coords[1], coords[0]),
+        map: map,
+        visible: true,
+        icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 4,
+            fillColor: 'red',
+            fillOpacity: 0.6,
+            strokeColor: 'white',
+            strokeWeight: 2
+        }
+        //label: "1",
+        //draggable: true,
+    });
 }
 
 /**
@@ -253,7 +236,6 @@ function updateCurveMarkers(model) {
             curveMarkers.push(curveMarker);
         }
     }
-    console.log(curveMarkers.length);
 }
 
 /**
@@ -263,8 +245,6 @@ function setMapOnAll(map) {
     for (var i = 0; i < pointMarkers.length; i++) {
         pointMarkers[i].setMap(map);
     }
-
-    console.log(curveMarkers.length);
 
     for (var j = 0; j < curveMarkers.length; j++) {
         curveMarkers[j].setMap(map);
