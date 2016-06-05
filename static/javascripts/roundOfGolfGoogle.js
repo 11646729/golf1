@@ -13,6 +13,30 @@ var curvature; // how curvy to make the arc
 
 var coords, coords1, pos1, pos2, p1, p2;
 
+var infowindow;
+
+var contentString = '<div id="content">'+
+    '<div id="siteNotice">'+
+    '</div>'+
+    '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+    '<div id="bodyContent">'+
+    '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+    'sandstone rock formation in the southern part of the '+
+    'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+    'south west of the nearest large town, Alice Springs; 450&#160;km '+
+    '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+    'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+    'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+    'Aboriginal people of the area. It has many springs, waterholes, '+
+    'rock caves and ancient paintings. Uluru is listed as a World '+
+    'Heritage Site.</p>'+
+    '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+    'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+    '(last visited June 22, 2009).</p>'+
+    '</div>'+
+    '</div>';
+
+
 /**
  * Initialization function
  */
@@ -65,6 +89,10 @@ function init() {
      */
     map.addListener('mousemove', function (event) {
         displayCoordinates(event.latLng);
+    });
+
+    infowindow = new google.maps.InfoWindow({
+        content: contentString
     });
 }
 
@@ -125,19 +153,19 @@ function updatePointMarkers(model){
 
     for (var i = 0; i < model[0].features.length; i++) {
         if (model[0].features[i].geometry.type == 'LineString'){
-            coords = model[0].features[i].geometry.coordinates[0];
-            coords1 = model[0].features[i].geometry.coordinates[1];
+//            coords = model[0].features[i].geometry.coordinates[0];
+//            coords1 = model[0].features[i].geometry.coordinates[1];
 
-            pointMarkers.push(produceMarkers(coords));
-            pointMarkers.push(produceMarkers(coords1));
+            pointMarkers.push(producePointMarkers(model[0].features[i].geometry.coordinates[0]));
+            pointMarkers.push(producePointMarkers(model[0].features[i].geometry.coordinates[1]));
         }
     }
 }
 
 /**
- * Function to produce markers from coordinates
+ * Function to produce point markers from coordinates
  */
-function produceMarkers(coords){
+function producePointMarkers(coords){
 
     return new google.maps.Marker({
         position: new google.maps.LatLng(coords[1], coords[0]),
@@ -151,8 +179,6 @@ function produceMarkers(coords){
             strokeColor: 'white',
             strokeWeight: 2
         }
-        //label: "1",
-        //draggable: true,
     });
 }
 
@@ -223,7 +249,7 @@ function updateCurveMarkers(model) {
                 position: pos1,
                 map: map,
                 visible: true,
-                clickable: false,
+                clickable: true, // set this to false to remove cursor hand when hovering over curve
                 icon: {
                     path: pathDef,
                     scale: scale,
@@ -231,6 +257,9 @@ function updateCurveMarkers(model) {
                     strokeColor: 'red',
                     fillColor: 'none'
                 }
+            });
+            curveMarker.addListener('click', function() {
+                infowindow.open(map, this);
             });
 
             curveMarkers.push(curveMarker);
