@@ -93,6 +93,7 @@ function init() {
 
     infowindow = new google.maps.InfoWindow({
         content: contentString
+//        content: ''
     });
 }
 
@@ -112,7 +113,7 @@ $(document).ready(function(){
         map.fitBounds(calculateBounds(model));
 
         // Update the Point Markers array from the model
-        updatePointMarkers(model);
+        addPointMarkers(model);
 
         // Update the Curve Markers array from the model is not required here
 
@@ -148,16 +149,18 @@ function calculateBounds(model){
 /**
  * Create markers using Points & store in markers array
  */
-function updatePointMarkers(model){
+function addPointMarkers(model){
     pointMarkers = [];
 
     for (var i = 0; i < model[0].features.length; i++) {
         if (model[0].features[i].geometry.type == 'LineString'){
-//            coords = model[0].features[i].geometry.coordinates[0];
-//            coords1 = model[0].features[i].geometry.coordinates[1];
+            coords = model[0].features[i].geometry.coordinates[0];
+            coords1 = model[0].features[i].geometry.coordinates[1];
 
-            pointMarkers.push(producePointMarkers(model[0].features[i].geometry.coordinates[0]));
-            pointMarkers.push(producePointMarkers(model[0].features[i].geometry.coordinates[1]));
+            var testNote = model[0].features[i].properties.name;
+
+            pointMarkers.push(producePointMarkers(coords, testNote));
+            pointMarkers.push(producePointMarkers(coords1, testNote));
         }
     }
 }
@@ -165,7 +168,7 @@ function updatePointMarkers(model){
 /**
  * Function to produce point markers from coordinates
  */
-function producePointMarkers(coords){
+function producePointMarkers(coords, testNote){
 
     return new google.maps.Marker({
         position: new google.maps.LatLng(coords[1], coords[0]),
@@ -178,7 +181,8 @@ function producePointMarkers(coords){
             fillOpacity: 0.6,
             strokeColor: 'white',
             strokeWeight: 2
-        }
+        },
+        note: testNote
     });
 }
 
@@ -256,9 +260,11 @@ function updateCurveMarkers(model) {
                     strokeWeight: 2,
                     strokeColor: 'red',
                     fillColor: 'none'
-                }
+                },
+                note: 'This is a test note'
             });
             curveMarker.addListener('click', function() {
+                infowindow.content = "Hello";
                 infowindow.open(map, this);
             });
 

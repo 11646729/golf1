@@ -6,6 +6,8 @@ var google = google || {};
 var markers = [];
 var map, myBounds, model;
 
+var info_window;
+
 /**
  * Initialization function
  */
@@ -39,6 +41,8 @@ function init(){
      * Draw Map to the bounds of the points plotted
      */
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+    info_window = new google.maps.InfoWindow({content: ''});
 
     /**
      * Add Events
@@ -97,14 +101,6 @@ function calculateBounds(model){
     return myBounds
 }
 
-//var featureName = 'name';
-//var phoneNumber = 'phoneNumber';
-//var contentString = '<p>You clicked here :</p><code>' + featureName + '<br />' + phoneNumber + '</code>';
-//
-//var infowindow = new google.maps.InfoWindow({
-//    content: contentString
-//});
-
 /**
  * Create markers using Points & store in markers array
  */
@@ -113,6 +109,7 @@ function updateMarkersArray(model){
         if (model[0].features[i].geometry.type == 'Point') {
 
             var coords = model[0].features[i].geometry.coordinates;
+            var dataName = model[0].features[i].properties.name;
 
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(coords[1], coords[0]),
@@ -125,14 +122,17 @@ function updateMarkersArray(model){
                     fillOpacity: 0.6,
                     strokeColor: 'white',
                     strokeWeight: 2
-                }
-                //label: "1",
-                //draggable: true,
+                },
+                note: dataName
             });
 
-            //marker.addListener('click', function() {
-            //    infowindow.open(map, marker);
-            //});
+            /**
+             * Add the infoWindow and details specific to this marker
+             */
+            google.maps.event.addListener(marker, 'click', function() {
+                info_window.setContent('<div>' + this.note + '</div>');
+                info_window.open(map, this);
+            });
 
             markers.push(marker);
         }
