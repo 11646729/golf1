@@ -127,7 +127,7 @@ function updateMarkersArray(model){
             });
 
             /**
-             * Add the infoWindow and details specific to this marker
+             * Add the infoWindow with details specific to this marker
              */
             google.maps.event.addListener(marker, 'click', function() {
                 info_window.setContent('<div>' + this.note + '</div>');

@@ -8,7 +8,7 @@ var google = google || {};
 
 var pointMarkers = [];
 var curveMarkers = [];
-var map, myBounds, model;
+var map, myBounds, model, dataName;
 var curvature; // how curvy to make the arc
 
 var coords, coords1, pos1, pos2, p1, p2;
@@ -91,9 +91,8 @@ function init() {
         displayCoordinates(event.latLng);
     });
 
-    infowindow = new google.maps.InfoWindow({
-        content: contentString
-//        content: ''
+    info_window = new google.maps.InfoWindow({
+        content: ''
     });
 }
 
@@ -168,7 +167,7 @@ function addPointMarkers(model){
 /**
  * Function to produce point markers from coordinates
  */
-function producePointMarkers(coords, testNote){
+function producePointMarkers(coords){
 
     return new google.maps.Marker({
         position: new google.maps.LatLng(coords[1], coords[0]),
@@ -181,8 +180,7 @@ function producePointMarkers(coords, testNote){
             fillOpacity: 0.6,
             strokeColor: 'white',
             strokeWeight: 2
-        },
-        note: testNote
+        }
     });
 }
 
@@ -231,6 +229,8 @@ function updateCurveMarkers(model) {
             coords = model[0].features[i].geometry.coordinates[0];
             coords1 = model[0].features[i].geometry.coordinates[1];
 
+            var dataName = model[0].features[i].properties.name;
+
             pos1 = new google.maps.LatLng(coords[1], coords[0]);
             pos2 = new google.maps.LatLng(coords1[1], coords1[0]);
 
@@ -261,11 +261,15 @@ function updateCurveMarkers(model) {
                     strokeColor: 'red',
                     fillColor: 'none'
                 },
-                note: 'This is a test note'
+                note: dataName
             });
-            curveMarker.addListener('click', function() {
-                infowindow.content = "Hello";
-                infowindow.open(map, this);
+
+            /**
+             * Add the infoWindow with details specific to this marker
+             */
+            google.maps.event.addListener(curveMarker, 'click', function() {
+                info_window.setContent('<div>' + this.note + '</div>');
+                info_window.open(map, this);
             });
 
             curveMarkers.push(curveMarker);
