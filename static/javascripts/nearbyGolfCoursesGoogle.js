@@ -42,7 +42,10 @@ function init(){
      */
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-    info_window = new google.maps.InfoWindow({content: ''});
+    /**
+     * Set up empty infoWindow
+     */
+    info_window = new google.maps.InfoWindow({ content: ''});
 
     /**
      * Add Events

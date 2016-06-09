@@ -11,9 +11,7 @@ var curveMarkers = [];
 var map, myBounds, model, dataName;
 var curvature; // how curvy to make the arc
 
-var coords, coords1, pos1, pos2, p1, p2;
-
-var infowindow;
+var coords, coords1, pos1, pos2, p1, p2, info_window;
 
 var contentString = '<div id="content">'+
     '<div id="siteNotice">'+
@@ -35,7 +33,6 @@ var contentString = '<div id="content">'+
     '(last visited June 22, 2009).</p>'+
     '</div>'+
     '</div>';
-
 
 /**
  * Initialization function
@@ -65,6 +62,11 @@ function init() {
     };
 
     /**
+     * Initialise curvature factor
+     */
+    curvature = 0.2;
+
+    /**
      * Draw Map to the bounds of the points plotted
      */
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
@@ -84,15 +86,17 @@ function init() {
         // Now show the markers on the map
         showMarkers();
     });
+
+    /**
+     * Set up empty infoWindow
+     */
+    info_window = new google.maps.InfoWindow({ content: '' });
+
     /**
      * Add mousemove event
      */
     map.addListener('mousemove', function (event) {
         displayCoordinates(event.latLng);
-    });
-
-    info_window = new google.maps.InfoWindow({
-        content: ''
     });
 }
 
@@ -217,10 +221,6 @@ function updateCurveMarkers(model) {
     //    map: map
     //});
 
-    /**
-     * Initialise curvature factor
-     */
-    curvature = 0.2;
     curveMarkers = [];
 
     for (var i = 0; i < model[0].features.length; i++) {
@@ -229,7 +229,7 @@ function updateCurveMarkers(model) {
             coords = model[0].features[i].geometry.coordinates[0];
             coords1 = model[0].features[i].geometry.coordinates[1];
 
-            var dataName = model[0].features[i].properties.name;
+            dataName = model[0].features[i].properties.name;
 
             pos1 = new google.maps.LatLng(coords[1], coords[0]);
             pos2 = new google.maps.LatLng(coords1[1], coords1[0]);
