@@ -22,6 +22,7 @@ var config = {
         mainPage: '/mainPage',
         nearbyGolfCourses: '/nearbyGolfCourses',
         roundsOfGolf: '/roundsOfGolf',
+        courseScorecards: '/courseScorecards',
         findMyRounds: '/findMyRounds',
         findMyRoundById: '/findMyRoundById',
         addMyRound: '/addMyRound',

@@ -160,5 +160,13 @@ module.exports = function(io) {
      * Get update values of Round Of Golf
      */
 
+
+    /**
+     * Course Scorecards
+     */
+    router.get(config.routes.courseScorecards, [util.requireAuthentication], function(req, res) {
+        res.render('courseScorecards.jade', {title: 'Index'});
+    });
+
     return router;
 };
