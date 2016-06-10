@@ -3,7 +3,7 @@
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$" libraries="{golf-1 node_modules}" />
     <file url="file://$PROJECT_DIR$/app.js" libraries="{express-DefinitelyTyped}" />
-    <file url="file://$PROJECT_DIR$/static/javascripts/roundOfGolfGoogle.js" libraries="{googleMaps}" />
+    <file url="file://$PROJECT_DIR$/static/javascripts/roundOfGolf.js" libraries="{googleMaps}" />
     <file url="PROJECT" libraries="{body-parser-DefinitelyTyped}" />
     <includedPredefinedLibrary name="Node.js Core" />
   </component>

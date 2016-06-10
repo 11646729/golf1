@@ -1,178 +1,305 @@
 /**
- * Created by briansmith on 15/06/2014.
+ * Created by briansmith on 29/02/2016
+ * Refer to code at http://jsfiddle.net/medmunds/sd10up9t/ for the basic algorithm
  */
+
+// This line prevents Webstorm warnings from google
+var google = google || {};
+
+var pointMarkers = [];
+var curveMarkers = [];
+var map, myBounds, model, dataName;
+var curvature; // how curvy to make the arc
+
+var coords, coords1, pos1, pos2, p1, p2, info_window;
+
+var contentString = '<div id="content">'+
+    '<div id="siteNotice">'+
+    '</div>'+
+    '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+    '<div id="bodyContent">'+
+    '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+    'sandstone rock formation in the southern part of the '+
+    'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+    'south west of the nearest large town, Alice Springs; 450&#160;km '+
+    '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+    'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+    'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+    'Aboriginal people of the area. It has many springs, waterholes, '+
+    'rock caves and ancient paintings. Uluru is listed as a World '+
+    'Heritage Site.</p>'+
+    '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+    'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+    '(last visited June 22, 2009).</p>'+
+    '</div>'+
+    '</div>';
 
 /**
- * Mapped Styles
+ * Initialization function
  */
-var styleFunction = (function () {
-    var styles = {};
-
-    styles['LineString'] = [new ol.style.Style({
-        stroke: new ol.style.Stroke({
-            color: "lightgreen",
-            width: 3
-        })
-    })];
-
-    styles['Point'] = [
-        new ol.style.Style({
-            image: new ol.style.Circle({
-                radius: 3,
-                fill: new ol.style.Fill({
-                    color: "red"
-                }),
-                stroke: new ol.style.Stroke({
-                    color: "white",
-                    width: 2
-                })
-            }),
-            zIndex: 100000
-        })
-    ];
-
-    return function (feature) {
-        return styles[feature.getGeometry().getType()] || styles['default'];
+function init() {
+    /**
+     * Options for map
+     */
+    var mapOptions = {
+        mapTypeId: google.maps.MapTypeId.SATELLITE,
+        minZoom: 6,
+        zoomControl: true,
+        zoomControlOptions: {
+            style: google.maps.ZoomControlStyle.SMALL
+        },
+        panControl: false,
+        mapTypeControl: false,
+        scaleControl: false,
+        overviewMapControl: false,
+        rotateControl: false,
+        disableDefaultUI: true,
+        keyboardShortcuts: false,
+        draggable: false,
+        disableDoubleClickZoom: true,
+        scrollwheel: false,
+        streetViewControl: false
     };
-})();
+
+    /**
+     * Initialise curvature factor
+     */
+    curvature = 0.2;
+
+    /**
+     * Draw Map to the bounds of the points plotted
+     */
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+    /**
+     * Add zoom_changed event
+     */
+    map.addListener('zoom_changed', function (event) {
+
+        hideMarkers();
+
+        // Update the Point Markers array from the model is not required here
+
+        // Update the Curve Markers array from the model
+        updateCurveMarkers(model);
+
+        // Now show the markers on the map
+        showMarkers();
+    });
+
+    /**
+     * Set up empty infoWindow
+     */
+    info_window = new google.maps.InfoWindow({ content: '' });
+
+    /**
+     * Add mousemove event
+     */
+    map.addListener('mousemove', function (event) {
+        displayCoordinates(event.latLng);
+    });
+}
 
 /**
- * Overlay Styles
+ * Receive the data pushed from the server
  */
-var overlayStyle = (function () {
-    var styles = {};
+var socket = io();
 
-    styles['LineString'] = [new ol.style.Style({
-        stroke: new ol.style.Stroke({
-            color: "white",
-            width: 3
-        })
-    })];
+$(document).ready(function(){
 
-    styles['Point'] = [
-        new ol.style.Style({
-            image: new ol.style.Circle({
-                radius: 5,
-                fill: new ol.style.Fill({
-                    color: "white"
-                }),
-                stroke: new ol.style.Stroke({
-                    color: "red",
-                    width: 3
-                })
-            }),
-            zIndex: 100000
-        })
-    ];
+    socket.on('loadRoundOfGolfData', function(myNewCoords){
 
-    return function (feature) {
-        return styles[feature.getGeometry().getType()];
-    };
-})();
+        // Model for MVC
+        model = myNewCoords;
 
-/**
- * Mouse selection interaction
- */
-var select = new ol.interaction.Select({
-    style: overlayStyle
-});
+        // Calculate the map bounds to fit the data
+        map.fitBounds(calculateBounds(model));
 
-/**
- * The Bing Maps access key
- */
-var apiKey = "AuX4igoeqL4Kp6N9dZYTRK3CV9zEsT8bJIeZMw3TZgIzSED1Ja4VxEOh0XKvd-B_";
+        // Update the Point Markers array from the model
+        addPointMarkers(model);
 
-/**
- * Create the Bing Maps Base Layer for the Map
- */
-var baseMapLayer = new ol.layer.Tile({
-    visible: true,
-    preload: Infinity,
-    source: new ol.source.BingMaps({
-        key: apiKey,
-        imagerySet: "aerial"
+        // Update the Curve Markers array from the model is not required here
+
+        // Now show the markers on the map
+        showMarkers();
+    });
+
+    /**
+     * TODO
+     */
+    socket.on('updateRoundOfGolfData', function(updateCoords) {
     })
 });
 
 /**
- * Create the Round of Golf Layer from a GeoJSON file
+ * Calculate map bounds & fit map to bounds using Points
  */
-var vectorLayer = new ol.layer.Vector({
-    source: new ol.source.Vector({
-        url: '/testData/geoJsonFiles/roundOfGolfData.json',
-        format: new ol.format.GeoJSON()
-    }),
-    style: styleFunction
-    // opacity: 0.5
-});
+function calculateBounds(model){
+    myBounds = new google.maps.LatLngBounds();
+
+    for (var j = 0; j < model[0].features.length; j++) {
+        if (model[0].features[j].geometry.type == 'LineString'){
+            coords = model[0].features[j].geometry.coordinates[0];
+            myBounds.extend(new google.maps.LatLng(coords[1], coords[0]));
+
+            coords1 = model[0].features[j].geometry.coordinates[1];
+            myBounds.extend(new google.maps.LatLng(coords1[1], coords1[0]));
+        }
+    }
+    return myBounds
+}
 
 /**
- * Create the Map
+ * Create markers using Points & store in markers array
  */
-var map = new ol.Map({
-    layers: [baseMapLayer, vectorLayer],
-    target: document.getElementById('bingMap'),
-    interactions: ol.interaction.defaults().extend([select]),
-    view: new ol.View({
-        center: [0, 0],
-        maxZoom: 19,
-        zoom: 2 // 17
-    })
-});
+function addPointMarkers(model){
+    pointMarkers = [];
+
+    for (var i = 0; i < model[0].features.length; i++) {
+        if (model[0].features[i].geometry.type == 'LineString'){
+            coords = model[0].features[i].geometry.coordinates[0];
+            coords1 = model[0].features[i].geometry.coordinates[1];
+
+            var testNote = model[0].features[i].properties.name;
+
+            pointMarkers.push(producePointMarkers(coords, testNote));
+            pointMarkers.push(producePointMarkers(coords1, testNote));
+        }
+    }
+}
 
 /**
- * Trap coordinates of mouse then converts them for display
+ * Function to produce point markers from coordinates
  */
-map.on('pointermove', function(event) {
-    var coord4326 = ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326');
-    $('#mouse4326').text(ol.coordinate.toStringXY(coord4326, 4));
-});
+function producePointMarkers(coords){
+
+    return new google.maps.Marker({
+        position: new google.maps.LatLng(coords[1], coords[0]),
+        map: map,
+        visible: true,
+        icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 4,
+            fillColor: 'red',
+            fillOpacity: 0.6,
+            strokeColor: 'white',
+            strokeWeight: 2
+        }
+    });
+}
 
 /**
- * Change mouse cursor when over marker
+ * Mouse move coordinates routine
  */
-map.on('pointermove', function(e) {
-    //if (e.dragging) {
-    //    $(element).popover('destroy');
-    //    return;
-    //}
-
-    var pixel = map.getEventPixel(e.originalEvent);
-    var hit = map.hasFeatureAtPixel(pixel);
-
-    map.getTarget().style.cursor = hit ? 'pointer' : '';
-});
+function displayCoordinates(pnt) {
+    var coordsLabel = document.getElementById("mouse4326");
+    var lat = pnt.lat();
+    lat = lat.toFixed(4);
+    var lng = pnt.lng();
+    lng = lng.toFixed(4);
+    coordsLabel.innerHTML = "EPSG:4326: Latitude: " + lat + "  Longitude: " + lng;
+}
 
 /**
- * Fit to extent routine - http://gis.stackexchange.com/questions/150997/openlayers-3-zoom-to-extent-only-working-in-debug
+ * Add the curve markers to the curveMarkers array
  */
-vectorLayer.getSource().on("change", function(evt) {
-    var extent = vectorLayer.getSource().getExtent();
-    map.getView().fit(extent, map.getSize());
-});
+function updateCurveMarkers(model) {
+    // straightLinePath
+    // Store in a linestring array
 
-// Initialize radio button map choices
-document.getElementById('bingMap').style.display = 'block';
-document.getElementById('googleMap').style.display = 'none';
-document.getElementById('gMap').style.display = 'none';
-document.getElementById('olMap').style.display = 'none';
+    //Here's an API v3 way of drawing a line.
+    //This simply draws a straight line between two points.
 
-function toggleControl(element){
-    if(element.value == "bingMapsBaseLayer"){
-        document.getElementById('bingMap').style.display = 'block';
-        document.getElementById('googleMap').style.display = 'none';
-        document.getElementById('gMap').style.display = 'none';
-        document.getElementById('olMap').style.display = 'none';
+    //var line = new google.maps.Polyline({
+    //    path: [
+    //        new google.maps.LatLng(54.625605, -5.683992),
+    //        new google.maps.LatLng(54.623937, -5.683818)
+    //    ],
+    //    strokeColor: "#FF0000",
+    //    strokeOpacity: 1.0,
+    //    strokeWeight: 2,
+    //    map: map
+    //});
+
+    curveMarkers = [];
+
+    for (var i = 0; i < model[0].features.length; i++) {
+        if (model[0].features[i].geometry.type == 'LineString') {
+
+            coords = model[0].features[i].geometry.coordinates[0];
+            coords1 = model[0].features[i].geometry.coordinates[1];
+
+            dataName = model[0].features[i].properties.name;
+
+            pos1 = new google.maps.LatLng(coords[1], coords[0]);
+            pos2 = new google.maps.LatLng(coords1[1], coords1[0]);
+
+            var projection = map.getProjection();
+            p1 = projection.fromLatLngToPoint(pos1); // xy
+            p2 = projection.fromLatLngToPoint(pos2);
+
+            // Calculate the arc.
+            // To simplify the math, these points are all relative to p1:
+            var e = new google.maps.Point(p2.x - p1.x, p2.y - p1.y), // endpoint (p2 relative to p1)
+                m = new google.maps.Point(e.x / 2, e.y / 2), // midpoint
+                o = new google.maps.Point(e.y, -e.x), // orthogonal
+                c = new google.maps.Point(m.x + curvature * o.x, m.y + curvature * o.y); // curve control point
+
+            var pathDef = 'M 0,0 ' + 'q ' + c.x + ',' + c.y + ' ' + e.x + ',' + e.y;
+            var zoom = map.getZoom();
+            var scale = 1 / (Math.pow(2, -zoom));
+
+            var curveMarker = new google.maps.Marker({
+                position: pos1,
+                map: map,
+                visible: true,
+                clickable: true, // set this to false to remove cursor hand when hovering over curve
+                icon: {
+                    path: pathDef,
+                    scale: scale,
+                    strokeWeight: 2,
+                    strokeColor: 'red',
+                    fillColor: 'none'
+                },
+                note: dataName
+            });
+
+            /**
+             * Add the infoWindow with details specific to this marker
+             */
+            google.maps.event.addListener(curveMarker, 'click', function() {
+                info_window.setContent('<div>' + this.note + '</div>');
+                info_window.open(map, this);
+            });
+
+            curveMarkers.push(curveMarker);
+        }
+    }
+}
+
+/**
+ * Sets all markers on the the map
+ */
+function setMapOnAll(map) {
+    for (var i = 0; i < pointMarkers.length; i++) {
+        pointMarkers[i].setMap(map);
     }
 
-    if(element.value == "googleMapsBaseLayer"){
-        document.getElementById('bingMap').style.display = 'none';
-        document.getElementById('googleMap').style.display = 'block';
-        document.getElementById('gMap').style.display = 'block';
-        document.getElementById('olMap').style.display = 'block';
+    for (var j = 0; j < curveMarkers.length; j++) {
+        curveMarkers[j].setMap(map);
     }
+}
 
-    if(element.value == "withRoundOfGolf"){
-        roundOfGolfDataLayer.setVisible(element.checked);
-    }
+/**
+ * Show all the markers
+ */
+function showMarkers(){
+    setMapOnAll(map);
+}
+
+/**
+ * Hide all the markers
+ */
+function hideMarkers(){
+    setMapOnAll(null);
 }
