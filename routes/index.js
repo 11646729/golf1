@@ -1,7 +1,6 @@
 /**
  * Created by briansmith on 01/10/15
  */
-
 module.exports = function(io) {
     var r = require('rethinkdb'),
         assert = require('assert'),
@@ -86,11 +85,44 @@ module.exports = function(io) {
     });
 
     /*
-     * Get initial values of Nearby Golf Courses data
+     * Get initial values of Nearby Golf Courses with OL3
      */
-    router.get(config.routes.nearbyGolfCourses, [util.requireAuthentication], function(req, res) {
+    router.get(config.routes.nearbyGolfCoursesOL3, [util.requireAuthentication], function(req, res) {
 
-        res.render('nearbyGolfCourses.jade', {title: 'Nearby Golf Courses'});
+        res.render('nearbyGolfCoursesOL3.jade', {title: 'Nearby Golf Courses'});
+
+        io.on('connection', function () {
+
+            r.connect({host: config.rethinkdb.host, port: config.rethinkdb.port}, function (err, conn) {
+
+                if (err) {
+                    console.log("[ERROR] %s:%s \n%s", err.name, err.msg, err.message);
+                    res.send([]);
+                }
+
+                connection = conn;
+
+                r.db(config.rethinkdb.db).table(config.rethinkdb.tables.nearbyGolfCourses).run(connection, function (err, cursor) {
+                    cursor.toArray(function (err, nearbyGolfCoursesData) {
+                        io.emit('loadNearbyGolfCoursesData', nearbyGolfCoursesData);
+                    });
+                });
+
+                if(this.conn)
+                {
+                    this.conn.close();
+                    console.log('Database connection closed');
+                }
+            });
+        });
+    });
+
+    /*
+     * Get initial values of Nearby Golf Courses with Google Maps
+     */
+    router.get(config.routes.nearbyGolfCoursesGoogle, [util.requireAuthentication], function(req, res) {
+
+        res.render('nearbyGolfCoursesGoogle.jade', {title: 'Nearby Golf Courses'});
 
         io.on('connection', function () {
 
@@ -120,7 +152,7 @@ module.exports = function(io) {
 
     /**
      * TODO
-     * Get update values of Nearby Golf Courses
+     * Get update values of Nearby Golf Courses using Google Maps
      */
 
 
@@ -162,10 +194,10 @@ module.exports = function(io) {
      */
 
     /*
-     * Round of golf with OpenLayers using Bing Maps
+     * Round of golf with OpenLayers using Open Layers 3 & Bing Maps
      */
-    router.get(config.routes.roundOfGolf, [util.requireAuthentication], function(req, res) {
-        res.render('roundOfGolf.jade', {title: 'Round of Golf'});
+    router.get(config.routes.roundOfGolfOL3, [util.requireAuthentication], function(req, res) {
+        res.render('roundOfGolfOL3.jade', {title: 'Round of Golf'});
     });
 
     return router;

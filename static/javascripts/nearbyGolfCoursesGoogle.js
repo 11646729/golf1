@@ -51,9 +51,9 @@ function init(){
      * Add Events
      */
     map.addListener('zoom_changed', function(event) {
-//        updateMarkersArray(model);
         showMarkers();
     });
+
     map.addListener('mousemove', function (event) {
         displayCoordinates(event.latLng);
     });

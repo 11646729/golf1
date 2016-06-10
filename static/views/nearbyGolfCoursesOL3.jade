@@ -1,0 +1,25 @@
+// Created by briansmith on 30/01/16
+extends layout
+
+block content
+    header
+        include partials/header.jade
+
+    main
+        .container-fluid
+            .row-fluid
+            p
+                span#mouse4326.label.label-info
+                button(onclick='hideMarkers()') Hide Markers
+                button(onclick='showMarkers()') Show Markers
+                .span12
+                    #map.map
+                    //#popup.ol-popup
+                        a#popup-closer.ol-popup-closer(href='#')
+                        #popup-content
+
+    footer
+        script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBaIVeD83DDFyptO3K--V6YlhvfouDiqOI&callback=init&libraries=geometry', async='', defer='')
+        script(type='text/javascript', src='../bower_components/socket.io.js')
+        script(type='text/javascript', src='../javascripts/nearbyGolfCoursesOL3.js')
+
