@@ -126,9 +126,9 @@ module.exports = function(io) {
     /*
      * Get initial values of Round Of Golf
      */
-    router.get(config.routes.roundOfGolf, [util.requireAuthentication], function(req, res) {
+    router.get(config.routes.roundsOfGolf, [util.requireAuthentication], function(req, res) {
 
-        res.render('roundOfGolf.jade', {title: 'Round of Golf'});
+        res.render('roundsOfGolf.jade', {title: 'Round of Golf'});
 
         io.on('connection', function () {
 
