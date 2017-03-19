@@ -101,6 +101,9 @@ function calculateBounds(model){
             myBounds.extend(new google.maps.LatLng(coordsj[1], coordsj[0]));
         }
     }
+
+    console.log(myBounds);
+
     return myBounds
 }
 

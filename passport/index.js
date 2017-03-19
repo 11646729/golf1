@@ -64,8 +64,12 @@ var routes = function routes(app){
     app.get(config.routes.facebookAuth, passport.authenticate('facebook'));
     app.get(config.routes.facebookAuthCallback, passport.authenticate('facebook',
         {successRedirect: config.routes.mainPage, failureRedirect: config.routes.login, failureFlash: true}));
+
+    // 'https://www.googleapis.com/auth/calendar' this needs to be added to the line below to access calendar
+
     app.get(config.routes.googleAuth, passport.authenticate('google',
-        { scope: ['https://www.googleapis.com/auth/userinfo.profile','https://www.googleapis.com/auth/userinfo.email'] }));
+        { scope: ['https://www.googleapis.com/auth/userinfo.profile','https://www.googleapis.com/auth/userinfo.email','https://www.googleapis.com/auth/calendar'] }));
+
     app.get(config.routes.googleAuthCallback, passport.authenticate('google',
         {successRedirect: config.routes.mainPage, failureRedirect: config.routes.login, failureFlash: true}));
     app.post(config.routes.login, passport.authenticate('local',

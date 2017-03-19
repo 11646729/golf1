@@ -37,7 +37,7 @@ module.exports = function(io) {
                     req.flash('error', err);
                     res.redirect(config.routes.register);
                 }else{
-                    req.login(profile, function(err){
+                    req.login(profile, function(){
                         res.redirect(config.routes.mainPage);
                     });
                 }
@@ -160,12 +160,18 @@ module.exports = function(io) {
      * Get update values of Round Of Golf
      */
 
-
     /**
      * Course Scorecards
      */
     router.get(config.routes.courseScorecards, [util.requireAuthentication], function(req, res) {
         res.render('courseScorecards.jade', {title: 'Index'});
+    });
+
+    /**
+     * Edit Competitions
+     */
+    router.get(config.routes.editCompetitions, [util.requireAuthentication], function(req, res) {
+        res.render('editCompetitions.jade', {title: 'Index'});
     });
 
     return router;

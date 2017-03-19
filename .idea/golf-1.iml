@@ -4,9 +4,9 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="golf-1 node_modules" level="project" />
     <orderEntry type="library" name="express-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="body-parser-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="googleMaps" level="application" />
+    <orderEntry type="library" name="google-maps-DefinitelyTyped" level="application" />
   </component>
 </module>

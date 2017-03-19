@@ -26,7 +26,8 @@ var config = {
         findMyRounds: '/findMyRounds',
         findMyRoundById: '/findMyRoundById',
         addMyRound: '/addMyRound',
-        deleteMyRound: '/deleteMyRound'
+        deleteMyRound: '/deleteMyRound',
+        editCompetitions: '/editCompetitions'
     },
     host: 'http://localhost:3000',
     rethinkdb: {
