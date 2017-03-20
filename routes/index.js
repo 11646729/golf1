@@ -189,7 +189,7 @@ module.exports = function(io) {
             console.log("Description :" + descriptionEvents);
 
             //res.send(body.items);
-            res.render('editCompetitions.jade', {title: 'Competitions Page'});
+            res.render('editCompetitions.jade', {title: 'Competitions Page', calendarJsonFile: bookedByEvents});
         });
     });
 
