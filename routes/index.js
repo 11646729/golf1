@@ -188,8 +188,8 @@ module.exports = function(io) {
             console.log("End time : " + endTimeEvents);
             console.log("Description :" + descriptionEvents);
 
-            res.send(body.items);
-            //        res.render('editCompetitions.jade', {title: 'Index'});
+            //res.send(body.items);
+            res.render('editCompetitions.jade', {title: 'Index'});
         });
     });
 
