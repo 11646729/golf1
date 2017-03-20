@@ -8,6 +8,7 @@ module.exports = function(io) {
         router = express.Router(),
         util = require('../middleware/utilities'),
         config = require('../config'),
+        request = require('request'),
         user = require('../passport/user');
 
     var connection;
@@ -171,7 +172,25 @@ module.exports = function(io) {
      * Edit Competitions
      */
     router.get(config.routes.editCompetitions, [util.requireAuthentication], function(req, res) {
-        res.render('editCompetitions.jade', {title: 'Index'});
+
+        request(config.googleCalendarUrl, function(err, resp, body){
+            body = JSON.parse(body);
+
+            const noEvents = body.items.length;
+            const bookedByEvents = body.items[0].creator.displayName;
+            const startTimeEvents = body.items[0].start.dateTime;
+            const endTimeEvents = body.items[0].end.dateTime;
+            const descriptionEvents = body.items[0].description;
+
+            console.log("Number of events: " + noEvents);
+            console.log("Booked by : " + bookedByEvents);
+            console.log("Start time : " + startTimeEvents);
+            console.log("End time : " + endTimeEvents);
+            console.log("Description :" + descriptionEvents);
+
+            res.send(body.items);
+            //        res.render('editCompetitions.jade', {title: 'Index'});
+        });
     });
 
     return router;

@@ -29,6 +29,7 @@ var config = {
         deleteMyRound: '/deleteMyRound',
         editCompetitions: '/editCompetitions'
     },
+    googleCalendarUrl: 'https://www.googleapis.com/calendar/v3/calendars/bds6052@gmail.com/events?key=AIzaSyDfr2f5dXtGCmG_H6f0czMbHvopjrlteP0',
     host: 'http://localhost:3000',
     rethinkdb: {
         host: 'localhost',
