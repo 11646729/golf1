@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f9fa8333-d4dd-4f0a-9316-851c46675c41" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.js" afterPath="$PROJECT_DIR$/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
     </list>
     <ignored path="golf-1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -463,14 +460,7 @@
       <workItem from="1489954181563" duration="118000" />
       <workItem from="1489954559045" duration="74000" />
       <workItem from="1489998047786" duration="2995000" />
-      <workItem from="1490013551229" duration="211000" />
-    </task>
-    <task id="LOCAL-00165" summary="Refactoring nearbyGolfCourses.js file to use the rethinkdb">
-      <created>1463136263802</created>
-      <option name="number" value="00165" />
-      <option name="presentableId" value="LOCAL-00165" />
-      <option name="project" value="LOCAL" />
-      <updated>1463136263803</updated>
+      <workItem from="1490013551229" duration="327000" />
     </task>
     <task id="LOCAL-00166" summary="Refactoring nearbyGolfCourses.js file to use the rethinkdb">
       <created>1463138801455</created>
@@ -808,11 +798,18 @@
       <option name="project" value="LOCAL" />
       <updated>1489920268579</updated>
     </task>
-    <option name="localTasksCounter" value="214" />
+    <task id="LOCAL-00214" summary="Added extra menu item on main page &amp; javascript to display calendar event details from google calendar">
+      <created>1490013859983</created>
+      <option name="number" value="00214" />
+      <option name="presentableId" value="LOCAL-00214" />
+      <option name="project" value="LOCAL" />
+      <updated>1490013859984</updated>
+    </task>
+    <option name="localTasksCounter" value="215" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13495000" />
+    <option name="totallyTimeSpent" value="13611000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -882,7 +879,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Refactoring to use same geojson file in rethinkdb as in project &amp; removing unneeded files" />
     <MESSAGE value="Replacing rethinkdb nearbyGolfCourses &amp; refactoring nearbyGolfCoursesGoogle.js" />
     <MESSAGE value="More minor refactoring" />
     <MESSAGE value="Refactoring nearbyGolfCourses to use jquery" />
@@ -907,7 +903,8 @@
     <MESSAGE value="Minor refactoring" />
     <MESSAGE value="Added Course Scorecard framework" />
     <MESSAGE value="Added Edit Calendar framework &amp; updated OAuth APIs to include Google Calendar" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Edit Calendar framework &amp; updated OAuth APIs to include Google Calendar" />
+    <MESSAGE value="Added extra menu item on main page &amp; javascript to display calendar event details from google calendar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added extra menu item on main page &amp; javascript to display calendar event details from google calendar" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
