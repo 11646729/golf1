@@ -68,14 +68,14 @@ module.exports = function(io) {
      * About
      */
     router.get(config.routes.about, [util.requireAuthentication], function(req, res) {
-        res.render('about.jade', {title: 'Index'});
+        res.render('about.jade', {title: 'About Page'});
     });
 
     /**
      * Contact
      */
     router.get(config.routes.contact, [util.requireAuthentication], function(req, res) {
-        res.render('contact.jade', {title: 'Index'});
+        res.render('contact.jade', {title: 'Contact Page'});
     });
 
     /**
@@ -165,7 +165,7 @@ module.exports = function(io) {
      * Course Scorecards
      */
     router.get(config.routes.courseScorecards, [util.requireAuthentication], function(req, res) {
-        res.render('courseScorecards.jade', {title: 'Index'});
+        res.render('courseScorecards.jade', {title: 'Course Scorecards Page'});
     });
 
     /**
@@ -189,7 +189,7 @@ module.exports = function(io) {
             console.log("Description :" + descriptionEvents);
 
             //res.send(body.items);
-            res.render('editCompetitions.jade', {title: 'Index'});
+            res.render('editCompetitions.jade', {title: 'Competitions Page'});
         });
     });
 
