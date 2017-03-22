@@ -169,11 +169,13 @@ module.exports = function(io) {
     });
 
     /**
-     * Edit Competitions
+     * Read Competitions
      */
-    router.get(config.routes.editCompetitions, [util.requireAuthentication], function(req, res) {
+    router.get(config.routes.readCompetitions, [util.requireAuthentication], function(req, res) {
 
         request(config.googleCalendarUrl, function(err, resp, body){
+
+/*
             body = JSON.parse(body);
 
             const noEvents = body.items.length;
@@ -187,9 +189,10 @@ module.exports = function(io) {
             console.log("Start time : " + startTimeEvents);
             console.log("End time : " + endTimeEvents);
             console.log("Description :" + descriptionEvents);
+*/
 
             //res.send(body.items);
-            res.render('editCompetitions.jade', {title: 'Competitions Page', calendarJsonFile: bookedByEvents});
+            res.render('readCompetitions.jade', {title: 'Competitions Page', calendarJsonFile: body});
         });
     });
 
