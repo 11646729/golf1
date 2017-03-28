@@ -253,10 +253,10 @@ module.exports = function(io) {
                 'self': true
             },
             'start': {
-                'dateTime': '2017-04-06T12:15:00+01:00'
+                'dateTime': new Date().toISOString()
             },
             'end': {
-                'dateTime': '2017-04-06T13:15:00+01:00'
+                'dateTime': new Date().toISOString() // Need to add event duration here
             }
         };
 
