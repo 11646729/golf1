@@ -178,23 +178,54 @@ module.exports = function(io) {
 /*
             body = JSON.parse(body);
 
-            const noEvents = body.items.length;
-            const bookedByEvents = body.items[0].creator.displayName;
-            const startTimeEvents = body.items[0].start.dateTime;
-            const endTimeEvents = body.items[0].end.dateTime;
-            const descriptionEvents = body.items[0].description;
+            const noEvents = "Number of events: " + body.items.length;
 
-            console.log("Number of events: " + noEvents);
-            console.log("Booked by : " + bookedByEvents);
-            console.log("Start time : " + startTimeEvents);
-            console.log("End time : " + endTimeEvents);
-            console.log("Description :" + descriptionEvents);
+            for(var i=0; i<noEvents; i++) {
+                var bookedBy = "Booked by : " + body.items[i].creator.displayName;
+                var startTimeEvents = "Start time : " + body.items[i].start.dateTime;
+                var endTimeEvents = "End time : " + body.items[i].end.dateTime;
+                var descriptionEvents = "Description :" + body.items[i].description;
+            }
+
+            var calendarEvents = [];
+            calendarEvents.push(body.items[0]);
+            calendarEvents.push(body.items[1]);
+            console.log(calendarEvents);
 */
+            console.log('Access token = ' + config.accessVar);
+
+            var User = function(fname, lname, phone) {
+                this.FirstName = fname;
+                this.LastName = lname;
+                this.Phone = phone;
+            };
+
+            var users = [];
+
+            users.push(new User('Matt', 'Palmerlee', '818-123-4567'));
+            users.push(new User('Joe', 'Plumber', '310-012-9876'));
+            users.push(new User('Tom', 'Smith', '415-567-2345'));
+
+            res.render('users', {'users':users, 'title':'Users'});
 
             //res.send(body.items);
-            res.render('readCompetitions.jade', {title: 'Competitions Page', calendarJsonFile: body});
+//            res.render('readCompetitions.jade', {title: 'Competitions Page', calendarNoEvents: noEvents, calendarBookedBy: bookedBy});
         });
     });
 
-    return router;
+    /**
+     * Read Competitions with google-calendar npm module
+     */
+    router.get(config.routes.readGCCompetitions, [util.requireAuthentication], function(req, res) {
+            res.render('readGCCompetitions.jade', {title: 'Read Competitions google-calendar Page'});
+    });
+
+    /**
+     * Add Competitions with google-calendar npm module
+     */
+    router.get(config.routes.addGCCompetitions, [util.requireAuthentication], function(req, res) {
+            res.render('addGCCompetitions.jade', {title: 'Add Competitions gooogle-calendar Page'});
+    });
+
+        return router;
 };

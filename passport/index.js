@@ -23,6 +23,7 @@ passport.use(new google({
     clientSecret: config.google.clientSecret,
     callbackURL: config.host + config.routes.googleAuthCallback},
     function(accessToken, refreshToken, profile, done) {
+        config.accessVar = accessToken;
         done(null, profile);
 }));
 
@@ -70,6 +71,7 @@ var routes = function routes(app){
 
     app.get(config.routes.googleAuthCallback, passport.authenticate('google',
         {successRedirect: config.routes.mainPage, failureRedirect: config.routes.login, failureFlash: true}));
+
     app.post(config.routes.login, passport.authenticate('local',
         {successRedirect: config.routes.mainPage, failureRedirect: config.routes.login, failureFlash: true}));
 };

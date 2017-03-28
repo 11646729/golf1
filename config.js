@@ -2,6 +2,7 @@
  * Created by briansmith on 25/01/16
  */
 var config = {
+    accessVar: '',
     port: 3000,
     secret: 'secret',
     mongoUrl: 'mongodb://mytest1:mytest2@ds063168.mlab.com:63168/winedb',
@@ -27,7 +28,9 @@ var config = {
         findMyRoundById: '/findMyRoundById',
         addMyRound: '/addMyRound',
         deleteMyRound: '/deleteMyRound',
-        readCompetitions: '/readCompetitions'
+        readCompetitions: '/readCompetitions',
+        readGCCompetitions: '/readGCCompetitions',
+        addGCCompetitions: '/addGCCompetitions'
     },
     googleCalendarUrl: 'https://www.googleapis.com/calendar/v3/calendars/bds6052@gmail.com/events?key=AIzaSyDfr2f5dXtGCmG_H6f0czMbHvopjrlteP0',
     host: 'http://localhost:3000',
