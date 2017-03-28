@@ -23,7 +23,7 @@ passport.use(new google({
     clientSecret: config.google.clientSecret,
     callbackURL: config.host + config.routes.googleAuthCallback},
     function(accessToken, refreshToken, profile, done) {
-        config.accessVar = accessToken;
+        config.googleOAuth2AccessToken = accessToken;
         done(null, profile);
 }));
 

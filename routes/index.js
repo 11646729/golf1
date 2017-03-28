@@ -9,7 +9,8 @@ module.exports = function(io) {
         util = require('../middleware/utilities'),
         config = require('../config'),
         request = require('request'),
-        user = require('../passport/user');
+        user = require('../passport/user'),
+        gcal = require('google-calendar');
 
     var connection;
 
@@ -173,26 +174,20 @@ module.exports = function(io) {
      */
     router.get(config.routes.readCompetitions, [util.requireAuthentication], function(req, res) {
 
-        request(config.googleCalendarUrl, function(err, resp, body){
+        request(config.googleCalendarUrl, function(err, resp, eventList){
 
 /*
-            body = JSON.parse(body);
+            eventList = JSON.parse(eventList);
 
-            const noEvents = "Number of events: " + body.items.length;
+            const noEvents = "Number of events: " + eventList.items.length;
 
             for(var i=0; i<noEvents; i++) {
-                var bookedBy = "Booked by : " + body.items[i].creator.displayName;
-                var startTimeEvents = "Start time : " + body.items[i].start.dateTime;
-                var endTimeEvents = "End time : " + body.items[i].end.dateTime;
-                var descriptionEvents = "Description :" + body.items[i].description;
+                var bookedBy = "Booked by : " + eventList.items[i].creator.displayName;
+                var startTimeEvents = "Start time : " + eventList.items[i].start.dateTime;
+                var endTimeEvents = "End time : " + eventList.items[i].end.dateTime;
+                var descriptionEvents = "Description :" + eventList.items[i].description;
             }
-
-            var calendarEvents = [];
-            calendarEvents.push(body.items[0]);
-            calendarEvents.push(body.items[1]);
-            console.log(calendarEvents);
 */
-            console.log('Access token = ' + config.accessVar);
 
             var User = function(fname, lname, phone) {
                 this.FirstName = fname;
@@ -217,14 +212,66 @@ module.exports = function(io) {
      * Read Competitions with google-calendar npm module
      */
     router.get(config.routes.readGCCompetitions, [util.requireAuthentication], function(req, res) {
-            res.render('readGCCompetitions.jade', {title: 'Read Competitions google-calendar Page'});
+
+        var google_calendar = new gcal.GoogleCalendar(config.googleOAuth2AccessToken);
+
+        google_calendar.events.list(config.calendarId, {'timeMin': new Date().toISOString()}, function(err, eventList){
+            if(err){
+                res.send(500, err);
+            }
+            else{
+                eventList = JSON.stringify(eventList);
+                const noEvents = eventList;
+
+//                const noEvents = "Number of events: " + eventList.items.length;
+
+                for(var i=0; i<noEvents; i++) {
+                    var bookedBy = "Booked by : " + eventList.items[i].creator.displayName;
+                    var startTimeEvents = "Start time : " + eventList.items[i].start.dateTime;
+                    var endTimeEvents = "End time : " + eventList.items[i].end.dateTime;
+                    var descriptionEvents = "Description :" + eventList.items[i].description;
+                }
+
+            res.render('readCompetitions.jade', {title: 'Read Competitions google-calendar Page', calendarNoEvents: noEvents, calendarBookedBy: bookedBy});
+            }
+        });
     });
 
     /**
      * Add Competitions with google-calendar npm module
      */
     router.get(config.routes.addGCCompetitions, [util.requireAuthentication], function(req, res) {
-            res.render('addGCCompetitions.jade', {title: 'Add Competitions gooogle-calendar Page'});
+
+        var google_calendar = new gcal.GoogleCalendar(config.googleOAuth2AccessToken);
+
+        var addEventBody = {
+            'status': 'confirmed',
+            'summary': 'Constructed calendar test - summary',
+            'description': 'Constructed calendar test - description',
+            'organizer': {
+                'email': config.calendarId,
+                'self': true
+            },
+            'start': {
+                'dateTime': '2017-04-06T12:15:00+01:00'
+            },
+            'end': {
+                'dateTime': '2017-04-06T13:15:00+01:00'
+            }
+        };
+
+        google_calendar.events.insert(config.calendarId, addEventBody, function(addEventError, addEventResponse){
+
+            console.log('GOOGLE RESPONSE:', addEventError, addEventResponse);
+
+            if(addEventError){
+                res.send(400, addEventError);
+            } else {
+//                res.send(200, addEventResponse);
+            }
+        });
+
+        res.render('addGCCompetitions.jade', {title: 'Add Competitions google-calendar Page'});
     });
 
         return router;

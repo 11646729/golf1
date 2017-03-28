@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9fa8333-d4dd-4f0a-9316-851c46675c41" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/views/addGCCompetitions.jade" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/views/readGCCompetitions.jade" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/views/users.jade" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.js" afterPath="$PROJECT_DIR$/config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/passport/index.js" afterPath="$PROJECT_DIR$/passport/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/views/mainPage.jade" afterPath="$PROJECT_DIR$/static/views/mainPage.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/views/readCompetitions.jade" afterPath="$PROJECT_DIR$/static/views/readCompetitions.jade" />
     </list>
     <ignored path="golf-1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,48 +29,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="520">
-              <caret line="226" column="29" lean-forward="false" selection-start-line="226" selection-start-column="29" selection-end-line="226" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="readGCCompetitions.jade" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/views/readGCCompetitions.jade">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="addGCCompetitions.jade" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/views/addGCCompetitions.jade">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="readCompetitions.jade" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/views/readCompetitions.jade">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mainPage.jade" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/views/mainPage.jade">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="56" column="34" lean-forward="false" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
+            <state relative-caret-position="465">
+              <caret line="269" column="2" lean-forward="false" selection-start-line="269" selection-start-column="2" selection-end-line="269" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -83,8 +39,8 @@
       <file leaf-file-name="config.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" column="34" lean-forward="false" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
+            <state relative-caret-position="75">
+              <caret line="5" column="36" lean-forward="false" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -93,18 +49,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/passport/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+            <state relative-caret-position="375">
+              <caret line="25" column="38" lean-forward="false" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -175,7 +121,6 @@
         <option value="$PROJECT_DIR$/static/views/roundsOfGolf.jade" />
         <option value="$PROJECT_DIR$/static/javascripts/nearbyGolfCourses.js" />
         <option value="$PROJECT_DIR$/static/views/EDITCOMPETITIONS.jade" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/static/views/courseScorecards.jade" />
         <option value="$PROJECT_DIR$/static/views/about.jade" />
         <option value="$PROJECT_DIR$/static/views/contact.jade" />
@@ -185,11 +130,12 @@
         <option value="$PROJECT_DIR$/static/views/users.pug" />
         <option value="$PROJECT_DIR$/static/views/users.jade" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/passport/index.js" />
         <option value="$PROJECT_DIR$/static/views/addGCCompetitions.jade" />
         <option value="$PROJECT_DIR$/static/views/readGCCompetitions.jade" />
-        <option value="$PROJECT_DIR$/config.js" />
         <option value="$PROJECT_DIR$/static/views/mainPage.jade" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/passport/index.js" />
+        <option value="$PROJECT_DIR$/config.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
       </list>
     </option>
@@ -255,28 +201,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="golf-1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="golf-1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="addGCCompetitions.jade" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NestingTreeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -551,14 +475,9 @@
       <workItem from="1490634003558" duration="120000" />
       <workItem from="1490634975392" duration="977000" />
       <workItem from="1490689666020" duration="2480000" />
-      <workItem from="1490695622371" duration="1778000" />
-    </task>
-    <task id="LOCAL-00171" summary="Minor refactoring">
-      <created>1463431276964</created>
-      <option name="number" value="00171" />
-      <option name="presentableId" value="LOCAL-00171" />
-      <option name="project" value="LOCAL" />
-      <updated>1463431276964</updated>
+      <workItem from="1490695622371" duration="2706000" />
+      <workItem from="1490716537410" duration="3191000" />
+      <workItem from="1490719807881" duration="1731000" />
     </task>
     <task id="LOCAL-00172" summary="Refactor roundOfGolfGoogle.js  to put drawmap() before fetchdata()">
       <created>1463485788772</created>
@@ -896,16 +815,23 @@
       <option name="project" value="LOCAL" />
       <updated>1490177363282</updated>
     </task>
-    <option name="localTasksCounter" value="220" />
+    <task id="LOCAL-00220" summary="Added stubs for using google-calendar npm module for reading &amp; writing to Google Calendar">
+      <created>1490699355226</created>
+      <option name="number" value="00220" />
+      <option name="presentableId" value="LOCAL-00220" />
+      <option name="project" value="LOCAL" />
+      <updated>1490699355228</updated>
+    </task>
+    <option name="localTasksCounter" value="221" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31630000" />
+    <option name="totallyTimeSpent" value="37480000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20529328" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21101573" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1977612" sideWeight="0.5200286" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329602" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -969,7 +895,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Yet more refactoring nearbyGolfCourses.js" />
     <MESSAGE value="More refactoring - WIP" />
     <MESSAGE value="Fixed problem of markers not being able to be hidden on a backward move through the view tree to the main menu then back to the nearestGolfCourses.jade page again" />
     <MESSAGE value="Refactoring to eliminate magic numbers &amp; start to prepare for update changefeeds" />
@@ -994,7 +919,8 @@
     <MESSAGE value="Edited some Jade files to accept passed title fields from associated javascript files" />
     <MESSAGE value="Started passing lines from a Json file to Jade" />
     <MESSAGE value="Minor pathname refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor pathname refactoring" />
+    <MESSAGE value="Added stubs for using google-calendar npm module for reading &amp; writing to Google Calendar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added stubs for using google-calendar npm module for reading &amp; writing to Google Calendar" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1225,32 +1151,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bower.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="22" lean-forward="false" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="37" column="16" lean-forward="false" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="0">
             <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1288,38 +1200,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="22" column="2" lean-forward="false" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
+    <entry file="file://$PROJECT_DIR$/middleware/utilities.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="45">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/passport/index.js">
+    <entry file="file://$PROJECT_DIR$/bower.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="135">
+          <caret line="9" column="22" lean-forward="false" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/views/readCompetitions.jade">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/views/readGCCompetitions.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        <state relative-caret-position="344">
+          <caret line="29" column="22" lean-forward="true" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -1328,7 +1229,36 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="438">
           <caret line="56" column="34" lean-forward="false" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/passport/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="38" lean-forward="false" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="36" lean-forward="false" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/views/readCompetitions.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1336,30 +1266,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/middleware/utilities.js">
+    <entry file="file://$PROJECT_DIR$/static/views/readGCCompetitions.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="34" lean-forward="false" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
-          <folding />
+        <state relative-caret-position="195">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="226" column="29" lean-forward="false" selection-start-line="226" selection-start-column="29" selection-end-line="226" selection-end-column="29" />
+        <state relative-caret-position="465">
+          <caret line="269" column="2" lean-forward="false" selection-start-line="269" selection-start-column="2" selection-end-line="269" selection-end-column="2" />
           <folding />
         </state>
       </provider>

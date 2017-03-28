@@ -2,7 +2,8 @@
  * Created by briansmith on 25/01/16
  */
 var config = {
-    accessVar: '',
+    googleOAuth2AccessToken: '',
+    calendarId: 'bds6052@gmail.com',
     port: 3000,
     secret: 'secret',
     mongoUrl: 'mongodb://mytest1:mytest2@ds063168.mlab.com:63168/winedb',
