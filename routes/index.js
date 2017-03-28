@@ -248,17 +248,62 @@ module.exports = function(io) {
             'status': 'confirmed',
             'summary': 'Constructed calendar test - summary',
             'description': 'Constructed calendar test - description',
+            "location":"Clandeboye Golf Club, 51 Tower Rd, Bangor, Newtownards BT23, UK",
+            "creator": {
+                "email":"bds6052@gmail.com",
+                "displayName":"Brian Smith",
+                "self":true
+            },
             'organizer': {
                 'email': config.calendarId,
+                "displayName":"Brian Smith",
                 'self': true
             },
             'start': {
-                'dateTime': new Date().toISOString()
+                'dateTime': new Date().toISOString(),
+                "timeZone":"Europe/London"
             },
             'end': {
-                'dateTime': new Date().toISOString() // Need to add event duration here
+                'dateTime': new Date().toISOString(), // Need to add event duration here
+                "timeZone":"Europe/London"
             }
         };
+
+        /*  Sample event created in Google Calendar
+        {
+            "kind":"calendar#event",
+            "etag":"\"2981454882834000\"",
+            "id":"oo3ucrbj28ipi9nbiob2cc89t4",
+            "status":"confirmed",
+            "htmlLink":"https://www.google.com/calendar/event?eid=b28zdWNyYmoyOGlwaTluYmlvYjJjYzg5dDQgYmRzNjA1MkBt",
+            "created":"2017-03-28T18:57:21.000Z",
+            "updated":"2017-03-28T18:57:21.417Z",
+            "location":"Clandeboye Golf Club, 51 Tower Rd, Bangor, Newtownards BT23, UK",
+            "creator": {
+                "email":"bds6052@gmail.com",
+                "displayName":"Brian Smith",
+                "self":true
+            },
+            "organizer": {
+                "email":"bds6052@gmail.com",
+                "displayName":"Brian Smith",
+                "self":true
+            },
+            "start": {
+                "dateTime":"2017-03-28T20:00:00+01:00",
+                "timeZone":"Europe/London"
+            },
+            "end": {
+                "dateTime":"2017-03-28T21:00:00+01:00",
+                "timeZone":"Europe/London"
+            },
+            "iCalUID":"oo3ucrbj28ipi9nbiob2cc89t4@google.com",
+            "sequence":0,
+            "reminders": {
+                "useDefault":true
+            }
+        }
+*/
 
         google_calendar.events.insert(config.calendarId, addEventBody, function(addEventError, addEventResponse){
 
