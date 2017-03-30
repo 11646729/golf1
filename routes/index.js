@@ -213,7 +213,7 @@ module.exports = function(io) {
      */
     router.get(config.routes.readGCCompetitions, [util.requireAuthentication], function(req, res) {
 
-        var google_calendar = new gcal.GoogleCalendar(config.googleOAuth2AccessToken);
+        var google_calendar = new gcal.GoogleCalendar(config.google.googleOAuth2AccessToken);
 
         google_calendar.events.list(config.calendarId, {'timeMin': new Date().toISOString()}, function(err, eventList){
             if(err){
@@ -242,7 +242,7 @@ module.exports = function(io) {
      */
     router.get(config.routes.addGCCompetitions, [util.requireAuthentication], function(req, res) {
 
-        var google_calendar = new gcal.GoogleCalendar(config.googleOAuth2AccessToken);
+        var google_calendar = new gcal.GoogleCalendar(config.google.googleOAuth2AccessToken);
 
         var addEventBody = {
             'status': 'confirmed',

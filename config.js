@@ -2,8 +2,6 @@
  * Created by briansmith on 25/01/16
  */
 var config = {
-    googleOAuth2AccessToken: '',
-    calendarId: 'bds6052@gmail.com',
     port: 3000,
     secret: 'secret',
     mongoUrl: 'mongodb://mytest1:mytest2@ds063168.mlab.com:63168/winedb',
@@ -34,6 +32,7 @@ var config = {
         addGCCompetitions: '/addGCCompetitions'
     },
     googleCalendarUrl: 'https://www.googleapis.com/calendar/v3/calendars/bds6052@gmail.com/events?key=AIzaSyDfr2f5dXtGCmG_H6f0czMbHvopjrlteP0',
+    calendarId: 'bds6052@gmail.com',
     host: 'http://localhost:3000',
     rethinkdb: {
         host: 'localhost',
@@ -50,7 +49,8 @@ var config = {
     },
     google: {
         clientID: '824211476195-mast726v6dbnmtkjubfhgq8skefvf2pn.apps.googleusercontent.com',
-        clientSecret: 'gpmeaG99KGFN-YMuVcV8933E'
+        clientSecret: 'gpmeaG99KGFN-YMuVcV8933E',
+        googleOAuth2AccessToken: ''
     },
     crypto: {
         workFactor: 5000,
