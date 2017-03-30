@@ -4,5 +4,5 @@ extends layout
 block content
     ul
         each user in users
-            li #{user.FirstName} #{user.LastName}
+            li #{user.summary} #{user.description}
                 p(style="margin-left:5px")=user.Phone

@@ -176,35 +176,15 @@ module.exports = function(io) {
 
         request(config.googleCalendarUrl, function(err, resp, eventList){
 
-/*
             eventList = JSON.parse(eventList);
-
-            const noEvents = "Number of events: " + eventList.items.length;
-
-            for(var i=0; i<noEvents; i++) {
-                var bookedBy = "Booked by : " + eventList.items[i].creator.displayName;
-                var startTimeEvents = "Start time : " + eventList.items[i].start.dateTime;
-                var endTimeEvents = "End time : " + eventList.items[i].end.dateTime;
-                var descriptionEvents = "Description :" + eventList.items[i].description;
-            }
-*/
-
-            var User = function(fname, lname, phone) {
-                this.FirstName = fname;
-                this.LastName = lname;
-                this.Phone = phone;
-            };
 
             var users = [];
 
-            users.push(new User('Matt', 'Palmerlee', '818-123-4567'));
-            users.push(new User('Joe', 'Plumber', '310-012-9876'));
-            users.push(new User('Tom', 'Smith', '415-567-2345'));
+            for(var i=0; i<eventList.items.length; i++) {
+                users.push(eventList.items[i]);
+            }
 
-            res.render('users', {'users':users, 'title':'Users'});
-
-            //res.send(body.items);
-//            res.render('readCompetitions.jade', {title: 'Competitions Page', calendarNoEvents: noEvents, calendarBookedBy: bookedBy});
+            res.render('readCompetitions.jade', {title: 'Read Competitions Page', 'users': users});
         });
     });
 
@@ -215,24 +195,19 @@ module.exports = function(io) {
 
         var google_calendar = new gcal.GoogleCalendar(config.google.googleOAuth2AccessToken);
 
+        // google-calendar returns a JSON file
         google_calendar.events.list(config.calendarId, {'timeMin': new Date().toISOString()}, function(err, eventList){
             if(err){
                 res.send(500, err);
             }
             else{
-                eventList = JSON.stringify(eventList);
-                const noEvents = eventList;
+                var users = [];
 
-//                const noEvents = "Number of events: " + eventList.items.length;
-
-                for(var i=0; i<noEvents; i++) {
-                    var bookedBy = "Booked by : " + eventList.items[i].creator.displayName;
-                    var startTimeEvents = "Start time : " + eventList.items[i].start.dateTime;
-                    var endTimeEvents = "End time : " + eventList.items[i].end.dateTime;
-                    var descriptionEvents = "Description :" + eventList.items[i].description;
+                for(var i=0; i<eventList.items.length; i++) {
+                    users.push(eventList.items[i]);
                 }
 
-            res.render('readCompetitions.jade', {title: 'Read Competitions google-calendar Page', calendarNoEvents: noEvents, calendarBookedBy: bookedBy});
+                res.render('readGCCompetitions.jade', {title: 'Read Competitions google-calendar Page', 'users': users});
             }
         });
     });
