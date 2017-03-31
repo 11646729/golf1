@@ -178,13 +178,15 @@ module.exports = function(io) {
 
             eventList = JSON.parse(eventList);
 
-            var users = [];
+            console.log(eventList); // Using this line shows that extendedProperties are not being returned
+
+            var events = [];
 
             for(var i=0; i<eventList.items.length; i++) {
-                users.push(eventList.items[i]);
+                events.push(eventList.items[i]);
             }
 
-            res.render('readCompetitions.jade', {title: 'Read Competitions Page', 'users': users});
+            res.render('readCompetitions.jade', {title: 'Read Competitions Page', 'events': events});
         });
     });
 
@@ -201,13 +203,13 @@ module.exports = function(io) {
                 res.send(500, err);
             }
             else{
-                var users = [];
+                var events = [];
 
                 for(var i=0; i<eventList.items.length; i++) {
-                    users.push(eventList.items[i]);
+                    events.push(eventList.items[i]);
                 }
 
-                res.render('readGCCompetitions.jade', {title: 'Read Competitions google-calendar Page', 'users': users});
+                res.render('readGCCompetitions.jade', {title: 'Read Competitions google-calendar Page', 'events': events});
             }
         });
     });
@@ -220,27 +222,33 @@ module.exports = function(io) {
         var google_calendar = new gcal.GoogleCalendar(config.google.googleOAuth2AccessToken);
 
         var addEventBody = {
-            'status': 'confirmed',
-            'summary': 'Constructed calendar test - summary',
-            'description': 'Constructed calendar test - description',
+            "status": "confirmed",
+            "summary": "Constructed calendar test - summary",
+            "description": "Constructed calendar test - description",
             "location":"Clandeboye Golf Club, 51 Tower Rd, Bangor, Newtownards BT23, UK",
             "creator": {
                 "email":"bds6052@gmail.com",
                 "displayName":"Brian Smith",
                 "self":true
             },
-            'organizer': {
-                'email': config.calendarId,
+            "organizer": {
+                "email": "bds6052@gmail.com",
                 "displayName":"Brian Smith",
-                'self': true
+                "self": true
             },
-            'start': {
-                'dateTime': new Date().toISOString(),
+            "start": {
+                "dateTime": "2017-03-31T20:00:00+01:00",
                 "timeZone":"Europe/London"
             },
-            'end': {
-                'dateTime': new Date().toISOString(), // Need to add event duration here
+            "end": {
+                "dateTime": "2017-03-31T21:00:00+01:00",
                 "timeZone":"Europe/London"
+            },
+            "extendedProperties": {
+                "shared": {
+                    "competitionName": "The Maritime Cup",
+                    "playedOnCourse": "Dufferin"
+                }
             }
         };
 
@@ -287,7 +295,9 @@ module.exports = function(io) {
             if(addEventError){
                 res.send(400, addEventError);
             } else {
-//                res.send(200, addEventResponse);
+                console.log(addEventResponse);
+
+//                res.send(200, addEventResponse); // Google is throwing an error here
             }
         });
 

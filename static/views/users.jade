@@ -1,8 +1,0 @@
-// Created by briansmith on 27/03/2017.
-extends layout
-
-block content
-    ul
-        each user in users
-            li #{user.summary} #{user.description}
-                p(style="margin-left:5px")=user.Phone

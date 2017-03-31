@@ -13,9 +13,9 @@ block content
                         h3= title
 
                         ul
-                            each user in users
-                                li #{user.summary} #{user.description}
-                                    p(style="margin-left:5px")=user.Phone
+                            each event in events
+                                li #{event.summary} #{event.description}
+                                    p(style="margin-left:5px")=event.Phone
 
     footer
 
