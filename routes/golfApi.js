@@ -2,23 +2,22 @@
  * Created by briansmith on 17/03/2016.
  */
 
-var r = require('rethinkdb'),
-    debug = require('debug')('rdb'),
-    assert = require('assert'),
-    self = this,
-
-    express = require('express'),
-    router = express.Router(),
-    config = require('../config');
+// var r = require('rethinkdb')
+// var debug = require('debug')('rdb')
+// var assert = require('assert')
+// var self = this
+var express = require('express')
+var router = express.Router()
+// var config = require('../config')
 //    util = require('../middleware/utilities'),
 //    user = require('../passport/user');
 
-var connection;
+// var connection
 
 /**
  * Fetch a round of golf by id
  */
-//router.get(config.routes.findMyRoundById, function(req, res) {
+// router.get(config.routes.findMyRoundById, function(req, res) {
 //
 //    // This is test data
 //    var id = "52e6b265f831a1a3d8814470";
@@ -29,25 +28,25 @@ var connection;
 //    db.get().collection(coll).find({ _id: obj_id }).toArray(function(err, docs) {
 //        if (err) {
 //            console.log(err);
-////            return;
+//            return;
 //        } else {
 //            console.log('Retrieving wine: ' + id);
 //
 //            // This sends the Json file to the client
 //            res.json(docs);
 //
-////          res.render("databaseTest.jade", {
-////              docs: docs
-////          });
+//          res.render("databaseTest.jade", {
+//              docs: docs
+//          });
 //        }
 //    });
-//});
+// });
 
 /**
  * Insert a round of golf
  */
 // TODO Change this to router.post
-//router.get(config.routes.addMyRound, function(req, res) {
+// router.get(config.routes.addMyRound, function(req, res) {
 //
 //    // This is test data
 //    var newRound = {
@@ -72,19 +71,18 @@ var connection;
 //                res.json(docs);
 //            });
 //
-////          res.render("databaseTest.jade", {
-////              docs: docs
-////          });
+//          res.render("databaseTest.jade", {
+//              docs: docs
+//          });
 //        }
 //    });
-//});
-
+// });
 
 /**
  * Delete a round of golf
  */
 // TODO Replace get with delete
-//router.get(config.routes.deleteMyRound, function(req, res) {
+// router.get(config.routes.deleteMyRound, function(req, res) {
 //
 //    // This is test data
 //    var id = "57097679e14a86ea0317a7e9";
@@ -103,12 +101,11 @@ var connection;
 //                res.json(docs);
 //            });
 //
-////          res.render("databaseTest.jade", {
-////              docs: docs
-////          });
+//          res.render("databaseTest.jade", {
+//              docs: docs
+//          });
 //        }
 //    });
-//});
+// });
 
-
-module.exports = router;
+module.exports = router

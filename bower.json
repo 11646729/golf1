@@ -4,12 +4,12 @@
   "main": "app.js",
   "dependencies": {
     "animate.css": "latest",
-    "bootstrap": "3.3.6",
+    "bootstrap": "3.3.7",
     "FileSaver": "latest",
-    "font-awesome": "4.5.0",
+    "font-awesome": "4.7.0",
     "holder": "2.9.3",
-    "jquery": "2.2.0",
-    "jquery-ui": "1.11.4",
+    "jquery": "3.2.1",
+    "jquery-ui": "1.12.1",
     "spinjs": "2.3.2",
     "OpenLayers3": "https://github.com/openlayers/ol3/releases/download/v3.13.0/v3.13.0.zip",
     "sidr": "latest"

@@ -8,5 +8,8 @@
     <orderEntry type="library" name="body-parser-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="googleMaps" level="application" />
     <orderEntry type="library" name="google-maps-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="html5shiv" level="application" />
+    <orderEntry type="library" name="respond" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
   </component>
 </module>
