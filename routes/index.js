@@ -11,7 +11,7 @@ module.exports = function (io) {
   var request = require('request')
   var user = require('../passport/user')
   var gcal = require('google-calendar')
-  var path = require('path')
+//  var path = require('path')
   var fs = require('fs')
 
   var connection
@@ -79,18 +79,14 @@ module.exports = function (io) {
    * About
    */
   router.get(config.routes.about, [util.requireAuthentication], function (req, res) {
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/about.html'
-    res.writeHead(200, {"Content-Type": "text/html"});
-    fs.createReadStream(file).pipe(res);
+    res.render('about', { title: 'Golf Test Routines', pageName: 'About Page' })
   })
 
   /**
    * Contact Page
    */
   router.get(config.routes.contact, [util.requireAuthentication], function (req, res) {
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/contact.html'
-    res.writeHead(200, {"Content-Type": "text/html"});
-    fs.createReadStream(file).pipe(res);
+    res.render('contact', { title: 'Golf Test Routines', pageName: 'Contact Page' })
   })
 
   /**
@@ -194,6 +190,13 @@ module.exports = function (io) {
   })
 
   /**
+   * Add My Round Of Golf
+   */
+  router.get(config.routes.addMyRound, [util.requireAuthentication], function (req, res) {
+    res.render('addMyRound', { title: 'Golf Test Routines', pageName: 'Add My Round Page' })
+  })
+
+  /**
    * Find My Round Of Golf By Id
    */
   router.get(config.routes.findMyRoundById, [util.requireAuthentication], function (req, res) {
@@ -215,9 +218,7 @@ module.exports = function (io) {
    * Course Scorecards
    */
   router.get(config.routes.courseScorecards, [util.requireAuthentication], function (req, res) {
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/courseScorecards.html'
-    res.writeHead(200, {"Content-Type": "text/html"});
-    fs.createReadStream(file).pipe(res);
+    res.render('courseScorecards', { title: 'Golf Test Routines', pageName: 'Course Scorecards Page' })
   })
 
   /**
@@ -387,10 +388,7 @@ module.exports = function (io) {
     })
 */
 
-    // If statement in jade file not yet working - & doesn't need to work?
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/addGCCompetitions.html'
-    res.writeHead(200, {"Content-Type": "text/html"});
-    fs.createReadStream(file).pipe(res);
+    res.render('about', { title: 'Golf Test Routines', pageName: 'Add google-calendar Competition Page' })
   })
 
   return router

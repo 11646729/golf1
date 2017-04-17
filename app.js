@@ -5,6 +5,7 @@
 // modules ===================================================================
 var app = require('express')()
 var express = require('express')
+var exphbs  = require('express-handlebars')
 var config = require('./config')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
@@ -28,8 +29,9 @@ app.io = require('socket.io')()
 require('dotenv').config()
 
 // view engine setup
-//app.set('views', path.join(__dirname, 'static/views'))
-//app.set('view engine', 'jade')
+app.set('views', path.join(__dirname, 'static/views'))
+app.engine('.hbs', exphbs({defaultLayout: 'single', extname: '.hbs', layoutsDir: 'static/views/layouts/', partialsDir: 'static/views/partials'}));
+app.set('view engine', '.hbs');
 
 app.use(express.static(path.join(__dirname, 'static')))
 app.use(favicon(path.join(__dirname, 'static/images', config.favicon)))
