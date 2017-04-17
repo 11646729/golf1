@@ -22,7 +22,7 @@ module.exports = function (io) {
   router.get(config.routes.home, function (req, res) {
 //    res.render('home.jade', {title: 'Home'})
 
-    // If statement in jade file not yet working
+    // If statement in jade file not yet working - & doesn't need to work?
     var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/homeNew.html'
     res.writeHead(200, {"Content-Type": "text/html"});
     fs.createReadStream(file).pipe(res);
@@ -32,7 +32,12 @@ module.exports = function (io) {
    * Register
    */
   router.get(config.routes.register, function (req, res) {
-    res.render('register.jade', {title: 'Register', message: req.flash('error')})
+//    res.render('register.jade', {title: 'Register', message: req.flash('error')})
+
+    // Missing message error
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/registerNew.html'
+    res.writeHead(200, {"Content-Type": "text/html"});
+    fs.createReadStream(file).pipe(res);
   })
 
   /**
