@@ -177,9 +177,7 @@ module.exports = function (io) {
    * Find All My Rounds Of Golf
    */
   router.get(config.routes.findAllMyRounds, [util.requireAuthentication], function (req, res) {
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/findAllMyRounds.html'
-    res.writeHead(200, {"Content-Type": "text/html"});
-    fs.createReadStream(file).pipe(res);
+    res.render('findAllMyRounds', { title: 'Golf Test Routines', pageName: 'Find All My Rounds Page' })
   })
 
   /**
@@ -193,18 +191,14 @@ module.exports = function (io) {
    * Find My Round Of Golf By Id
    */
   router.get(config.routes.findMyRoundById, [util.requireAuthentication], function (req, res) {
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/findMyRoundById.html'
-    res.writeHead(200, {"Content-Type": "text/html"});
-    fs.createReadStream(file).pipe(res);
+    res.render('findMyRoundById', { title: 'Golf Test Routines', pageName: 'Find My Round By Id Page' })
   })
 
   /**
    * Delete My Round Of Golf
    */
   router.get(config.routes.deleteMyRound, [util.requireAuthentication], function (req, res) {
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/deleteMyRound.html'
-    res.writeHead(200, {"Content-Type": "text/html"});
-    fs.createReadStream(file).pipe(res);
+    res.render('deleteMyRound', { title: 'Golf Test Routines', pageName: 'Delete My Round Page' })
   })
 
   /**
