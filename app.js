@@ -28,8 +28,8 @@ app.io = require('socket.io')()
 require('dotenv').config()
 
 // view engine setup
-app.set('views', path.join(__dirname, 'static/views'))
-app.set('view engine', 'jade')
+//app.set('views', path.join(__dirname, 'static/views'))
+//app.set('view engine', 'jade')
 
 app.use(express.static(path.join(__dirname, 'static')))
 app.use(favicon(path.join(__dirname, 'static/images', config.favicon)))

@@ -23,13 +23,14 @@ var config = {
     nearbyGolfCourses: '/nearbyGolfCourses',
     roundsOfGolf: '/roundsOfGolf',
     courseScorecards: '/courseScorecards',
-    findMyRounds: '/findMyRounds',
+    findAllMyRounds: '/findAllMyRounds',
     findMyRoundById: '/findMyRoundById',
     addMyRound: '/addMyRound',
     deleteMyRound: '/deleteMyRound',
     readCompetitions: '/readCompetitions',
     readGCCompetitions: '/readGCCompetitions',
-    addGCCompetitions: '/addGCCompetitions'
+    addGCCompetitions: '/addGCCompetitions',
+    membershipRelationshipManager: '/membershipRelationshipManager'
   },
   googleCalendarUrl: 'https://www.googleapis.com/calendar/v3/calendars/bds6052@gmail.com/events?key=AIzaSyDfr2f5dXtGCmG_H6f0czMbHvopjrlteP0',
   calendarId: 'bds6052@gmail.com',

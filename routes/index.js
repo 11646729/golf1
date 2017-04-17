@@ -17,7 +17,7 @@ module.exports = function (io) {
   var connection
 
   /*
-   * Home page
+   * Home Page
    */
   router.get(config.routes.home, function (req, res) {
 //    res.render('home.jade', {title: 'Home'})
@@ -62,7 +62,7 @@ module.exports = function (io) {
   })
 
   /*
-   * Login page
+   * Login Page
    */
   router.get(config.routes.login, function (req, res) {
 //    res.render('login.jade', {title: 'Login', message: req.flash('error')})
@@ -74,7 +74,7 @@ module.exports = function (io) {
   })
 
   /**
-   * Logout page
+   * Logout
    */
   router.get(config.routes.logout, function (req, res) {
     util.logOut(req)
@@ -93,7 +93,7 @@ module.exports = function (io) {
   })
 
   /**
-   * Contact
+   * Contact Page
    */
   router.get(config.routes.contact, [util.requireAuthentication], function (req, res) {
 //    res.render('contact.jade', {title: 'Contact Page'})
@@ -104,14 +104,18 @@ module.exports = function (io) {
   })
 
   /**
-   * Main page
+   * Main Page
    */
   router.get(config.routes.mainPage, [util.requireAuthentication], function (req, res) {
-    res.render('mainPage.jade', {title: 'Index'})
+//    res.render('main.jade', {title: 'Index'})
+
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/mainNew.html'
+    res.writeHead(200, {"Content-Type": "text/html"});
+    fs.createReadStream(file).pipe(res);
   })
 
   /*
-   * Get initial values of Nearby Golf Courses
+   * Get Nearby Golf Courses
    */
   router.get(config.routes.nearbyGolfCourses, [util.requireAuthentication], function (req, res) {
 //    res.render('nearbyGolfCourses.jade', {title: 'Nearby Golf Courses'})
@@ -152,11 +156,6 @@ module.exports = function (io) {
       })
     })
   })
-
-  /**
-   * TODO
-   * Get update values of Nearby Golf Courses
-   */
 
   /*
    * Get initial values of Round Of Golf
@@ -202,9 +201,34 @@ module.exports = function (io) {
   })
 
   /**
-   * TODO
-   * Get update values of Round Of Golf
+   * Find All My Rounds Of Golf
    */
+  router.get(config.routes.findAllMyRounds, [util.requireAuthentication], function (req, res) {
+
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/findAllMyRoundsNew.html'
+    res.writeHead(200, {"Content-Type": "text/html"});
+    fs.createReadStream(file).pipe(res);
+  })
+
+  /**
+   * Find My Round Of Golf By Id
+   */
+  router.get(config.routes.findMyRoundById, [util.requireAuthentication], function (req, res) {
+
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/findMyRoundByIdNew.html'
+    res.writeHead(200, {"Content-Type": "text/html"});
+    fs.createReadStream(file).pipe(res);
+  })
+
+  /**
+   * Delete My Round Of Golf
+   */
+  router.get(config.routes.deleteMyRound, [util.requireAuthentication], function (req, res) {
+
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/deleteMyRoundNew.html'
+    res.writeHead(200, {"Content-Type": "text/html"});
+    fs.createReadStream(file).pipe(res);
+  })
 
   /**
    * Course Scorecards
@@ -213,6 +237,16 @@ module.exports = function (io) {
 //    res.render('courseScorecards.jade', {title: 'Course Scorecards Page'})
 
     var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/courseScorecardsNew.html'
+    res.writeHead(200, {"Content-Type": "text/html"});
+    fs.createReadStream(file).pipe(res);
+  })
+
+  /**
+   * Membership Relationship Manager
+   */
+  router.get(config.routes.membershipRelationshipManager, [util.requireAuthentication], function (req, res) {
+
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/membershipRelationshipManagerNew.html'
     res.writeHead(200, {"Content-Type": "text/html"});
     fs.createReadStream(file).pipe(res);
   })
@@ -297,7 +331,6 @@ module.exports = function (io) {
   router.get(config.routes.addGCCompetitions, [util.requireAuthentication], function (req, res) {
 
 /*
-
     var googleCalendar = new gcal.GoogleCalendar(config.google.googleOAuth2AccessToken)
 
     var addEventBody = {
