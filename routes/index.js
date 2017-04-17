@@ -20,10 +20,8 @@ module.exports = function (io) {
    * Home Page
    */
   router.get(config.routes.home, function (req, res) {
-//    res.render('home.jade', {title: 'Home'})
-
     // If statement in jade file not yet working - & doesn't need to work?
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/homeNew.html'
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/home.html'
     res.writeHead(200, {"Content-Type": "text/html"});
     fs.createReadStream(file).pipe(res);
   })
@@ -32,10 +30,8 @@ module.exports = function (io) {
    * Register
    */
   router.get(config.routes.register, function (req, res) {
-//    res.render('register.jade', {title: 'Register', message: req.flash('error')})
-
     // Missing message error
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/registerNew.html'
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/register.html'
     res.writeHead(200, {"Content-Type": "text/html"});
     fs.createReadStream(file).pipe(res);
   })
@@ -65,10 +61,8 @@ module.exports = function (io) {
    * Login Page
    */
   router.get(config.routes.login, function (req, res) {
-//    res.render('login.jade', {title: 'Login', message: req.flash('error')})
-
     // Missing message error
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/loginNew.html'
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/login.html'
     res.writeHead(200, {"Content-Type": "text/html"});
     fs.createReadStream(file).pipe(res);
   })
@@ -85,9 +79,7 @@ module.exports = function (io) {
    * About
    */
   router.get(config.routes.about, [util.requireAuthentication], function (req, res) {
-//    res.render('about.jade', {title: 'About Page'})
-
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/aboutNew.html'
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/about.html'
     res.writeHead(200, {"Content-Type": "text/html"});
     fs.createReadStream(file).pipe(res);
   })
@@ -96,9 +88,7 @@ module.exports = function (io) {
    * Contact Page
    */
   router.get(config.routes.contact, [util.requireAuthentication], function (req, res) {
-//    res.render('contact.jade', {title: 'Contact Page'})
-
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/contactNew.html'
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/contact.html'
     res.writeHead(200, {"Content-Type": "text/html"});
     fs.createReadStream(file).pipe(res);
   })
@@ -107,9 +97,7 @@ module.exports = function (io) {
    * Main Page
    */
   router.get(config.routes.mainPage, [util.requireAuthentication], function (req, res) {
-//    res.render('main.jade', {title: 'Index'})
-
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/mainNew.html'
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/main.html'
     res.writeHead(200, {"Content-Type": "text/html"});
     fs.createReadStream(file).pipe(res);
   })
@@ -118,9 +106,7 @@ module.exports = function (io) {
    * Get Nearby Golf Courses
    */
   router.get(config.routes.nearbyGolfCourses, [util.requireAuthentication], function (req, res) {
-//    res.render('nearbyGolfCourses.jade', {title: 'Nearby Golf Courses'})
-
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/nearbyGolfCoursesNew.html'
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/nearbyGolfCourses.html'
     res.writeHead(200, {"Content-Type": "text/html"});
     fs.createReadStream(file).pipe(res);
 
@@ -161,9 +147,7 @@ module.exports = function (io) {
    * Get initial values of Round Of Golf
    */
   router.get(config.routes.roundsOfGolf, [util.requireAuthentication], function (req, res) {
-//    res.render('roundsOfGolf.jade', {title: 'Round of Golf'})
-
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/roundsOfGolfNew.html'
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/roundsOfGolf.html'
     res.writeHead(200, {"Content-Type": "text/html"});
     fs.createReadStream(file).pipe(res);
 
@@ -204,8 +188,7 @@ module.exports = function (io) {
    * Find All My Rounds Of Golf
    */
   router.get(config.routes.findAllMyRounds, [util.requireAuthentication], function (req, res) {
-
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/findAllMyRoundsNew.html'
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/findAllMyRounds.html'
     res.writeHead(200, {"Content-Type": "text/html"});
     fs.createReadStream(file).pipe(res);
   })
@@ -214,8 +197,7 @@ module.exports = function (io) {
    * Find My Round Of Golf By Id
    */
   router.get(config.routes.findMyRoundById, [util.requireAuthentication], function (req, res) {
-
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/findMyRoundByIdNew.html'
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/findMyRoundById.html'
     res.writeHead(200, {"Content-Type": "text/html"});
     fs.createReadStream(file).pipe(res);
   })
@@ -224,8 +206,7 @@ module.exports = function (io) {
    * Delete My Round Of Golf
    */
   router.get(config.routes.deleteMyRound, [util.requireAuthentication], function (req, res) {
-
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/deleteMyRoundNew.html'
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/deleteMyRound.html'
     res.writeHead(200, {"Content-Type": "text/html"});
     fs.createReadStream(file).pipe(res);
   })
@@ -234,9 +215,7 @@ module.exports = function (io) {
    * Course Scorecards
    */
   router.get(config.routes.courseScorecards, [util.requireAuthentication], function (req, res) {
-//    res.render('courseScorecards.jade', {title: 'Course Scorecards Page'})
-
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/courseScorecardsNew.html'
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/courseScorecards.html'
     res.writeHead(200, {"Content-Type": "text/html"});
     fs.createReadStream(file).pipe(res);
   })
@@ -245,8 +224,7 @@ module.exports = function (io) {
    * Membership Relationship Manager
    */
   router.get(config.routes.membershipRelationshipManager, [util.requireAuthentication], function (req, res) {
-
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/membershipRelationshipManagerNew.html'
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/membershipRelationshipManager.html'
     res.writeHead(200, {"Content-Type": "text/html"});
     fs.createReadStream(file).pipe(res);
   })
@@ -270,9 +248,7 @@ module.exports = function (io) {
           events.push(eventList.items[i])
         }
 
-//        res.render('readCompetitions.jade', {title: 'Read Competitions Page', 'events': events})
-
-        var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/readCompetitionsNew.html'
+        var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/readCompetitions.html'
         res.writeHead(200, {"Content-Type": "text/html"});
         fs.createReadStream(file).pipe(res);
       }
@@ -317,10 +293,8 @@ module.exports = function (io) {
     })
 */
 
-//        res.render('readGCCompetitions.jade', {title: 'Read Competitions google-calendar Page', 'events': events})
-
     // If statement in jade file not yet working - & doesn't need to work?
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/readGCCompetitionsNew.html'
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/readGCCompetitions.html'
     res.writeHead(200, {"Content-Type": "text/html"});
     fs.createReadStream(file).pipe(res);
   })
@@ -413,10 +387,8 @@ module.exports = function (io) {
     })
 */
 
-//    res.render('addGCCompetitions.jade', {title: 'Add Competitions google-calendar Page'})
-
     // If statement in jade file not yet working - & doesn't need to work?
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/addGCCompetitionsNew.html'
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/addGCCompetitions.html'
     res.writeHead(200, {"Content-Type": "text/html"});
     fs.createReadStream(file).pipe(res);
   })
