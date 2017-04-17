@@ -202,7 +202,11 @@ module.exports = function (io) {
    * Course Scorecards
    */
   router.get(config.routes.courseScorecards, [util.requireAuthentication], function (req, res) {
-    res.render('courseScorecards.jade', {title: 'Course Scorecards Page'})
+//    res.render('courseScorecards.jade', {title: 'Course Scorecards Page'})
+
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/courseScorecardsNew.html'
+    res.writeHead(200, {"Content-Type": "text/html"});
+    fs.createReadStream(file).pipe(res);
   })
 
   /**
