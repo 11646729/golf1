@@ -114,7 +114,11 @@ module.exports = function (io) {
    * Get initial values of Nearby Golf Courses
    */
   router.get(config.routes.nearbyGolfCourses, [util.requireAuthentication], function (req, res) {
-    res.render('nearbyGolfCourses.jade', {title: 'Nearby Golf Courses'})
+//    res.render('nearbyGolfCourses.jade', {title: 'Nearby Golf Courses'})
+
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/nearbyGolfCoursesNew.html'
+    res.writeHead(200, {"Content-Type": "text/html"});
+    fs.createReadStream(file).pipe(res);
 
     io.on('connection', function () {
       r.connect({host: config.rethinkdb.host, port: config.rethinkdb.port}, function (err, conn) {
@@ -158,7 +162,11 @@ module.exports = function (io) {
    * Get initial values of Round Of Golf
    */
   router.get(config.routes.roundsOfGolf, [util.requireAuthentication], function (req, res) {
-    res.render('roundsOfGolf.jade', {title: 'Round of Golf'})
+//    res.render('roundsOfGolf.jade', {title: 'Round of Golf'})
+
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/roundsOfGolfNew.html'
+    res.writeHead(200, {"Content-Type": "text/html"});
+    fs.createReadStream(file).pipe(res);
 
     io.on('connection', function () {
       r.connect({host: config.rethinkdb.host, port: config.rethinkdb.port}, function (err, conn) {
