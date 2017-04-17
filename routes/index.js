@@ -3,27 +3,23 @@
  */
 module.exports = function (io) {
   var r = require('rethinkdb')
-  // var assert = require('assert')
   var express = require('express')
-  var router = express.Router()
   var util = require('../middleware/utilities')
   var config = require('../config')
   var request = require('request')
   var user = require('../passport/user')
   var gcal = require('google-calendar')
-//  var path = require('path')
   var fs = require('fs')
 
   var connection
+
+  var router = express.Router()
 
   /*
    * Home Page
    */
   router.get(config.routes.home, function (req, res) {
-    // If statement in jade file not yet working - & doesn't need to work?
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/home.html'
-    res.writeHead(200, {"Content-Type": "text/html"});
-    fs.createReadStream(file).pipe(res);
+    res.render('about', { title: 'Golf Test Routines' })
   })
 
   /**
@@ -31,9 +27,7 @@ module.exports = function (io) {
    */
   router.get(config.routes.register, function (req, res) {
     // Missing message error
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/register.html'
-    res.writeHead(200, {"Content-Type": "text/html"});
-    fs.createReadStream(file).pipe(res);
+    res.render('about', { title: 'Golf Test Routines' })
   })
 
   /**
