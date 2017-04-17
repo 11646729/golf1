@@ -39,28 +39,30 @@
         </li>
     </ul>
 </header>
+
 <main>
     <div class="container">
         <div class="row">
             <div class="col-sm-8 col-sm-offset-2">
-    <!-- Missing if statement here -->
-    <!--                       <p>
-                    <a href="/account/logout" class="btn btn-primary">Logout</a>
-                    <span>&nbsp;</span>
-                    <a href="/mainPage" class="btn btn-primary">Main Index Page</a>
-                </p>
-                <p>
-                    &lt;!&ndash;a.small(href="/profile") Edit my profile&ndash;&gt;
-                </p>
-    -->
                 <div class="row">
-                    <h3>Welcome to my app, ready to get started?</h3>
-                    <p><a href="/account/login" class="btn btn-primary">Login now</a></p>
-                    <p>
-                        <span class="small">Don't have an account?</span>
-                        <span></span>
-                        <a href="/account/register" class="small">Register now</a>
-                    </p>
+                    <div class="col-sm-8">
+                        <h3>Login Page</h3>
+                        <form method="post" action="/account/login">
+                            <input type="hidden" name="_csrf" value="undefined"/>
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input id="username" type="text" placeholder="username" name="username" class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input id="password" type="password" placeholder="password" name="password" class="form-control"/>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                            <div class="row top-margin"></div>
+                        </form>
+                    </div>
+                    <div class="col-sm-6"><a href="/auth/facebook" role="button" class="btn btn-block btn-social facebook"><i class="fa fa-facebook"></i>  Sign in with Facebook</a></div>
+                    <div class="col-sm-6"><a href="/auth/google" role="button" class="btn btn-block btn-social google"><i class="fa fa-google"></i>  Sign in with Google</a></div>
                 </div>
             </div>
         </div>

@@ -9,6 +9,7 @@ module.exports = function (io) {
   var request = require('request')
   var user = require('../passport/user')
   var gcal = require('google-calendar')
+
   var fs = require('fs')
 
   var connection
@@ -19,7 +20,7 @@ module.exports = function (io) {
    * Home Page
    */
   router.get(config.routes.home, function (req, res) {
-    res.render('about', { title: 'Golf Test Routines' })
+    res.render('home', { title: 'Golf Test Routines' })
   })
 
   /**
@@ -27,7 +28,7 @@ module.exports = function (io) {
    */
   router.get(config.routes.register, function (req, res) {
     // Missing message error
-    res.render('about', { title: 'Golf Test Routines' })
+    res.render('register', { title: 'Golf Test Routines' })
   })
 
   /**
@@ -56,9 +57,7 @@ module.exports = function (io) {
    */
   router.get(config.routes.login, function (req, res) {
     // Missing message error
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/login.html'
-    res.writeHead(200, {"Content-Type": "text/html"});
-    fs.createReadStream(file).pipe(res);
+    res.render('login', { title: 'Golf Test Routines' })
   })
 
   /**
