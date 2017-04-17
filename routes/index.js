@@ -20,7 +20,12 @@ module.exports = function (io) {
    * Home page
    */
   router.get(config.routes.home, function (req, res) {
-    res.render('home.jade', {title: 'Home'})
+//    res.render('home.jade', {title: 'Home'})
+
+    // If statement in jade file not yet working
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/homeNew.html'
+    res.writeHead(200, {"Content-Type": "text/html"});
+    fs.createReadStream(file).pipe(res);
   })
 
   /**
@@ -55,7 +60,12 @@ module.exports = function (io) {
    * Login page
    */
   router.get(config.routes.login, function (req, res) {
-    res.render('login.jade', {title: 'Login', message: req.flash('error')})
+//    res.render('login.jade', {title: 'Login', message: req.flash('error')})
+
+    // Missing message error
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/loginNew.html'
+    res.writeHead(200, {"Content-Type": "text/html"});
+    fs.createReadStream(file).pipe(res);
   })
 
   /**

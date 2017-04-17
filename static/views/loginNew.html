@@ -1,4 +1,4 @@
-<!-- Created by briansmith on 14/04/2017-->
+<!-- Created by briansmith on 17/04/2017-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,9 +85,24 @@
                 <div class="row">
                     <div class="col-sm-8 col-sm-offset-2">
                         <div class="row">
-                            <div class="col-sm-12">
-                                <h3>Contact Page</h3>
+                            <div class="col-sm-8">
+                                <h3>Login Page</h3>
+                                <form method="post" action="/account/login">
+                                    <input type="hidden" name="_csrf" value="undefined"/>
+                                    <div class="form-group">
+                                        <label for="username">Username</label>
+                                        <input id="username" type="text" placeholder="username" name="username" class="form-control"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input id="password" type="password" placeholder="password" name="password" class="form-control"/>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                    <div class="row top-margin"></div>
+                                </form>
                             </div>
+                            <div class="col-sm-6"><a href="/auth/facebook" role="button" class="btn btn-block btn-social facebook"><i class="fa fa-facebook"></i>  Sign in with Facebook</a></div>
+                            <div class="col-sm-6"><a href="/auth/google" role="button" class="btn btn-block btn-social google"><i class="fa fa-google"></i>  Sign in with Google</a></div>
                         </div>
                     </div>
                 </div>
