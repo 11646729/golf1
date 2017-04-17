@@ -10,8 +10,6 @@ module.exports = function (io) {
   var user = require('../passport/user')
   var gcal = require('google-calendar')
 
-  var fs = require('fs')
-
   var connection
 
   var router = express.Router()
@@ -86,18 +84,14 @@ module.exports = function (io) {
    * Main Page
    */
   router.get(config.routes.mainPage, [util.requireAuthentication], function (req, res) {
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/main.html'
-    res.writeHead(200, {"Content-Type": "text/html"});
-    fs.createReadStream(file).pipe(res);
+    res.render('main', { title: 'Golf Test Routines' })
   })
 
   /*
    * Get Nearby Golf Courses
    */
   router.get(config.routes.nearbyGolfCourses, [util.requireAuthentication], function (req, res) {
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/nearbyGolfCourses.html'
-    res.writeHead(200, {"Content-Type": "text/html"});
-    fs.createReadStream(file).pipe(res);
+    res.render('nearbyGolfCourses', { title: 'Golf Test Routines', pageName: 'Nearby Golf Courses Page' })
 
     io.on('connection', function () {
       r.connect({host: config.rethinkdb.host, port: config.rethinkdb.port}, function (err, conn) {
@@ -133,12 +127,10 @@ module.exports = function (io) {
   })
 
   /*
-   * Get initial values of Round Of Golf
+   * Get Rounds Of Golf
    */
   router.get(config.routes.roundsOfGolf, [util.requireAuthentication], function (req, res) {
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/roundsOfGolf.html'
-    res.writeHead(200, {"Content-Type": "text/html"});
-    fs.createReadStream(file).pipe(res);
+    res.render('roundsOfGolf', { title: 'Golf Test Routines', pageName: 'Get Rounds of Golf Page' })
 
     io.on('connection', function () {
       r.connect({host: config.rethinkdb.host, port: config.rethinkdb.port}, function (err, conn) {
@@ -212,9 +204,7 @@ module.exports = function (io) {
    * Membership Relationship Manager
    */
   router.get(config.routes.membershipRelationshipManager, [util.requireAuthentication], function (req, res) {
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/membershipRelationshipManager.html'
-    res.writeHead(200, {"Content-Type": "text/html"});
-    fs.createReadStream(file).pipe(res);
+    res.render('membershipRelationshipManager', { title: 'Golf Test Routines', pageName: 'Membership Relationship Manager Page' })
   })
 
   /**
@@ -236,9 +226,7 @@ module.exports = function (io) {
           events.push(eventList.items[i])
         }
 
-        var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/readCompetitions.html'
-        res.writeHead(200, {"Content-Type": "text/html"});
-        fs.createReadStream(file).pipe(res);
+        res.render('readCompetitions', { title: 'Golf Test Routines', pageName: 'Read Competitions Page' })
       }
     })
   })
@@ -282,9 +270,7 @@ module.exports = function (io) {
 */
 
     // If statement in jade file not yet working - & doesn't need to work?
-    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/readGCCompetitions.html'
-    res.writeHead(200, {"Content-Type": "text/html"});
-    fs.createReadStream(file).pipe(res);
+    res.render('readGCCompetitions', { title: 'Golf Test Routines', pageName: 'Read google-calendar Competitions Page' })
   })
 
   /**

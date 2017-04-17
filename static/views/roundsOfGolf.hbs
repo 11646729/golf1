@@ -1,0 +1,61 @@
+<!-- Created by briansmith on 16/04/2017-->
+<header>
+    <a href="/" class="navbar-brand">eSeismic</a>
+    <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Actions<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li>
+                    <!--a(href='/lineChart') Line Chart-->
+                </li>
+                <li>
+                    <!--a(href='/zoomChart') Zoom Chart-->
+                </li>
+                <li>
+                    <!--a(href='/bulletChart') Bubble Chart-->
+                </li>
+                <li>
+                    <!--a(href='/ganttChart') Gantt Chart-->
+                </li>
+                <li>
+                    <!--a(href='/gis') GIS Display-->
+                </li>
+                <li>
+                    <!--a(href='/dashboardChart') Sample Dashboard-->
+                </li>
+                <li>
+                    <!--a(href='/movingLineChart') Moving Line Chart-->
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href='/about'>About</a>
+        </li>
+        <li>
+            <a href='/contact'>Contact</a>
+        </li>
+        <li>
+            <a href='/account/logout'>Logout</a>
+        </li>
+    </ul>
+</header>
+<main>
+    <div class="container-fluid">
+        <div class="row-fluid"></div>
+        <p><span id="mouse4326" class="label label-info"></span></p>
+            <button onclick="hideMarkers()">Hide Markers</button>
+            <button onclick="showMarkers()">Show Markers</button>
+        <div class="span12">
+            <div id="map" class="map"></div>
+            <!--#popup.ol-popup
+            a#popup-closer.ol-popup-closer(href='#')
+            #popup-content
+            -->
+        </div>
+    </div>
+</main>
+<footer>
+    <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAvze1JI7TfdNYfolokPI6-XGt4SkOze-0&callback=init&libraries=geometry', async='', defer=''></script>
+    <script type="text/javascript" src="../bower_components/socket.io.js"></script>
+    <script type="text/javascript" src="../javascripts/roundsOfGolf.js"></script>
+</footer>
