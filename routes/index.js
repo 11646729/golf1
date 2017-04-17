@@ -233,6 +233,8 @@ module.exports = function (io) {
    * Read Competitions with google-calendar npm module
    */
   router.get(config.routes.readGCCompetitions, [util.requireAuthentication], function (req, res) {
+
+/*
     var googleCalendar = new gcal.GoogleCalendar(config.google.googleOAuth2AccessToken)
 
     // google-calendar returns a JSON file
@@ -261,15 +263,25 @@ module.exports = function (io) {
           events.push(eventList.items[i])
         }
 
-        res.render('readGCCompetitions.jade', {title: 'Read Competitions google-calendar Page', 'events': events})
       }
     })
+*/
+
+//        res.render('readGCCompetitions.jade', {title: 'Read Competitions google-calendar Page', 'events': events})
+
+    // If statement in jade file not yet working - & doesn't need to work?
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/readGCCompetitionsNew.html'
+    res.writeHead(200, {"Content-Type": "text/html"});
+    fs.createReadStream(file).pipe(res);
   })
 
   /**
    * Add Competitions with google-calendar npm module
    */
   router.get(config.routes.addGCCompetitions, [util.requireAuthentication], function (req, res) {
+
+/*
+
     var googleCalendar = new gcal.GoogleCalendar(config.google.googleOAuth2AccessToken)
 
     var addEventBody = {
@@ -303,7 +315,7 @@ module.exports = function (io) {
       }
     }
 
-    /*  Sample event created in Google Calendar
+    /!*  Sample event created in Google Calendar
      {
      "kind":"calendar#event",
      "etag":"\"2981454882834000\"",
@@ -337,7 +349,7 @@ module.exports = function (io) {
      "useDefault":true
      }
      }
-     */
+     *!/
 
     googleCalendar.events.insert(config.calendarId, addEventBody, function (addEventError, addEventResponse) {
       console.log('GOOGLE RESPONSE:', addEventError, addEventResponse)
@@ -350,8 +362,14 @@ module.exports = function (io) {
 //                res.send(200, addEventResponse); // Google is throwing an error here
       }
     })
+*/
 
-    res.render('addGCCompetitions.jade', {title: 'Add Competitions google-calendar Page'})
+//    res.render('addGCCompetitions.jade', {title: 'Add Competitions google-calendar Page'})
+
+    // If statement in jade file not yet working - & doesn't need to work?
+    var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/addGCCompetitionsNew.html'
+    res.writeHead(200, {"Content-Type": "text/html"});
+    fs.createReadStream(file).pipe(res);
   })
 
   return router
