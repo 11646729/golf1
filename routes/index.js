@@ -236,7 +236,11 @@ module.exports = function (io) {
           events.push(eventList.items[i])
         }
 
-        res.render('readCompetitions.jade', {title: 'Read Competitions Page', 'events': events})
+//        res.render('readCompetitions.jade', {title: 'Read Competitions Page', 'events': events})
+
+        var file = '/Users/briansmith/Documents/GTD/golf-1/static/views/readCompetitionsNew.html'
+        res.writeHead(200, {"Content-Type": "text/html"});
+        fs.createReadStream(file).pipe(res);
       }
     })
   })
