@@ -41,21 +41,26 @@
 </header>
 <main>
     <div class="container">
-        <div class="row">
-            <div class="col-sm-8 col-sm-offset-2">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h3>{{ pageName }}</h3>
-<!--
-// This needs to be replaced by Handlebars
-                        ul
-                        each event in events
-                        li #{event.summary} #{event.description}
-                        p(style="margin-left:5px")=event.Phone
--->
-                    </div>
-                </div>
-            </div>
+        <div class="col-sm-12">
+            <h2>{{ pageName }}</h2>
+            <table class=".table">
+                <thead>
+                    <tr>
+                        <th><h3><i>Date</i></h3></th>
+                        <th><h3><i>Summary</i></h3></th>
+                        <th><h3><i>Description</i></h3></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each events}}
+                        <tr>
+                            <td>{{this.start.dateTime}}</td>
+                            <td>{{this.summary}}</td>
+                            <td>{{this.description}}</td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
         </div>
     </div>
 </main>

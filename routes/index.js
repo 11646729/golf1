@@ -221,12 +221,15 @@ module.exports = function (io) {
         console.log(eventList) // Using this line shows that extendedProperties are not being returned
 
         var events = []
-
         for (var i = 0; i < eventList.items.length; i++) {
           events.push(eventList.items[i])
         }
 
-        res.render('readCompetitions', { title: 'Golf Test Routines', pageName: 'Read Competitions Page' })
+//        console.log('In the Read Competitions route')
+
+        var data = { title: 'Golf Test Routines', pageName: 'Read Competitions Page', events: events }
+
+        res.render('readCompetitions', data)
       }
     })
   })

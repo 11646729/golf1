@@ -13,6 +13,13 @@ body, h1, h2, h3, h4, p, li, td, th {
   font-family: 'Open Sans', sans-serif;
   text-align: center;
 }
+
+/*
+i {
+  color: red;
+}
+*/
+
 /* ----------------------- */
 
 .facebook {background: #3b5998; color: #ffffff;}
@@ -100,11 +107,18 @@ table {
 /*table-collapse:collapse;*/
 
 td {
-  border:1px groove black; padding:1px
+  border:1px groove black;
+  padding:1px;
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 
 th {
-  border:1px groove black; padding:1px; text-align: center
+  border:1px groove black;
+  padding:1px;
+  text-align: center;
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 
 h4 {
