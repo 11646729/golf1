@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9fa8333-d4dd-4f0a-9316-851c46675c41" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/javascripts/calendarUtilities.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/views/readGCCompetitions.hbs" afterPath="$PROJECT_DIR$/static/views/readGCCompetitions.hbs" />
     </list>
     <ignored path="golf-1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,8 +26,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-392">
-              <caret line="227" column="0" lean-forward="false" selection-start-line="227" selection-start-column="0" selection-end-line="227" selection-end-column="0" />
+            <state relative-caret-position="375">
+              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -41,6 +39,18 @@
             <state relative-caret-position="512">
               <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="calendarUtilities.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/javascripts/calendarUtilities.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -521,14 +531,7 @@
       <workItem from="1492787315815" duration="2932000" />
       <workItem from="1492882238468" duration="597000" />
       <workItem from="1492934052022" duration="284000" />
-      <workItem from="1493021182320" duration="1553000" />
-    </task>
-    <task id="LOCAL-00195" summary="Minor refactoring">
-      <created>1464518687183</created>
-      <option name="number" value="00195" />
-      <option name="presentableId" value="LOCAL-00195" />
-      <option name="project" value="LOCAL" />
-      <updated>1464518687183</updated>
+      <workItem from="1493021182320" duration="4222000" />
     </task>
     <task id="LOCAL-00196" summary="Refactoring to eliminate magic numbers &amp; start to prepare for update changefeeds">
       <created>1464595278284</created>
@@ -866,15 +869,21 @@
       <option name="project" value="LOCAL" />
       <updated>1492796658590</updated>
     </task>
-    <option name="localTasksCounter" value="244" />
+    <task id="LOCAL-00244" summary="Corrected readGCCalendar js &amp; hbs files">
+      <created>1493022785892</created>
+      <option name="number" value="00244" />
+      <option name="presentableId" value="LOCAL-00244" />
+      <option name="project" value="LOCAL" />
+      <updated>1493022785893</updated>
+    </task>
+    <option name="localTasksCounter" value="245" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110158000" />
+    <option name="totallyTimeSpent" value="112827000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3683834" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -883,7 +892,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31716418" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27363184" sideWeight="0.47997138" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27363184" sideWeight="0.47997138" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3995037" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -940,7 +949,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Minor refactoring" />
     <MESSAGE value="Added Course Scorecard framework" />
     <MESSAGE value="Added Edit Calendar framework &amp; updated OAuth APIs to include Google Calendar" />
     <MESSAGE value="Added extra menu item on main page &amp; javascript to display calendar event details from google calendar" />
@@ -965,7 +973,8 @@
     <MESSAGE value="Started implementing handlebars files" />
     <MESSAGE value="More implementation of handlebars files" />
     <MESSAGE value="Corrected readCompetitions.hbs file using handlebars properly to display sample Google calendar data" />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrected readCompetitions.hbs file using handlebars properly to display sample Google calendar data" />
+    <MESSAGE value="Corrected readGCCalendar js &amp; hbs files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrected readGCCalendar js &amp; hbs files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -974,13 +983,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/views/about.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="1315" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/views/about2.html" />
     <entry file="file://$PROJECT_DIR$/static/views/contact.jade" />
     <entry file="file://$PROJECT_DIR$/static/views/contact.hbs">
@@ -1018,13 +1020,6 @@
     <entry file="file://$PROJECT_DIR$/static/views/databaseTest.jade" />
     <entry file="file://$PROJECT_DIR$/static/views/main.jade" />
     <entry file="file://$PROJECT_DIR$/static/views/addMyRound.jade" />
-    <entry file="file://$PROJECT_DIR$/routes/golfApi.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="3" lean-forward="false" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
@@ -1207,16 +1202,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/javascripts/calendarUtilities.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="11" column="1" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="11" selection-end-column="1" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/views/readCompetitions.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="458">
@@ -1233,10 +1218,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/static/javascripts/calendarUtilities.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/javascripts/roundsOfGolf.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/golfApi.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-392">
-          <caret line="227" column="0" lean-forward="false" selection-start-line="227" selection-start-column="0" selection-end-line="227" selection-end-column="0" />
+        <state relative-caret-position="375">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
       </provider>
