@@ -225,10 +225,9 @@ module.exports = function (io) {
           events.push(eventList.items[i])
         }
 
-//        console.log('In the Read Competitions route')
+        console.log('In the Read Competitions route')
 
         var data = { title: 'Golf Test Routines', pageName: 'Read Competitions Page', events: events }
-
         res.render('readCompetitions', data)
       }
     })
@@ -239,41 +238,29 @@ module.exports = function (io) {
    */
   router.get(config.routes.readGCCompetitions, [util.requireAuthentication], function (req, res) {
 
-/*
     var googleCalendar = new gcal.GoogleCalendar(config.google.googleOAuth2AccessToken)
-
-    // google-calendar returns a JSON file
     googleCalendar.events.list(config.calendarId, {'timeMin': new Date().toISOString()}, function (err, eventList) {
-      var returnedEventList = JSON.parse(eventList)
-//      console.log(returnedEventList);
-
-      returnedEventList['items'].push({'testPush': 'testPushData'})
-      eventList = JSON.stringify(returnedEventList)
-
-      console.log(eventList)
-
-      var jsonStr = '{"theTeam":[{"teamId":"1","status":"pending"},{"teamId":"2","status":"member"}]}'
-      var obj = JSON.parse(jsonStr)
-      obj['theTeam'].push({'teamId': '3', 'status': 'member'})
-      jsonStr = JSON.stringify(obj)
-      // "{"theTeam":[{"teamId":"1","status":"pending"},{"teamId":"2","status":"member"},{"teamId":"3","status":"member"}]}"
-      console.log(jsonStr)
 
       if (err) {
+        console.log('[ERROR] %s:%s \n%s', err.name, err.msg, err.message)
         res.send(500, err)
       } else {
-        var events = []
 
+        // Because googleCalendar returns a JSON file no need to parse eventList
+
+        console.log(eventList)
+
+        var events = []
         for (var i = 0; i < eventList.items.length; i++) {
           events.push(eventList.items[i])
         }
 
+        console.log('In the Read google-calendar Competitions route')
+
+        var data = { title: 'Golf Test Routines', pageName: 'Read google-calendar Competitions Page', events: events }
+        res.render('readGCCompetitions', data)
       }
     })
-*/
-
-    // If statement in jade file not yet working - & doesn't need to work?
-    res.render('readGCCompetitions', { title: 'Golf Test Routines', pageName: 'Read google-calendar Competitions Page' })
   })
 
   /**
