@@ -262,6 +262,16 @@ module.exports = function (io) {
     })
   })
 
+
+  /**
+   * CinemaTest Page
+   */
+  router.get(config.routes.cinema, [util.requireAuthentication], function (req, res) {
+
+    var data = {title: 'Cinema Test', pageName: 'Cinema Test Page Using Firebase'}
+    res.render('cinemaTest', data)
+  })
+
   /**
    * Read Competitions with google-calendar npm module
    */

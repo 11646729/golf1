@@ -30,7 +30,8 @@ var config = {
     readCompetitions: '/readCompetitions',
     readGCCompetitions: '/readGCCompetitions',
     addGCCompetitions: '/addGCCompetitions',
-    membershipRelationshipManager: '/membershipRelationshipManager'
+    membershipRelationshipManager: '/membershipRelationshipManager',
+    cinema: '/cinemaTest'
   },
   googleCalendarUrl: 'https://www.googleapis.com/calendar/v3/calendars/bds6052@gmail.com/events?key=AIzaSyDfr2f5dXtGCmG_H6f0czMbHvopjrlteP0',
   calendarId: 'bds6052@gmail.com',
