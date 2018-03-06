@@ -19,12 +19,10 @@ $(function () {
   var company = "Holywood Leisure";
   var userId = "Movieland";
   var dataStored = "Attendance Figures";
-  var today = new Date();
+  var today = new Date(); // TODO: This isn't working
   var seatAttendance = 43;
   var filmName = "Victoria and Abdul";
   var ticketsSold = 40;
-
-//  writeUserData(company, userId, dataStored, today, seatAttendance, filmName, ticketsSold);
 
   // This includes a key
   var data = {
@@ -36,14 +34,15 @@ $(function () {
   var ref = database.ref(company + "/" + userId).child(dataStored);
   ref.push(data);
 
+// This does not include a key
+//  writeUserData(company, userId, dataStored, today, seatAttendance, filmName, ticketsSold);
 })
 
-// This does not include a key
-function writeUserData(company, userId, dataStored, today, seatAttendance, filmName, ticketsSold) {
-  firebase.database().ref(company + '/' + userId + '/' + dataStored).set({
-    date: today,
-    dailySeatAttendanceNumber: seatAttendance,
-    film : filmName,
-    tickets: ticketsSold
-  });
-}
+// function writeUserData(company, userId, dataStored, today, seatAttendance, filmName, ticketsSold) {
+//   firebase.database().ref(company + '/' + userId + '/' + dataStored).set({
+//     date: today,
+//     dailySeatAttendanceNumber: seatAttendance,
+//     film : filmName,
+//     tickets: ticketsSold
+//   });
+//}
