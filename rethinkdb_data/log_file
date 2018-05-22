@@ -1,0 +1,108 @@
+2016-05-11T13:58:49.451019000 0.006128s notice: Recursively removing directory /Users/briansmith/Documents/GTD/golf-1/rethinkdb_data/tmp
+2016-05-11T13:58:49.452200000 0.007314s notice: Initializing directory /Users/briansmith/Documents/GTD/golf-1/rethinkdb_data
+2016-05-11T13:58:49.452286000 0.007395s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/Users/briansmith/Documents/GTD/golf-1/rethinkdb_data' did not already exist or is empty.)
+2016-05-11T13:58:49.452312000 0.007421s notice: Running rethinkdb 2.3.2 (CLANG 7.3.0 (clang-703.0.31))...
+2016-05-11T13:58:49.456253000 0.011363s notice: Running on Darwin 15.4.0 x86_64
+2016-05-11T13:58:49.456301000 0.011410s notice: Loading data from directory /Users/briansmith/Documents/GTD/golf-1/rethinkdb_data
+2016-05-11T13:58:49.676956000 0.232065s info: Automatically using cache size of 4022 MB
+2016-05-11T13:58:49.677675000 0.232784s error: TCP socket creation failed for port 29015: Address already in use.
+2016-05-12T13:16:24.350881000 0.007541s notice: Running rethinkdb 2.3.2 (CLANG 7.3.0 (clang-703.0.31))...
+2016-05-12T13:16:24.360090000 0.016747s notice: Running on Darwin 15.4.0 x86_64
+2016-05-12T13:16:24.360141000 0.016797s notice: Loading data from directory /Users/briansmith/Documents/GTD/golf-1/rethinkdb_data
+2016-05-12T13:16:24.436529000 0.093185s info: Automatically using cache size of 3644 MB
+2016-05-12T13:16:24.437710000 0.094366s error: TCP socket creation failed for port 29015: Address already in use.
+2016-05-18T08:33:12.753477000 0.009464s notice: Running rethinkdb 2.3.2 (CLANG 7.3.0 (clang-703.0.31))...
+2016-05-18T08:33:12.763066000 0.019090s notice: Running on Darwin 15.4.0 x86_64
+2016-05-18T08:33:12.763114000 0.019136s notice: Loading data from directory /Users/briansmith/Documents/GTD/golf-1/rethinkdb_data
+2016-05-18T08:33:12.855725000 0.111750s info: Automatically using cache size of 4390 MB
+2016-05-18T08:33:12.856598000 0.112623s error: TCP socket creation failed for port 29015: Address already in use.
+2016-05-20T19:14:47.942549000 0.007355s notice: Running rethinkdb 2.3.2 (CLANG 7.3.0 (clang-703.0.31))...
+2016-05-20T19:14:47.952285000 0.017088s notice: Running on Darwin 15.4.0 x86_64
+2016-05-20T19:14:47.952329000 0.017130s notice: Loading data from directory /Users/briansmith/Documents/GTD/golf-1/rethinkdb_data
+2016-05-20T19:14:48.053028000 0.117830s info: Automatically using cache size of 4466 MB
+2016-05-20T19:14:48.053932000 0.118734s error: TCP socket creation failed for port 29015: Address already in use.
+2016-05-20T21:05:29.294793000 0.313496s notice: Running rethinkdb 2.3.2 (CLANG 7.3.0 (clang-703.0.31))...
+2016-05-20T21:05:29.315994000 0.334691s notice: Running on Darwin 15.4.0 x86_64
+2016-05-20T21:05:29.316045000 0.334741s notice: Loading data from directory /Users/briansmith/Documents/GTD/golf-1/rethinkdb_data
+2016-05-20T21:05:29.374908000 0.393604s info: Automatically using cache size of 2860 MB
+2016-05-20T21:05:29.375721000 0.394418s error: TCP socket creation failed for port 29015: Address already in use.
+2016-05-24T10:35:43.471644000 0.009102s notice: Running rethinkdb 2.3.2 (CLANG 7.3.0 (clang-703.0.31))...
+2016-05-24T10:35:43.477139000 0.014594s notice: Running on Darwin 15.4.0 x86_64
+2016-05-24T10:35:43.477201000 0.014654s notice: Loading data from directory /Users/briansmith/Documents/GTD/golf-1/rethinkdb_data
+2016-05-24T10:35:43.537761000 0.075215s info: Automatically using cache size of 5347 MB
+2016-05-24T10:35:43.538906000 0.076359s error: TCP socket creation failed for port 29015: Address already in use.
+2016-05-28T08:44:20.442009000 0.007445s notice: Running rethinkdb 2.3.2 (CLANG 7.3.0 (clang-703.0.31))...
+2016-05-28T08:44:20.450340000 0.015773s notice: Running on Darwin 15.5.0 x86_64
+2016-05-28T08:44:20.450383000 0.015814s notice: Loading data from directory /Users/briansmith/Documents/GTD/golf-1/rethinkdb_data
+2016-05-28T08:44:20.523254000 0.088686s info: Automatically using cache size of 5393 MB
+2016-05-28T08:44:20.524040000 0.089472s error: TCP socket creation failed for port 29015: Address already in use.
+2016-05-29T09:00:19.864888000 0.007430s notice: Running rethinkdb 2.3.2 (CLANG 7.3.0 (clang-703.0.31))...
+2016-05-29T09:00:19.868927000 0.011467s notice: Running on Darwin 15.5.0 x86_64
+2016-05-29T09:00:19.868964000 0.011502s notice: Loading data from directory /Users/briansmith/Documents/GTD/golf-1/rethinkdb_data
+2016-05-29T09:00:19.921826000 0.064365s info: Automatically using cache size of 3476 MB
+2016-05-29T09:00:19.922843000 0.065382s error: TCP socket creation failed for port 29015: Address already in use.
+2016-05-30T09:19:59.420134000 0.007736s notice: Running rethinkdb 2.3.2 (CLANG 7.3.0 (clang-703.0.31))...
+2016-05-30T09:19:59.425456000 0.013057s notice: Running on Darwin 15.5.0 x86_64
+2016-05-30T09:19:59.425523000 0.013121s notice: Loading data from directory /Users/briansmith/Documents/GTD/golf-1/rethinkdb_data
+2016-05-30T09:19:59.537485000 0.125084s info: Automatically using cache size of 3756 MB
+2016-05-30T09:19:59.538589000 0.126187s error: TCP socket creation failed for port 29015: Address already in use.
+2016-05-30T13:29:19.331312000 0.006914s notice: Running rethinkdb 2.3.2 (CLANG 7.3.0 (clang-703.0.31))...
+2016-05-30T13:29:19.337375000 0.012974s notice: Running on Darwin 15.5.0 x86_64
+2016-05-30T13:29:19.337414000 0.013012s notice: Loading data from directory /Users/briansmith/Documents/GTD/golf-1/rethinkdb_data
+2016-05-30T13:29:19.386284000 0.061883s info: Automatically using cache size of 3557 MB
+2016-05-30T13:29:19.387341000 0.062939s error: TCP socket creation failed for port 29015: Address already in use.
+2016-05-30T18:35:51.186461000 0.007178s notice: Running rethinkdb 2.3.2 (CLANG 7.3.0 (clang-703.0.31))...
+2016-05-30T18:35:51.195224000 0.015936s notice: Running on Darwin 15.5.0 x86_64
+2016-05-30T18:35:51.195266000 0.015977s notice: Loading data from directory /Users/briansmith/Documents/GTD/golf-1/rethinkdb_data
+2016-05-30T18:35:51.256391000 0.077102s info: Automatically using cache size of 6183 MB
+2016-05-30T18:35:51.257532000 0.078243s error: TCP socket creation failed for port 29015: Address already in use.
+2016-06-01T09:19:07.464009000 0.006310s notice: Running rethinkdb 2.3.2 (CLANG 7.3.0 (clang-703.0.31))...
+2016-06-01T09:19:07.473582000 0.015880s notice: Running on Darwin 15.5.0 x86_64
+2016-06-01T09:19:07.473634000 0.015930s notice: Loading data from directory /Users/briansmith/Documents/GTD/golf-1/rethinkdb_data
+2016-06-01T09:19:07.587058000 0.129355s info: Automatically using cache size of 4219 MB
+2016-06-01T09:19:07.587887000 0.130183s error: TCP socket creation failed for port 29015: Address already in use.
+2016-06-01T19:01:38.503557000 0.007276s notice: Running rethinkdb 2.3.2 (CLANG 7.3.0 (clang-703.0.31))...
+2016-06-01T19:01:38.508632000 0.012347s notice: Running on Darwin 15.5.0 x86_64
+2016-06-01T19:01:38.508673000 0.012387s notice: Loading data from directory /Users/briansmith/Documents/GTD/golf-1/rethinkdb_data
+2016-06-01T19:01:38.688447000 0.192161s info: Automatically using cache size of 4512 MB
+2016-06-01T19:01:38.689386000 0.193100s error: TCP socket creation failed for port 29015: Address already in use.
+2016-06-02T08:59:41.641775000 0.010013s notice: Running rethinkdb 2.3.2 (CLANG 7.3.0 (clang-703.0.31))...
+2016-06-02T08:59:41.650437000 0.018671s notice: Running on Darwin 15.5.0 x86_64
+2016-06-02T08:59:41.650479000 0.018712s notice: Loading data from directory /Users/briansmith/Documents/GTD/golf-1/rethinkdb_data
+2016-06-02T08:59:41.722643000 0.090877s info: Automatically using cache size of 5184 MB
+2016-06-02T08:59:41.723623000 0.091857s error: TCP socket creation failed for port 29015: Address already in use.
+2016-06-05T09:07:10.265988000 0.289824s notice: Running rethinkdb 2.3.3 (CLANG 7.3.0 (clang-703.0.31))...
+2016-06-05T09:07:10.273451000 0.297283s notice: Running on Darwin 15.5.0 x86_64
+2016-06-05T09:07:10.273497000 0.297327s notice: Loading data from directory /Users/briansmith/Documents/GTD/golf-1/rethinkdb_data
+2016-06-05T09:07:10.319472000 0.343303s info: Automatically using cache size of 3811 MB
+2016-06-05T09:07:10.320447000 0.344277s error: TCP socket creation failed for port 29015: Address already in use.
+2017-04-17T14:32:48.416956000 0.007460s notice: Running rethinkdb 2.3.4 (CLANG 7.3.0 (clang-703.0.31))...
+2017-04-17T14:32:48.426719000 0.017221s notice: Running on Darwin 16.5.0 x86_64
+2017-04-17T14:32:48.426791000 0.017290s notice: Loading data from directory /Users/briansmith/Documents/GTD/golf-1/rethinkdb_data
+2017-04-17T14:32:48.473773000 0.064272s info: Automatically using cache size of 4157 MB
+2017-04-17T14:32:48.474574000 0.065073s error: TCP socket creation failed for port 29015: Address already in use.
+2017-04-17T16:06:14.133566000 0.227247s notice: Running rethinkdb 2.3.4 (CLANG 7.3.0 (clang-703.0.31))...
+2017-04-17T16:06:14.166019000 0.259702s notice: Running on Darwin 16.5.0 x86_64
+2017-04-17T16:06:14.166238000 0.259915s notice: Loading data from directory /Users/briansmith/Documents/GTD/golf-1/rethinkdb_data
+2017-04-17T16:06:14.225787000 0.319464s info: Automatically using cache size of 2853 MB
+2017-04-17T16:06:14.226652000 0.320329s error: TCP socket creation failed for port 29015: Address already in use.
+2017-04-17T16:13:48.844344000 0.144344s notice: Running rethinkdb 2.3.4 (CLANG 7.3.0 (clang-703.0.31))...
+2017-04-17T16:13:48.852173000 0.152168s notice: Running on Darwin 16.5.0 x86_64
+2017-04-17T16:13:48.852220000 0.152214s notice: Loading data from directory /Users/briansmith/Documents/GTD/golf-1/rethinkdb_data
+2017-04-17T16:13:48.885284000 0.185277s info: Automatically using cache size of 2143 MB
+2017-04-17T16:13:48.886043000 0.186036s error: TCP socket creation failed for port 29015: Address already in use.
+2017-04-17T16:44:31.260263000 0.198825s notice: Running rethinkdb 2.3.4 (CLANG 7.3.0 (clang-703.0.31))...
+2017-04-17T16:44:31.274892000 0.213450s notice: Running on Darwin 16.5.0 x86_64
+2017-04-17T16:44:31.274937000 0.213494s notice: Loading data from directory /Users/briansmith/Documents/GTD/golf-1/rethinkdb_data
+2017-04-17T16:44:31.330755000 0.269312s info: Automatically using cache size of 1481 MB
+2017-04-17T16:44:31.331634000 0.270190s error: TCP socket creation failed for port 29015: Address already in use.
+2017-04-17T17:31:22.045967000 0.143331s notice: Running rethinkdb 2.3.4 (CLANG 7.3.0 (clang-703.0.31))...
+2017-04-17T17:31:22.061144000 0.158505s notice: Running on Darwin 16.5.0 x86_64
+2017-04-17T17:31:22.061191000 0.158550s notice: Loading data from directory /Users/briansmith/Documents/GTD/golf-1/rethinkdb_data
+2017-04-17T17:31:22.140097000 0.237457s info: Automatically using cache size of 1697 MB
+2017-04-17T17:31:22.141001000 0.238360s error: TCP socket creation failed for port 29015: Address already in use.
+2017-09-22T20:05:34.706300000 0.008252s notice: Running rethinkdb 2.3.4 (CLANG 7.3.0 (clang-703.0.31))...
+2017-09-22T20:05:34.718191000 0.020140s notice: Running on Darwin 16.7.0 x86_64
+2017-09-22T20:05:34.718258000 0.020206s notice: Loading data from directory /Users/briansmith/Documents/GTD/golf-1/rethinkdb_data
+2017-09-22T20:05:34.761813000 0.063762s info: Automatically using cache size of 6091 MB
+2017-09-22T20:05:34.762487000 0.064435s error: TCP socket creation failed for port 29015: Address already in use.

@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f9fa8333-d4dd-4f0a-9316-851c46675c41" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change beforePath="$PROJECT_DIR$/static/javascripts/cinemaFirebase.js" afterPath="$PROJECT_DIR$/static/javascripts/cinemaFirebase.js" />
     </list>
     <ignored path="golf-1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -480,14 +478,11 @@
       <workItem from="1514569679636" duration="59000" />
       <workItem from="1514569770650" duration="132000" />
       <workItem from="1515245274370" duration="196000" />
-      <workItem from="1520327788696" duration="63000" />
-    </task>
-    <task id="LOCAL-00198" summary="More refactoring - introduced model for MVC">
-      <created>1464612468774</created>
-      <option name="number" value="00198" />
-      <option name="presentableId" value="LOCAL-00198" />
-      <option name="project" value="LOCAL" />
-      <updated>1464612468775</updated>
+      <workItem from="1520327788696" duration="99000" />
+      <workItem from="1521019108074" duration="41000" />
+      <workItem from="1521019179580" duration="48000" />
+      <workItem from="1521280097498" duration="33000" />
+      <workItem from="1524818353225" duration="8000" />
     </task>
     <task id="LOCAL-00199" summary="Refactoring roundOfGolfGoogle.js to use socket.io">
       <created>1464630250340</created>
@@ -825,23 +820,29 @@
       <option name="project" value="LOCAL" />
       <updated>1506107308117</updated>
     </task>
-    <option name="localTasksCounter" value="247" />
+    <task id="LOCAL-00247" summary="Added Firebase to a new Cinema Attendance page&#10;Update ejs version">
+      <created>1520327871482</created>
+      <option name="number" value="00247" />
+      <option name="presentableId" value="LOCAL-00247" />
+      <option name="project" value="LOCAL" />
+      <updated>1520327871484</updated>
+    </task>
+    <option name="localTasksCounter" value="248" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="127179000" />
+    <option name="totallyTimeSpent" value="127345000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5307582" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5622318" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1977612" sideWeight="0.5200286" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329602" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31716418" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27363184" sideWeight="0.47997138" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -900,7 +901,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added extra menu item on main page &amp; javascript to display calendar event details from google calendar" />
     <MESSAGE value="Repaired google login accidental deletion error" />
     <MESSAGE value="Edited some Jade files to accept passed title fields from associated javascript files" />
     <MESSAGE value="Started passing lines from a Json file to Jade" />
@@ -925,7 +925,8 @@
     <MESSAGE value="Corrected readGCCalendar js &amp; hbs files" />
     <MESSAGE value="Corrected addGCCalendar js &amp; hbs files &amp; minor refactored hbs files" />
     <MESSAGE value="Added Firebase to a new Cinema Attendance page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Firebase to a new Cinema Attendance page" />
+    <MESSAGE value="Added Firebase to a new Cinema Attendance page&#10;Update ejs version" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Firebase to a new Cinema Attendance page&#10;Update ejs version" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
