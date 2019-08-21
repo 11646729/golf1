@@ -4,27 +4,23 @@
 
 // modules ===================================================================
 var app = require("express")();
-import { static } from "express";
-import exphbs from "express-handlebars";
-import { favicon as _favicon, secret as _secret, redisUrl } from "./config";
-import cookieParser from "cookie-parser";
-import { json, urlencoded } from "body-parser";
-import cors from "cors";
-import csrf from "csurf";
-import logger from "morgan";
-import compression from "compression";
-import { join } from "path";
-import favicon from "serve-favicon";
-import helmet from "helmet";
-import session from "express-session";
-import flash from "connect-flash";
+var express = require("express");
+var exphbs = require("express-handlebars");
+var config = require("./config");
+var cookieParser = require("cookie-parser");
+var bodyParser = require("body-parser");
+var cors = require("cors");
+var csrf = require("csurf");
+var logger = require("morgan");
+var compression = require("compression");
+var path = require("path");
+var favicon = require("serve-favicon");
+var helmet = require("helmet");
+var session = require("express-session");
+var flash = require("connect-flash");
 var RedisStore = require("connect-redis")(session);
-import {
-  csrf as _csrf,
-  authenticated,
-  templateRoutes
-} from "./middleware/utilities";
-import { passport as _passport, routes } from "./passport";
+var util = require("./middleware/utilities");
+var passport = require("./passport");
 
 // call socket.io to the app
 app.io = require("socket.io")();
@@ -33,7 +29,7 @@ app.io = require("socket.io")();
 require("dotenv").config();
 
 // view engine setup
-app.set("views", join(__dirname, "static/views"));
+app.set("views", path.join(__dirname, "static/views"));
 app.engine(
   ".hbs",
   exphbs({
@@ -45,39 +41,39 @@ app.engine(
 );
 app.set("view engine", ".hbs");
 
-app.use(static(join(__dirname, "static")));
-app.use(favicon(join(__dirname, "static/images", _favicon)));
+app.use(express.static(path.join(__dirname, "static")));
+app.use(favicon(path.join(__dirname, "static/images", config.favicon)));
 
-app.use(cookieParser(_secret));
+app.use(cookieParser(config.secret));
 
 app.use(
   session({
-    secret: _secret,
+    secret: config.secret,
     saveUninitialized: true,
     resave: true,
     store: new RedisStore({
-      url: redisUrl
+      url: config.redisUrl
     })
   })
 );
 
-app.use(_passport.initialize());
-app.use(_passport.session());
+app.use(passport.passport.initialize());
+app.use(passport.passport.session());
 
-app.use(json());
+app.use(bodyParser.json());
 app.use(
-  urlencoded({
+  bodyParser.urlencoded({
     extended: false
   })
 );
 
 app.use(csrf({ cookie: true }));
-app.use(_csrf);
+app.use(util.csrf);
 
-app.use(authenticated);
+app.use(util.authenticated);
 
 app.use(flash());
-app.use(templateRoutes);
+app.use(util.templateRoutes);
 
 // helmet settings from https://blog.jscrambler.com/setting-up-5-useful-middlewares-for-an-express-api/
 app.use(helmet());
@@ -111,7 +107,7 @@ app.use("/", require("./routes/index")(app.io));
  */
 app.use("/golf", require("./routes/golfApi"));
 
-routes(app);
+passport.routes(app);
 
 // error handlers ============================================================
 // catch 404 and forward to error handler
@@ -143,4 +139,4 @@ app.use(function(err, req, res) {
   });
 });
 
-export default app;
+module.exports = app;
