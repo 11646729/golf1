@@ -106,3 +106,21 @@
 2017-09-22T20:05:34.718258000 0.020206s notice: Loading data from directory /Users/briansmith/Documents/GTD/golf-1/rethinkdb_data
 2017-09-22T20:05:34.761813000 0.063762s info: Automatically using cache size of 6091 MB
 2017-09-22T20:05:34.762487000 0.064435s error: TCP socket creation failed for port 29015: Address already in use.
+2019-08-21T20:23:48.260566000 0.188094s notice: Running rethinkdb 2.3.4 (CLANG 7.3.0 (clang-703.0.31))...
+2019-08-21T20:23:48.330795000 0.258322s notice: Running on Darwin 18.7.0 x86_64
+2019-08-21T20:23:48.330882000 0.258407s notice: Loading data from directory /Users/briansmith/Documents/GTD/golf-1/rethinkdb_data
+2019-08-21T20:23:48.374712000 0.302239s info: Automatically using cache size of 4887 MB
+2019-08-21T20:23:48.376529000 0.304056s notice: Listening for intracluster connections on port 29015
+2019-08-21T20:23:48.377930000 0.305457s notice: Listening for client driver connections on port 28015
+2019-08-21T20:23:48.378047000 0.305574s notice: Listening for administrative HTTP connections on port 8080
+2019-08-21T20:23:48.378049000 0.305576s notice: Listening on cluster addresses: 127.0.0.1, ::1
+2019-08-21T20:23:48.378052000 0.305579s notice: Listening on driver addresses: 127.0.0.1, ::1
+2019-08-21T20:23:48.378054000 0.305581s notice: Listening on http addresses: 127.0.0.1, ::1
+2019-08-21T20:23:48.378059000 0.305586s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2019-08-21T20:23:48.378064000 0.305591s notice: Server ready, "BRIANs_MacBook_Pro_local_3xb" 92ab001e-2aaa-4528-8400-a3d1cb47a463
+2019-08-21T20:23:48.797670000 0.725213s warn: Problem when checking for new versions of RethinkDB: HTTP request to update.rethinkdb.com failed.
+2019-08-21T20:24:15.315864000 27.244390s notice: Server got SIGINT from pid 3278, uid 501; shutting down...
+2019-08-21T20:24:15.316071000 27.244597s notice: Shutting down client connections...
+2019-08-21T20:24:15.316190000 27.244715s notice: All client connections closed.
+2019-08-21T20:24:15.316196000 27.244721s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2019-08-21T20:24:15.316618000 27.245143s notice: Storage engine shut down.
