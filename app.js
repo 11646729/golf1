@@ -95,19 +95,18 @@ app.use(
 app.use(compression());
 
 // routes ====================================================================
-/**
- * This is the api for general functions
- */
-app.use("/", require("./routes/index")(app.io));
+var indexRouter = require("./routes/newIndex");
+var usersRouter = require("./routes/users");
 
+app.use("/", indexRouter);
+app.use("/users", usersRouter);
+
+// Original lines
+//app.use("/", require("./routes/index")(app.io));
 // app.use('/users', require('./routes/users'));
+//app.use("/golf", require("./routes/golfApi"));
 
-/**
- * This is the api is for golf functions
- */
-app.use("/golf", require("./routes/golfApi"));
-
-passport.routes(app);
+//passport.routes(app);
 
 // error handlers ============================================================
 // catch 404 and forward to error handler
