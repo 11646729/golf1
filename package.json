@@ -38,7 +38,7 @@
     "passport-google-oauth": " 1.0.0",
     "passport-local": "1.0.0",
     "pug": "2.0.4",
-    "redis": "2.8.0",
+    "redis": "3.1.1",
     "request": "2.87.0",
     "rethinkdb": "2.3.3",
     "scmp": "2.0.0",
