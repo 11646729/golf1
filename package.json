@@ -41,7 +41,7 @@
     "passport-local": "1.0.0",
     "pug": "^3.0.3",
     "redis": "^5.10.0",
-    "request": "2.87.0",
+    "request": "^2.88.2",
     "rethinkdb": "2.3.3",
     "scmp": "2.0.0",
     "send": "^1.2.0",
