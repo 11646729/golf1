@@ -29,6 +29,7 @@
     "express-partials": "0.3.0",
     "express-session": "^1.18.2",
     "fix": "^0.0.3",
+    "form-data": "^4.0.5",
     "fresh": "0.5.2",
     "google-calendar": "^0.0.1",
     "handlebars": "^4.7.7",
