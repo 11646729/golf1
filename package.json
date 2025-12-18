@@ -24,7 +24,7 @@
     "debug": "3.1.0",
     "dotenv": "6.0.0",
     "ejs": "^3.1.10",
-    "express": "^5.1.0",
+    "express": "^5.2.1",
     "express-handlebars": "^8.0.3",
     "express-partials": "0.3.0",
     "express-session": "^1.18.2",
