@@ -32,6 +32,7 @@
     "form-data": "^4.0.5",
     "fresh": "0.5.2",
     "google-calendar": "^0.0.1",
+    "got": "^15.0.5",
     "handlebars": "^4.7.9",
     "helmet": "^8.1.0",
     "mime": "^2.5.2",
@@ -42,7 +43,6 @@
     "passport-local": "1.0.0",
     "pug": "^3.0.3",
     "redis": "^5.10.0",
-    "request": "^2.88.2",
     "rethinkdb": "2.3.3",
     "scmp": "2.0.0",
     "send": "^1.2.0",
@@ -60,10 +60,7 @@
     "qs": "^6.15.2",
     "tough-cookie": "^6.0.1",
     "uuid": "^14.0.0",
-    "brace-expansion": "^5.0.6",
-    "request": {
-      "form-data": "^2.5.4"
-    }
+    "brace-expansion": "^5.0.6"
   },
   "devDependencies": {
     "standard": "^17.1.2"

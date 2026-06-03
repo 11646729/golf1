@@ -6,7 +6,7 @@ module.exports = function(io) {
   var express = require("express");
   var util = require("../middleware/utilities");
   var config = require("../config");
-  var request = require("request");
+  var gotPromise = import("got");
   var user = require("../passport/user");
   var gcal = require("google-calendar");
 
@@ -328,31 +328,31 @@ module.exports = function(io) {
   router.get(
     config.routes.readCompetitions,
     [util.requireAuthentication],
-    function(req, res) {
-      request(config.googleCalendarUrl, function(err, resp, eventList) {
-        if (err) {
-          console.log("[ERROR] %s:%s \n%s", err.name, err.msg, err.message);
-          res.send([]);
-        } else {
-          eventList = JSON.parse(eventList);
+    async function(req, res) {
+      try {
+        const { got } = await gotPromise;
+        const response = await got(config.googleCalendarUrl);
+        var eventList = JSON.parse(response.body);
 
-          console.log(eventList); // Using this line shows that extendedProperties are not being returned
+        console.log(eventList); // Using this line shows that extendedProperties are not being returned
 
-          var events = [];
-          for (var i = 0; i < eventList.items.length; i++) {
-            events.push(eventList.items[i]);
-          }
-
-          console.log("In the Read Competitions route");
-
-          var data = {
-            title: "Golf Test Routines",
-            pageName: "Read Competitions Page",
-            events: events
-          };
-          res.render("readCompetitions", data);
+        var events = [];
+        for (var i = 0; i < eventList.items.length; i++) {
+          events.push(eventList.items[i]);
         }
-      });
+
+        console.log("In the Read Competitions route");
+
+        var data = {
+          title: "Golf Test Routines",
+          pageName: "Read Competitions Page",
+          events: events
+        };
+        res.render("readCompetitions", data);
+      } catch (err) {
+        console.log("[ERROR] %s", err.message);
+        res.send([]);
+      }
     }
   );
 
