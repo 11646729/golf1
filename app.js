@@ -18,7 +18,7 @@ var favicon = require("serve-favicon")
 var helmet = require("helmet")
 var session = require("express-session")
 var flash = require("connect-flash")
-var RedisStore = require("connect-redis").default
+var { RedisStore } = require("connect-redis")
 var { createClient } = require("redis")
 var util = require("./middleware/utilities")
 var passport = require("./passport")
@@ -33,7 +33,7 @@ require("dotenv").config()
 app.set("views", path.join(__dirname, "static/views"))
 app.engine(
   ".hbs",
-  exphbs({
+  exphbs.engine({
     defaultLayout: "single",
     extname: ".hbs",
     layoutsDir: "static/views/layouts/",
