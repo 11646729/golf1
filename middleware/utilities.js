@@ -10,7 +10,7 @@ module.exports.csrf = function csrf (req, res, next) {
 }
 
 module.exports.authenticated = function authenticated (req, res, next) {
-  req.session.isAuthenticated = req.session.passport.user !== undefined
+  req.session.isAuthenticated = req.session.passport?.user !== undefined
   res.locals.isAuthenticated = req.session.isAuthenticated
   if (req.session.isAuthenticated) {
     res.locals.user = req.session.passport.user
